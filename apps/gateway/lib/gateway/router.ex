@@ -9,9 +9,44 @@ defmodule Gateway.Router do
     pipe_through :api
   end
 
+  scope "/api/swagger" do
+    forward "/", PhoenixSwagger.Plug.SwaggerUI,
+      otp_app: :gateway,
+      swagger_file: "swagger.json"
+  end
+
   scope "/" do
     pipe_through :api
 
     get "/", Gateway.HomeController, :index
+  end
+
+  def swagger_info do
+    %{
+      schemes: ["http", "https", "ws", "wss"],
+      info: %{
+        version: "1.0",
+        title: "GatewayAPI",
+        description: "API Documentation for GatewayAPI v1",
+        termsOfService: "Open for public",
+        contact: %{
+          name: "Oleg G.Kapranov",
+          email: "oleg.kapranov@ehealth.gov.ua"
+        }
+      },
+      securityDefinitions: %{
+        Bearer: %{
+          type: "apiKey",
+          name: "Authorization",
+          description: "API Token must be provided via `Authorization: Bearer ` header",
+          in: "header"
+        }
+      },
+      consumes: ["application/json"],
+      produces: ["application/json"],
+      tags: [
+        %{name: "Home", description: "Single empty page"},
+      ]
+    }
   end
 end

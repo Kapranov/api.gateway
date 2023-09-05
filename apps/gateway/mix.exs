@@ -29,11 +29,13 @@ defmodule Gateway.MixProject do
 
   defp deps do
     [
-      {:phoenix, "~> 1.7.7"},
-      {:telemetry_metrics, "~> 0.6"},
-      {:telemetry_poller, "~> 1.0"},
+      {:ex_json_schema, "~> 0.7.1"},
       {:jason, "~> 1.2"},
-      {:plug_cowboy, "~> 2.5"}
+      {:phoenix, "~> 1.7.7"},
+      {:phoenix_swagger, "~> 0.8.3"},
+      {:plug_cowboy, "~> 2.5"},
+      {:telemetry_metrics, "~> 0.6"},
+      {:telemetry_poller, "~> 1.0"}
     ]
   end
 

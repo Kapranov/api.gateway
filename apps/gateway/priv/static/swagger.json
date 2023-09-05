@@ -1,0 +1,59 @@
+{
+  "info": {
+    "version": "1.0",
+    "description": "API Documentation for GatewayAPI v1",
+    "title": "GatewayAPI",
+    "contact": {
+      "name": "Oleg G.Kapranov",
+      "email": "oleg.kapranov@ehealth.gov.ua"
+    },
+    "termsOfService": "Open for public"
+  },
+  "host": "localhost:4000",
+  "definitions": {},
+  "schemes": [
+    "http",
+    "https",
+    "ws",
+    "wss"
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "description": "Home page with status is working",
+        "operationId": "Gateway.HomeController.index",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Home"
+        ]
+      }
+    }
+  },
+  "swagger": "2.0",
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "securityDefinitions": {
+    "Bearer": {
+      "in": "header",
+      "name": "Authorization",
+      "type": "apiKey",
+      "description": "API Token must be provided via `Authorization: Bearer ` header"
+    }
+  },
+  "tags": [
+    {
+      "name": "Home",
+      "description": "Single empty page"
+    }
+  ]
+}

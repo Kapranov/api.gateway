@@ -18,4 +18,8 @@ config :logger, :console,
 
 config :phoenix, :json_library, Jason
 
+config :ex_json_schema,
+  :remote_schema_resolver,
+  fn url -> HTTPoison.get!(url).body |> Jason.decode! end
+
 import_config "#{config_env()}.exs"

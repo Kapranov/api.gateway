@@ -5,3 +5,7 @@ bash> mix phx.new.web gateway --module Gateway --no-assets --no-dashboard --no-e
 ```
 
 ### 5 Sep 2023 by Oleg G.Kapranov
+
+[1]: https://github.com/xerions/phoenix_swagger
+[2]: https://hexdocs.pm/phoenix_swagger/operations.html
+[3]: https://swagger.io/blog/api-development/generate-api-documentation-effortlessly-from-your/

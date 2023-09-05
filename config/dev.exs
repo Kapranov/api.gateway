@@ -9,3 +9,13 @@ config :gateway, Gateway.Endpoint,
   watchers: []
 
 config :gateway, dev_routes: true
+
+config :gateway, :phoenix_swagger,
+  swagger_files: %{
+    "priv/static/swagger.json" => [
+      router: Gateway.Router,
+      endpoint: Gateway.Endpoint
+    ]
+  }
+
+config :phoenix_swagger, json_library: Jason
