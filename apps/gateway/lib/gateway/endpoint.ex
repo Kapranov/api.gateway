@@ -16,7 +16,6 @@ defmodule Gateway.Endpoint do
 
   if code_reloading? do
     plug Phoenix.CodeReloader
-    plug Phoenix.Ecto.CheckRepoStatus, otp_app: :gateway
   end
 
   plug Plug.RequestId
