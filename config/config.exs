@@ -22,4 +22,6 @@ config :ex_json_schema,
   :remote_schema_resolver,
   fn url -> HTTPoison.get!(url).body |> Jason.decode! end
 
+config :core, ecto_repos: [Core.Repo]
+
 import_config "#{config_env()}.exs"

@@ -19,3 +19,11 @@ config :gateway, :phoenix_swagger,
   }
 
 config :phoenix_swagger, json_library: Jason
+
+config :core, Core.Repo,
+  username: "kapranov",
+  password: "nicmos6922",
+  database: "gateway",
+  hostname: "localhost",
+  show_sensitive_data_on_connection_error: true,
+  pool_size: 10

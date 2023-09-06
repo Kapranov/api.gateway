@@ -29,6 +29,7 @@ defmodule Gateway.MixProject do
 
   defp deps do
     [
+      {:core, in_umbrella: true},
       {:ex_json_schema, "~> 0.7.1"},
       {:ex_unit_notifier, "~> 1.3"},
       {:jason, "~> 1.2"},
