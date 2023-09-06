@@ -1,5 +1,8 @@
 defmodule Gateway.DataCase do
-  @moduledoc false
+  @moduledoc """
+  This module defines the test case to be used by
+  tests that require setting up a connection DB.
+  """
 
   @doc """
   Sets up the sandbox based on the test tags.
