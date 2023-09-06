@@ -30,7 +30,9 @@ defmodule Gateway.MixProject do
   defp deps do
     [
       {:ex_json_schema, "~> 0.7.1"},
+      {:ex_unit_notifier, "~> 1.3"},
       {:jason, "~> 1.2"},
+      {:observer_cli, "~> 1.7"},
       {:phoenix, "~> 1.7.7"},
       {:phoenix_swagger, "~> 0.8.3"},
       {:plug_cowboy, "~> 2.5"},
