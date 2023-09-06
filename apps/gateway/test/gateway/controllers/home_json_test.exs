@@ -5,4 +5,3 @@ defmodule Gateway.HomeJSONTest do
     assert Gateway.HomeJSON.render("home.json", %{}) == %{status: "working"}
   end
 end
-
