@@ -1,5 +1,20 @@
 defmodule Gateway.Endpoint do
   use Phoenix.Endpoint, otp_app: :gateway
+  use Absinthe.Phoenix.Endpoint
+
+  alias Absinthe.Plug.Parser, as: AbsintheParser
+  alias Phoenix.CodeReloader
+
+  alias Plug.{
+    Head,
+    MethodOverride,
+    Parsers,
+    RequestId,
+    Session,
+    Telemetry
+  }
+
+  alias Gateway.{ Router }
 
   @session_options [
     store: :cookie,
@@ -15,19 +30,20 @@ defmodule Gateway.Endpoint do
     only: Gateway.static_paths()
 
   if code_reloading? do
-    plug Phoenix.CodeReloader
+    plug CodeReloader
   end
 
-  plug Plug.RequestId
-  plug Plug.Telemetry, event_prefix: [:phoenix, :endpoint]
+  plug RequestId
+  plug Telemetry, event_prefix: [:phoenix, :endpoint]
 
-  plug Plug.Parsers,
-    parsers: [:urlencoded, :multipart, :json],
+  plug Parsers,
+    parsers: [:urlencoded, {:multipart, length: 10_000_000}, :json, AbsintheParser],
     pass: ["*/*"],
     json_decoder: Phoenix.json_library()
 
-  plug Plug.MethodOverride
-  plug Plug.Head
-  plug Plug.Session, @session_options
-  plug Gateway.Router
+  plug MethodOverride
+  plug Head
+  plug Session, @session_options
+  plug CORSPlug
+  plug Router
 end

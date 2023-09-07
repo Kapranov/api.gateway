@@ -6,8 +6,8 @@ defmodule Gateway.HomeControllerTest do
     {:ok, conn: conn}
   end
 
-  test "GET /", %{conn: conn} do
-    conn = get(conn, "/")
+  test "GET /api", %{conn: conn} do
+    conn = get(conn, "/api")
     assert json_response(conn, 200)
   end
 end

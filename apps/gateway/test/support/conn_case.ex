@@ -15,6 +15,9 @@ defmodule Gateway.ConnCase do
   this option is not recommended for other databases.
   """
 
+  alias Phoenix.ConnTest
+  alias Gateway.DataCase
+
   use ExUnit.CaseTemplate
 
   using do
@@ -26,11 +29,12 @@ defmodule Gateway.ConnCase do
       import Plug.Conn
       import Phoenix.ConnTest
       import Gateway.ConnCase
+      import Gateway.DataCase
     end
   end
 
   setup tags do
-    Gateway.DataCase.setup_sandbox(tags)
-    {:ok, conn: Phoenix.ConnTest.build_conn()}
+    DataCase.setup_sandbox(tags)
+    {:ok, conn: ConnTest.build_conn()}
   end
 end

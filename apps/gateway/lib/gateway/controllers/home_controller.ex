@@ -3,7 +3,7 @@ defmodule Gateway.HomeController do
   use PhoenixSwagger
 
   swagger_path :index do
-    get "/"
+    get "/api"
     description "Home page with status is working"
     response 200, "Success"
   end
