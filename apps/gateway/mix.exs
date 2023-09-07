@@ -29,7 +29,15 @@ defmodule Gateway.MixProject do
 
   defp deps do
     [
+      {:absinthe, "~> 1.7"},
+      {:absinthe_auth, "~> 0.2.1"},
+      {:absinthe_error_payload, "~> 1.1", override: true},
+      {:absinthe_phoenix, "~> 2.0", override: true},
+      {:absinthe_plug, "~> 1.5", override: true},
+      {:absinthe_relay, "~> 1.5", override: true},
       {:core, in_umbrella: true},
+      {:cors_plug, "~> 3.0"},
+      {:dataloader, "~> 2.0"},
       {:ex_json_schema, "~> 0.7.1"},
       {:ex_unit_notifier, "~> 1.3"},
       {:jason, "~> 1.2"},
