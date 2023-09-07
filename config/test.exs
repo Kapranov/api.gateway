@@ -12,3 +12,5 @@ config :core, Core.Repo,
   hostname: "localhost",
   show_sensitive_data_on_connection_error: true,
   pool: Ecto.Adapters.SQL.Sandbox
+
+config :logger, level: :warning

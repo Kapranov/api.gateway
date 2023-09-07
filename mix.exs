@@ -13,20 +13,41 @@ defmodule GatewayApi.MixProject do
       elixirc_options: [warnings_as_errors: warnings_as_errors(Mix.env())],
       homepage_url: "https://api.gateway.com.ua/",
       name: "APIGateway",
+      preferred_cli_env: cli_env_for(:test, [
+        "coveralls", "coveralls.detail", "coveralls.post",
+        "coveralls.html", "coveralls.json", "test.reset"
+      ]),
       source_url: "https://github.com/kapranov/api_gateway",
       start_permanent: Mix.env() == :prod,
-      #test_coverage: [tool: ExCoveralls],
+      test_coverage: [tool: ExCoveralls],
       updated: update_version(@version),
       version: version(@version)
     ]
   end
 
   defp aliases do
-    []
+    [
+      bless: [&bless/1],
+      "deps.get": [
+        "deps.get",
+        &update_version/1
+      ],
+      "test.cover": &run_default_coverage/1,
+      "test.cover.html": &run_html_coverage/1,
+      "test.no.start": ["test --no-start"],
+    ]
   end
 
   defp deps do
-    []
+    [
+      {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
+      {:ex_doc, "~> 0.30.6", runtime: false},
+      {:ex_spec, "~> 2.0", only: [:test]},
+      {:ex_unit_notifier, "~> 1.3", [env: :prod, hex: "ex_unit_notifier", repo: "hexpm"]},
+      {:excoveralls, "~> 0.17.1", only: [:test]},
+      {:junit_formatter, "~> 3.3"},
+      {:mix_test_watch, "~> 1.1", only: [:dev], runtime: false}
+    ]
   end
 
   defp description do
@@ -45,6 +66,10 @@ defmodule GatewayApi.MixProject do
         extras: ["README.md"]
       ]
     ]
+  end
+
+  defp cli_env_for(env, tasks) do
+    Enum.reduce(tasks, [], fn(key, acc) -> Keyword.put(acc, :"#{key}", env) end)
   end
 
   defp warnings_as_errors(:prod), do: false
@@ -133,6 +158,38 @@ defmodule GatewayApi.MixProject do
     [version, pre_release, build_metadata]
     |> Enum.filter(fn string -> string && string != "" end)
     |> Enum.join()
+  end
+
+  defp bless(_) do
+    [
+      {"compile", ["--warnings-as-errors", "--force"]},
+      {"coveralls.html", []},
+      {"format", ["--check-formatted"]},
+      {"credo", []}
+    ]
+    |>  Enum.each(fn {task, args} ->
+      IO.ANSI.format([:cyan, "Running #{task} with args #{inspect(args)}"])
+      |> IO.puts()
+
+      Mix.Task.run(task, args)
+    end)
+  end
+
+  defp run_default_coverage(args), do: run_coverage("coveralls", args)
+  defp run_html_coverage(args), do: run_coverage("coveralls.html", args)
+
+  defp run_coverage(task, args) do
+    {_, res} =
+      System.cmd(
+        "mix",
+        [task | args],
+        into: IO.binstream(:stdio, :line),
+        env: [{"MIX_ENV", "test"}]
+      )
+
+    if res > 0 do
+      System.at_exit(fn _ -> exit({:shutdown, 1}) end)
+    end
   end
 
   defp get_commit_sha do

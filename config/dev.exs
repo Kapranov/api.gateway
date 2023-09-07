@@ -27,3 +27,8 @@ config :core, Core.Repo,
   hostname: "localhost",
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
+
+config :logger, :console,
+  format: "[$date $time] $message\n",
+  colors: [enabled: true],
+  metadata: [:module, :function, :line]
