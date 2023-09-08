@@ -6,10 +6,18 @@ defmodule Gateway.AbsintheHelpers do
   import Phoenix.ConnTest
 
   @endpoint Gateway.Endpoint
+  @salt Application.compile_env(:gateway, ServerWeb.Endpoint)[:salt]
+  @secret Application.compile_env(:gateway, ServerWeb.Endpoint)[:secret_key_base]
 
-  @spec authenticate_conn(Plug.Conn.t(), any()) :: Plug.Conn.t()
-  def authenticate_conn(%Plug.Conn{} = conn, _opts) do
+  @spec authenticate_conn(Plug.Conn.t(), String.t()) :: Plug.Conn.t()
+  def authenticate_conn(%Plug.Conn{} = conn, phrase) do
+
+    token =
+      if is_nil(phrase), do: nil, else: Phoenix.Token.sign(@secret, @salt, phrase)
+
     conn
+    |> Plug.Conn.put_req_header("authorization", "Bearer #{token}")
+    |> Plug.Conn.put_req_header("accept", "application/json")
   end
 
   @spec query_skeleton(String.t(), String.t()) :: %{atom => String.t()}
