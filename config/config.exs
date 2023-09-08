@@ -13,32 +13,25 @@ level =
   end
 
 config :gateway, Gateway.Endpoint,
-  url: [host: "api_gateway.me", port: 4000, ip: {127, 0, 0, 1}],
   http: [ port: 4001, protocol_options: [idle_timeout: 160_000]],
-  salt: "+q+VvrJ9Mcfh3rb9fIS2/UphGKmum68C6iBmbYMFDkG/aoWv6PXgB1S/vdUmRcuH",
-  redirect_uri: "http://_api_gateway.me:4001/graphiql",
-  render_errors: [
-    formats: [json: Gateway.ErrorJSON],
-    layout: false
-  ],
-  pubsub_server: Gateway.PubSub,
   live_view: [signing_salt: "W871n4Ux"],
+  max_age: 300 * 24 * 3600,
+  pubsub_server: Gateway.PubSub,
+  redirect_uri: "http://_api_gateway.me:4001/graphiql",
+  render_errors: [ formats: [json: Gateway.ErrorJSON], layout: false ],
+  salt: "ksMmovTQMCDHSuGjLSXpRL4uYsqSKKX8PTOl1hVEu1N76WzGqxY5UgucT7bDYggH",
+  secret_key_base: "zmUCNZbpR+o2A2KA/2T1+RCm9mCctS60jMOmfjHIcht/Nudd3+dIjr9/5DlSZX1r",
+  url: [host: "api_gateway.me", port: 4000, ip: {127, 0, 0, 1}],
   version: Mix.Project.config()[:version]
 
 config :gateway,
   generators: [context_app: false]
 
 config :logger, :console,
+  colors: [ enabled: true, debug: :cyan, info: :green, warn: :yellow, error: :red ],
   format: "$time $metadata[$level] $message\n",
-  metadata: [:request_id],
   level: level,
-  colors: [
-    enabled: true,
-    debug: :cyan,
-    info: :green,
-    warn: :yellow,
-    error: :red
-  ]
+  metadata: [:request_id]
 
 config :phoenix, :json_library, Jason
 

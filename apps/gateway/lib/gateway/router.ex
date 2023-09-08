@@ -6,9 +6,13 @@ defmodule Gateway.Router do
     Plug.GraphiQL
   }
 
-  alias Gateway.GraphQL.Schema
+  alias Gateway.{
+    Context,
+    GraphQL.Schema
+  }
 
   pipeline :api do
+    plug Context
     plug :accepts, ["json"]
     plug :inspect_conn, []
   end
