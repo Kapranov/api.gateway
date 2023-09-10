@@ -14,7 +14,6 @@ defmodule Gateway.Router do
   pipeline :api do
     plug Context
     plug :accepts, ["json"]
-    plug :inspect_conn, []
   end
 
   scope "/api", Gateway do
@@ -71,16 +70,5 @@ defmodule Gateway.Router do
         %{name: "Home", description: "Single empty page"},
       ]
     }
-  end
-
-  def inspect_conn(conn, _) do
-    "\n" |> IO.inspect()
-    IO.inspect("#{inspect(conn.params)}")
-    conn.request_path |> IO.inspect(label: :path)
-    conn.params["operationName"] |> IO.inspect(label: :operationName)
-    :io.format("~nquery: ~n~s~n", [conn.params["query"]])
-    conn.params["variables"] |> IO.inspect(label: :variables)
-
-    conn
   end
 end

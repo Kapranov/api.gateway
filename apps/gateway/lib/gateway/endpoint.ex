@@ -14,7 +14,7 @@ defmodule Gateway.Endpoint do
     Telemetry
   }
 
-  alias Gateway.{ Router }
+  alias Gateway.Router
 
   @session_options [
     store: :cookie,

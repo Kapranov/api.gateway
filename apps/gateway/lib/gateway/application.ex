@@ -5,7 +5,11 @@ defmodule Gateway.Application do
 
   require Logger
 
-  @impl true
+  @doc """
+  Starts the endpoint supervision tree.
+  """
+  @spec start(Application.start_type(), start_args :: term()) ::
+          {:ok, pid()} | {:ok, pid(), Application.state()} | {:error, reason :: term()}
   def start(_type, _args) do
     load_version()
     children = [
@@ -18,7 +22,10 @@ defmodule Gateway.Application do
     Supervisor.start_link(children, opts)
   end
 
-  @impl true
+  @doc """
+  Callback that changes the configuration from the app callback.
+  """
+  @spec config_change(list(tuple()), list(tuple()), list(any())) :: :ok
   def config_change(changed, _new, removed) do
     Gateway.Endpoint.config_change(changed, removed)
     :ok

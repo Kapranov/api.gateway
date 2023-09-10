@@ -1,4 +1,6 @@
 defmodule Gateway.GraphQL.Schemas.Middleware.ChangesetErrors do
+  @moduledoc false
+
   @behaviour Absinthe.Middleware
 
   def call(res, _) do
