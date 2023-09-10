@@ -9,7 +9,7 @@
     },
     "termsOfService": "Open for public"
   },
-  "host": "localhost:4000",
+  "host": "api_gateway.me:4000",
   "definitions": {},
   "schemes": [
     "http",
@@ -18,7 +18,7 @@
     "wss"
   ],
   "paths": {
-    "/": {
+    "/api": {
       "get": {
         "description": "Home page with status is working",
         "operationId": "Gateway.HomeController.index",

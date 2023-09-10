@@ -83,6 +83,10 @@ outdated:
 recovery:
 													$(V)$(MIX) deps.compile
 													$(V)$(MIX) compile
+swagger:
+													$(V)$(MIX) phx.swagger.generate
+credo:
+													$(V)$(MIX) credo
 
 test:
 													$(V)clear
@@ -108,4 +112,4 @@ compile: kill clean packs install.erlexec
 
 all: test credo start
 
-.PHONY: help git-% pull log kill clean compile_dev compile_test packs test run halt start up all
+.PHONY: help git-% all clean compile_dev compile_test credo halt kill log packs pull run start swagger test up
