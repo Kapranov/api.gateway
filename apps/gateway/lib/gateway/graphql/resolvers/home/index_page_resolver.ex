@@ -23,15 +23,15 @@ defmodule Gateway.GraphQL.Resolvers.Home.IndexPageResolver do
     {:ok, struct}
   end
 
-  @spec index(any, %{atom => any} , %{context: %{current_user: String.t()}}) :: result()
-  def index(_parent, _args, %{context: %{current_user: _token}}) do
+  @spec index(any, %{atom => any} , %{context: %{token: String.t()}}) :: result()
+  def index(_parent, _args, %{context: %{token: _token}}) do
     struct = %{status: "working"}
     {:ok, struct}
   end
 
   @spec index(any, %{atom => any}, Absinthe.Resolution.t()) :: error_tuple()
   def index(_parent, _args, _info) do
-    {:error, [[field: :current_user,  message: "Unauthenticated"]]}
+    {:error, [[field: :token,  message: "Unauthenticated"]]}
   end
 
   @spec token(any, %{atom => any}, Absinthe.Resolution.t()) :: error_tuple()

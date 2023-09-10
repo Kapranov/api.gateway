@@ -1,11 +1,12 @@
 {
   "key": "graphiql",
-  "lastId": 5,
+  "lastId": 6,
   "tabIds": [
     "tab1",
     "tab2",
     "tab3",
-    "tab4"
+    "tab4",
+    "tab6"
   ],
   "closedTabs": [
     {
@@ -59,7 +60,7 @@
   "maxUrlHistory": 20,
   "maxHistory": 20,
   "savedQueries": [],
-  "activeId": "tab4",
+  "activeId": "tab2",
   "tabs": [
     {
       "id": "tab1",
@@ -89,23 +90,65 @@
       "websocketUrl": "",
       "proxy": false,
       "headers": [],
+      "collapsed": false,
+      "maxHistory": 20,
+      "history": [
+        {
+          "query": "query {\n  indexPage {status}\n}",
+          "variables": null
+        },
+        {
+          "query": "query {\n  homePage {status}\n}",
+          "variables": null
+        },
+        {
+          "query": "query {\n  homePage {status}\n}\n  }\n}",
+          "variables": null
+        },
+        {
+          "query": "query {\n  homePage\n}\n  }\n}",
+          "variables": null
+        },
+        {
+          "query": "query {\n  getToken {\n    accessToken\n  }\n}",
+          "variables": null
+        }
+      ],
+      "graphiql:query": "query {\n  indexPage {status}\n}",
+      "graphiql:editorFlex": 0.2718808193668529,
+      "graphiql:docExplorerWidth": 350,
+      "graphiql:variableEditorHeight": 200,
+      "graphiql:queries": "{\"queries\":[{\"query\":\"query {\\n  getToken {\\n    accessToken\\n  }\\n}\",\"variables\":\"\"},{\"query\":\"query {\\n  homePage {status}\\n}\"},{\"query\":\"query {\\n  indexPage {status}\\n}\"}]}"
+    },
+    {
+      "id": "tab3",
+      "name": "Query 3",
+      "url": "http://localhost:4000/graphiql",
+      "websocketUrl": "",
+      "proxy": false,
+      "headers": [],
       "collapsed": true,
       "maxHistory": 20,
       "history": [
         {
           "query": "query {\n  getToken {\n    accessToken\n  }\n}",
           "variables": null
+        },
+        {
+          "query": "query {\n  homePage {\n    status\n  }\n}",
+          "variables": null
         }
       ],
       "graphiql:query": "query {\n  getToken {\n    accessToken\n  }\n}",
-      "graphiql:editorFlex": 0.2718808193668529,
-      "graphiql:docExplorerWidth": 350,
+      "graphiql:variables": "",
+      "graphiql:queries": "{\"queries\":[{\"query\":\"query {\\n  homePage {\\n    status\\n  }\\n}\",\"variables\":\"\"},{\"query\":\"query {\\n  getToken {\\n    accessToken\\n  }\\n}\",\"variables\":\"\"}]}",
+      "graphiql:editorFlex": 0.26014760147601473,
       "graphiql:variableEditorHeight": 200,
-      "graphiql:queries": "{\"queries\":[{\"query\":\"query {\\n  getToken {\\n    accessToken\\n  }\\n}\",\"variables\":\"\"}]}"
+      "graphiql:docExplorerWidth": 350
     },
     {
-      "id": "tab3",
-      "name": "Query 3",
+      "id": "tab4",
+      "name": "Query 4",
       "url": "http://localhost:4000/graphiql",
       "websocketUrl": "",
       "proxy": false,
@@ -121,13 +164,13 @@
       "graphiql:query": "query {\n  homePage {\n    status\n  }\n}",
       "graphiql:variables": "",
       "graphiql:queries": "{\"queries\":[{\"query\":\"query {\\n  homePage {\\n    status\\n  }\\n}\",\"variables\":\"\"}]}",
-      "graphiql:editorFlex": 1,
+      "graphiql:editorFlex": 0.24181818181818182,
       "graphiql:variableEditorHeight": 200,
       "graphiql:docExplorerWidth": 350
     },
     {
-      "id": "tab4",
-      "name": "Query 4",
+      "id": "tab6",
+      "name": "Query 5",
       "url": "http://localhost:4000/graphiql",
       "websocketUrl": "",
       "proxy": false,
@@ -137,7 +180,7 @@
           "value": "Bearer SFMyNTY.g2gDdwNuaWxuBgDOPjd-igFiAAFRgA.KhhMXVhxEdkLOFZtHTizqkvrECxgM2MviXPU7FtXCWc"
         }
       ],
-      "collapsed": false,
+      "collapsed": true,
       "maxHistory": 20,
       "history": [
         {
@@ -148,7 +191,7 @@
       "graphiql:query": "query {\n  homePage {\n    status\n  }\n}",
       "graphiql:variables": "",
       "graphiql:queries": "{\"queries\":[{\"query\":\"query {\\n  homePage {\\n    status\\n  }\\n}\",\"variables\":\"\"}]}",
-      "graphiql:editorFlex": 0.24181818181818182,
+      "graphiql:editorFlex": 0.2695167286245353,
       "graphiql:variableEditorHeight": 200,
       "graphiql:docExplorerWidth": 350
     }

@@ -27,11 +27,11 @@ defmodule Gateway.Context do
   @doc """
   Return an empty map context based on the authorization header
   """
-  @spec build_context(Plug.Conn.t()) :: %{current_user: User.t()} | map()
+  @spec build_context(Plug.Conn.t()) :: %{token: User.t()} | map()
   def build_context(conn) do
     with ["Bearer " <> token] <- get_req_header(conn, "authorization"),
       {:ok, phrase} <- authorize(token) do
-        %{current_user: phrase}
+        %{token: phrase}
     else
       _ -> %{}
     end
