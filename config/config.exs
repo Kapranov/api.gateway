@@ -19,8 +19,6 @@ config :gateway, Gateway.Endpoint,
   pubsub_server: Gateway.PubSub,
   redirect_uri: "http://api_gateway.me:4001/graphiql",
   render_errors: [ formats: [json: Gateway.ErrorJSON], layout: false ],
-  salt: "ksMmovTQMCDHSuGjLSXpRL4uYsqSKKX8PTOl1hVEu1N76WzGqxY5UgucT7bDYggH",
-  secret_key_base: "zmUCNZbpR+o2A2KA/2T1+RCm9mCctS60jMOmfjHIcht/Nudd3+dIjr9/5DlSZX1r",
   url: [host: "api_gateway.me", port: 4000, ip: {127, 0, 0, 1}],
   version: Mix.Project.config()[:version]
 

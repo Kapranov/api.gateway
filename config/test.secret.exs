@@ -11,6 +11,8 @@ end
 
 config :gateway, Gateway.Endpoint,
   http: [ip: {127, 0, 0, 1}, port: 4002],
+  phrase: "EJxpuX8PD1sNYnr15Sr5rsQSUCcXcZnwuV9FZJKE0TL+uNE/nmBfBXZsdJ9ngs5q",
+  salt: "Tqo8gY+TfKOJIWMYdFyobEHi/ueQoICGCAuN2qXijAv6due3kMb5dcYDoC1Ons6s",
   secret_key_base: "99CqfpOMyjmG9+iNQWIxjaLpSNsec7wbrZlwkKvA1WEJt8U5OntFWnh7sbjJN6Cl",
   server: false
 
