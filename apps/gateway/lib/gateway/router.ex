@@ -45,7 +45,7 @@ defmodule Gateway.Router do
 
   def swagger_info do
     %{
-      schemes: ["http", "https", "ws", "wss"],
+      schemes: ["http", "https"],
       info: %{
         version: "1.0",
         title: "GatewayAPI",
@@ -67,7 +67,7 @@ defmodule Gateway.Router do
       consumes: ["application/json"],
       produces: ["application/json"],
       tags: [
-        %{name: "Home", description: "Single empty page"},
+        %{name: "Home", description: "Single page with status"},
       ]
     }
   end

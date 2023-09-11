@@ -17,7 +17,7 @@ config :gateway, Gateway.Endpoint,
   live_view: [signing_salt: "W871n4Ux"],
   max_age: 300 * 24 * 3600,
   pubsub_server: Gateway.PubSub,
-  redirect_uri: "http://api_gateway.me:4001/graphiql",
+  redirect_uri: "http://api_gateway.me:4000/graphiql",
   render_errors: [ formats: [json: Gateway.ErrorJSON], layout: false ],
   url: [host: "api_gateway.me", port: 4000, ip: {127, 0, 0, 1}],
   version: Mix.Project.config()[:version]

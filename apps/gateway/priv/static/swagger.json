@@ -2,21 +2,17 @@
   "info": {
     "version": "1.0",
     "description": "API Documentation for GatewayAPI v1",
-    "title": "GatewayAPI",
+    "title": "Graphql swagger",
     "contact": {
       "name": "Oleg G.Kapranov",
       "email": "oleg.kapranov@ehealth.gov.ua"
     },
     "termsOfService": "Open for public"
   },
-  "host": "api_gateway.me:4000",
+  "host": "api.gateway.me:4000/graphiql",
+  "basePath": "/",
   "definitions": {},
-  "schemes": [
-    "http",
-    "https",
-    "ws",
-    "wss"
-  ],
+  "schemes": [ "http" ],
   "paths": {
     "/api": {
       "get": {
@@ -32,6 +28,16 @@
         "tags": [
           "Home"
         ]
+      },
+      "post": {
+        "summary": "GraphQL",
+        "consumes": "application/json",
+        "produces": "application/json",
+        "responses": {
+          200: {
+            "description": "successful operation"
+          }
+        }
       }
     }
   },
@@ -53,7 +59,7 @@
   "tags": [
     {
       "name": "Home",
-      "description": "Single empty page"
+      "description": "Single page with status"
     }
   ]
 }
