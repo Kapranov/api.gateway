@@ -12,6 +12,7 @@ defmodule Gateway.Context do
   @type opts :: [context: map]
 
   @max_age Application.compile_env(:gateway, Endpoint)[:max_age]
+  @phrase Application.compile_env(:gateway, Endpoint)[:phrase]
   @salt Application.compile_env(:gateway, Endpoint)[:salt]
   @secret Application.compile_env(:gateway, Endpoint)[:secret_key_base]
 
@@ -44,7 +45,11 @@ defmodule Gateway.Context do
       {:error, :expired} ->
         {:error, "token has been expired or revoked"}
       {:ok, phrase} ->
-        {:ok, phrase}
+        if phrase == @phrase do
+          {:ok, phrase}
+        else
+          :error
+        end
     end
   end
 end

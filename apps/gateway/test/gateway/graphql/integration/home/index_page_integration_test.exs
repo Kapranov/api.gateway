@@ -42,6 +42,22 @@ defmodule Gateway.GraphQL.Integration.Home.IndexPageIntegrationTest do
       data = json_response(res, 200)["data"]["homePage"]
       assert data["status"] == "working"
     end
+
+    test "returns error home page with invalid token" do
+      query = """
+      {
+        homePage { status }
+      }
+      """
+      res =
+        build_conn()
+        |> auth_conn("invalid")
+        |> post("/graphiql", AbsintheHelpers.query_skeleton(query, "homePage"))
+
+      assert json_response(res, 200)["errors"] == nil
+      data = json_response(res, 200)["data"]["homePage"]
+      assert data["status"] == "Unauthenticated"
+    end
   end
 
   describe "#getToken" do

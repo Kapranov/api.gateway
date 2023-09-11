@@ -31,7 +31,8 @@ defmodule Gateway.GraphQL.Resolvers.Home.IndexPageResolver do
 
   @spec index(any, %{atom => any}, Absinthe.Resolution.t()) :: error_tuple()
   def index(_parent, _args, _info) do
-    {:error, [[field: :token,  message: "Unauthenticated"]]}
+    struct = %{status: "Unauthenticated"}
+    {:ok, struct}
   end
 
   @spec token(any, %{atom => any}, Absinthe.Resolution.t()) :: error_tuple()

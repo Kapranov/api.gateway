@@ -13,15 +13,21 @@ defmodule Gateway.GraphQL.Resolvers.Home.IndexPageResolverTest do
 
   describe "#index" do
     test "returns error an authorization's token" do
-      {:error, data} = IndexPageResolver.index(nil, nil, nil)
-      assert data == [[field: :token, message: "Unauthenticated"]]
+      {:ok, data} = IndexPageResolver.index(nil, nil, nil)
+      assert data.status == "Unauthenticated"
     end
 
-    test "returns index page with authorization's token" do
+    test "returns home page with authorization's token" do
       context = %{context: %{token: "token_phrase"}}
       {:ok, data} = IndexPageResolver.index(nil, nil, context)
       assert length([data]) == 1
       assert data.status == "working"
+    end
+
+    test "returns error home page with invalid token" do
+      {:ok, data} = IndexPageResolver.index(nil, nil, nil)
+      assert length([data]) == 1
+      assert data.status == "Unauthenticated"
     end
   end
 
