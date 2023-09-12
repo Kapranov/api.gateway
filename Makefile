@@ -28,7 +28,7 @@ help:
 git-%:
 													$(V)$(GIT) add .
 													$(V)$(GIT) commit -m "$(@:git-%=%)"
-													$(V)$(GIT) push -u origin master
+													$(V)$(GIT) push -u origin main
 
 git_log:
 													$(V)$(GIT) log -p -$(NUM)
