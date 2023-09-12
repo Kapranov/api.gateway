@@ -4,6 +4,7 @@
 
 ```bash
 bash> mix new core --sup
+bash> mix run apps/core/priv/repo/seeds.exs
 ```
 
 ### `Ecto.Migration`
@@ -34,6 +35,22 @@ CREATE TABLE IF NOT EXISTS public."operators"
     priority integer, --пріорітет оператора
 );
 
+CREATE TABLE IF NOT EXISTS public.messages
+--Таблиця в записуються дані повідомлення отриманих з методу "створення повідомлення"
+(
+    id uuid NOT NULL, --унікальний ідентифікатор
+    email character varying(100), -- email отримувача
+    id_external uuid, --унікальний ідентифікатор повідомлення Клієнту
+    id_tax character varying(10), -- ІПН(ИНН) для відоправки повідомлень через "Дія"
+    inserted_at timestamp without time zone NOT NULL, --дата та час додавання запису
+    message_body character varying(255) NOT NULL, -- текст повідомлення
+    message_expired_at timestamp without time zone --дата та час "життя" повідомлення, якщо значення більше ніж поточий час повідомлення відправляти не потрібно, Робимо запис в sms_log з значенням статусу "expired"
+    phone_number character varying(13) COLLATE pg_catalog."default" NOT NULL, --номер телефону
+    status character varying(50) COLLATE pg_catalog."default" NOT NULL, -- статус повідомлення
+    telegram character varying(100), -- ID "месенджера" (viber\telegram)
+    viber character varying(100), -- ID "месенджера" (viber\telegram)
+);
+
 CREATE TABLE IF NOT EXISTS public.sms_logs
 (
     id uuid NOT NULL,
@@ -52,26 +69,11 @@ CREATE TABLE IF NOT EXISTS public.sms_logs
     telegram character varying(100), -- ID "месенджера" (viber\telegram)	message_body character varying NOT NULL,-- текст повідомлення
     viber character varying(100), -- ID "месенджера" (viber\telegram)
 );
-
-CREATE TABLE IF NOT EXISTS public.messages
---Таблиця в записуються дані повідомлення отриманих з методу "створення повідомлення"
-(
-    id uuid NOT NULL, --унікальний ідентифікатор
-    email character varying(100), -- email отримувача
-    id_external uuid, --унікальний ідентифікатор повідомлення Клієнту
-    id_tax character varying(10), -- ІПН(ИНН) для відоправки повідомлень через "Дія"
-    inserted_at timestamp without time zone NOT NULL, --дата та час додавання запису
-    message_body character varying(255) NOT NULL, -- текст повідомлення
-    message_expired_at timestamp without time zone --дата та час "життя" повідомлення, якщо значення більше ніж поточий час повідомлення відправляти не потрібно, Робимо запис в sms_log з значенням статусу "expired"
-    phone_number character varying(13) COLLATE pg_catalog."default" NOT NULL, --номер телефону
-    status character varying(50) COLLATE pg_catalog."default" NOT NULL, -- статус повідомлення
-    telegram character varying(100), -- ID "месенджера" (viber\telegram)
-    viber character varying(100), -- ID "месенджера" (viber\telegram)
-);
 END;
 ```
 
 ```bash
+bash> mix ecto.gen.migration -r Core.Repo add_uuid_generate_v4_extension
 bash> mix ecto.gen.migration -r Core.Repo create_operator_types
 bash> mix ecto.gen.migration -r Core.Repo create_operators
 bash> mix ecto.gen.migration -r Core.Repo create_sms_logs

@@ -32,6 +32,7 @@ defmodule Core.MixProject do
 
   defp deps do
     [
+      {:ecto_enum, "~> 1.4"},
       {:ecto_sql, "~> 3.10"},
       {:ex_machina, "~> 2.7"},
       {:ex_unit_notifier, "~> 1.3"},
