@@ -12,11 +12,14 @@ defmodule Core.Seeder.Updated.Operators do
   @spec start!() :: Ecto.Schema.t()
   def start! do
     update_operator_type()
+    IO.puts("Updated data on model's OperatorTypes\n")
+    update_operator()
+    IO.puts("Updated data on model's Operators\n")
   end
 
   @spec update_operator_type() :: Ecto.Schema.t()
   defp update_operator_type do
-    operator_type1 = Repo.get_by(OperatorType, %{active: false})
+    operator_type1 = Repo.get_by(OperatorType, %{active: true})
     [
       Operators.update_operator_type(operator_type1, %{
         active: random_boolean(),
@@ -24,6 +27,11 @@ defmodule Core.Seeder.Updated.Operators do
         priority: random_integers()
       })
     ]
+  end
+
+  @spec update_operator() :: Ecto.Schema.t()
+  defp update_operator do
+    :ok
   end
 
   @spec random_boolean() :: boolean()

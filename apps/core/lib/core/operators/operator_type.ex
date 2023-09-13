@@ -5,7 +5,10 @@ defmodule Core.Operators.OperatorType do
 
   use Core.Model
 
-  alias Core.Operators.Helpers.OperatorTypesEnum
+  alias Core.Operators.{
+    Helpers.OperatorTypesEnum,
+    Operator
+  }
 
   @type t :: %__MODULE__{
     active: boolean,
@@ -32,6 +35,8 @@ defmodule Core.Operators.OperatorType do
     field :name, OperatorTypesEnum
     field :priority, :integer
 
+    has_one :operator, Operator, on_delete: :delete_all
+
     timestamps(updated_at: false)
   end
 
@@ -44,5 +49,7 @@ defmodule Core.Operators.OperatorType do
     |> cast(attrs, @allowed_params)
     |> validate_required(@required_params)
     |> validate_inclusion(:priority, 1..99)
+    |> foreign_key_constraint(:name, message: "Select the Name")
+    |> unique_constraint(:name, name: :operator_types_name_index)
   end
 end

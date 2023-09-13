@@ -9,5 +9,7 @@ defmodule Core.Repo.Migrations.CreateOperatorTypes do
       add :name, :string, null: false, default: "gsm"
       add :priority, :integer, null: true
     end
+
+    create(unique_index(:operator_types, [:name], name: :operator_types_name_index))
   end
 end

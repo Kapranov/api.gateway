@@ -76,8 +76,12 @@ END;
 bash> mix ecto.gen.migration -r Core.Repo add_uuid_generate_v4_extension
 bash> mix ecto.gen.migration -r Core.Repo create_operator_types
 bash> mix ecto.gen.migration -r Core.Repo create_operators
-bash> mix ecto.gen.migration -r Core.Repo create_sms_logs
 bash> mix ecto.gen.migration -r Core.Repo create_messages
+bash> mix ecto.gen.migration -r Core.Repo create_sms_logs
 ```
 
 ### 5 September 2023 by Oleg G.Kapranov
+
+[1]: https://fullstackphoenix.com/tutorials/add-jsonb-field-in-phoenix-and-ecto
+[2]: https://medium.com/coletiv-stories/ecto-embedded-schemas-quick-search-through-a-jsonb-array-in-postgresql-f9d91cf90843
+

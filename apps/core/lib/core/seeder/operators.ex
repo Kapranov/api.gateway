@@ -15,6 +15,7 @@ defmodule Core.Seeder.Operators do
   def reset_database! do
     IO.puts("Deleting old data...\n")
     SQL.query!(Repo, "TRUNCATE operator_types CASCADE;")
+    SQL.query!(Repo, "TRUNCATE operators CASCADE;")
   end
 
   @spec seed!() :: Ecto.Schema.t()
@@ -34,7 +35,7 @@ defmodule Core.Seeder.Operators do
   defp insert_operator_type do
     [
       Operators.create_operator_type(%{
-        active: random_boolean(),
+        active: true,
         name: random_names(),
         priority: random_integers()
       })
@@ -42,7 +43,7 @@ defmodule Core.Seeder.Operators do
   end
 
   @spec random_boolean() :: boolean()
-  defp random_boolean do
+  def random_boolean do
     value = ~W(true false)a
     Enum.random(value)
   end
