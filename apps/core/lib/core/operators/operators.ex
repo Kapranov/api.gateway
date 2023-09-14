@@ -97,8 +97,8 @@ defmodule Core.Operators do
       %Ecto.Changeset{source: %OperatorType{}}
 
   """
-  @spec change_offer(OperatorType.t()) :: Ecto.Changeset.t()
-  def change_offer(%OperatorType{} = struct) do
+  @spec change_operator_type(OperatorType.t()) :: Ecto.Changeset.t()
+  def change_operator_type(%OperatorType{} = struct) do
     OperatorType.changeset(struct, %{})
   end
 end

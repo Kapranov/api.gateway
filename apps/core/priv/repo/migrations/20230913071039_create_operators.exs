@@ -13,6 +13,8 @@ defmodule Core.Repo.Migrations.CreateOperators do
       add :price_ext, :decimal, null: false, default: 0.0
       add :price_int, :decimal, null: false, default: 0.0
       add :priority, :integer, null: true
+
+      timestamps(type: :utc_datetime_usec)
     end
 
     create(unique_index(:operators, [:operator_type_id], name: :operators_operator_type_id_index))

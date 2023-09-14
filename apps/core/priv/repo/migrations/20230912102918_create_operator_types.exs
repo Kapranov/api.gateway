@@ -8,6 +8,8 @@ defmodule Core.Repo.Migrations.CreateOperatorTypes do
       add :inserted_at, :timestamp, null: false, default: fragment("NOW()")
       add :name, :string, null: false, default: "gsm"
       add :priority, :integer, null: true
+
+      timestamps(type: :utc_datetime_usec)
     end
 
     create(unique_index(:operator_types, [:name], name: :operator_types_name_index))
