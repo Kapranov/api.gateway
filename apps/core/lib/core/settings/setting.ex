@@ -11,8 +11,8 @@ defmodule Core.Settings.Setting do
     value: String.t()
   }
 
-  @min_chars 10
-  @max_chars 13
+  @min_chars 5
+  @max_chars 100
 
   @allowed_params ~w(param value)a
   @required_params ~w(param value)a

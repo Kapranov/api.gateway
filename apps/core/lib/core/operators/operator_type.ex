@@ -5,34 +5,34 @@ defmodule Core.Operators.OperatorType do
 
   use Core.Model
 
-  alias Core.Operators.{
-    Helpers.OperatorTypesEnum,
-    Operator
-  }
+  alias Core.Operators.Operator
 
   @type t :: %__MODULE__{
-    active: boolean,
     id: String.t(),
+    active: boolean,
     inserted_at: DateTime.t(),
-    name: String.t(),
+    name_type: String.t(),
     priority: integer
   }
+
+  @min_chars 5
+  @max_chars 100
 
   @allowed_params ~w(
     active
     inserted_at
-    name
+    name_type
     priority
   )a
 
   @required_params ~w(
     active
-    name
+    name_type
   )a
 
   schema "operator_types" do
     field :active, :boolean
-    field :name, OperatorTypesEnum
+    field :name_type, :string
     field :priority, :integer
 
     has_one :operator, Operator, on_delete: :delete_all
@@ -48,8 +48,9 @@ defmodule Core.Operators.OperatorType do
     struct
     |> cast(attrs, @allowed_params)
     |> validate_required(@required_params)
+    |> validate_length(:name_type, min: @min_chars, max: @max_chars)
     |> validate_inclusion(:priority, 1..99)
-    |> foreign_key_constraint(:name, message: "Select the Name")
-    |> unique_constraint(:name, name: :operator_types_name_index)
+    |> foreign_key_constraint(:name_type, message: "Select the NameType")
+    |> unique_constraint(:name_type, name: :operator_types_name_type_index)
   end
 end

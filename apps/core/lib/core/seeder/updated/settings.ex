@@ -17,9 +17,11 @@ defmodule Core.Seeder.Updated.Settings do
 
   @spec update_setting() :: Ecto.Schema.t()
   defp update_setting do
-    [setting_1] = Repo.all(Setting)
+    setting_ids = Enum.map(Repo.all(Setting), &(&1))
+    {setting} = { Enum.at(setting_ids, 0) }
+
     [
-      Settings.update_setting(setting_1, %{
+      Settings.update_setting(setting, %{
         param: random_param(),
         value: random_value()
       })

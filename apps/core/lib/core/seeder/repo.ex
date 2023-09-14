@@ -19,7 +19,7 @@ defmodule Core.Seeder.Repo do
 
   @spec updated!() :: :ok
   def updated! do
-    Updated.Operators.start!()
+    #Updated.Operators.start!()
     Updated.Settings.start!()
     :ok
   end

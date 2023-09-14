@@ -6,6 +6,7 @@ defmodule Core.Operators do
   use Core.Context
 
   alias Core.{
+    Operators.Operator,
     Operators.OperatorType,
     Repo
   }
@@ -17,9 +18,15 @@ defmodule Core.Operators do
   def list_operator_type, do: Repo.all(OperatorType)
 
   @doc """
+  Returns the list of Operator.
+  """
+  @spec list_operator() :: [Operator.t()]
+  def list_operator, do: Repo.all(Operator)
+
+  @doc """
   Gets a single an OperatorType.
 
-  Raises `Ecto.NoResultsError` if an Addon does not exist.
+  Raises `Ecto.NoResultsError` if OperatorType does not exist.
 
   ## Examples
 
@@ -32,6 +39,23 @@ defmodule Core.Operators do
   """
   @spec get_operator_type(String.t()) :: OperatorType.t() | error_tuple()
   def get_operator_type(id), do: Repo.get!(OperatorType, id)
+
+  @doc """
+  Gets a single an Operator.
+
+  Raises `Ecto.NoResultsError` if Operator does not exist.
+
+  ## Examples
+
+      iex> get_operator(123)
+      %Operator{}
+
+      iex> get_operator(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  @spec get_operator(String.t()) :: Operator.t() | error_tuple()
+  def get_operator(id), do: Repo.get!(Operator, id)
 
   @doc """
   Creates an OperatorType.
@@ -49,6 +73,25 @@ defmodule Core.Operators do
   def create_operator_type(attrs \\ %{}) do
     %OperatorType{}
     |> OperatorType.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  @doc """
+  Creates an Operator.
+
+  ## Examples
+
+      iex> create_operator(%{field: value})
+      {:ok, %Operator{}}
+
+      iex> create_operator(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  @spec create_operator(%{atom => any}) :: result() | error_tuple()
+  def create_operator(attrs \\ %{}) do
+    %Operator{}
+    |> Operator.changeset(attrs)
     |> Repo.insert()
   end
 
@@ -72,20 +115,22 @@ defmodule Core.Operators do
   end
 
   @doc """
-  Deletes an OperatorType.
+  Updates an Operator.
 
   ## Examples
 
-      iex> delete_operator_type(struct)
-      {:ok, %OperatorType{}}
+      iex> update_operator(struct, %{field: new_value})
+      {:ok, %Operator{}}
 
-      iex> delete_operator_type(struct)
+      iex> update_operator(struct, %{field: bad_value})
       {:error, %Ecto.Changeset{}}
 
   """
-  @spec delete_operator_type(OperatorType.t()) :: result()
-  def delete_operator_type(%OperatorType{} = struct) do
-     Repo.delete(struct)
+  @spec update_operator(Operator.t(), %{atom => any}) :: result() | error_tuple()
+  def update_operator(%Operator{} = struct, attrs) do
+    struct
+    |> Operator.changeset(attrs)
+    |> Repo.update()
   end
 
   @doc """
@@ -100,5 +145,19 @@ defmodule Core.Operators do
   @spec change_operator_type(OperatorType.t()) :: Ecto.Changeset.t()
   def change_operator_type(%OperatorType{} = struct) do
     OperatorType.changeset(struct, %{})
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking an Operator Changes.
+
+  ## Examples
+
+      iex> change_operator(struct)
+      %Ecto.Changeset{source: %Operator{}}
+
+  """
+  @spec change_operator(Operator.t()) :: Ecto.Changeset.t()
+  def change_operator(%Operator{} = struct) do
+    Operator.changeset(struct, %{})
   end
 end
