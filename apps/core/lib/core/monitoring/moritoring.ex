@@ -52,4 +52,3 @@ defmodule Core.Monitoring do
     |> Repo.insert()
   end
 end
-

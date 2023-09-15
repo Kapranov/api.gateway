@@ -8,6 +8,7 @@ defmodule Core.Seeder.Repo do
     Monitoring,
     Operators,
     Settings,
+    Spring,
     Updated
   }
 
@@ -16,6 +17,7 @@ defmodule Core.Seeder.Repo do
     Operators.seed!()
     Settings.seed!()
     Monitoring.seed!()
+    Spring.seed!()
     :ok
   end
 
@@ -31,6 +33,7 @@ defmodule Core.Seeder.Repo do
     Deleted.Operators.start!()
     Deleted.Settings.start!()
     Deleted.Monitoring.start!()
+    Deleted.Spring.start!()
     :ok
   end
 end

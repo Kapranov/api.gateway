@@ -74,4 +74,3 @@ defmodule Core.Seeder.Monitoring do
     Enum.random(1..n)
   end
 end
-

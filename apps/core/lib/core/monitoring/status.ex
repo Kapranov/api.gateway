@@ -5,6 +5,8 @@ defmodule Core.Monitoring.Status do
 
   use Core.Model
 
+  alias Core.Spring.Message
+
   @type t :: %__MODULE__{
     id: String.t(),
     active: boolean,
@@ -37,6 +39,8 @@ defmodule Core.Monitoring.Status do
     field :status_name, :string
     field :status_code, :integer
 
+    has_many :messages, Message
+
     timestamps(updated_at: false)
   end
 
@@ -55,4 +59,3 @@ defmodule Core.Monitoring.Status do
     |> unique_constraint(:status_code, name: :statuses_status_code_index)
   end
 end
-
