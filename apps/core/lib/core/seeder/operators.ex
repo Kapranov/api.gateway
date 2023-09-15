@@ -45,7 +45,7 @@ defmodule Core.Seeder.Operators do
   defp insert_operator_type do
     [
       Operators.create_operator_type(%{
-        active: true,
+        active: random_boolean(),
         name_type: random_names(),
         priority: random_integers()
       })
@@ -60,7 +60,7 @@ defmodule Core.Seeder.Operators do
 
     [
       Operators.create_operator(%{
-        active: true,
+        active: random_boolean(),
         config: config_nested,
         phone_code: random_phone_code(),
         limit_count: random_integers(),
@@ -143,7 +143,7 @@ defmodule Core.Seeder.Operators do
   end
 
   @spec random_float() :: float()
-  def random_float do
+  defp random_float do
     :rand.uniform() * 100
     |> Float.round(4)
   end

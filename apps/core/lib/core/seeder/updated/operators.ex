@@ -13,7 +13,7 @@ defmodule Core.Seeder.Updated.Operators do
   def start! do
     update_operator_type()
     IO.puts("Updated data on model's OperatorTypes\n")
-    update_operator()
+    #update_operator()
     IO.puts("Updated data on model's Operators\n")
   end
 
@@ -23,7 +23,7 @@ defmodule Core.Seeder.Updated.Operators do
     {operator_type} = { Enum.at(operator_type_ids, 0) }
 
     [
-      Operators.update_operator(operator_type, %{
+      Operators.update_operator_type(operator_type, %{
         active: random_boolean(),
         name_type: random_names(),
         priority: random_integers()
@@ -32,21 +32,20 @@ defmodule Core.Seeder.Updated.Operators do
   end
 
   @spec update_operator() :: Ecto.Schema.t()
-  defp update_operator do
+  def update_operator do
     operator_ids = Enum.map(Repo.all(Operator), &(&1))
     {operator} = { Enum.at(operator_ids, 0) }
 
-    [
-      Operators.update_operator(operator, %{
-        active: random_boolean(),
-        phone_code: random_phone_code(),
-        limit_count: random_integers(),
-        name_operator: random_name_operator(),
-        price_ext: random_float(),
-        price_int: random_float(),
-        priority: random_integers()
-      })
-    ]
+    Operators.update_operator(operator, %{
+      active: random_boolean(),
+      config: [name: "updated Aloha", url: "updated Hawaii"],
+      phone_code: random_phone_code(),
+      limit_count: random_integers(),
+      name_operator: random_name_operator(),
+      price_ext: random_float(),
+      price_int: random_float(),
+      priority: random_integers()
+    })
   end
 
   @spec random_boolean() :: boolean()
@@ -75,7 +74,7 @@ defmodule Core.Seeder.Updated.Operators do
   end
 
   @spec random_name_operator :: [String.t()]
-  defp random_name_operator do
+  def random_name_operator do
     names = [
       "Intertelecom",
       "Kyievstar",
@@ -95,7 +94,7 @@ defmodule Core.Seeder.Updated.Operators do
   end
 
   @spec random_phone_code :: [String.t()]
-  defp random_phone_code do
+  def random_phone_code do
     names = [
       "098,068,067",
       "099,066,064,061,062",

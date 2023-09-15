@@ -5,6 +5,7 @@ defmodule Core.Seeder.Repo do
 
   alias Core.Seeder.{
     Deleted,
+    Monitoring,
     Operators,
     Settings,
     Updated
@@ -14,12 +15,13 @@ defmodule Core.Seeder.Repo do
   def seed! do
     Operators.seed!()
     Settings.seed!()
+    Monitoring.seed!()
     :ok
   end
 
   @spec updated!() :: :ok
   def updated! do
-    #Updated.Operators.start!()
+    Updated.Operators.start!()
     Updated.Settings.start!()
     :ok
   end
@@ -28,6 +30,7 @@ defmodule Core.Seeder.Repo do
   def deleted! do
     Deleted.Operators.start!()
     Deleted.Settings.start!()
+    Deleted.Monitoring.start!()
     :ok
   end
 end

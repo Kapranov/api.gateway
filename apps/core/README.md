@@ -76,6 +76,7 @@ END;
 bash> mix ecto.gen.migration -r Core.Repo add_uuid_generate_v4_extension
 bash> mix ecto.gen.migration -r Core.Repo create_operator_types
 bash> mix ecto.gen.migration -r Core.Repo create_operators
+bash> mix ecto.gen.migration -r Core.Repo create_statuses
 bash> mix ecto.gen.migration -r Core.Repo create_messages
 bash> mix ecto.gen.migration -r Core.Repo create_sms_logs
 ```

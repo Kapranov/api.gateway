@@ -34,6 +34,7 @@ defmodule Core.Settings.Setting do
     |> validate_required(@required_params)
     |> validate_length(:param, min: @min_chars, max: @max_chars)
     |> validate_length(:value, min: @min_chars, max: @max_chars)
+    |> foreign_key_constraint(:param, message: "Select the Param")
     |> unique_constraint(:param, name: :settings_param_index, message: "The param a name is unique")
   end
 end
