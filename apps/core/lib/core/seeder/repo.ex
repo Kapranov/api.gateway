@@ -4,7 +4,7 @@ defmodule Core.Seeder.Repo do
   """
 
   alias Core.Seeder.{
-    Deleted,
+    #Deleted,
     Monitoring,
     Operators,
     Settings,
@@ -30,10 +30,10 @@ defmodule Core.Seeder.Repo do
 
   @spec deleted!() :: :ok
   def deleted! do
-    Deleted.Operators.start!()
-    Deleted.Settings.start!()
-    Deleted.Monitoring.start!()
-    Deleted.Spring.start!()
+    #Deleted.Operators.start!()
+    #Deleted.Settings.start!()
+    #Deleted.Monitoring.start!()
+    #Deleted.Spring.start!()
     :ok
   end
 end

@@ -5,15 +5,19 @@ defmodule Core.Monitoring.Status do
 
   use Core.Model
 
-  alias Core.Spring.Message
+  alias Core.{
+    Logs.SmsLog,
+    Spring.Message
+  }
 
   @type t :: %__MODULE__{
     id: String.t(),
     active: boolean,
     description: String.t(),
     inserted_at: DateTime.t(),
-    status_name: String.t(),
-    status_code: integer
+    sms_logs: [SmsLog.t()],
+    status_code: integer,
+    status_name: String.t()
   }
 
   @min_chars 5
@@ -40,6 +44,8 @@ defmodule Core.Monitoring.Status do
     field :status_code, :integer
 
     has_many :messages, Message
+
+    many_to_many :sms_logs, SmsLog, join_through: "sms_logs_statuses", on_replace: :delete
 
     timestamps(updated_at: false)
   end

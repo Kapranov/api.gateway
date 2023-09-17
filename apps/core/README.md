@@ -10,66 +10,6 @@ bash> mix run apps/core/priv/repo/seeds.exs
 ### `Ecto.Migration`
 
 ```sql
-BEGIN;
-CREATE TABLE IF NOT EXISTS public."operator_types"
-(
-    id uuid NOT NULL,
-    active boolean NOT NULL DEFAULT true,
-    inserted_at timestamp without time zone --дата та час додавання запису
-    name uuid NOT NULL, --назва типу оператора - gsm, email,  messager
-    priority integer, -- пріорітет серед типів операторів
-);
-
-CREATE TABLE IF NOT EXISTS public."operators"
--- таблиця яку додаються оператори зв'язку, ціни за 1 повідомлення, пріорітет відправки, ліміти відправки
-(
-    id uuid NOT NULL,
-    active boolean, -- активний або ні оператор. Якщо = false - даний оператор не бере учать в "пріотерізації" повідомлення
-    config jsonb,
-    inserted_at timestamp without time zone --дата та час додавання запису
-    limit_count integer, -- ліміт кількості повідомлень
-    name character varying NOT NULL, -- назва оператору зв'язку (Вудафон, киевстар ect)
-    operator_type_id uuid NOT NULL, -- id типу опретатора, таблиця OperatorType
-    price_ext real NOT NULL DEFAULT 0.000, -- ціна за 1 смс в в інші мережі
-    price_int real NOT NULL DEFAULT 0.000, -- ціна за 1 смс в мережі оператора
-    priority integer, --пріорітет оператора
-);
-
-CREATE TABLE IF NOT EXISTS public.messages
---Таблиця в записуються дані повідомлення отриманих з методу "створення повідомлення"
-(
-    id uuid NOT NULL, --унікальний ідентифікатор
-    email character varying(100), -- email отримувача
-    id_external uuid, --унікальний ідентифікатор повідомлення Клієнту
-    id_tax character varying(10), -- ІПН(ИНН) для відоправки повідомлень через "Дія"
-    inserted_at timestamp without time zone NOT NULL, --дата та час додавання запису
-    message_body character varying(255) NOT NULL, -- текст повідомлення
-    message_expired_at timestamp without time zone --дата та час "життя" повідомлення, якщо значення більше ніж поточий час повідомлення відправляти не потрібно, Робимо запис в sms_log з значенням статусу "expired"
-    phone_number character varying(13) COLLATE pg_catalog."default" NOT NULL, --номер телефону
-    status character varying(50) COLLATE pg_catalog."default" NOT NULL, -- статус повідомлення
-    telegram character varying(100), -- ID "месенджера" (viber\telegram)
-    viber character varying(100), -- ID "месенджера" (viber\telegram)
-);
-
-CREATE TABLE IF NOT EXISTS public.sms_logs
-(
-    id uuid NOT NULL,
-    email character varying, -- email отримувача
-    id_external uuid, --унікальний ідентифікатор повідомлення Клієнту
-    id_tax character varying(10), -- ІПН(ИНН) для відоправки повідомлень через "Дія"
-    inserted_at timestamp without time zone NOT NULL, --дата та час додавання запису
-    message_expired_at timestamp without time zone NOT NULL, --дата та час "життя" повідомлення
-    message_id uuid, --ідентифікатор повідомлення (таблиця message)
-    operator_id uuid NOT NULL, --id оператора зв'язку, таблиця "operators"
-    operator_name character varying NOT NULL, --id оператора зв'язку, таблиця "operators"
-    phone character varying(13) COLLATE pg_catalog."default" NOT NULL, --номер телефону
-    priority integer NOT NULL --номер пріорітету за яким було відправлено повідомлення
-    status character varying(50) COLLATE pg_catalog."default" NOT NULL, -- статус повідомлення
-    statuschanged_at timestamp without time zone NOT NULL, --дата та час додавання запису
-    telegram character varying(100), -- ID "месенджера" (viber\telegram)	message_body character varying NOT NULL,-- текст повідомлення
-    viber character varying(100), -- ID "месенджера" (viber\telegram)
-);
-END;
 ```
 
 ```bash
@@ -79,10 +19,44 @@ bash> mix ecto.gen.migration -r Core.Repo create_operators
 bash> mix ecto.gen.migration -r Core.Repo create_statuses
 bash> mix ecto.gen.migration -r Core.Repo create_messages
 bash> mix ecto.gen.migration -r Core.Repo create_sms_logs
+bash> mix ecto.gen.migration -r Core.Repo create_sms_logs_messages
+bash> mix ecto.gen.migration -r Core.Repo create_sms_logs_operators
+bash> mix ecto.gen.migration -r Core.Repo create_sms_logs_statuses
+```
+
+```
+iex> message_id = Core.Repo.all(Core.Spring.Message) |> List.first |> Map.get(:id)
+iex> operator_id = Core.Repo.all(Core.Operators.Operator) |> List.first |> Map.get(:id)
+iex> status_id = Core.Repo.all(Core.Monitoring.Status) |> List.first |> Map.get(:id)
+iex> create_log = %{priority: 2, status_changed_at: DateTime.utc_now, messages: message_id, operators: operator_id, statuses: status_id}
+iex> Core.Logs.create_sms_log(create_log)
+iex> Core.Repo.all(Core.Spring.Message) |> Core.Repo.preload(:sms_logs)
+iex> Core.Repo.all(Core.Operators.Operator) |> Core.Repo.preload(:sms_logs)
+iex> Core.Repo.all(Core.Monitoring.Status) |> Core.Repo.preload(:sms_logs)
+iex> Core.Repo.all(Core.Logs.SmsLog) |> Core.Repo.preload([:messages, :operators, :statuses])
+iex> Core.Operators.list_operator
+iex> Core.Operators.get_operator("AZr9FuEcmuyPpcWpCD")
+iex> Core.Operators.list_operator_type
+iex> Core.Operators.get_operator_type("AZr9FtwtqonMweEfZI")
+iex> Core.Monitoring.list_status
+iex> Core.Monitoring.get_status("AZr9FuT9usbEYhKQqm")
+iex> Core.Spring.get_message("AZr9FuaFUWGquge5tw")
+iex> Core.Logs.get_sms_log("AZr9KQYbjujWaJQiOW")
+iex> Core.Settings.list_setting
 ```
 
 ### 5 September 2023 by Oleg G.Kapranov
 
-[1]: https://fullstackphoenix.com/tutorials/add-jsonb-field-in-phoenix-and-ecto
-[2]: https://medium.com/coletiv-stories/ecto-embedded-schemas-quick-search-through-a-jsonb-array-in-postgresql-f9d91cf90843
-
+[1]:  https://fullstackphoenix.com/tutorials/add-jsonb-field-in-phoenix-and-ecto
+[2]:  https://medium.com/coletiv-stories/ecto-embedded-schemas-quick-search-through-a-jsonb-array-in-postgresql-f9d91cf90843
+[3]:  https://hexdocs.pm/ecto/Ecto.Changeset.html
+[4]:  https://hexdocs.pm/ecto/polymorphic-associations-with-many-to-many.html
+[5]:  https://hexdocs.pm/ecto/self-referencing-many-to-many.html
+[6]:  https://github.com/elixir-ecto/ecto/blob/master/test/ecto/changeset/many_to_many_test.exs
+[7]:  https://elixirschool.com/ru/lessons/ecto/associations#many-to-many-11
+[8]:  https://blog.plataformatec.com.br/2016/12/many-to-many-and-upserts/
+[9]:  https://medium.com/coletiv-stories/ecto-elixir-many-to-many-relationships-66403933f8c1
+[10]: https://geoffreylessel.com/2017/using-ecto-multi-to-group-database-operations/
+[11]: https://colinramsay.co.uk/2021/02/12/many-to-many-tags-ecto-phoenix.html
+[12]: https://elixirforum.com/t/ecto-insert-many-to-many-with-extra-foreign-key/49556/2
+[13]: https://elixirforum.com/t/many-to-many-association-table-with-extra-columns/6563/12

@@ -14,7 +14,10 @@ defmodule Core.Monitoring do
   Returns the list of Statuses.
   """
   @spec list_status() :: [Status.t()]
-  def list_status, do: Repo.all(Status)
+  def list_status do
+    Repo.all(Status)
+    |> Repo.preload(:sms_logs)
+  end
 
   @doc """
   Gets a single Status.
@@ -31,7 +34,10 @@ defmodule Core.Monitoring do
 
   """
   @spec get_status(String.t()) :: Status.t() | error_tuple()
-  def get_status(id), do: Repo.get!(Status, id)
+  def get_status(id) do
+    Repo.get!(Status, id)
+    |> Repo.preload(:sms_logs)
+  end
 
   @doc """
   Creates Status.

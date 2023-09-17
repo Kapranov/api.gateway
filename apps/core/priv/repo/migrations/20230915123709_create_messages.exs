@@ -4,9 +4,9 @@ defmodule Core.Repo.Migrations.CreateMessages do
   def change do
     create table(:messages, primary_key: false) do
       add :id, :uuid, primary_key: true, default: fragment("uuid_generate_v4()"), read_after_writes: true
-      add :id_external, :string, null: true
-      add :id_tax, :string, null: true
-      add :id_telegram, :string, null: true
+      add :id_external, :uuid, type: FlakeId.Ecto.Type, null: true
+      add :id_tax, :uuid, type: FlakeId.Ecto.Type, null: true
+      add :id_telegram, :uuid, type: FlakeId.Ecto.Type, null: true
       add :inserted_at, :timestamp, null: false, default: fragment("NOW()")
       add :message_body, :string, null: false
       add :message_expired_at, :date, null: true

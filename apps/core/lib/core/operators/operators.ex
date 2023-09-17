@@ -15,13 +15,19 @@ defmodule Core.Operators do
   Returns the list of OperatorType.
   """
   @spec list_operator_type() :: [OperatorType.t()]
-  def list_operator_type, do: Repo.all(OperatorType)
+  def list_operator_type do
+    Repo.all(OperatorType)
+    |> Repo.preload(:operator)
+  end
 
   @doc """
   Returns the list of Operator.
   """
   @spec list_operator() :: [Operator.t()]
-  def list_operator, do: Repo.all(Operator)
+  def list_operator do
+    Repo.all(Operator)
+    |> Repo.preload(:sms_logs)
+  end
 
   @doc """
   Gets a single an OperatorType.
@@ -38,7 +44,10 @@ defmodule Core.Operators do
 
   """
   @spec get_operator_type(String.t()) :: OperatorType.t() | error_tuple()
-  def get_operator_type(id), do: Repo.get!(OperatorType, id)
+  def get_operator_type(id) do
+    Repo.get!(OperatorType, id)
+    |> Repo.preload(:operator)
+  end
 
   @doc """
   Gets a single an Operator.
@@ -55,7 +64,10 @@ defmodule Core.Operators do
 
   """
   @spec get_operator(String.t()) :: Operator.t() | error_tuple()
-  def get_operator(id), do: Repo.get!(Operator, id)
+  def get_operator(id) do
+    Repo.get!(Operator, id)
+    |> Repo.preload(:sms_logs)
+  end
 
   @doc """
   Creates an OperatorType.

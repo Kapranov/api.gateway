@@ -5,7 +5,10 @@ defmodule Core.Spring.Message do
 
   use Core.Model
 
-  alias Core.Monitoring.Status
+  alias Core.{
+    Logs.SmsLog,
+    Monitoring.Status
+  }
 
   @type t :: %__MODULE__{
     id: String.t(),
@@ -16,6 +19,7 @@ defmodule Core.Spring.Message do
     message_body: String.t(),
     message_expired_at: DateTime.t(),
     phone_number: String.t(),
+    sms_logs: [SmsLog.t()],
     status_id: Status.t()
   }
 
@@ -48,9 +52,9 @@ defmodule Core.Spring.Message do
   )a
 
   schema "messages" do
-    field :id_external, :string
-    field :id_tax, :string
-    field :id_telegram, :string
+    field :id_external, FlakeId.Ecto.Type
+    field :id_tax, FlakeId.Ecto.Type
+    field :id_telegram, FlakeId.Ecto.Type
     field :message_body, :string
     field :message_expired_at, :date
     field :phone_number, :string
@@ -59,6 +63,8 @@ defmodule Core.Spring.Message do
       foreign_key: :status_id,
       type: FlakeId.Ecto.CompatType,
       references: :id
+
+    many_to_many :sms_logs, SmsLog, join_through: "sms_logs_messages", on_replace: :delete
 
     timestamps(updated_at: false)
   end

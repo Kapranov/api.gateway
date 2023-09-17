@@ -13,8 +13,6 @@ defmodule Core.Seeder.Spring do
   alias Ecto.Adapters.SQL
 
   alias Faker.DateTime, as: FakerTime
-  alias Faker.String, as: FakerString
-  alias Faker.UUID, as: FakerUUID
   alias Faker.{
     Lorem,
     Phone.EnUs
@@ -45,14 +43,24 @@ defmodule Core.Seeder.Spring do
     {status} = { Enum.at(status_ids, 0) }
     [
       Spring.create_message(%{
-        id_external: FakerUUID.v4(),
-        id_tax: FakerString.base64(10),
-        id_telegram: FakerString.base64(10),
+        id_external: FlakeId.get(),
+        id_tax: random_uuid(10),
+        id_telegram: random_uuid(10),
         message_body: Lorem.sentence(5..10),
         message_expired_at: FakerTime.backward(4),
         phone_number: EnUs.phone(),
         status_id: status.id
       })
     ]
+  end
+
+  @spec random_uuid(integer) :: String.t()
+  defp random_uuid(num) do
+    {uuid} =
+      FlakeId.get
+      |> String.split_at(num)
+      |> Tuple.delete_at(1)
+
+    uuid
   end
 end

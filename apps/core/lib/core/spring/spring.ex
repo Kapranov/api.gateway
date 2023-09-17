@@ -25,7 +25,10 @@ defmodule Core.Spring do
 
   """
   @spec get_message(Message.t()) :: Message.t() | error_tuple()
-  def get_message(id), do: Repo.get!(Message, id)
+  def get_message(id) do
+    Repo.get!(Message, id)
+    |> Repo.preload(:sms_logs)
+  end
 
   @doc """
   Creates Message.

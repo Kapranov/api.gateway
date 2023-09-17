@@ -5,23 +5,25 @@ defmodule Core.Operators.Operator do
 
   use Core.Model
 
-  alias Core.Operators.{
-    Config,
-    OperatorType
+  alias Core.{
+    Logs.SmsLog,
+    Operators.Config,
+    Operators.OperatorType
   }
 
   @type t :: %__MODULE__{
-    active: boolean,
-    phone_code: String.t(),
-    config: map,
     id: String.t(),
+    active: boolean,
+    config: map,
     inserted_at: DateTime.t(),
     limit_count: integer,
     name_operator: String.t(),
     operator_type_id: OperatorType.t(),
+    phone_code: String.t(),
     price_ext: integer,
     price_int: integer,
-    priority: integer
+    priority: integer,
+    sms_logs: [SmsLog.t()]
   }
 
   @min_chars 5
@@ -64,6 +66,8 @@ defmodule Core.Operators.Operator do
       foreign_key: :operator_type_id,
       type: FlakeId.Ecto.CompatType,
       references: :id
+
+    many_to_many :sms_logs, SmsLog, join_through: "sms_logs_operators", on_replace: :delete
 
     timestamps(updated_at: false)
   end
