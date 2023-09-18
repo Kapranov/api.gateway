@@ -4,6 +4,7 @@ defmodule Core.Settings.Setting do
   """
 
   use Core.Model
+  use EctoAnon.Schema
 
   @type t :: %__MODULE__{
     id: String.t(),
@@ -17,11 +18,14 @@ defmodule Core.Settings.Setting do
   @allowed_params ~w(param value)a
   @required_params ~w(param value)a
 
+  anon_schema [:param, :value]
+
   schema "settings" do
     field :param, :string
     field :value, :string
 
     timestamps()
+    anonymized()
   end
 
   @doc """

@@ -1,5 +1,6 @@
 defmodule Core.Repo.Migrations.CreateSettingTypes do
   use Ecto.Migration
+  import EctoAnon.Migration
 
   def change do
     create table(:settings, primary_key: false) do
@@ -8,6 +9,7 @@ defmodule Core.Repo.Migrations.CreateSettingTypes do
       add :value, :string, null: false
 
       timestamps(type: :utc_datetime_usec)
+      anonymized()
     end
 
     create(unique_index(:settings, [:param], name: :settings_param_index))

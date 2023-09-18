@@ -45,6 +45,13 @@ iex> Core.Logs.get_sms_log("AZr9KQYbjujWaJQiOW")
 iex> Core.Settings.list_setting
 ```
 
+### Usage EctoAnon
+
+```elixir
+iex> setting = Core.Repo.get(Core.Settings.Setting, "AZsyJecvwL9GrrMJHM")
+iex> EctoAnon.run(setting, Core.Repo)
+```
+
 ### 5 September 2023 by Oleg G.Kapranov
 
 [1]:  https://fullstackphoenix.com/tutorials/add-jsonb-field-in-phoenix-and-ecto
