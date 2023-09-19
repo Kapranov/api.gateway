@@ -10,7 +10,10 @@ defmodule Core.Operators.Parameters do
     validate_required: 2
   ]
 
+  alias FlakeId.Ecto.Type, as: FlakeIdType
+
   @type t :: %__MODULE__{
+    id: FlakeIdType,
     key: String.t(),
     value: String.t()
   }

@@ -3,8 +3,8 @@ defmodule Core.Seeder.Deleted.Settings do
   Deleted are seeds whole Settings.
   """
 
-  alias Core.Repo
-  alias Ecto.Adapters.SQL
+  #alias Core.Repo
+  #alias Ecto.Adapters.SQL
 
   @spec start!() :: Ecto.Schema.t()
   def start! do
@@ -13,7 +13,7 @@ defmodule Core.Seeder.Deleted.Settings do
 
   @spec deleted_setting() :: Ecto.Schema.t()
   defp deleted_setting do
+    #SQL.query!(Repo, "TRUNCATE settings CASCADE;")
     IO.puts("Deleting data on model's Settings\n")
-    SQL.query!(Repo, "TRUNCATE settings CASCADE;")
   end
 end

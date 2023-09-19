@@ -3,8 +3,8 @@ defmodule Core.Seeder.Deleted.Spring do
   Deleted are seeds whole Spring.
   """
 
-  alias Core.Repo
-  alias Ecto.Adapters.SQL
+  #alias Core.Repo
+  #alias Ecto.Adapters.SQL
 
   @spec start!() :: Ecto.Schema.t()
   def start! do
@@ -13,7 +13,7 @@ defmodule Core.Seeder.Deleted.Spring do
 
   @spec deleted_message() :: Ecto.Schema.t()
   defp deleted_message do
+    #SQL.query!(Repo, "TRUNCATE messages CASCADE;")
     IO.puts("Deleting data on model's Message\n")
-    SQL.query!(Repo, "TRUNCATE messages CASCADE;")
   end
 end

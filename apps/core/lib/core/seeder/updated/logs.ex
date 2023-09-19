@@ -14,4 +14,3 @@ defmodule Core.Seeder.Updated.Logs do
     :ok
   end
 end
-

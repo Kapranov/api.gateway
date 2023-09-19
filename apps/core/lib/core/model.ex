@@ -13,9 +13,9 @@ defmodule Core.Model do
 
        @name __MODULE__
 
-       @primary_key {:id, FlakeId.Ecto.CompatType, autogenerate: true}
-       @foreign_key_type FlakeId.Ecto.CompatType
-       @timestamps_opts [type: :utc_datetime, usec: false]
+       @primary_key {:id, FlakeId.Ecto.Type, autogenerate: true}
+       @foreign_key_type FlakeId.Ecto.Type
+       @timestamps_opts [type: :utc_datetime_usec]
 
        @spec find(String.t()) :: Ecto.Schema.t() | nil
        def find(id) do

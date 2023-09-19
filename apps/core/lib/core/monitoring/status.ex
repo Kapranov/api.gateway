@@ -10,23 +10,23 @@ defmodule Core.Monitoring.Status do
     Spring.Message
   }
 
+  alias FlakeId.Ecto.Type, as: FlakeIdType
+
   @type t :: %__MODULE__{
-    id: String.t(),
+    id: FlakeIdType,
     active: boolean,
     description: String.t(),
-    inserted_at: DateTime.t(),
     sms_logs: [SmsLog.t()],
     status_code: integer,
     status_name: String.t()
   }
 
-  @min_chars 5
+  @min_chars 3
   @max_chars 100
 
   @allowed_params ~w(
     active
     description
-    inserted_at
     status_name
     status_code
   )a
@@ -60,7 +60,7 @@ defmodule Core.Monitoring.Status do
     |> validate_required(@required_params)
     |> validate_length(:description, min: @min_chars, max: @max_chars)
     |> validate_length(:status_name, min: @min_chars, max: @max_chars)
-    |> validate_inclusion(:status_code, 1..99)
+    |> validate_inclusion(:status_code, 1..200)
     |> foreign_key_constraint(:status_code, message: "Select the StatusCode")
     |> unique_constraint(:status_code, name: :statuses_status_code_index)
   end

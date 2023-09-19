@@ -6,8 +6,10 @@ defmodule Core.Settings.Setting do
   use Core.Model
   use EctoAnon.Schema
 
+  alias FlakeId.Ecto.Type, as: FlakeIdType
+
   @type t :: %__MODULE__{
-    id: String.t(),
+    id: FlakeIdType,
     param: String.t(),
     value: String.t()
   }

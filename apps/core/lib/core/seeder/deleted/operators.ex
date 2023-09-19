@@ -14,13 +14,13 @@ defmodule Core.Seeder.Deleted.Operators do
 
   @spec deleted_operator_type() :: Ecto.Schema.t()
   defp deleted_operator_type do
-    IO.puts("Deleting data on model's OperatorTypes\n")
     # SQL.query!(Repo, "TRUNCATE operator_types CASCADE;")
+    IO.puts("Deleting data on model's OperatorTypes\n")
   end
 
   @spec deleted_operator() :: Ecto.Schema.t()
   defp deleted_operator do
-    IO.puts("Deleting data on model's Operators\n")
     # SQL.query!(Repo, "TRUNCATE operators CASCADE;")
+    IO.puts("Deleting data on model's Operators\n")
   end
 end

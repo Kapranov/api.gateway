@@ -6,21 +6,20 @@ defmodule Core.Operators.OperatorType do
   use Core.Model
 
   alias Core.Operators.Operator
+  alias FlakeId.Ecto.Type, as: FlakeIdType
 
   @type t :: %__MODULE__{
-    id: String.t(),
+    id: FlakeIdType,
     active: boolean,
-    inserted_at: DateTime.t(),
     name_type: String.t(),
     priority: integer
   }
 
-  @min_chars 5
+  @min_chars 3
   @max_chars 100
 
   @allowed_params ~w(
     active
-    inserted_at
     name_type
     priority
   )a
@@ -37,7 +36,7 @@ defmodule Core.Operators.OperatorType do
 
     has_one :operator, Operator, on_delete: :delete_all
 
-    timestamps(updated_at: false)
+    timestamps()
   end
 
   @doc """

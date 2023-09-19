@@ -11,8 +11,10 @@ defmodule Core.Operators.Config do
   ]
 
   alias Core.Operators.Parameters
+  alias FlakeId.Ecto.Type, as: FlakeIdType
 
   @type t :: %__MODULE__{
+    id: FlakeIdType,
     content_type: String.t(),
     name: String.t(),
     parameters: Parameters.t(),

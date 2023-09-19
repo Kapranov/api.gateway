@@ -40,7 +40,6 @@ defmodule GatewayApi.MixProject do
 
   defp deps do
     [
-      {:benchee, "~> 1.1", only: :dev},
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
       {:ex_doc, "~> 0.30.6", runtime: false},
       {:ex_spec, "~> 2.0", only: [:test]},

@@ -12,31 +12,21 @@ defmodule Core.Logs.SmsLog do
     Spring.Message
   }
 
+  alias FlakeId.Ecto.Type, as: FlakeIdType
+
   @type t :: %__MODULE__{
-    id: String.t(),
-    inserted_at: DateTime.t(),
+    id: FlakeIdType,
     messages: [Message.t()],
     operators: [Operator.t()],
     priority: integer,
-    status_changed_at: DateTime.t(),
     statuses: [Status.t()]
   }
 
-  @allowed_params ~w(
-    priority
-    status_changed_at
-  )a
-
-  @required_params ~w(
-    priority
-    status_changed_at
-  )a
-
-  @timestamps_opts [type: :utc_datetime_usec, updated_at: false]
+  @allowed_params ~w(priority)a
+  @required_params ~w(priority)a
 
   schema "sms_logs" do
     field :priority, :integer
-    field :status_changed_at, :utc_datetime_usec
 
     many_to_many :messages, Message, join_through: "sms_logs_messages", on_replace: :delete
     many_to_many :operators, Operator, join_through: "sms_logs_operators", on_replace: :delete

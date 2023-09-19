@@ -3,59 +3,32 @@ defmodule Core.Seeder.Updated.Operators do
   An update are seeds whole an operators.
   """
 
-  alias Core.{
-    Operators,
-    Operators.OperatorType,
-    Repo
-  }
-
   @spec start!() :: Ecto.Schema.t()
   def start! do
     update_operator_type()
     IO.puts("Updated data on model's OperatorTypes\n")
-    #update_operator()
+    update_operator()
     IO.puts("Updated data on model's Operators\n")
   end
 
   @spec update_operator_type() :: Ecto.Schema.t()
   defp update_operator_type do
-    operator_type_ids = Enum.map(Repo.all(OperatorType), &(&1))
-    {operator_type} = { Enum.at(operator_type_ids, 0) }
-
-    [
-      Operators.update_operator_type(operator_type, %{
-        active: random_boolean(),
-        name_type: random_names(),
-        priority: random_integers()
-      })
-    ]
+    :ok
   end
 
   @spec update_operator() :: Ecto.Schema.t()
-  def update_operator do
-    operator_ids = Enum.map(Repo.all(Operator), &(&1))
-    {operator} = { Enum.at(operator_ids, 0) }
-
-    Operators.update_operator(operator, %{
-      active: random_boolean(),
-      config: [name: "updated Aloha", url: "updated Hawaii"],
-      phone_code: random_phone_code(),
-      limit_count: random_integers(),
-      name_operator: random_name_operator(),
-      price_ext: random_float(),
-      price_int: random_float(),
-      priority: random_integers()
-    })
+  defp update_operator do
+    :ok
   end
 
   @spec random_boolean() :: boolean()
-  defp random_boolean do
+  def random_boolean do
     value = ~W(true false)a
     Enum.random(value)
   end
 
   @spec random_names :: [String.t()]
-  defp random_names do
+  def random_names do
     names = [
       "email",
       "gsm",
@@ -113,7 +86,7 @@ defmodule Core.Seeder.Updated.Operators do
   end
 
   @spec random_integers() :: integer()
-  defp random_integers(n \\ 99) when is_integer(n) do
+  def random_integers(n \\ 99) when is_integer(n) do
     Enum.random(1..n)
   end
 

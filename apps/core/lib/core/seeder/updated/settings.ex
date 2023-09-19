@@ -3,12 +3,6 @@ defmodule Core.Seeder.Updated.Settings do
   An update are seeds whole settings.
   """
 
-  alias Core.{
-    Settings,
-    Settings.Setting,
-    Repo
-  }
-
   @spec start!() :: Ecto.Schema.t()
   def start! do
     update_setting()
@@ -17,19 +11,11 @@ defmodule Core.Seeder.Updated.Settings do
 
   @spec update_setting() :: Ecto.Schema.t()
   defp update_setting do
-    setting_ids = Enum.map(Repo.all(Setting), &(&1))
-    {setting} = { Enum.at(setting_ids, 0) }
-
-    [
-      Settings.update_setting(setting, %{
-        param: random_param(),
-        value: random_value()
-      })
-    ]
+    :ok
   end
 
   @spec random_param :: [String.t()]
-  defp random_param do
+  def random_param do
     names = [
       "xxxxxxxxxx",
       "yyyyyyyyyy",
@@ -48,7 +34,7 @@ defmodule Core.Seeder.Updated.Settings do
   end
 
   @spec random_value :: [String.t()]
-  defp random_value do
+  def random_value do
     names = [
       "value #1",
       "value #2",

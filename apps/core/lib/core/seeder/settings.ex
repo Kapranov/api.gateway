@@ -13,13 +13,14 @@ defmodule Core.Seeder.Settings do
 
   @spec reset_database!() :: {integer(), nil | [term()]}
   def reset_database! do
-    IO.puts("Deleting old data...\n")
     SQL.query!(Repo, "TRUNCATE settings CASCADE;")
+    IO.puts("Deleting old data in Model's Settings\n")
   end
 
   @spec seed!() :: Ecto.Schema.t()
   def seed! do
     seed_setting()
+    IO.puts("Insereted data in Model's Settings\n")
   end
 
   @spec seed_setting() :: nil | Ecto.Schema.t()
@@ -34,14 +35,14 @@ defmodule Core.Seeder.Settings do
   defp insert_setting do
     [
       Settings.create_setting(%{
-        param: random_param(),
-        value: random_value()
+        param: "calc_priority",
+        value: "priority"
       })
     ]
   end
 
   @spec random_param :: [String.t()]
-  defp random_param do
+  def random_param do
     names = [
       "xxxxxxxxxx",
       "yyyyyyyyyy",
@@ -60,7 +61,7 @@ defmodule Core.Seeder.Settings do
   end
 
   @spec random_value :: [String.t()]
-  defp random_value do
+  def random_value do
     names = [
       "value #1",
       "value #2",

@@ -11,11 +11,12 @@ defmodule Core.Operators.Operator do
     Operators.OperatorType
   }
 
+  alias FlakeId.Ecto.Type, as: FlakeIdType
+
   @type t :: %__MODULE__{
-    id: String.t(),
+    id: FlakeIdType,
     active: boolean,
     config: map,
-    inserted_at: DateTime.t(),
     limit_count: integer,
     name_operator: String.t(),
     operator_type_id: OperatorType.t(),
@@ -26,14 +27,13 @@ defmodule Core.Operators.Operator do
     sms_logs: [SmsLog.t()]
   }
 
-  @min_chars 5
+  @min_chars 3
   @max_chars 100
   @zero 0
 
   @allowed_params ~w(
     active
     phone_code
-    inserted_at
     limit_count
     name_operator
     operator_type_id
@@ -64,12 +64,12 @@ defmodule Core.Operators.Operator do
 
     belongs_to :operator_type, OperatorType,
       foreign_key: :operator_type_id,
-      type: FlakeId.Ecto.CompatType,
+      type: FlakeIdType,
       references: :id
 
     many_to_many :sms_logs, SmsLog, join_through: "sms_logs_operators", on_replace: :delete
 
-    timestamps(updated_at: false)
+    timestamps()
   end
 
   @doc """
@@ -85,7 +85,7 @@ defmodule Core.Operators.Operator do
     |> validate_number(:price_ext, greater_than_or_equal_to: @zero)
     |> validate_number(:price_int, greater_than_or_equal_to: @zero)
     |> validate_inclusion(:priority, 1..99)
-    |> validate_inclusion(:limit_count, 1..99)
+    |> validate_inclusion(:limit_count, 0..100_000)
     |> foreign_key_constraint(:name_operator, message: "Select the Name Operator")
     |> unique_constraint(:name_operator, name: :operators_name_operator_index)
   end
