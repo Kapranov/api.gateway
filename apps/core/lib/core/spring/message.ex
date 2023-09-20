@@ -73,22 +73,30 @@ defmodule Core.Spring.Message do
   """
   @spec changeset(t, %{atom => any}) :: Ecto.Changeset.t()
   def changeset(struct, attrs) do
-    case ExPhoneNumber.parse(attrs[:phone_number], "UA") do
-      {:error, msg} ->
-         %Ecto.Changeset{valid?: false, errors: [phone_number: {msg}]}
-      {:ok, phone_number} ->
-        case ExPhoneNumber.is_valid_number?(phone_number) do
-          true ->
-            struct
-            |> cast(attrs, @allowed_params)
-            |> validate_required(@required_params)
-            |> validate_length(:id_external, min: @min_chars_for_id_external, max: @max_chars_for_id_external)
-            |> validate_length(:id_telegram, min: @min_chars_for_id_telegram, max: @max_chars_for_id_telegram)
-            |> validate_length(:message_body, min: @min_chars_for_message_body, max: @max_chars_for_message_body)
-            |> validate_inclusion(:id_tax,  1000000000..9999999999)
-          false ->
-            %Ecto.Changeset{valid?: false, errors: [phone_number: {"Invalid country calling number"}]}
-        end
-    end
+    struct
+    |> cast(attrs, @allowed_params)
+    |> validate_required(@required_params)
+    |> validate_for_phone(:phone_number)
+    |> validate_length(:id_external, min: @min_chars_for_id_external, max: @max_chars_for_id_external)
+    |> validate_length(:id_telegram, min: @min_chars_for_id_telegram, max: @max_chars_for_id_telegram)
+    |> validate_length(:message_body, min: @min_chars_for_message_body, max: @max_chars_for_message_body)
+    |> validate_inclusion(:id_tax,  1000000000..9999999999)
+  end
+
+  @spec validate_for_phone(map, atom) :: Ecto.Changeset.t()
+  defp validate_for_phone(changeset, field) when is_atom(field) do
+    validate_change(changeset, field, fn field, value ->
+      case ExPhoneNumber.parse(value, "UA") do
+        {:error, msg} ->
+          [{field, "#{msg}"}]
+        {:ok, number} ->
+          case ExPhoneNumber.is_valid_number?(number) do
+            true ->
+              []
+            false ->
+              [{field, "Invalid country calling number"}]
+          end
+      end
+    end)
   end
 end
