@@ -38,11 +38,11 @@ defmodule Core.Seeder.Spring do
     status_ids = Enum.map(Repo.all(Status), &(&1))
 
     { status1,
-      _status2,
-      _status3,
-      _status4,
-      _status5,
-      _status6
+      status2,
+      status3,
+      status4,
+      status5,
+      status6
     } = {
       Enum.at(status_ids, 0),
       Enum.at(status_ids, 1),
@@ -58,6 +58,66 @@ defmodule Core.Seeder.Spring do
         id_tax: 2408888881,
         id_telegram: "@telegaUser",
         message_body: "Ваш код - 7777-999-9999-9999",
+        message_expired_at: FakerTime.backward(4),
+        phone_number: "+380984263462",
+        status_changed_at: FakerTime.backward(4),
+        status_id: status1.id
+      }),
+      Spring.create_message(%{
+        id_external: "2",
+        id_tax: 2408888881,
+        id_telegram: "@telegaUser",
+        message_body: "Ваш код - 7777-999-9999-10000",
+        message_expired_at: FakerTime.backward(4),
+        phone_number: "+380984263462",
+        status_changed_at: FakerTime.backward(4),
+        status_id: status2.id
+      }),
+      Spring.create_message(%{
+        id_external: "3",
+        id_tax: 2408888881,
+        id_telegram: "@telegaUser",
+        message_body: "Ваш код - 7777-999-9999-10001",
+        message_expired_at: FakerTime.backward(4),
+        phone_number: "+380984263462",
+        status_changed_at: FakerTime.backward(4),
+        status_id: status3.id
+      }),
+      Spring.create_message(%{
+        id_external: "4",
+        id_tax: 2408888881,
+        id_telegram: "@telegaUser",
+        message_body: "Ваш код - 7777-999-9999-10002",
+        message_expired_at: FakerTime.backward(4),
+        phone_number: "+380984263462",
+        status_changed_at: FakerTime.backward(4),
+        status_id: status4.id
+      }),
+      Spring.create_message(%{
+        id_external: "5",
+        id_tax: 2408888881,
+        id_telegram: "@telegaUser",
+        message_body: "Ваш код - 7777-999-9999-10003",
+        message_expired_at: FakerTime.backward(4),
+        phone_number: "+380984263462",
+        status_changed_at: FakerTime.backward(4),
+        status_id: status5.id
+      }),
+      Spring.create_message(%{
+        id_external: "6",
+        id_tax: 2408888881,
+        id_telegram: "@telegaUser",
+        message_body: "Код рецепту - 34567",
+        message_expired_at: FakerTime.backward(4),
+        phone_number: "+380984263462",
+        status_changed_at: FakerTime.backward(4),
+        status_id: status6.id
+      }),
+      Spring.create_message(%{
+        id_external: "7",
+        id_tax: 2408888881,
+        id_telegram: "@telegaUser",
+        message_body: "Код рецепту - 34568",
         message_expired_at: FakerTime.backward(4),
         phone_number: "+380984263462",
         status_changed_at: FakerTime.backward(4),

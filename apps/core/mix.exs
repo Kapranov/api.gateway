@@ -38,6 +38,7 @@ defmodule Core.MixProject do
       {:ecto_enum, "~> 1.4"},
       {:ecto_sql, "~> 3.10"},
       {:ex_machina, "~> 2.7"},
+      {:ex_phone_number, "~> 0.4.3"},
       {:ex_unit_notifier, "~> 1.3"},
       {:faker, "~> 0.17", only: [:dev, :test]},
       {:flake_id, "~> 0.1.0"},

@@ -4,8 +4,12 @@ defmodule Core.Seeder.Logs do
   """
 
   alias Core.{
+    Logs,
     Logs.SmsLog,
-    Repo
+    Monitoring.Status,
+    Operators.Operator,
+    Repo,
+    Spring.Message
   }
 
   alias Ecto.Adapters.SQL
@@ -32,6 +36,97 @@ defmodule Core.Seeder.Logs do
 
   @spec insert_sms_log() :: {:ok, any()} | {:error, any()}
   defp insert_sms_log do
-    :ok
+    msg_ids = Enum.map(Repo.all(Message), &(&1))
+    operator_ids = Enum.map(Repo.all(Operator), &(&1))
+    status_ids = Enum.map(Repo.all(Status), &(&1))
+
+    {
+      msg2,
+      msg4,
+      msg5,
+      msg6
+    } = {
+      Enum.at(msg_ids, 1),
+      Enum.at(msg_ids, 3),
+      Enum.at(msg_ids, 4),
+      Enum.at(msg_ids, 5)
+    }
+
+    {
+      operator1,
+      operator2,
+      operator5
+    } = {
+      Enum.at(operator_ids, 0),
+      Enum.at(operator_ids, 1),
+      Enum.at(operator_ids, 4)
+    }
+
+    {
+      status1,
+      status2,
+      status3
+    } = {
+      Enum.at(status_ids, 0),
+      Enum.at(status_ids, 1),
+      Enum.at(status_ids, 2)
+    }
+
+    [
+      Logs.create_sms_log(%{
+        messages: msg4.id,
+        operators: operator1.id,
+        statuses: status1.id,
+        priority: 1
+      }),
+      Logs.create_sms_log(%{
+        messages: msg4.id,
+        operators: operator2.id,
+        statuses: status2.id,
+        priority: 2
+      }),
+      Logs.create_sms_log(%{
+        messages: msg4.id,
+        operators: operator5.id,
+        statuses: status3.id,
+        priority: 3
+      }),
+      Logs.create_sms_log(%{
+        messages: msg6.id,
+        operators: operator1.id,
+        statuses: status1.id,
+        priority: 1
+      }),
+      Logs.create_sms_log(%{
+        messages: msg6.id,
+        operators: operator2.id,
+        statuses: status2.id,
+        priority: 2
+      }),
+      Logs.create_sms_log(%{
+        messages: msg6.id,
+        operators: operator5.id,
+        statuses: status3.id,
+        priority: 3
+      }),
+      Logs.create_sms_log(%{
+        messages: msg2.id,
+        operators: operator1.id,
+        statuses: status1.id,
+        priority: 1
+      }),
+      Logs.create_sms_log(%{
+        messages: msg5.id,
+        operators: operator1.id,
+        statuses: status1.id,
+        priority: 1
+      }),
+      Logs.create_sms_log(%{
+        messages: msg5.id,
+        operators: operator1.id,
+        statuses: status1.id,
+        priority: 1
+      })
+    ]
   end
 end
