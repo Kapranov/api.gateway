@@ -37,7 +37,8 @@ defmodule Core.Seeder.Spring do
   defp insert_message do
     status_ids = Enum.map(Repo.all(Status), &(&1))
 
-    { status1,
+    {
+      status1,
       status2,
       status3,
       status4,
@@ -55,7 +56,7 @@ defmodule Core.Seeder.Spring do
     [
       Spring.create_message(%{
         id_external: "1",
-        id_tax: 2408888881,
+        id_tax: 2_408_888_881,
         id_telegram: "@telegaUser",
         message_body: "Ваш код - 7777-999-9999-9999",
         message_expired_at: random_datetime(+16),
@@ -65,7 +66,7 @@ defmodule Core.Seeder.Spring do
       }),
       Spring.create_message(%{
         id_external: "2",
-        id_tax: 2408888881,
+        id_tax: 2_408_888_881,
         id_telegram: "@telegaUser",
         message_body: "Ваш код - 7777-999-9999-10000",
         message_expired_at: random_datetime(+6),
@@ -75,7 +76,7 @@ defmodule Core.Seeder.Spring do
       }),
       Spring.create_message(%{
         id_external: "3",
-        id_tax: 2408888881,
+        id_tax: 2_408_888_881,
         id_telegram: "@telegaUser",
         message_body: "Ваш код - 7777-999-9999-10001",
         message_expired_at: random_datetime(+10),
@@ -85,7 +86,7 @@ defmodule Core.Seeder.Spring do
       }),
       Spring.create_message(%{
         id_external: "4",
-        id_tax: 2408888881,
+        id_tax: 2_408_888_881,
         id_telegram: "@telegaUser",
         message_body: "Ваш код - 7777-999-9999-10002",
         message_expired_at: random_datetime(+3),
@@ -95,7 +96,7 @@ defmodule Core.Seeder.Spring do
       }),
       Spring.create_message(%{
         id_external: "5",
-        id_tax: 2408888881,
+        id_tax: 2_408_888_881,
         id_telegram: "@telegaUser",
         message_body: "Ваш код - 7777-999-9999-10003",
         message_expired_at: random_datetime(+8),
@@ -105,7 +106,7 @@ defmodule Core.Seeder.Spring do
       }),
       Spring.create_message(%{
         id_external: "6",
-        id_tax: 2408888881,
+        id_tax: 2_408_888_881,
         id_telegram: "@telegaUser",
         message_body: "Код рецепту - 34567",
         message_expired_at: random_datetime(+2),
@@ -115,7 +116,7 @@ defmodule Core.Seeder.Spring do
       }),
       Spring.create_message(%{
         id_external: "7",
-        id_tax: 2408888881,
+        id_tax: 2_408_888_881,
         id_telegram: "@telegaUser",
         message_body: "Код рецепту - 34568",
         message_expired_at: FakerTime.backward(4),

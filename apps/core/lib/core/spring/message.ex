@@ -80,7 +80,7 @@ defmodule Core.Spring.Message do
     |> validate_length(:id_external, min: @min_chars_for_id_external, max: @max_chars_for_id_external)
     |> validate_length(:id_telegram, min: @min_chars_for_id_telegram, max: @max_chars_for_id_telegram)
     |> validate_length(:message_body, min: @min_chars_for_message_body, max: @max_chars_for_message_body)
-    |> validate_inclusion(:id_tax,  1000000000..9999999999)
+    |> validate_inclusion(:id_tax,  1_000_000_000..9_999_999_999)
   end
 
   @spec validate_for_phone(map, atom) :: Ecto.Changeset.t()
@@ -90,13 +90,18 @@ defmodule Core.Spring.Message do
         {:error, msg} ->
           [{field, "#{msg}"}]
         {:ok, number} ->
-          case ExPhoneNumber.is_valid_number?(number) do
-            true ->
-              []
-            false ->
-              [{field, "Invalid country calling number"}]
-          end
+          check_number(field, number)
       end
     end)
+  end
+
+  @spec check_number(atom, integer) :: list
+  defp check_number(field, num) do
+    case ExPhoneNumber.is_valid_number?(num) do
+      true ->
+        []
+      false ->
+        [{field, "Invalid country calling number"}]
+    end
   end
 end
