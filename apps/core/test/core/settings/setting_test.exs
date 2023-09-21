@@ -25,7 +25,7 @@ defmodule Core.Settings.SettingTest do
     test "list_setting/0 with empty list" do
       data = Settings.list_setting()
       assert data == []
-      assert Enum.count(data) == 0
+      assert Enum.empty?(data) == true
     end
 
 
