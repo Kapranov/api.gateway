@@ -31,7 +31,14 @@ defmodule Core.Settings do
 
   """
   @spec get_setting(String.t()) :: Setting.t() | error_tuple()
-  def get_setting(id), do: Repo.get!(Setting, id)
+  def get_setting(id) do
+    try do
+      Repo.get!(Setting, id)
+    rescue
+      Ecto.NoResultsError ->
+        {:error, %Ecto.Changeset{}}
+    end
+  end
 
   @doc """
   Creates Setting.
@@ -66,9 +73,14 @@ defmodule Core.Settings do
   """
   @spec update_setting(Setting.t(), %{atom => any}) :: result() | error_tuple()
   def update_setting(%Setting{} = struct, attrs) do
-    struct
-    |> Setting.changeset(attrs)
-    |> Repo.update()
+    try do
+      struct
+      |> Setting.changeset(attrs)
+      |> Repo.update()
+    rescue
+      Ecto.CastError ->
+        {:error, %Ecto.Changeset{}}
+    end
   end
 
   @doc """

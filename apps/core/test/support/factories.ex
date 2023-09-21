@@ -4,4 +4,17 @@ defmodule Core.Factory do
   """
 
   use ExMachina.Ecto, repo: Core.Repo
+
+  alias Core.{
+    Settings.Setting
+  }
+
+  alias Faker.Lorem
+
+  def setting_factory do
+    %Setting{
+      param: Lorem.sentence(),
+      value: Lorem.sentence()
+    }
+  end
 end
