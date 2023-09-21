@@ -89,5 +89,14 @@ defmodule Core.Settings.SettingTest do
       setting = %Setting{}
       assert {:error, %Ecto.Changeset{}} = Settings.update_setting(setting, %{})
     end
+
+    test "change_setting/2" do
+      setting = insert(:setting)
+      assert %Ecto.Changeset{} = Settings.change_setting(setting)
+    end
+
+    test "change_setting/2 with empty struct" do
+      assert %Ecto.Changeset{} = Settings.change_setting(%Setting{})
+    end
   end
 end

@@ -19,5 +19,8 @@ defmodule Core.Operators.OperatorTypeTest do
 
     test "get_operator_type/1" do
     end
+
+    test "update_operator_type/2" do
+    end
   end
 end
