@@ -16,7 +16,6 @@ defmodule Core.Monitoring do
   @spec list_status() :: [Status.t()]
   def list_status do
     Repo.all(Status)
-    |> Repo.preload(:sms_logs)
   end
 
   @doc """
@@ -35,8 +34,12 @@ defmodule Core.Monitoring do
   """
   @spec get_status(String.t()) :: Status.t() | error_tuple()
   def get_status(id) do
-    Repo.get!(Status, id)
-    |> Repo.preload(:sms_logs)
+    try do
+      Repo.get!(Status, id)
+    rescue
+      Ecto.NoResultsError ->
+        {:error, %Ecto.Changeset{}}
+    end
   end
 
   @doc """

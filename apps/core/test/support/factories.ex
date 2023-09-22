@@ -6,6 +6,7 @@ defmodule Core.Factory do
   use ExMachina.Ecto, repo: Core.Repo
 
   alias Core.{
+    Monitoring.Status,
     Settings.Setting
   }
 
@@ -15,6 +16,15 @@ defmodule Core.Factory do
     %Setting{
       param: Lorem.sentence(),
       value: Lorem.sentence()
+    }
+  end
+
+  def status_factory do
+    %Status{
+      active: true,
+      description: "some text",
+      status_code: 1,
+      status_name: "status #1"
     }
   end
 end

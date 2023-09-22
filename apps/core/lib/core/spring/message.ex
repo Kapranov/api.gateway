@@ -21,6 +21,7 @@ defmodule Core.Spring.Message do
     message_expired_at: DateTime.t(),
     phone_number: String.t(),
     sms_logs: [SmsLog.t()],
+    status: [Status.t()],
     status_changed_at: DateTime.t(),
     status_id: Status.t()
   }

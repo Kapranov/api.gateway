@@ -28,7 +28,6 @@ defmodule Core.Settings.SettingTest do
       assert Enum.empty?(data) == true
     end
 
-
     test "list_setting/0 with data" do
       setting = insert(:setting)
       data = Settings.list_setting()
