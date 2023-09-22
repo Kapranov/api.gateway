@@ -96,12 +96,12 @@ defmodule Core.Operators.OperatorTypeTest do
       assert {:error, %Ecto.Changeset{}} = Operators.update_operator_type(operator_type, %{})
     end
 
-    test "change_operator_type/2" do
+    test "change_operator_type/1" do
       operator_type = insert(:operator_type)
       assert %Ecto.Changeset{} = Operators.change_operator_type(operator_type)
     end
 
-    test "change_operator_type/2 with empty struct" do
+    test "change_operator_type/1 with empty struct" do
       assert %Ecto.Changeset{} = Operators.change_operator_type(%OperatorType{})
     end
   end
