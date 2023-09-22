@@ -27,6 +27,8 @@ defmodule Core.Factory do
     %Status{
       active: true,
       description: "some text",
+      messages: [],
+      sms_logs: [],
       status_code: 1,
       status_name: "status #1"
     }
