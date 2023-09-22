@@ -45,8 +45,13 @@ defmodule Core.Operators do
   """
   @spec get_operator_type(String.t()) :: OperatorType.t() | error_tuple()
   def get_operator_type(id) do
-    Repo.get!(OperatorType, id)
-    |> Repo.preload(:operator)
+    try do
+      Repo.get!(OperatorType, id)
+      |> Repo.preload(:operator)
+    rescue
+      Ecto.NoResultsError ->
+        {:error, %Ecto.Changeset{}}
+    end
   end
 
   @doc """
