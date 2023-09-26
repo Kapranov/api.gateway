@@ -79,7 +79,7 @@ defmodule Core.Operators.Operator do
   def changeset(struct, attrs) do
     struct
     |> cast(attrs, @allowed_params)
-    |> cast_embed(:config)
+    |> cast_embed(:config, with: &Config.changeset/2)
     |> validate_required(@required_params)
     |> validate_length(:name_operator, min: @min_chars, max: @max_chars)
     |> validate_number(:price_ext, greater_than_or_equal_to: @zero)

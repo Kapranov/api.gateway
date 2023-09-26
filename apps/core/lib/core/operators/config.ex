@@ -7,6 +7,7 @@ defmodule Core.Operators.Config do
 
   import Ecto.Changeset, only: [
     cast: 3,
+    cast_embed: 3,
     validate_required: 2
   ]
 
@@ -17,21 +18,29 @@ defmodule Core.Operators.Config do
     id: FlakeIdType,
     content_type: String.t(),
     name: String.t(),
-    parameters: Parameters.t(),
+    parameters: map,
     size: integer,
     url: String.t()
   }
 
-  @required_attrs [:name, :url]
-  @optional_attrs [:content_type, :size]
+  @required_attrs [
+    :name,
+    :url
+  ]
+
+  @optional_attrs [
+    :content_type,
+    :size
+  ]
   @attrs @required_attrs ++ @optional_attrs
 
   embedded_schema do
-    embeds_one(:parameters, Parameters, on_replace: :update)
     field :content_type, :string
     field :name,         :string
     field :size,         :integer
     field :url,          :string
+
+    embeds_one(:parameters, Parameters, on_replace: :update)
 
     timestamps()
   end
@@ -43,6 +52,7 @@ defmodule Core.Operators.Config do
   def changeset(%__MODULE__{} = config, attrs) do
     config
     |> cast(attrs, @attrs)
+    |> cast_embed(:parameters, with: &Parameters.changeset/2)
     |> validate_required(@required_attrs)
   end
 end

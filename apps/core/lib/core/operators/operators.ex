@@ -26,7 +26,7 @@ defmodule Core.Operators do
   @spec list_operator() :: [Operator.t()]
   def list_operator do
     Repo.all(Operator)
-    |> Repo.preload(:sms_logs)
+    |> Repo.preload([:operator_type, :sms_logs])
   end
 
   @doc """
@@ -70,8 +70,13 @@ defmodule Core.Operators do
   """
   @spec get_operator(String.t()) :: Operator.t() | error_tuple()
   def get_operator(id) do
-    Repo.get!(Operator, id)
-    |> Repo.preload(:sms_logs)
+    try do
+      Repo.get!(Operator, id)
+      |> Repo.preload(:sms_logs)
+    rescue
+      Ecto.NoResultsError ->
+        {:error, %Ecto.Changeset{}}
+    end
   end
 
   @doc """

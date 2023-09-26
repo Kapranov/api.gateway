@@ -53,24 +53,30 @@ defmodule Core.Factory do
       phone_code: "+380991111111",
       price_ext: 1,
       price_int: 1,
-      priority: 1
+      priority: 1,
+      sms_logs: []
     }
   end
 
   def config_factory do
     %Config{
+      id: FlakeId.get(),
       content_type: "some text",
       name: "some text",
-      parameters: build(:parameters),
       size: 1,
-      url: "some text"
+      url: "some text",
+      inserted_at: DateTime.utc_now(:millisecond, Calendar.ISO),
+      updated_at: DateTime.utc_now(:millisecond, Calendar.ISO)
     }
   end
 
   def parameters_factory do
     %Parameters{
+      id: FlakeId.get(),
       key: "some text",
-      value: "some text"
+      value: "some text",
+      inserted_at: DateTime.utc_now(:millisecond, Calendar.ISO),
+      updated_at: DateTime.utc_now(:millisecond, Calendar.ISO)
     }
   end
 end

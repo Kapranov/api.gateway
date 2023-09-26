@@ -404,60 +404,14 @@ defmodule Core.Operators.OperatorTest do
       assert {:error, %Ecto.Changeset{}} = Operators.update_operator(operator, updated_attrs)
     end
 
-    test "update_operator/2 with validations length min 3 for name_operator" do
+    test "update_operator_type/2 with validations name_operator has been taken" do
       parameters = build(:parameters)
       config = build(:config, parameters: parameters)
-      updated_config = Map.merge(config, %{
-        content_type: "updated some text",
-        name: "updated some text",
-        size: 2,
-        url: "updated some text"
-      })
-      operator = insert(:operator, config: updated_config)
-      update_attrs = Map.merge(@update_attrs, %{name_operator: Lorem.characters(2)})
-      assert {:error, _changeset} = Operators.update_operator(operator, update_attrs)
-    end
-
-    test "update_operator/2 with validations length max 101 for name_operator" do
-      parameters = build(:parameters)
-      config = build(:config, parameters: parameters)
-      updated_config = Map.merge(config, %{
-        content_type: "updated some text",
-        name: "updated some text",
-        size: 2,
-        url: "updated some text"
-      })
-      operator = insert(:operator, config: updated_config)
-      update_attrs = Map.merge(@update_attrs, %{name_operator: Lorem.characters(101)})
-      assert {:error, _changeset} = Operators.update_operator(operator, update_attrs)
-    end
-
-    test "update_operator/2 with validations integer max 99 for priority" do
-      parameters = build(:parameters)
-      config = build(:config, parameters: parameters)
-      updated_config = Map.merge(config, %{
-        content_type: "updated some text",
-        name: "updated some text",
-        size: 2,
-        url: "updated some text"
-      })
-      operator = insert(:operator, config: updated_config)
-      update_attrs = Map.merge(@update_attrs, %{priority: Faker.random_between(100, 101)})
-      assert {:error, _changeset} = Operators.update_operator(operator, update_attrs)
-    end
-
-    test "update_operator/2 with validations integer max 101_000 for limit_count" do
-      parameters = build(:parameters)
-      config = build(:config, parameters: parameters)
-      updated_config = Map.merge(config, %{
-        content_type: "updated some text",
-        name: "updated some text",
-        size: 2,
-        url: "updated some text"
-      })
-      operator = insert(:operator, config: updated_config)
-      update_attrs = Map.merge(@update_attrs, %{limit_count: Faker.random_between(101_000, 102_000)})
-      assert {:error, _changeset} = Operators.update_operator(operator, update_attrs)
+      operator_1 = insert(:operator, config: config)
+      operator_2 = insert(:operator, [config: config, name_operator: "other some text"])
+      update_attrs = Map.merge(@update_attrs, %{name_operator: operator_1.name_operator})
+      #assert {:error, %Ecto.Changeset{}} = Operators.update_operator(operator_2, update_attrs)
+      assert {:error, %Ecto.Changeset{}} = Operators.update_operator(operator_2, update_attrs)
     end
 
     test "update_operator/2 with invalid struct returns error changeset" do

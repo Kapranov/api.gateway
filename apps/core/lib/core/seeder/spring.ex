@@ -11,7 +11,6 @@ defmodule Core.Seeder.Spring do
   }
 
   alias Ecto.Adapters.SQL
-  alias Faker.DateTime, as: FakerTime
 
   @spec reset_database!() :: {integer(), nil | [term()]}
   def reset_database! do
@@ -119,9 +118,9 @@ defmodule Core.Seeder.Spring do
         id_tax: 2_408_888_881,
         id_telegram: "@telegaUser",
         message_body: "Код рецепту - 34568",
-        message_expired_at: FakerTime.backward(4),
+        message_expired_at: random_datetime(+7),
         phone_number: "+380984263462",
-        status_changed_at: FakerTime.backward(4),
+        status_changed_at: random_datetime(+3),
         status_id: status1.id
       })
     ]
