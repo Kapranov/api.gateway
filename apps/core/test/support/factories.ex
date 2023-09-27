@@ -11,7 +11,8 @@ defmodule Core.Factory do
     Operators.Operator,
     Operators.OperatorType,
     Operators.Parameters,
-    Settings.Setting
+    Settings.Setting,
+    Spring.Message
   }
 
   alias Faker.Lorem
@@ -78,5 +79,28 @@ defmodule Core.Factory do
       inserted_at: DateTime.utc_now(:millisecond, Calendar.ISO),
       updated_at: DateTime.utc_now(:millisecond, Calendar.ISO)
     }
+  end
+
+  def message_factory do
+    %Message{
+      id_external: "1",
+      id_tax: 1_111_111_111,
+      id_telegram: "length text",
+      message_body: "some text",
+      message_expired_at: random_datetime(+7),
+      phone_number: "+380991111111",
+      sms_logs: [],
+      status: build(:status),
+      status_changed_at: random_datetime(+3)
+    }
+  end
+
+  @spec random_datetime(neg_integer() | pos_integer()) :: DateTime.t()
+  defp random_datetime(num) do
+    timestamp =
+      DateTime.utc_now
+      |> DateTime.add(num, :day)
+
+    timestamp
   end
 end
