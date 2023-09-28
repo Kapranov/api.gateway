@@ -7,7 +7,8 @@ defmodule Core.Spring.Message do
 
   alias Core.{
     Logs.SmsLog,
-    Monitoring.Status
+    Monitoring.Status,
+    Repo
   }
 
   alias FlakeId.Ecto.Type, as: FlakeIdType
@@ -82,6 +83,7 @@ defmodule Core.Spring.Message do
     |> validate_length(:id_telegram, min: @min_chars_for_id_telegram, max: @max_chars_for_id_telegram)
     |> validate_length(:message_body, min: @min_chars_for_message_body, max: @max_chars_for_message_body)
     |> validate_inclusion(:id_tax,  1_000_000_000..9_999_999_999)
+    |> validate_sms_log_count
   end
 
   @spec validate_for_phone(map, atom) :: Ecto.Changeset.t()
@@ -103,6 +105,18 @@ defmodule Core.Spring.Message do
         []
       false ->
         [{field, "Invalid country calling number"}]
+    end
+  end
+
+  @spec validate_sms_log_count(t) :: Ecto.Changeset.t()
+  defp validate_sms_log_count(changeset) do
+    sms_logs = Repo.all(Ecto.assoc(changeset.data, :sms_logs))
+    valid? = length(sms_logs) == 2
+
+    if valid? do
+      add_error(changeset, :sms_logs, "hello")
+    else
+      changeset
     end
   end
 end

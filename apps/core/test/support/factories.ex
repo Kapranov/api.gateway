@@ -16,12 +16,10 @@ defmodule Core.Factory do
     Spring.Message
   }
 
-  alias Faker.Lorem
-
   def setting_factory do
     %Setting{
-      param: Lorem.sentence(),
-      value: Lorem.sentence()
+      param: "some text",
+      value: "some text"
     }
   end
 
@@ -90,7 +88,7 @@ defmodule Core.Factory do
       message_body: "some text",
       message_expired_at: random_datetime(+7),
       phone_number: "+380991111111",
-      sms_logs: [],
+      sms_logs: [build(:sms_log)],
       status: build(:status),
       status_changed_at: random_datetime(+3)
     }

@@ -7,6 +7,8 @@ defmodule Core.Settings.SettingTest do
       Settings.Setting
     }
 
+    alias Faker.Lorem
+
     @valid_attrs %{
       param: "some text",
       value: "some text"
@@ -39,6 +41,30 @@ defmodule Core.Settings.SettingTest do
       assert {:ok, %Setting{} = created} = Settings.create_setting(@valid_attrs)
       assert created.param == @valid_attrs.param
       assert created.value == @valid_attrs.value
+    end
+
+    test "create_setting/1 with validations length min 5 for param" do
+      insert(:setting)
+      attrs = Map.merge(@valid_attrs, %{param: Lorem.characters(4)})
+      assert {:error, %Ecto.Changeset{}} = Settings.create_setting(attrs)
+    end
+
+    test "create_setting/1 with validations length max 100 for param" do
+      insert(:setting)
+      attrs = Map.merge(@valid_attrs, %{param: Lorem.characters(101)})
+      assert {:error, %Ecto.Changeset{}} = Settings.create_setting(attrs)
+    end
+
+    test "create_setting/1 with validations length min 5 for value" do
+      insert(:setting)
+      attrs = Map.merge(@valid_attrs, %{value: Lorem.characters(4)})
+      assert {:error, %Ecto.Changeset{}} = Settings.create_setting(attrs)
+    end
+
+    test "create_setting/1 with validations length max 100 for value" do
+      insert(:setting)
+      attrs = Map.merge(@valid_attrs, %{value: Lorem.characters(101)})
+      assert {:error, %Ecto.Changeset{}} = Settings.create_setting(attrs)
     end
 
     test "create_setting/1 with invalid data returns error changeset" do
@@ -84,6 +110,30 @@ defmodule Core.Settings.SettingTest do
       assert struct.value == setting.value
     end
 
+    test "update_setting/2 with validations length min 5 for param" do
+      setting = insert(:setting)
+      attrs = Map.merge(@update_attrs, %{param: Lorem.characters(4)})
+      assert {:error, %Ecto.Changeset{}} = Settings.update_setting(setting, attrs)
+    end
+
+    test "update_setting/2 with validations length max 100 for param" do
+      setting = insert(:setting)
+      attrs = Map.merge(@update_attrs, %{param: Lorem.characters(101)})
+      assert {:error, %Ecto.Changeset{}} = Settings.update_setting(setting, attrs)
+    end
+
+    test "update_setting/2 with validations length min 5 for value" do
+      setting = insert(:setting)
+      attrs = Map.merge(@update_attrs, %{value: Lorem.characters(4)})
+      assert {:error, %Ecto.Changeset{}} = Settings.update_setting(setting, attrs)
+    end
+
+    test "update_setting/2 with validations length max 100 for value" do
+      setting = insert(:setting)
+      attrs = Map.merge(@update_attrs, %{value: Lorem.characters(101)})
+      assert {:error, %Ecto.Changeset{}} = Settings.update_setting(setting, attrs)
+    end
+
     test "update_setting/2 with invalid struct returns error changeset" do
       setting = %Setting{}
       assert {:error, %Ecto.Changeset{}} = Settings.update_setting(setting, %{})
@@ -96,6 +146,18 @@ defmodule Core.Settings.SettingTest do
 
     test "change_setting/1 with empty struct" do
       assert %Ecto.Changeset{} = Settings.change_setting(%Setting{})
+    end
+
+    test "for unique_constraint param has been taken" do
+      insert(:setting)
+      assert {:error, changeset} = Settings.create_setting(@valid_attrs)
+      assert changeset.errors[:param] == {
+        "The param a name is unique",
+        [
+          {:constraint, :unique},
+          {:constraint_name, "settings_param_index"}
+        ]
+      }
     end
   end
 end

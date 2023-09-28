@@ -3,6 +3,8 @@ defmodule Core.Spring.MessageTest do
 
   describe "Status" do
     alias Core.{
+      Logs,
+      Logs.SmsLog,
       Spring,
       Spring.Message
     }
@@ -231,6 +233,20 @@ defmodule Core.Spring.MessageTest do
 
     test "change_message/1 with empty struct" do
       assert %Ecto.Changeset{} = Spring.change_message(%Message{})
+    end
+
+    test "for many_to_many SmsLogs" do
+      message = insert(:message)
+      operator = insert(:operator)
+      sms_log = insert(:sms_log, %{
+        operators: [operator],
+        messages: [message],
+        statuses: [message.status]
+      })
+      struct = Logs.get_sms_log(sms_log.id)
+      assert  List.first(struct.statuses) |> Map.get(:id) == message.status.id
+      assert  List.first(struct.messages) |> Map.get(:id) == message.id
+      assert List.first(struct.operators) |> Map.get(:id) == operator.id
     end
   end
 end

@@ -53,5 +53,19 @@ defmodule Core.Logs.SmsLogTest do
       sms_log_id = FlakeId.get()
       assert {:error, %Ecto.Changeset{}} = Logs.get_sms_log(sms_log_id)
     end
+
+    test "for many_to_many Messages, Operators, Statuses" do
+      message = insert(:message)
+      operator = insert(:operator)
+      sms_log = insert(:sms_log, %{
+        operators: [operator],
+        messages: [message],
+        statuses: [message.status]
+      })
+      struct = Logs.get_sms_log(sms_log.id)
+      assert  List.first(struct.statuses) |> Map.get(:id) == message.status.id
+      assert  List.first(struct.messages) |> Map.get(:id) == message.id
+      assert List.first(struct.operators) |> Map.get(:id) == operator.id
+    end
   end
 end

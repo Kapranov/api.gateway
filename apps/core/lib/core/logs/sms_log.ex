@@ -48,6 +48,9 @@ defmodule Core.Logs.SmsLog do
     |> put_assoc_nochange(:operators, parse_id_for_operator(attrs))
     |> put_assoc_nochange(:statuses, parse_id_for_status(attrs))
     |> validate_inclusion(:priority, 1..99)
+    |> validate_message_count
+    |> validate_operator_count
+    |> validate_status_count
   end
 
   @spec changeset_preload(map, Keyword.t()) :: Ecto.Changeset.t()
@@ -137,6 +140,42 @@ defmodule Core.Logs.SmsLog do
     |> case do
       {:ok, struct} -> struct
       {:error, _} -> Repo.get_by!(Status, id: id)
+    end
+  end
+
+  @spec validate_message_count(t) :: Ecto.Changeset.t()
+  defp validate_message_count(changeset) do
+    messages = Repo.all(Ecto.assoc(changeset.data, :messages))
+    valid? = length(messages) == 2
+
+    if valid? do
+      add_error(changeset, :messages, "hello")
+    else
+      changeset
+    end
+  end
+
+  @spec validate_operator_count(t) :: Ecto.Changeset.t()
+  defp validate_operator_count(changeset) do
+    operators = Repo.all(Ecto.assoc(changeset.data, :operators))
+    valid? = length(operators) == 2
+
+    if valid? do
+      add_error(changeset, :operators, "hello")
+    else
+      changeset
+    end
+  end
+
+  @spec validate_status_count(t) :: Ecto.Changeset.t()
+  defp validate_status_count(changeset) do
+    statuses = Repo.all(Ecto.assoc(changeset.data, :statuses))
+    valid? = length(statuses) == 2
+
+    if valid? do
+      add_error(changeset, :statuses, "hello")
+    else
+      changeset
     end
   end
 end
