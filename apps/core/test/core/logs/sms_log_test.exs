@@ -21,6 +21,18 @@ defmodule Core.Logs.SmsLogTest do
       assert created.priority == @valid_attrs.priority
     end
 
+    test "create_sms_log/1 with validations integer max 99 for priority" do
+      operator = insert(:operator)
+      message = insert(:message)
+      attrs = Map.merge(@valid_attrs, %{
+        message_id: message.id,
+        operator_id: operator.id,
+        priority: Faker.random_between(100, 101),
+        status_id: message.status.id
+      })
+      assert {:error, %Ecto.Changeset{}} = Logs.create_sms_log(attrs)
+    end
+
     test "create_sms_log/1 with invalid data returns error changeset" do
       assert {:error, %Ecto.Changeset{}} = Logs.create_sms_log(@invalid_attrs)
     end
