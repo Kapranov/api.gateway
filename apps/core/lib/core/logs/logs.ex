@@ -26,8 +26,13 @@ defmodule Core.Logs do
   """
   @spec get_sms_log(String.t()) :: SmsLog.t() | error_tuple()
   def get_sms_log(id) do
-    Repo.get!(SmsLog, id)
-    |> Repo.preload([:messages, :statuses, operators: [:operator_type]])
+    try do
+      Repo.get!(SmsLog, id)
+      |> Repo.preload([:messages, :statuses, operators: [:operator_type]])
+    rescue
+      Ecto.NoResultsError ->
+        {:error, %Ecto.Changeset{}}
+    end
   end
 
   @doc """

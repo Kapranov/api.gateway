@@ -6,6 +6,7 @@ defmodule Core.Factory do
   use ExMachina.Ecto, repo: Core.Repo
 
   alias Core.{
+    Logs.SmsLog,
     Monitoring.Status,
     Operators.Config,
     Operators.Operator,
@@ -93,6 +94,10 @@ defmodule Core.Factory do
       status: build(:status),
       status_changed_at: random_datetime(+3)
     }
+  end
+
+  def sms_log_factory do
+    %SmsLog{priority: 1}
   end
 
   @spec random_datetime(neg_integer() | pos_integer()) :: DateTime.t()
