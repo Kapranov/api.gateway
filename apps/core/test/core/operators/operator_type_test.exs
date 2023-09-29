@@ -8,6 +8,8 @@ defmodule Core.Operators.OperatorTypeTest do
       Repo,
     }
 
+    alias Faker.Lorem
+
     @valid_attrs %{
       active: true,
       name_type: "some text",
@@ -24,6 +26,11 @@ defmodule Core.Operators.OperatorTypeTest do
       active: nil,
       name_type: nil
     }
+
+    @relations [
+      Core.Operators.Operator,
+      Core.Operators.OperatorType
+    ]
 
     test "list_operator_type/0 with empty list" do
       data = Operators.list_operator_type()
@@ -43,6 +50,31 @@ defmodule Core.Operators.OperatorTypeTest do
       assert created.active    == @valid_attrs.active
       assert created.name_type == @valid_attrs.name_type
       assert created.priority  == @valid_attrs.priority
+    end
+
+    test "create_operator_type/1 with validations boolean for active" do
+      attrs = Map.merge(@valid_attrs, %{active: Map.new})
+      assert {:error, %Ecto.Changeset{}} = Operators.create_operator_type(attrs)
+    end
+
+    test "create_operator_type/1 with validations length min 3 for nameType" do
+      attrs = Map.merge(@valid_attrs, %{name_type: Lorem.characters(2)})
+      assert {:error, %Ecto.Changeset{}} = Operators.create_operator_type(attrs)
+    end
+
+    test "create_operator_type/1 with validations length max 100 for nameType" do
+      attrs = Map.merge(@valid_attrs, %{name_type: Lorem.characters(101)})
+      assert {:error, %Ecto.Changeset{}} = Operators.create_operator_type(attrs)
+    end
+
+    test "create_operator_type/1 with validations integer min 1 for priority" do
+      attrs = Map.merge(@valid_attrs, %{priority: Faker.random_between(0, 0)})
+      assert {:error, %Ecto.Changeset{}} = Operators.create_operator_type(attrs)
+    end
+
+    test "create_operator_type/1 with validations integer max 99 for priority" do
+      attrs = Map.merge(@valid_attrs, %{priority: Faker.random_between(100, 103)})
+      assert {:error, %Ecto.Changeset{}} = Operators.create_operator_type(attrs)
     end
 
     test "create_operator_type/1 with invalid data returns error changeset" do
@@ -73,14 +105,14 @@ defmodule Core.Operators.OperatorTypeTest do
 
     test "update_operator_type/2 with nil active" do
       operator_type = insert(:operator_type)
-      update_attrs = %{active: nil, name_type: @update_attrs.name_type, priority: @update_attrs.priority}
-      assert {:error, %Ecto.Changeset{}} = Operators.update_operator_type(operator_type, update_attrs)
+      attrs = %{active: nil, name_type: @update_attrs.name_type, priority: @update_attrs.priority}
+      assert {:error, %Ecto.Changeset{}} = Operators.update_operator_type(operator_type, attrs)
     end
 
     test "update_operator_type/2 with nil name_type" do
       operator_type = insert(:operator_type)
-      update_attrs = %{active: @update_attrs.active, name_type: nil}
-      assert {:error, %Ecto.Changeset{}} = Operators.update_operator_type(operator_type, update_attrs)
+      attrs = %{active: @update_attrs.active, name_type: nil}
+      assert {:error, %Ecto.Changeset{}} = Operators.update_operator_type(operator_type, attrs)
     end
 
     test "update_operator_type/2 with empty parameter" do
@@ -89,6 +121,30 @@ defmodule Core.Operators.OperatorTypeTest do
       assert struct.active    == operator_type.active
       assert struct.name_type == operator_type.name_type
       assert struct.priority  == operator_type.priority
+    end
+
+    test "update_operator_type/2 with validations length min 3 for nameType" do
+      operator_type = insert(:operator_type)
+      attrs = Map.merge(@update_attrs, %{name_type: Lorem.characters(2)})
+      assert {:error, %Ecto.Changeset{}} = Operators.update_operator_type(operator_type, attrs)
+    end
+
+    test "update_operator_type/2 with validations length max 99 for nameType" do
+      operator_type = insert(:operator_type)
+      attrs = Map.merge(@update_attrs, %{name_type: Lorem.characters(100)})
+      assert {:error, %Ecto.Changeset{}} = Operators.update_operator_type(operator_type, attrs)
+    end
+
+    test "update_operator_type/2 with validations integer min 1 for priority" do
+      operator_type = insert(:operator_type)
+      attrs = Map.merge(@update_attrs, %{priority: Faker.random_between(0, 0)})
+      assert {:error, %Ecto.Changeset{}} = Operators.update_operator_type(operator_type, attrs)
+    end
+
+    test "update_operator_type/2 with validations integer max 99 for priority" do
+      operator_type = insert(:operator_type)
+      attrs = Map.merge(@update_attrs, %{priority: Faker.random_between(100, 103)})
+      assert {:error, %Ecto.Changeset{}} = Operators.update_operator_type(operator_type, attrs)
     end
 
     test "update_operator_type/2 with invalid struct returns error changeset" do
@@ -104,5 +160,39 @@ defmodule Core.Operators.OperatorTypeTest do
     test "change_operator_type/1 with empty struct" do
       assert %Ecto.Changeset{} = Operators.change_operator_type(%OperatorType{})
     end
+
+    for schema <- @relations, association <- schema.__schema__(:associations) do
+      test "#{schema} has a valid association for #{association}" do
+        assert_valid_relationship(unquote(schema), unquote(association))
+      end
+    end
+
+    test "for unique_constraint :name type has been taken" do
+      insert(:operator_type)
+      assert {:error, changeset} = Operators.create_operator_type(@valid_attrs)
+      assert changeset.errors[:name_type] == {
+        "has already been taken", [
+          constraint: :unique,
+          constraint_name: "operator_types_name_type_index"
+        ]
+      }
+    end
+  end
+
+  defp assert_valid_relationship(schema, association) do
+    schema
+    |> join(:left, [s], assoc(s, ^association))
+    |> where(false)
+    |> Repo.all()
+
+    assert true
+  rescue
+    UndefinedFunctionError ->
+      %{queryable: module} = schema.__schema__(:association, association)
+      flunk("""
+      Schema #{schema} association #{association} is invalid.
+      The associated module #{module} does not appear to be an Ecto
+      schema. Is #{schema} missing an alias?
+      """)
   end
 end

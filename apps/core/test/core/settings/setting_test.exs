@@ -93,14 +93,14 @@ defmodule Core.Settings.SettingTest do
 
     test "update_setting/2 with nil param" do
       setting = insert(:setting)
-      update_attrs = %{param: nil, value: @update_attrs.value}
-      assert {:error, %Ecto.Changeset{}} = Settings.update_setting(setting, update_attrs)
+      attrs = %{param: nil, value: @update_attrs.value}
+      assert {:error, %Ecto.Changeset{}} = Settings.update_setting(setting, attrs)
     end
 
     test "update_setting/2 with nil value" do
       setting = insert(:setting)
-      update_attrs = %{param: @update_attrs.param, value: nil}
-      assert {:error, %Ecto.Changeset{}} = Settings.update_setting(setting, update_attrs)
+      attrs = %{param: @update_attrs.param, value: nil}
+      assert {:error, %Ecto.Changeset{}} = Settings.update_setting(setting, attrs)
     end
 
     test "update_setting/2 with empty param" do

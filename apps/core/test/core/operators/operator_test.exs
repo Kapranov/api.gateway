@@ -77,10 +77,6 @@ defmodule Core.Operators.OperatorTest do
       assert created.priority                == @valid_attrs.priority
     end
 
-    test "create_operator/1 with invalid data returns error changeset" do
-      assert {:error, %Ecto.Changeset{}} = Operators.create_operator(@invalid_attrs)
-    end
-
     test "create_operator/1 with config invalid data returns error changeset" do
       operator_type = insert(:operator_type)
       config = build(:config)
@@ -189,6 +185,10 @@ defmodule Core.Operators.OperatorTest do
           {:constraint, :unique},
           {:constraint_name, "operators_name_operator_index"}
         ]}
+    end
+
+    test "create_operator/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Operators.create_operator(@invalid_attrs)
     end
 
     test "get_operator/1" do

@@ -30,7 +30,7 @@ defmodule Core.Operators.OperatorType do
   )a
 
   schema "operator_types" do
-    field :active, :boolean
+    field :active, :boolean, default: true
     field :name_type, :string
     field :priority, :integer
 

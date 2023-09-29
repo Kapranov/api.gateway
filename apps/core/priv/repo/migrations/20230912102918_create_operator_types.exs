@@ -4,7 +4,7 @@ defmodule Core.Repo.Migrations.CreateOperatorTypes do
   def change do
     create table(:operator_types, primary_key: false) do
       add :id, :uuid, primary_key: true, default: fragment("uuid_generate_v4()"), read_after_writes: true
-      add :active, :boolean, default: true, null: false
+      add :active, :boolean, null: false, default: true
       add :name_type, :string, null: false
       add :priority, :integer, null: true
 

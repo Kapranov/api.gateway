@@ -59,7 +59,6 @@ defmodule Core.Monitoring.Status do
     struct
     |> cast(attrs, @allowed_params)
     |> validate_required(@required_params)
-    |> validate_format(:active, :boolean)
     |> validate_length(:description, min: @min_chars, max: @max_chars)
     |> validate_length(:status_name, min: @min_chars, max: @max_chars)
     |> validate_inclusion(:status_code, 1..200)
