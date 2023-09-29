@@ -67,3 +67,4 @@ iex> EctoAnon.run(setting, Core.Repo)
 [11]: https://colinramsay.co.uk/2021/02/12/many-to-many-tags-ecto-phoenix.html
 [12]: https://elixirforum.com/t/ecto-insert-many-to-many-with-extra-foreign-key/49556/2
 [13]: https://elixirforum.com/t/many-to-many-association-table-with-extra-columns/6563/12
+[14]: https://medium.com/@m.r.nijboer/using-ecto-changesets-for-json-api-request-body-validation-6150e8256c5c

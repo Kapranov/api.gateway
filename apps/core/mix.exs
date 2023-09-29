@@ -35,6 +35,7 @@ defmodule Core.MixProject do
       {:benchee, "~> 1.1", only: [:dev, :test]},
       {:benchee_html, "~> 1.0", only: [:dev, :test]},
       {:ecto_anon, "~> 0.5.0"},
+      {:ecto_commons, "~> 0.3.3"},
       {:ecto_enum, "~> 1.4"},
       {:ecto_sql, "~> 3.10"},
       {:ex_machina, "~> 2.7"},

@@ -4,12 +4,13 @@ defmodule Core.Spring.MessageTest do
   describe "Status" do
     alias Core.{
       Logs,
-      Logs.SmsLog,
+      Repo,
       Spring,
       Spring.Message
     }
 
     alias Faker.Lorem
+    alias EctoCommons.DateTimeValidator
 
     @valid_attrs %{
       id_external: "1",
@@ -130,6 +131,34 @@ defmodule Core.Spring.MessageTest do
       assert {:error, %Ecto.Changeset{}} = Spring.create_message(attrs)
     end
 
+    test "create_message/1 with validations utc_datetime_usec for message_expired_at" do
+      types = %{message_expired_at: :utc_datetime_usec}
+      params = %{message_expired_at: ~U[1000-05-24 13:26:08Z]}
+      changeset =
+        Ecto.Changeset.cast({%{}, types}, params, Map.keys(types))
+        |> DateTimeValidator.validate_datetime(:message_expired_at, after: :utc_now)
+      assert changeset.errors == [
+        message_expired_at: {
+          "should be after %{after}.",
+          [validation: :datetime, kind: :after]
+        }
+      ]
+    end
+
+    test "create_message/1 with validations utc_datetime_usec for status_changed_at" do
+      types = %{status_changed_at: :utc_datetime_usec}
+      params = %{status_changed_at: ~U[1000-05-24 13:26:08Z]}
+      changeset =
+        Ecto.Changeset.cast({%{}, types}, params, Map.keys(types))
+        |> DateTimeValidator.validate_datetime(:status_changed_at, after: :utc_now)
+      assert changeset.errors == [
+        status_changed_at: {
+          "should be after %{after}.",
+          [validation: :datetime, kind: :after]
+        }
+      ]
+    end
+
     test "create_message/1 with invalid data returns error changeset" do
       assert {:error, %Ecto.Changeset{}} = Spring.create_message(@invalid_attrs)
     end
@@ -221,6 +250,34 @@ defmodule Core.Spring.MessageTest do
       assert {:error, %Ecto.Changeset{}} = Spring.update_message(message, attrs)
     end
 
+    test "update_message/2 with validations utc_datetime_usec for message_expired_at" do
+      types = %{message_expired_at: :utc_datetime_usec}
+      params = %{message_expired_at: ~U[1000-05-24 13:26:08Z]}
+      changeset =
+        Ecto.Changeset.cast({%{}, types}, params, Map.keys(types))
+        |> DateTimeValidator.validate_datetime(:message_expired_at, after: :utc_now)
+      assert changeset.errors == [
+        message_expired_at: {
+          "should be after %{after}.",
+          [validation: :datetime, kind: :after]
+        }
+      ]
+    end
+
+    test "update_message/1 with validations utc_datetime_usec for status_changed_at" do
+      types = %{status_changed_at: :utc_datetime_usec}
+      params = %{status_changed_at: ~U[1000-05-24 13:26:08Z]}
+      changeset =
+        Ecto.Changeset.cast({%{}, types}, params, Map.keys(types))
+        |> DateTimeValidator.validate_datetime(:status_changed_at, after: :utc_now)
+      assert changeset.errors == [
+        status_changed_at: {
+          "should be after %{after}.",
+          [validation: :datetime, kind: :after]
+        }
+      ]
+    end
+
     test "update_message/2 with invalid struct returns error changeset" do
       message = %Message{}
       assert {:error, %Ecto.Changeset{}} = Spring.update_message(message, %{})
@@ -233,6 +290,23 @@ defmodule Core.Spring.MessageTest do
 
     test "change_message/1 with empty struct" do
       assert %Ecto.Changeset{} = Spring.change_message(%Message{})
+    end
+
+    test "for belongs_to Status" do
+      status = insert(:status)
+      message_params = build(:message, status_id: status.id)
+
+      Repo.delete!(status)
+
+      changeset = Message.changeset(%Message{}, Map.from_struct(message_params))
+
+      assert {:error, changeset} = Repo.insert(changeset)
+      assert changeset.errors[:status] == {
+        "does not exist", [
+          {:constraint, :assoc},
+          {:constraint_name, "messages_status_id_fkey"}
+        ]
+      }
     end
 
     test "for many_to_many SmsLogs" do

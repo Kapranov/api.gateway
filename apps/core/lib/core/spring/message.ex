@@ -84,6 +84,7 @@ defmodule Core.Spring.Message do
     |> validate_length(:message_body, min: @min_chars_for_message_body, max: @max_chars_for_message_body)
     |> validate_inclusion(:id_tax,  1_000_000_000..9_999_999_999)
     |> validate_sms_log_count
+    |> assoc_constraint(:status)
   end
 
   @spec validate_for_phone(map, atom) :: Ecto.Changeset.t()
