@@ -38,6 +38,11 @@ defmodule Core.Operators.OperatorTest do
       priority: nil
     }
 
+    @relations [
+      Core.Operators.Operator,
+      Core.Operators.OperatorType
+    ]
+
     test "list_operator/0 with empty list" do
       data = Operators.list_operator()
       assert data == []
@@ -460,6 +465,38 @@ defmodule Core.Operators.OperatorTest do
       assert {:error, _changeset} = Operators.update_operator(operator, update_attrs)
     end
 
+    test "update_operator/2 with max 0 for price_ext" do
+      parameters = build(:parameters)
+      config = build(:config, parameters: parameters)
+      updated_config = Map.merge(config, %{
+        content_type: "updated some text",
+        name: "updated some text",
+        size: 2,
+        url: "updated some text"
+      })
+      operator = insert(:operator, config: updated_config)
+      attrs = Map.merge(@update_attrs, %{price_ext: 0})
+      assert {:ok, updated} = Operators.update_operator(operator, attrs)
+      assert updated.id        == operator.id
+      assert updated.price_ext == Decimal.new("0")
+    end
+
+    test "update_operator/2 with max 0 for price_int" do
+      parameters = build(:parameters)
+      config = build(:config, parameters: parameters)
+      updated_config = Map.merge(config, %{
+        content_type: "updated some text",
+        name: "updated some text",
+        size: 2,
+        url: "updated some text"
+      })
+      operator = insert(:operator, config: updated_config)
+      attrs = Map.merge(@update_attrs, %{price_int: 0})
+      assert {:ok, updated} = Operators.update_operator(operator, attrs)
+      assert updated.id        == operator.id
+      assert updated.price_int == Decimal.new("0")
+    end
+
     test "update_operator/2 with invalid struct returns error changeset" do
       operator = %Operator{}
       assert {:error, %Ecto.Changeset{}} = Operators.update_operator(operator, %{})
@@ -475,5 +512,42 @@ defmodule Core.Operators.OperatorTest do
     test "change_operator_type/1 with empty struct" do
       assert %Ecto.Changeset{} = Operators.change_operator(%Operator{})
     end
+
+    for schema <- @relations, association <- schema.__schema__(:associations) do
+      test "#{schema} has a valid association for #{association}" do
+        assert_valid_relationship(unquote(schema), unquote(association))
+      end
+    end
+
+    test "for unique_constraint :name_operator has been taken" do
+      operator_type = insert(:operator_type)
+      insert(:operator, operator_type: operator_type)
+      attrs = Map.merge(@valid_attrs, %{operator_type_id: operator_type.id})
+      assert {:error, changeset} = Operators.create_operator(attrs)
+      assert changeset.errors[:name_operator] == {
+        "has already been taken",
+        [
+          constraint: :unique,
+          constraint_name: "operators_name_operator_index"
+        ]
+      }
+    end
+  end
+
+  defp assert_valid_relationship(schema, association) do
+    schema
+    |> join(:left, [s], assoc(s, ^association))
+    |> where(false)
+    |> Repo.all()
+
+    assert true
+  rescue
+    UndefinedFunctionError ->
+      %{queryable: module} = schema.__schema__(:association, association)
+      flunk("""
+      Schema #{schema} association #{association} is invalid.
+      The associated module #{module} does not appear to be an Ecto
+      schema. Is #{schema} missing an alias?
+      """)
   end
 end

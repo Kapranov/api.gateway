@@ -167,7 +167,7 @@ defmodule Core.Operators.OperatorTypeTest do
       end
     end
 
-    test "for unique_constraint :name type has been taken" do
+    test "for unique_constraint :name_type has been taken" do
       insert(:operator_type)
       assert {:error, changeset} = Operators.create_operator_type(@valid_attrs)
       assert changeset.errors[:name_type] == {
