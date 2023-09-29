@@ -7,6 +7,7 @@ defmodule Core.Monitoring.Status do
 
   alias Core.{
     Logs.SmsLog,
+    Repo,
     Spring.Message
   }
 
@@ -58,10 +59,24 @@ defmodule Core.Monitoring.Status do
     struct
     |> cast(attrs, @allowed_params)
     |> validate_required(@required_params)
+    |> validate_format(:active, :boolean)
     |> validate_length(:description, min: @min_chars, max: @max_chars)
     |> validate_length(:status_name, min: @min_chars, max: @max_chars)
     |> validate_inclusion(:status_code, 1..200)
+    |> validate_sms_log_count()
     |> foreign_key_constraint(:status_code, message: "Select the StatusCode")
     |> unique_constraint(:status_code, name: :statuses_status_code_index)
+  end
+
+  @spec validate_sms_log_count(t) :: Ecto.Changeset.t()
+  defp validate_sms_log_count(changeset) do
+    sms_logs = Repo.all(Ecto.assoc(changeset.data, :sms_logs))
+    valid? = length(sms_logs) == 2
+
+    if valid? do
+      add_error(changeset, :sms_logs, "hello")
+    else
+      changeset
+    end
   end
 end

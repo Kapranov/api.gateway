@@ -48,9 +48,9 @@ defmodule Core.Logs.SmsLog do
     |> put_assoc_nochange(:operators, parse_id_for_operator(attrs))
     |> put_assoc_nochange(:statuses, parse_id_for_status(attrs))
     |> validate_inclusion(:priority, 1..99)
-    |> validate_message_count
-    |> validate_operator_count
-    |> validate_status_count
+    |> validate_message_count()
+    |> validate_operator_count()
+    |> validate_status_count()
   end
 
   @spec changeset_preload(map, Keyword.t()) :: Ecto.Changeset.t()
