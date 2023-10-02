@@ -15,11 +15,18 @@ defmodule Gateway.GraphQL.Schema do
   import_types(Absinthe.Plug.Types)
   import_types(Absinthe.Type.Custom)
   import_types(Gateway.GraphQL.Schemas.Home.IndexPageTypes)
+  import_types(Gateway.GraphQL.Schemas.Settings.SettingTypes)
   import_types(Gateway.GraphQL.Schemas.UuidTypes)
 
   @desc "The root query type."
   query do
     import_fields(:index_page_queries)
+    import_fields(:setting_queries)
+  end
+
+  @desc "The root mutation type."
+  mutation do
+    import_fields(:setting_mutations)
   end
 
   @spec context(map()) :: map()

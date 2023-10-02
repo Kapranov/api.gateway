@@ -24,9 +24,13 @@ defmodule Gateway.GraphQL.Resolvers.Home.IndexPageResolver do
   end
 
   @spec index(any, %{atom => any} , %{context: %{token: String.t()}}) :: result()
-  def index(_parent, _args, %{context: %{token: _token}}) do
-    struct = %{status: "working"}
-    {:ok, struct}
+  def index(_parent, _args, %{context: %{token: token}}) do
+    if is_nil(token) do
+      {:error, "Permission denied for token to perform action List"}
+    else
+      struct = %{status: "working"}
+      {:ok, struct}
+      end
   end
 
   @spec index(any, %{atom => any}, Absinthe.Resolution.t()) :: error_tuple()
