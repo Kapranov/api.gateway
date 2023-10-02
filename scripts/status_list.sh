@@ -6,5 +6,5 @@ URL="http://taxgig.me:4000"
 curl -X POST \
      -H 'Content-Type: multipart/form-data' \
      -H "Authorization: Bearer ${1:-$TOKEN}" \
-     -F query="query { listStatus { id active description smsLogs { id priority } statusCode statusName } }" \
+     -F query="query { listStatus { id active description smsLogs { id priority } statusCode statusName insertedAt updatedAt } }" \
      ${URL}

@@ -13,5 +13,5 @@ EOF
 curl -X POST \
      -H 'Content-Type: multipart/form-data' \
      -H "Authorization: Bearer ${1:-$TOKEN}" \
-     -F query="mutation { createSetting($(generate_data)) { id param value } }" \
+     -F query="mutation { createSetting($(generate_data)) { id param value insertedAt updatedAt } }" \
      ${URL}

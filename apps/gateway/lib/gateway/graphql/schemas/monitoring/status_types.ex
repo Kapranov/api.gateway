@@ -15,6 +15,8 @@ defmodule Gateway.GraphQL.Schemas.Monitoring.StatusTypes do
     field :sms_logs, list_of(:sms_logs)
     field :status_code, :integer, description: "status code is integer data type"
     field :status_name, :string, description: "status nameis string data type"
+    field :inserted_at, :date, description: "timestamps by DB"
+    field :updated_at, :date, description: "timestamps by DB"
   end
 
   object :status_queries do

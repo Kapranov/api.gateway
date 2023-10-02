@@ -14,6 +14,8 @@ defmodule Gateway.GraphQL.Schemas.Settings.SettingTypes do
     field :value, :string, description: "value string data type"
     field :error, :integer, description: "number report errors"
     field :error_description, :string, description: "report errors when something wrong"
+    field :inserted_at, :date, description: "timestamps by DB"
+    field :updated_at, :date, description: "timestamps by DB"
   end
 
   @desc "The Setting updated via params"

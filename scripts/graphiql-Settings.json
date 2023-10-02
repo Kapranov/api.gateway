@@ -275,6 +275,18 @@
       "maxHistory": 20,
       "history": [
         {
+          "query": "query {\n  listSetting {\n    id\n    param\n    value\n    error\n    errorDescription\n    insertedAt\n    updatedAt\n  }\n}",
+          "variables": null
+        },
+        {
+          "query": "query {\n  listSetting {\n    id\n    param\n    value\n    error\n    errorDescription\n    inserted\n    updatedAt\n  }\n}",
+          "variables": null
+        },
+        {
+          "query": "query {\n  listSetting {\n    id\n    param\n    value\n    error\n    errorDescription\n    createdAt\n    updatedAt\n  }\n}",
+          "variables": null
+        },
+        {
           "query": "query {\n  listSetting {\n    id\n    param\n    value\n    error\n    errorDescription\n  }\n}",
           "variables": null
         },
@@ -283,11 +295,11 @@
           "variables": null
         }
       ],
-      "graphiql:query": "query {\n  listSetting {\n    id\n    param\n    value\n    error\n    errorDescription\n  }\n}",
-      "graphiql:variableEditorHeight": 200,
+      "graphiql:query": "query {\n  listSetting {\n    id\n    param\n    value\n    error\n    errorDescription\n    insertedAt\n    updatedAt\n  }\n}",
       "graphiql:docExplorerWidth": 350,
       "graphiql:editorFlex": 0.25666973321067155,
-      "graphiql:queries": "{\"queries\":[{\"query\":\"query {\\n  listSetting {\\n    id\\n    param\\n    value\\n  }\\n}\",\"variables\":\"\"},{\"query\":\"query {\\n  listSetting {\\n    id\\n    param\\n    value\\n    error\\n    errorDescription\\n  }\\n}\"}]}"
+      "graphiql:queries": "{\"queries\":[{\"query\":\"query {\\n  listSetting {\\n    id\\n    param\\n    value\\n  }\\n}\",\"variables\":\"\"},{\"query\":\"query {\\n  listSetting {\\n    id\\n    param\\n    value\\n    error\\n    errorDescription\\n  }\\n}\"},{\"query\":\"query {\\n  listSetting {\\n    id\\n    param\\n    value\\n    error\\n    errorDescription\\n    createdAt\\n    updatedAt\\n  }\\n}\"},{\"query\":\"query {\\n  listSetting {\\n    id\\n    param\\n    value\\n    error\\n    errorDescription\\n    inserted\\n    updatedAt\\n  }\\n}\"},{\"query\":\"query {\\n  listSetting {\\n    id\\n    param\\n    value\\n    error\\n    errorDescription\\n    insertedAt\\n    updatedAt\\n  }\\n}\"}]}",
+      "graphiql:variableEditorHeight": 200
     },
     {
       "id": "tab9",
@@ -305,14 +317,22 @@
       "maxHistory": 20,
       "history": [
         {
+          "query": "query {\n  showSetting(id: \"AaGCn07GxHh59W9PgO\") {\n    id\n    param\n    value\n    insertedAt\n    updatedAt\n  }\n}",
+          "variables": null
+        },
+        {
+          "query": "query {\n  showSetting(id: \"AaGCn07GxHh59W9PgO\") {\n    id\n    param\n    value\n    createdAt\n    updatedAt\n  }\n}",
+          "variables": null
+        },
+        {
           "query": "query {\n  showSetting(id: \"AaGCn07GxHh59W9PgO\") {\n    id\n    param\n    value\n  }\n}",
           "variables": null
         }
       ],
-      "graphiql:query": "query {\n  showSetting(id: \"AaGCn07GxHh59W9PgO\") {\n    id\n    param\n    value\n  }\n}",
+      "graphiql:query": "query {\n  showSetting(id: \"AaGCn07GxHh59W9PgO\") {\n    id\n    param\n    value\n    insertedAt\n    updatedAt\n  }\n}",
       "graphiql:variableEditorHeight": 200,
       "graphiql:editorFlex": 0.4470338983050847,
-      "graphiql:queries": "{\"queries\":[{\"query\":\"query {\\n  showSetting(id: \\\"AaGCn07GxHh59W9PgO\\\") {\\n    id\\n    param\\n    value\\n  }\\n}\",\"variables\":\"\"}]}",
+      "graphiql:queries": "{\"queries\":[{\"query\":\"query {\\n  showSetting(id: \\\"AaGCn07GxHh59W9PgO\\\") {\\n    id\\n    param\\n    value\\n  }\\n}\",\"variables\":\"\"},{\"query\":\"query {\\n  showSetting(id: \\\"AaGCn07GxHh59W9PgO\\\") {\\n    id\\n    param\\n    value\\n    createdAt\\n    updatedAt\\n  }\\n}\"},{\"query\":\"query {\\n  showSetting(id: \\\"AaGCn07GxHh59W9PgO\\\") {\\n    id\\n    param\\n    value\\n    insertedAt\\n    updatedAt\\n  }\\n}\"}]}",
       "graphiql:docExplorerWidth": 350
     },
     {
@@ -335,11 +355,11 @@
           "variables": null
         }
       ],
-      "graphiql:query": "mutation {\n  createSetting(\n    param: \"some text for param\",\n    value: \"some text for value\"\n  ) {\n    id\n    param\n    value\n  }\n}",
+      "graphiql:query": "mutation {\n  createSetting(\n    param: \"some text for param\",\n    value: \"some text for value\"\n  ) {\n    id\n    param\n    value\n    insertedAt\n    updatedAt\n  }\n}",
       "graphiql:docExplorerWidth": 350,
-      "graphiql:editorFlex": 1,
       "graphiql:variableEditorHeight": 200,
-      "graphiql:queries": "{\"queries\":[{\"query\":\"mutation {\\n  createSetting(\\n    param: \\\"some text for param\\\",\\n    value: \\\"some text for value\\\"\\n  ) {\\n    id\\n    param\\n    value\\n  }\\n}\",\"variables\":\"\"}]}"
+      "graphiql:queries": "{\"queries\":[{\"query\":\"mutation {\\n  createSetting(\\n    param: \\\"some text for param\\\",\\n    value: \\\"some text for value\\\"\\n  ) {\\n    id\\n    param\\n    value\\n  }\\n}\",\"variables\":\"\"}]}",
+      "graphiql:editorFlex": 1
     },
     {
       "id": "tab11",
@@ -353,19 +373,27 @@
           "value": "Bearer SFMyNTY.g2gDbQAAAEBvdUk2YTJBV3Y2QnFMWVd6NTdXM3luVnpxVnVjMG5pTHBpbXJFU0dVNlM3bFVjcGMySHFaWUk2bHhaZWtiZ3Y4bgYA15lc74oBYgABUYA.OPzhxBpRJseCY0Dkve9yBqKUJs1IxgovbzEMrO_kdds"
         }
       ],
-      "collapsed": true,
+      "collapsed": false,
       "maxHistory": 20,
       "history": [
+        {
+          "query": "mutation {\n  updateSetting (\n    id: \"AaLxSoCEweCNs4E2k4\"\n    setting: {\n      param: \"updated some text for param\"\n      value: \"updated some text for value\"\n    }\n  ) {\n    id\n    param\n    value\n    insertedAt\n    updatedAt\n  }\n}",
+          "variables": null
+        },
+        {
+          "query": "mutation {\n  updateSetting (\n    id: \"AaLxSoCEweCNs4E2k4\"\n    setting: {\n      param: \"updated some text for param\"\n      value: \"updated some text for value\"\n    }\n  ) {\n    id\n    param\n    value\n    createdAt\n    updatedAt\n  }\n}",
+          "variables": null
+        },
         {
           "query": "mutation {\n  updateSetting (\n    id: \"AaLxSoCEweCNs4E2k4\"\n    setting: {\n      param: \"updated some text for param\"\n      value: \"updated some text for value\"\n    }\n  ) {\n    id\n    param\n    value\n  }\n}",
           "variables": null
         }
       ],
-      "graphiql:query": "mutation {\n  updateSetting (\n    id: \"AaLxSoCEweCNs4E2k4\"\n    setting: {\n      param: \"updated some text for param\"\n      value: \"updated some text for value\"\n    }\n  ) {\n    id\n    param\n    value\n  }\n}",
+      "graphiql:query": "mutation {\n  updateSetting (\n    id: \"AaLxSoCEweCNs4E2k4\"\n    setting: {\n      param: \"updated some text for param\"\n      value: \"updated some text for value\"\n    }\n  ) {\n    id\n    param\n    value\n    insertedAt\n    updatedAt\n  }\n}",
       "graphiql:docExplorerWidth": 350,
       "graphiql:variableEditorHeight": 200,
       "graphiql:editorFlex": 0.40679711637487126,
-      "graphiql:queries": "{\"queries\":[{\"query\":\"mutation {\\n  updateSetting (\\n    id: \\\"AaLxSoCEweCNs4E2k4\\\"\\n    setting: {\\n      param: \\\"updated some text for param\\\"\\n      value: \\\"updated some text for value\\\"\\n    }\\n  ) {\\n    id\\n    param\\n    value\\n  }\\n}\",\"variables\":\"\"}]}"
+      "graphiql:queries": "{\"queries\":[{\"query\":\"mutation {\\n  updateSetting (\\n    id: \\\"AaLxSoCEweCNs4E2k4\\\"\\n    setting: {\\n      param: \\\"updated some text for param\\\"\\n      value: \\\"updated some text for value\\\"\\n    }\\n  ) {\\n    id\\n    param\\n    value\\n  }\\n}\",\"variables\":\"\"},{\"query\":\"mutation {\\n  updateSetting (\\n    id: \\\"AaLxSoCEweCNs4E2k4\\\"\\n    setting: {\\n      param: \\\"updated some text for param\\\"\\n      value: \\\"updated some text for value\\\"\\n    }\\n  ) {\\n    id\\n    param\\n    value\\n    createdAt\\n    updatedAt\\n  }\\n}\"},{\"query\":\"mutation {\\n  updateSetting (\\n    id: \\\"AaLxSoCEweCNs4E2k4\\\"\\n    setting: {\\n      param: \\\"updated some text for param\\\"\\n      value: \\\"updated some text for value\\\"\\n    }\\n  ) {\\n    id\\n    param\\n    value\\n    insertedAt\\n    updatedAt\\n  }\\n}\"}]}"
     }
   ]
 }
