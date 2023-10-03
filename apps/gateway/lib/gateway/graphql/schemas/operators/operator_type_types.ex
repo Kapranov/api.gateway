@@ -1,6 +1,6 @@
 defmodule Gateway.GraphQL.Schemas.Operators.OperatorTypeTypes do
   @moduledoc """
-  The Setting GraphQL interface.
+  The OperatorTypes GraphQL interface.
   """
 
   use Absinthe.Schema.Notation

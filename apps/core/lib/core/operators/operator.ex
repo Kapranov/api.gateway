@@ -33,10 +33,10 @@ defmodule Core.Operators.Operator do
 
   @allowed_params ~w(
     active
-    phone_code
     limit_count
     name_operator
     operator_type_id
+    phone_code
     price_ext
     price_int
     priority

@@ -18,12 +18,14 @@ defmodule Gateway.GraphQL.Schema do
   import_types(Gateway.GraphQL.Schemas.Logs.SmsLogTypes)
   import_types(Gateway.GraphQL.Schemas.Monitoring.StatusTypes)
   import_types(Gateway.GraphQL.Schemas.Operators.OperatorTypeTypes)
+  import_types(Gateway.GraphQL.Schemas.Operators.OperatorTypes)
   import_types(Gateway.GraphQL.Schemas.Settings.SettingTypes)
   import_types(Gateway.GraphQL.Schemas.UuidTypes)
 
   @desc "The root query type."
   query do
     import_fields(:index_page_queries)
+    import_fields(:operator_queries)
     import_fields(:operator_type_queries)
     import_fields(:setting_queries)
     import_fields(:sms_log_queries)
@@ -32,6 +34,7 @@ defmodule Gateway.GraphQL.Schema do
 
   @desc "The root mutation type."
   mutation do
+    import_fields(:operator_mutations)
     import_fields(:operator_type_mutations)
     import_fields(:setting_mutations)
     import_fields(:sms_log_mutations)

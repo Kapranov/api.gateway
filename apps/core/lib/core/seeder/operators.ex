@@ -11,6 +11,7 @@ defmodule Core.Seeder.Operators do
   }
 
   alias Ecto.Adapters.SQL
+  alias Faker.Lorem
 
   @spec reset_database!() :: {integer(), nil | [term()]}
   def reset_database! do
@@ -106,12 +107,16 @@ defmodule Core.Seeder.Operators do
       Enum.at(operator_type_ids, 7)
     }
 
-    config_nested = %{name: "Aloha", url: "Hawaii"}
+    config_nested1 = %{content_type: Lorem.word, name: Lorem.word, size: random_integers(), url: Lorem.word, parameters: %{ key: Lorem.word, value: Lorem.word}}
+    config_nested2 = %{content_type: Lorem.word, name: Lorem.word, size: random_integers(), url: Lorem.word, parameters: %{ key: Lorem.word, value: Lorem.word}}
+    config_nested3 = %{content_type: Lorem.word, name: Lorem.word, size: random_integers(), url: Lorem.word, parameters: %{ key: Lorem.word, value: Lorem.word}}
+    config_nested4 = %{content_type: Lorem.word, name: Lorem.word, size: random_integers(), url: Lorem.word, parameters: %{ key: Lorem.word, value: Lorem.word}}
+    config_nested5 = %{content_type: Lorem.word, name: Lorem.word, size: random_integers(), url: Lorem.word, parameters: %{ key: Lorem.word, value: Lorem.word}}
 
     [
       Operators.create_operator(%{
         active: true,
-        config: config_nested,
+        config: config_nested1,
         phone_code: "066, 099",
         limit_count: 10_000,
         name_operator: "Вудафон",
@@ -122,7 +127,7 @@ defmodule Core.Seeder.Operators do
       }),
       Operators.create_operator(%{
         active: true,
-        config: config_nested,
+        config: config_nested2,
         phone_code: "067, 098",
         limit_count: 50_000,
         name_operator: "Київстар",
@@ -133,7 +138,7 @@ defmodule Core.Seeder.Operators do
       }),
       Operators.create_operator(%{
         active: false,
-        config: config_nested,
+        config: config_nested3,
         limit_count: 0,
         name_operator: "Дія",
         operator_type_id: operator_type_8.id,
@@ -143,7 +148,7 @@ defmodule Core.Seeder.Operators do
       }),
       Operators.create_operator(%{
         active: false,
-        config: config_nested,
+        config: config_nested4,
         phone_code: "063, 093, 096",
         limit_count: 1,
         name_operator: "Life",
@@ -154,7 +159,7 @@ defmodule Core.Seeder.Operators do
       }),
       Operators.create_operator(%{
         active: true,
-        config: config_nested,
+        config: config_nested5,
         phone_code: "066, 099",
         limit_count: 10_000,
         name_operator: "Вудафон Новий",
