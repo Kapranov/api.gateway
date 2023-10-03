@@ -7,7 +7,7 @@ defmodule Gateway.GraphQL.Schemas.Monitoring.StatusTypes do
 
   alias Gateway.GraphQL.Resolvers.Monitoring.StatusResolver
 
-  @desc "The status on the site"
+  @desc "The Statuses on the site"
   object :status do
     field :id, :string, description: "status id"
     field :active, :boolean, description: "active boolean data type"
@@ -25,7 +25,7 @@ defmodule Gateway.GraphQL.Schemas.Monitoring.StatusTypes do
       resolve(&StatusResolver.list/3)
     end
 
-    @desc "Get one record for model's statuses"
+    @desc "Get one record for model's Statuses"
     field :show_status, :status do
       arg(:id, non_null(:string))
       resolve(&StatusResolver.show/3)
@@ -33,8 +33,8 @@ defmodule Gateway.GraphQL.Schemas.Monitoring.StatusTypes do
   end
 
   object :status_mutations do
-    @desc "Created the model's statuses"
-    field :create_status, :status, description: "Created a new record for model's statuses" do
+    @desc "Created the model's Statuses"
+    field :create_status, :status, description: "Created a new record for model's Statuses" do
       arg :active, non_null(:boolean)
       arg :description, :string
       arg :status_code, non_null(:integer)
