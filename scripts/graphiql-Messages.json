@@ -1,0 +1,800 @@
+{
+  "key": "graphiql",
+  "lastId": 22,
+  "tabIds": [
+    "tab1",
+    "tab2",
+    "tab20",
+    "tab21",
+    "tab22"
+  ],
+  "closedTabs": [
+    {
+      "id": "tab16",
+      "name": "Query 3",
+      "url": "http://localhost:4000/graphiql",
+      "websocketUrl": "",
+      "proxy": false,
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer SFMyNTY.g2gDbQAAAEBvdUk2YTJBV3Y2QnFMWVd6NTdXM3luVnpxVnVjMG5pTHBpbXJFU0dVNlM3bFVjcGMySHFaWUk2bHhaZWtiZ3Y4bgYA0IOm9YoBYgABUYA.XxVpCmBrYQd8quGPAXGzNHxfQ5iWisXcB2s5vC1fjKg"
+        }
+      ],
+      "collapsed": true,
+      "maxHistory": 20,
+      "history": [
+        {
+          "query": "query {\n  listOperator {\n    id\n    active\n    config {\n      id\n      contentType\n      parameters {\n        id\n        key\n        value\n        insertedAt\n        updatedAt\n      }\n      name\n      size\n      url\n      insertedAt\n      updatedAt\n    }\n    limitCount\n    smsLogs {id priority }\n    nameOperator\n    phoneCode\n    priceExt\n    priceInt\n    priority\n    operatorType {id active nameType priority insertedAt insertedAt}\n    insertedAt\n    updatedAt\n  }\n}",
+          "variables": null
+        },
+        {
+          "query": "query {\n  listOperator {\n    id\n    active\n    config {\n      id\n      parameters {\n        id\n        key\n        value\n        insertedAt\n        updatedAt\n      }\n      name\n      size\n      url\n      insertedAt\n      updatedAt\n    }\n    limitCount\n    smsLogs {id priority }\n    nameOperator\n    phoneCode\n    priceExt\n    priceInt\n    priority\n    operatorType {id active nameType priority insertedAt insertedAt}\n    insertedAt\n    updatedAt\n  }\n}",
+          "variables": null
+        },
+        {
+          "query": "query {\n  listOperator {\n    id\n    active\n    config {\n      id\n      parameters {\n        id\n        key\n        value\n        insertedAt\n        updatedAt\n      }\n      name\n      size\n      url\n      insertedAt\n      updatedAt\n    }\n    limitCount\n    smsLogs {id priority }\n    nameOperator\n    priceExt\n    priceInt\n    priority\n    operatorType {id active nameType priority insertedAt insertedAt}\n    insertedAt\n    updatedAt\n  }\n}",
+          "variables": null
+        }
+      ],
+      "graphiql:query": "query {\n  listOperator {\n    id\n    active\n    config {\n      id\n      contentType\n      parameters {\n        id\n        key\n        value\n        insertedAt\n        updatedAt\n      }\n      name\n      size\n      url\n      insertedAt\n      updatedAt\n    }\n    limitCount\n    smsLogs {id priority }\n    nameOperator\n    phoneCode\n    priceExt\n    priceInt\n    priority\n    operatorType {id active nameType priority insertedAt insertedAt}\n    insertedAt\n    updatedAt\n  }\n}",
+      "graphiql:editorFlex": 1,
+      "graphiql:queries": "{\"queries\":[{\"query\":\"query {\\n  listOperator {\\n    id\\n    active\\n    config {\\n      id\\n      parameters {\\n        id\\n        key\\n        value\\n        insertedAt\\n        updatedAt\\n      }\\n      name\\n      size\\n      url\\n      insertedAt\\n      updatedAt\\n    }\\n    limitCount\\n    smsLogs {id priority }\\n    nameOperator\\n    priceExt\\n    priceInt\\n    priority\\n    operatorType {id active nameType priority insertedAt insertedAt}\\n    insertedAt\\n    updatedAt\\n  }\\n}\",\"variables\":\"\"},{\"query\":\"query {\\n  listOperator {\\n    id\\n    active\\n    config {\\n      id\\n      parameters {\\n        id\\n        key\\n        value\\n        insertedAt\\n        updatedAt\\n      }\\n      name\\n      size\\n      url\\n      insertedAt\\n      updatedAt\\n    }\\n    limitCount\\n    smsLogs {id priority }\\n    nameOperator\\n    phoneCode\\n    priceExt\\n    priceInt\\n    priority\\n    operatorType {id active nameType priority insertedAt insertedAt}\\n    insertedAt\\n    updatedAt\\n  }\\n}\"},{\"query\":\"query {\\n  listOperator {\\n    id\\n    active\\n    config {\\n      id\\n      contentType\\n      parameters {\\n        id\\n        key\\n        value\\n        insertedAt\\n        updatedAt\\n      }\\n      name\\n      size\\n      url\\n      insertedAt\\n      updatedAt\\n    }\\n    limitCount\\n    smsLogs {id priority }\\n    nameOperator\\n    phoneCode\\n    priceExt\\n    priceInt\\n    priority\\n    operatorType {id active nameType priority insertedAt insertedAt}\\n    insertedAt\\n    updatedAt\\n  }\\n}\"}]}",
+      "graphiql:docExplorerWidth": 350,
+      "graphiql:variableEditorHeight": 200
+    },
+    {
+      "id": "tab17",
+      "name": "Query 4",
+      "url": "http://localhost:4000/graphiql",
+      "websocketUrl": "",
+      "proxy": false,
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer SFMyNTY.g2gDbQAAAEBvdUk2YTJBV3Y2QnFMWVd6NTdXM3luVnpxVnVjMG5pTHBpbXJFU0dVNlM3bFVjcGMySHFaWUk2bHhaZWtiZ3Y4bgYADo3I9YoBYgABUYA.x43bOSl1yQQkXtzbmvXXb2iDfImT5P_T3LETlg_CM2g"
+        }
+      ],
+      "collapsed": true,
+      "maxHistory": 20,
+      "history": [
+        {
+          "query": "query {\n  showOperator (id: \"AaQ2XT6EmAIR80nxej\") {\n    id\n    active\n    config {\n      id\n      contentType\n      parameters {\n        id\n        key\n        value\n        insertedAt\n        updatedAt\n      }\n      name\n      size\n      url\n      insertedAt\n      updatedAt\n    }\n    limitCount\n    smsLogs {id priority }\n    nameOperator\n    phoneCode\n    priceExt\n    priceInt\n    priority\n    operatorType {\n      id\n      active\n      nameType\n      priority\n      insertedAt\n      updatedAt\n    }\n    insertedAt\n    updatedAt\n  }\n}",
+          "variables": null
+        },
+        {
+          "query": "query {\n  showOperator (id: \"AaOWKcyiJPVi1jkEXC\") {\n      id\n    active\n    config {\n      id\n      contentType\n      parameters {\n        id\n        key\n        value\n        insertedAt\n        updatedAt\n      }\n      name\n      size\n      url\n      insertedAt\n      updatedAt\n    }\n    limitCount\n    smsLogs {id priority }\n    nameOperator\n    phoneCode\n    priceExt\n    priceInt\n    priority\n    operatorType {\n      id\n      active\n      nameType\n      priority\n      insertedAt\n      updatedAt\n    }\n    insertedAt\n    updatedAt\n  }\n}",
+          "variables": null
+        },
+        {
+          "query": "query {\n  showOperator (id: \"AaOWKcyiJPVi1jkEXC\") {\n      id\n    active\n    config {\n      id\n      contentType\n      parameters {\n        id\n        key\n        value\n        insertedAt\n        updatedAt\n      }\n      name\n      size\n      url\n      insertedAt\n      updatedAt\n    }\n    limitCount\n    smsLogs {id priority }\n    nameOperator\n    phoneCode\n    priceExt\n    priceInt\n    priority\n    operatorType {id}\n    insertedAt\n    updatedAt\n  }\n}",
+          "variables": null
+        },
+        {
+          "query": "query {\n  showOperator (id: \"AaOWKcyiJPVi1jkEXC\") {\n      id\n    active\n    config {\n      id\n      contentType\n      parameters {\n        id\n        key\n        value\n        insertedAt\n        updatedAt\n      }\n      name\n      size\n      url\n      insertedAt\n      updatedAt\n    }\n    limitCount\n    smsLogs {id priority }\n    nameOperator\n    phoneCode\n    priceExt\n    priceInt\n    priority\n    insertedAt\n    updatedAt\n  }\n}",
+          "variables": null
+        },
+        {
+          "query": "query {\n  showOperator (id: \"AaOWKcyiJPVi1jkEXC\") {\n      id\n    active\n    config {\n      id\n      contentType\n      parameters {\n        id\n        key\n        value\n        insertedAt\n        updatedAt\n      }\n      name\n      size\n      url\n      insertedAt\n      updatedAt\n    }\n    limitCount\n    smsLogs {id priority }\n    nameOperator\n    phoneCode\n    priceExt\n    priceInt\n    priority\n    operatorType {id active nameType priority insertedAt insertedAt}\n    insertedAt\n    updatedAt\n  }\n}",
+          "variables": null
+        }
+      ],
+      "graphiql:query": "query {\n  showOperator (id: \"AaQ2XT6EmAIR80nxej\") {\n    id\n    active\n    config {\n      id\n      contentType\n      parameters {\n        id\n        key\n        value\n        insertedAt\n        updatedAt\n      }\n      name\n      size\n      url\n      insertedAt\n      updatedAt\n    }\n    limitCount\n    smsLogs {id priority }\n    nameOperator\n    phoneCode\n    priceExt\n    priceInt\n    priority\n    operatorType {\n      id\n      active\n      nameType\n      priority\n      insertedAt\n      updatedAt\n    }\n    insertedAt\n    updatedAt\n  }\n}",
+      "graphiql:editorFlex": 0.8534599728629579,
+      "graphiql:queries": "{\"queries\":[{\"query\":\"query {\\n  showOperator (id: \\\"AaOWKcyiJPVi1jkEXC\\\") {\\n      id\\n    active\\n    config {\\n      id\\n      contentType\\n      parameters {\\n        id\\n        key\\n        value\\n        insertedAt\\n        updatedAt\\n      }\\n      name\\n      size\\n      url\\n      insertedAt\\n      updatedAt\\n    }\\n    limitCount\\n    smsLogs {id priority }\\n    nameOperator\\n    phoneCode\\n    priceExt\\n    priceInt\\n    priority\\n    operatorType {id active nameType priority insertedAt insertedAt}\\n    insertedAt\\n    updatedAt\\n  }\\n}\",\"variables\":\"\"},{\"query\":\"query {\\n  showOperator (id: \\\"AaOWKcyiJPVi1jkEXC\\\") {\\n      id\\n    active\\n    config {\\n      id\\n      contentType\\n      parameters {\\n        id\\n        key\\n        value\\n        insertedAt\\n        updatedAt\\n      }\\n      name\\n      size\\n      url\\n      insertedAt\\n      updatedAt\\n    }\\n    limitCount\\n    smsLogs {id priority }\\n    nameOperator\\n    phoneCode\\n    priceExt\\n    priceInt\\n    priority\\n    insertedAt\\n    updatedAt\\n  }\\n}\"},{\"query\":\"query {\\n  showOperator (id: \\\"AaOWKcyiJPVi1jkEXC\\\") {\\n      id\\n    active\\n    config {\\n      id\\n      contentType\\n      parameters {\\n        id\\n        key\\n        value\\n        insertedAt\\n        updatedAt\\n      }\\n      name\\n      size\\n      url\\n      insertedAt\\n      updatedAt\\n    }\\n    limitCount\\n    smsLogs {id priority }\\n    nameOperator\\n    phoneCode\\n    priceExt\\n    priceInt\\n    priority\\n    operatorType {id}\\n    insertedAt\\n    updatedAt\\n  }\\n}\"},{\"query\":\"query {\\n  showOperator (id: \\\"AaOWKcyiJPVi1jkEXC\\\") {\\n      id\\n    active\\n    config {\\n      id\\n      contentType\\n      parameters {\\n        id\\n        key\\n        value\\n        insertedAt\\n        updatedAt\\n      }\\n      name\\n      size\\n      url\\n      insertedAt\\n      updatedAt\\n    }\\n    limitCount\\n    smsLogs {id priority }\\n    nameOperator\\n    phoneCode\\n    priceExt\\n    priceInt\\n    priority\\n    operatorType {\\n      id\\n      active\\n      nameType\\n      priority\\n      insertedAt\\n      updatedAt\\n    }\\n    insertedAt\\n    updatedAt\\n  }\\n}\"},{\"query\":\"query {\\n  showOperator (id: \\\"AaQ2XT6EmAIR80nxej\\\") {\\n    id\\n    active\\n    config {\\n      id\\n      contentType\\n      parameters {\\n        id\\n        key\\n        value\\n        insertedAt\\n        updatedAt\\n      }\\n      name\\n      size\\n      url\\n      insertedAt\\n      updatedAt\\n    }\\n    limitCount\\n    smsLogs {id priority }\\n    nameOperator\\n    phoneCode\\n    priceExt\\n    priceInt\\n    priority\\n    operatorType {\\n      id\\n      active\\n      nameType\\n      priority\\n      insertedAt\\n      updatedAt\\n    }\\n    insertedAt\\n    updatedAt\\n  }\\n}\"}]}",
+      "graphiql:docExplorerWidth": 350,
+      "graphiql:variableEditorHeight": 200
+    },
+    {
+      "id": "tab18",
+      "name": "Query 5",
+      "url": "http://localhost:4000/graphiql",
+      "websocketUrl": "",
+      "proxy": false,
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer SFMyNTY.g2gDbQAAAEBvdUk2YTJBV3Y2QnFMWVd6NTdXM3luVnpxVnVjMG5pTHBpbXJFU0dVNlM3bFVjcGMySHFaWUk2bHhaZWtiZ3Y4bgYA9deE-YoBYgABUYA.nbSfBkNO8gMRx8xc7FRJhU5N0e1IUKyy3Rn2hnavB_U"
+        }
+      ],
+      "collapsed": true,
+      "maxHistory": 20,
+      "history": [
+        {
+          "query": "mutation {\n  createOperator (\n    active: true\n    limitCount: 22\n    nameOperator: \"Kapranov\"\n    operatorTypeId: \"AaOWJmyvdMmilLRfeK\"\n    phoneCode: \"+380997170609\"\n    priceExt: \"0.22\"\n    priceInt: \"0.33\"\n    priority: 55\n    config: {\n      contentType: \"proba\"\n      name: \"Hawaii\"\n      size: 99\n      url: \"some text for url\"\n      parameters: {\n        key: \"some text\"\n        value: \"some text\"\n      }\n    }\n  ) {\n    id\n    active\n    config {\n      id\n      contentType\n      parameters {\n        id\n        key\n        value\n        insertedAt\n        updatedAt\n      }\n      name\n      size\n      url\n      insertedAt\n      updatedAt\n    }\n    limitCount\n    smsLogs {id priority }\n    nameOperator\n    phoneCode\n    priceExt\n    priceInt\n    priority\n    operatorType {\n      id\n      active\n      nameType\n      priority\n      insertedAt\n      updatedAt\n    }\n    insertedAt\n    updatedAt\n  }\n}",
+          "variables": null
+        }
+      ],
+      "graphiql:query": "mutation {\n  createOperator (\n    active: true\n    limitCount: 22\n    nameOperator: \"Kapranov\"\n    operatorTypeId: \"AaOWJmyvdMmilLRfeK\"\n    phoneCode: \"+380997170609\"\n    priceExt: \"0.22\"\n    priceInt: \"0.33\"\n    priority: 55\n    config: {\n      contentType: \"proba\"\n      name: \"Hawaii\"\n      size: 99\n      url: \"some text for url\"\n      parameters: {\n        key: \"some text\"\n        value: \"some text\"\n      }\n    }\n  ) {\n    id\n    active\n    config {\n      id\n      contentType\n      parameters {\n        id\n        key\n        value\n        insertedAt\n        updatedAt\n      }\n      name\n      size\n      url\n      insertedAt\n      updatedAt\n    }\n    limitCount\n    smsLogs {id priority }\n    nameOperator\n    phoneCode\n    priceExt\n    priceInt\n    priority\n    operatorType {\n      id\n      active\n      nameType\n      priority\n      insertedAt\n      updatedAt\n    }\n    insertedAt\n    updatedAt\n  }\n}",
+      "graphiql:queries": "{\"queries\":[{\"query\":\"mutation {\\n  createOperator (\\n    active: true\\n    limitCount: 22\\n    nameOperator: \\\"Kapranov\\\"\\n    operatorTypeId: \\\"AaOWJmyvdMmilLRfeK\\\"\\n    phoneCode: \\\"+380997170609\\\"\\n    priceExt: \\\"0.22\\\"\\n    priceInt: \\\"0.33\\\"\\n    priority: 55\\n    config: {\\n      contentType: \\\"proba\\\"\\n      name: \\\"Hawaii\\\"\\n      size: 99\\n      url: \\\"some text for url\\\"\\n      parameters: {\\n        key: \\\"some text\\\"\\n        value: \\\"some text\\\"\\n      }\\n    }\\n  ) {\\n    id\\n    active\\n    config {\\n      id\\n      contentType\\n      parameters {\\n        id\\n        key\\n        value\\n        insertedAt\\n        updatedAt\\n      }\\n      name\\n      size\\n      url\\n      insertedAt\\n      updatedAt\\n    }\\n    limitCount\\n    smsLogs {id priority }\\n    nameOperator\\n    phoneCode\\n    priceExt\\n    priceInt\\n    priority\\n    operatorType {\\n      id\\n      active\\n      nameType\\n      priority\\n      insertedAt\\n      updatedAt\\n    }\\n    insertedAt\\n    updatedAt\\n  }\\n}\"}]}",
+      "graphiql:docExplorerWidth": 350,
+      "graphiql:editorFlex": 0.5417607223476298,
+      "graphiql:variableEditorHeight": 200
+    },
+    {
+      "id": "tab19",
+      "name": "Query 6",
+      "url": "http://localhost:4000/graphiql",
+      "websocketUrl": "",
+      "proxy": false,
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer SFMyNTY.g2gDbQAAAEBvdUk2YTJBV3Y2QnFMWVd6NTdXM3luVnpxVnVjMG5pTHBpbXJFU0dVNlM3bFVjcGMySHFaWUk2bHhaZWtiZ3Y4bgYAA4uN-YoBYgABUYA.AQ3gafr0FsPc5_mF9ZPWyg-4en2XyoY_NWJkqHNf_0k"
+        }
+      ],
+      "collapsed": false,
+      "maxHistory": 20,
+      "history": [
+        {
+          "query": "mutation {\n  updateOperator(\n    id: \"AaQ2XT6EmAIR80nxej\"\n    operator: {\n      active: false\n      limitCount: 77\n      nameOperator: \"Kaplanov\"\n      operatorTypeId: \"AaOWJmv1rrfKZFcYZU\"\n      phoneCode: \"+380991111111\"\n      priceExt: \"0.99\"\n      priceInt: \"0.11\"\n      priority: 88\n      config: {\n        contentType: \"updated some text\"\n        name: \"updated some text\"\n        size: 69\n        url: \"updated some text\"\n        parameters: {\n          key: \"updated some text\"\n          value: \"updated some text\"\n        }\n      }\n    }\n  ) {\n    id\n    active\n    config {\n      id\n      contentType\n      parameters {\n        id\n        key\n        value\n        insertedAt\n        updatedAt\n      }\n      name\n      size\n      url\n      insertedAt\n      updatedAt\n    }\n    limitCount\n    smsLogs {id priority }\n    nameOperator\n    phoneCode\n    priceExt\n    priceInt\n    priority\n    operatorType {\n      id\n      active\n      nameType\n      priority\n      insertedAt\n      updatedAt\n    }\n    insertedAt\n    updatedAt\n  }\n}",
+          "variables": null
+        }
+      ],
+      "graphiql:query": "mutation {\n  updateOperator(\n    id: \"AaQ2XT6EmAIR80nxej\"\n    operator: {\n      active: false\n      limitCount: 77\n      nameOperator: \"Kaplanov\"\n      operatorTypeId: \"AaOWJmv1rrfKZFcYZU\"\n      phoneCode: \"+380991111111\"\n      priceExt: \"0.99\"\n      priceInt: \"0.11\"\n      priority: 88\n      config: {\n        contentType: \"updated some text\"\n        name: \"updated some text\"\n        size: 69\n        url: \"updated some text\"\n        parameters: {\n          key: \"updated some text\"\n          value: \"updated some text\"\n        }\n      }\n    }\n  ) {\n    id\n    active\n    config {\n      id\n      contentType\n      parameters {\n        id\n        key\n        value\n        insertedAt\n        updatedAt\n      }\n      name\n      size\n      url\n      insertedAt\n      updatedAt\n    }\n    limitCount\n    smsLogs {id priority }\n    nameOperator\n    phoneCode\n    priceExt\n    priceInt\n    priority\n    operatorType {\n      id\n      active\n      nameType\n      priority\n      insertedAt\n      updatedAt\n    }\n    insertedAt\n    updatedAt\n  }\n}",
+      "graphiql:variableEditorHeight": 200,
+      "graphiql:queries": "{\"queries\":[{\"query\":\"mutation {\\n  updateOperator(\\n    id: \\\"AaQ2XT6EmAIR80nxej\\\"\\n    operator: {\\n      active: false\\n      limitCount: 77\\n      nameOperator: \\\"Kaplanov\\\"\\n      operatorTypeId: \\\"AaOWJmv1rrfKZFcYZU\\\"\\n      phoneCode: \\\"+380991111111\\\"\\n      priceExt: \\\"0.99\\\"\\n      priceInt: \\\"0.11\\\"\\n      priority: 88\\n      config: {\\n        contentType: \\\"updated some text\\\"\\n        name: \\\"updated some text\\\"\\n        size: 69\\n        url: \\\"updated some text\\\"\\n        parameters: {\\n          key: \\\"updated some text\\\"\\n          value: \\\"updated some text\\\"\\n        }\\n      }\\n    }\\n  ) {\\n    id\\n    active\\n    config {\\n      id\\n      contentType\\n      parameters {\\n        id\\n        key\\n        value\\n        insertedAt\\n        updatedAt\\n      }\\n      name\\n      size\\n      url\\n      insertedAt\\n      updatedAt\\n    }\\n    limitCount\\n    smsLogs {id priority }\\n    nameOperator\\n    phoneCode\\n    priceExt\\n    priceInt\\n    priority\\n    operatorType {\\n      id\\n      active\\n      nameType\\n      priority\\n      insertedAt\\n      updatedAt\\n    }\\n    insertedAt\\n    updatedAt\\n  }\\n}\"}]}",
+      "graphiql:editorFlex": 1,
+      "graphiql:docExplorerWidth": 350
+    },
+    {
+      "id": "tab12",
+      "name": "Query 3",
+      "url": "http://localhost:4000/graphiql",
+      "websocketUrl": "",
+      "proxy": false,
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer SFMyNTY.g2gDbQAAAEBvdUk2YTJBV3Y2QnFMWVd6NTdXM3luVnpxVnVjMG5pTHBpbXJFU0dVNlM3bFVjcGMySHFaWUk2bHhaZWtiZ3Y4bgYAsd9j9IoBYgABUYA.-S8Iv_KYO73P1UbBEQa3jRbxvv5YJjq2lRqyPKNyqQ4"
+        }
+      ],
+      "collapsed": true,
+      "maxHistory": 20,
+      "history": [
+        {
+          "query": "query {\n  listOperatorType {\n    id\n    active\n    nameType\n    priority\n    insertedAt\n    updatedAt\n  }\n}",
+          "variables": null
+        }
+      ],
+      "graphiql:query": "query {\n  listOperatorType {\n    id\n    active\n    nameType\n    priority\n    insertedAt\n    updatedAt\n  }\n}",
+      "graphiql:variables": "",
+      "graphiql:queries": "{\"queries\":[{\"query\":\"query {\\n  listOperatorType {\\n    id\\n    active\\n    nameType\\n    priority\\n    insertedAt\\n    updatedAt\\n  }\\n}\",\"variables\":\"\"}]}",
+      "graphiql:editorFlex": 1,
+      "graphiql:variableEditorHeight": 200,
+      "graphiql:docExplorerWidth": 350
+    },
+    {
+      "id": "tab13",
+      "name": "Query 4",
+      "url": "http://localhost:4000/graphiql",
+      "websocketUrl": "",
+      "proxy": false,
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer SFMyNTY.g2gDbQAAAEBvdUk2YTJBV3Y2QnFMWVd6NTdXM3luVnpxVnVjMG5pTHBpbXJFU0dVNlM3bFVjcGMySHFaWUk2bHhaZWtiZ3Y4bgYAsd9j9IoBYgABUYA.-S8Iv_KYO73P1UbBEQa3jRbxvv5YJjq2lRqyPKNyqQ4"
+        }
+      ],
+      "collapsed": true,
+      "maxHistory": 20,
+      "history": [
+        {
+          "query": "query {\n  showOperatorType(id: \"AaGCnHYU7MYvEq0sxU\") {\n    id\n    active\n    nameType\n    priority\n    insertedAt\n    updatedAt\n  }\n}",
+          "variables": null
+        }
+      ],
+      "graphiql:query": "query {\n  showOperatorType(id: \"AaGCnHYU7MYvEq0sxU\") {\n    id\n    active\n    nameType\n    priority\n    insertedAt\n    updatedAt\n  }\n}",
+      "graphiql:variables": "",
+      "graphiql:queries": "{\"queries\":[{\"query\":\"query {\\n  showOperatorType(id: \\\"AaGCnHYU7MYvEq0sxU\\\") {\\n    id\\n    active\\n    nameType\\n    priority\\n    insertedAt\\n    updatedAt\\n  }\\n}\",\"variables\":\"\"}]}",
+      "graphiql:editorFlex": 1,
+      "graphiql:variableEditorHeight": 200,
+      "graphiql:docExplorerWidth": 350
+    },
+    {
+      "id": "tab14",
+      "name": "Query 5",
+      "url": "http://localhost:4000/graphiql",
+      "websocketUrl": "",
+      "proxy": false,
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer SFMyNTY.g2gDbQAAAEBvdUk2YTJBV3Y2QnFMWVd6NTdXM3luVnpxVnVjMG5pTHBpbXJFU0dVNlM3bFVjcGMySHFaWUk2bHhaZWtiZ3Y4bgYAsd9j9IoBYgABUYA.-S8Iv_KYO73P1UbBEQa3jRbxvv5YJjq2lRqyPKNyqQ4"
+        }
+      ],
+      "collapsed": true,
+      "maxHistory": 20,
+      "history": [
+        {
+          "query": "mutation {\n  createOperatorType(\n    active: true\n    nameType: \"Kapranov\"\n    priority: 22\n  ) {\n    id\n    active\n    nameType\n    priority\n    insertedAt\n    updatedAt\n  }\n}",
+          "variables": null
+        }
+      ],
+      "graphiql:query": "mutation {\n  createOperatorType(\n    active: true\n    nameType: \"Kapranov\"\n    priority: 22\n  ) {\n    id\n    active\n    nameType\n    priority\n    insertedAt\n    updatedAt\n  }\n}",
+      "graphiql:variables": "",
+      "graphiql:queries": "{\"queries\":[{\"query\":\"mutation {\\n  createOperatorType(\\n    active: true\\n    nameType: \\\"Kapranov\\\"\\n    priority: 22\\n  ) {\\n    id\\n    active\\n    nameType\\n    priority\\n    insertedAt\\n    updatedAt\\n  }\\n}\",\"variables\":\"\"}]}",
+      "graphiql:editorFlex": 1,
+      "graphiql:variableEditorHeight": 200,
+      "graphiql:docExplorerWidth": 350
+    },
+    {
+      "id": "tab15",
+      "name": "Query 6",
+      "url": "http://localhost:4000/graphiql",
+      "websocketUrl": "",
+      "proxy": false,
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer SFMyNTY.g2gDbQAAAEBvdUk2YTJBV3Y2QnFMWVd6NTdXM3luVnpxVnVjMG5pTHBpbXJFU0dVNlM3bFVjcGMySHFaWUk2bHhaZWtiZ3Y4bgYAsd9j9IoBYgABUYA.-S8Iv_KYO73P1UbBEQa3jRbxvv5YJjq2lRqyPKNyqQ4"
+        }
+      ],
+      "collapsed": true,
+      "maxHistory": 20,
+      "history": [
+        {
+          "query": "mutation {\n  updateOperatorType(\n    id: \"AaNytKKRSauB81kjvU\"\n    operatorType: {\n      active: false\n      nameType: \"Kaplanov\"\n      priority: 33\n    }\n  ) {\n    id\n    active\n    nameType\n    priority\n    insertedAt\n  }\n}",
+          "variables": null
+        }
+      ],
+      "graphiql:query": "mutation {\n  updateOperatorType(\n    id: \"AaNytKKRSauB81kjvU\"\n    operatorType: {\n      active: false\n      nameType: \"Kaplanov\"\n      priority: 33\n    }\n  ) {\n    id\n    active\n    nameType\n    priority\n    insertedAt\n  }\n}",
+      "graphiql:variables": "",
+      "graphiql:queries": "{\"queries\":[{\"query\":\"mutation {\\n  updateOperatorType(\\n    id: \\\"AaNytKKRSauB81kjvU\\\"\\n    operatorType: {\\n      active: false\\n      nameType: \\\"Kaplanov\\\"\\n      priority: 33\\n    }\\n  ) {\\n    id\\n    active\\n    nameType\\n    priority\\n    insertedAt\\n  }\\n}\",\"variables\":\"\"}]}",
+      "graphiql:editorFlex": 1,
+      "graphiql:variableEditorHeight": 200,
+      "graphiql:docExplorerWidth": 350
+    },
+    {
+      "id": "tab8",
+      "name": "Query 3",
+      "url": "http://localhost:4000/graphiql",
+      "websocketUrl": "",
+      "proxy": false,
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer SFMyNTY.g2gDbQAAAEBvdUk2YTJBV3Y2QnFMWVd6NTdXM3luVnpxVnVjMG5pTHBpbXJFU0dVNlM3bFVjcGMySHFaWUk2bHhaZWtiZ3Y4bgYATsuW74oBYgABUYA.7pOHYsiXmkvYBpaMp3efD85XQS1dhrLv5hlNE6JOZ_c"
+        }
+      ],
+      "collapsed": true,
+      "maxHistory": 20,
+      "history": [
+        {
+          "query": "query {\n  listSetting {\n    id\n    param\n    value\n    error\n    errorDescription\n    insertedAt\n    updatedAt\n  }\n}",
+          "variables": null
+        },
+        {
+          "query": "query {\n  listSetting {\n    id\n    param\n    value\n    error\n    errorDescription\n    inserted\n    updatedAt\n  }\n}",
+          "variables": null
+        },
+        {
+          "query": "query {\n  listSetting {\n    id\n    param\n    value\n    error\n    errorDescription\n    createdAt\n    updatedAt\n  }\n}",
+          "variables": null
+        },
+        {
+          "query": "query {\n  listSetting {\n    id\n    param\n    value\n    error\n    errorDescription\n  }\n}",
+          "variables": null
+        },
+        {
+          "query": "query {\n  listSetting {\n    id\n    param\n    value\n  }\n}",
+          "variables": null
+        }
+      ],
+      "graphiql:query": "query {\n  listSetting {\n    id\n    param\n    value\n    error\n    errorDescription\n    insertedAt\n    updatedAt\n  }\n}",
+      "graphiql:docExplorerWidth": 350,
+      "graphiql:editorFlex": 0.25666973321067155,
+      "graphiql:queries": "{\"queries\":[{\"query\":\"query {\\n  listSetting {\\n    id\\n    param\\n    value\\n  }\\n}\",\"variables\":\"\"},{\"query\":\"query {\\n  listSetting {\\n    id\\n    param\\n    value\\n    error\\n    errorDescription\\n  }\\n}\"},{\"query\":\"query {\\n  listSetting {\\n    id\\n    param\\n    value\\n    error\\n    errorDescription\\n    createdAt\\n    updatedAt\\n  }\\n}\"},{\"query\":\"query {\\n  listSetting {\\n    id\\n    param\\n    value\\n    error\\n    errorDescription\\n    inserted\\n    updatedAt\\n  }\\n}\"},{\"query\":\"query {\\n  listSetting {\\n    id\\n    param\\n    value\\n    error\\n    errorDescription\\n    insertedAt\\n    updatedAt\\n  }\\n}\"}]}",
+      "graphiql:variableEditorHeight": 200
+    },
+    {
+      "id": "tab9",
+      "name": "Query 4",
+      "url": "http://localhost:4000/graphiql",
+      "websocketUrl": "",
+      "proxy": false,
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer SFMyNTY.g2gDbQAAAEBvdUk2YTJBV3Y2QnFMWVd6NTdXM3luVnpxVnVjMG5pTHBpbXJFU0dVNlM3bFVjcGMySHFaWUk2bHhaZWtiZ3Y4bgYA15lc74oBYgABUYA.OPzhxBpRJseCY0Dkve9yBqKUJs1IxgovbzEMrO_kdds"
+        }
+      ],
+      "collapsed": true,
+      "maxHistory": 20,
+      "history": [
+        {
+          "query": "query {\n  showSetting(id: \"AaGCn07GxHh59W9PgO\") {\n    id\n    param\n    value\n    insertedAt\n    updatedAt\n  }\n}",
+          "variables": null
+        },
+        {
+          "query": "query {\n  showSetting(id: \"AaGCn07GxHh59W9PgO\") {\n    id\n    param\n    value\n    createdAt\n    updatedAt\n  }\n}",
+          "variables": null
+        },
+        {
+          "query": "query {\n  showSetting(id: \"AaGCn07GxHh59W9PgO\") {\n    id\n    param\n    value\n  }\n}",
+          "variables": null
+        }
+      ],
+      "graphiql:query": "query {\n  showSetting(id: \"AaGCn07GxHh59W9PgO\") {\n    id\n    param\n    value\n    insertedAt\n    updatedAt\n  }\n}",
+      "graphiql:variableEditorHeight": 200,
+      "graphiql:editorFlex": 0.4470338983050847,
+      "graphiql:queries": "{\"queries\":[{\"query\":\"query {\\n  showSetting(id: \\\"AaGCn07GxHh59W9PgO\\\") {\\n    id\\n    param\\n    value\\n  }\\n}\",\"variables\":\"\"},{\"query\":\"query {\\n  showSetting(id: \\\"AaGCn07GxHh59W9PgO\\\") {\\n    id\\n    param\\n    value\\n    createdAt\\n    updatedAt\\n  }\\n}\"},{\"query\":\"query {\\n  showSetting(id: \\\"AaGCn07GxHh59W9PgO\\\") {\\n    id\\n    param\\n    value\\n    insertedAt\\n    updatedAt\\n  }\\n}\"}]}",
+      "graphiql:docExplorerWidth": 350
+    },
+    {
+      "id": "tab10",
+      "name": "Query 5",
+      "url": "http://localhost:4000/graphiql",
+      "websocketUrl": "",
+      "proxy": false,
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer SFMyNTY.g2gDbQAAAEBvdUk2YTJBV3Y2QnFMWVd6NTdXM3luVnpxVnVjMG5pTHBpbXJFU0dVNlM3bFVjcGMySHFaWUk2bHhaZWtiZ3Y4bgYA15lc74oBYgABUYA.OPzhxBpRJseCY0Dkve9yBqKUJs1IxgovbzEMrO_kdds"
+        }
+      ],
+      "collapsed": true,
+      "maxHistory": 20,
+      "history": [
+        {
+          "query": "mutation {\n  createSetting(\n    param: \"some text for param\",\n    value: \"some text for value\"\n  ) {\n    id\n    param\n    value\n  }\n}",
+          "variables": null
+        }
+      ],
+      "graphiql:query": "mutation {\n  createSetting(\n    param: \"some text for param\",\n    value: \"some text for value\"\n  ) {\n    id\n    param\n    value\n    insertedAt\n    updatedAt\n  }\n}",
+      "graphiql:docExplorerWidth": 350,
+      "graphiql:variableEditorHeight": 200,
+      "graphiql:queries": "{\"queries\":[{\"query\":\"mutation {\\n  createSetting(\\n    param: \\\"some text for param\\\",\\n    value: \\\"some text for value\\\"\\n  ) {\\n    id\\n    param\\n    value\\n  }\\n}\",\"variables\":\"\"}]}",
+      "graphiql:editorFlex": 1
+    },
+    {
+      "id": "tab11",
+      "name": "Query 6",
+      "url": "http://localhost:4000/graphiql",
+      "websocketUrl": "",
+      "proxy": false,
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer SFMyNTY.g2gDbQAAAEBvdUk2YTJBV3Y2QnFMWVd6NTdXM3luVnpxVnVjMG5pTHBpbXJFU0dVNlM3bFVjcGMySHFaWUk2bHhaZWtiZ3Y4bgYA15lc74oBYgABUYA.OPzhxBpRJseCY0Dkve9yBqKUJs1IxgovbzEMrO_kdds"
+        }
+      ],
+      "collapsed": false,
+      "maxHistory": 20,
+      "history": [
+        {
+          "query": "mutation {\n  updateSetting (\n    id: \"AaLxSoCEweCNs4E2k4\"\n    setting: {\n      param: \"updated some text for param\"\n      value: \"updated some text for value\"\n    }\n  ) {\n    id\n    param\n    value\n    insertedAt\n    updatedAt\n  }\n}",
+          "variables": null
+        },
+        {
+          "query": "mutation {\n  updateSetting (\n    id: \"AaLxSoCEweCNs4E2k4\"\n    setting: {\n      param: \"updated some text for param\"\n      value: \"updated some text for value\"\n    }\n  ) {\n    id\n    param\n    value\n    createdAt\n    updatedAt\n  }\n}",
+          "variables": null
+        },
+        {
+          "query": "mutation {\n  updateSetting (\n    id: \"AaLxSoCEweCNs4E2k4\"\n    setting: {\n      param: \"updated some text for param\"\n      value: \"updated some text for value\"\n    }\n  ) {\n    id\n    param\n    value\n  }\n}",
+          "variables": null
+        }
+      ],
+      "graphiql:query": "mutation {\n  updateSetting (\n    id: \"AaLxSoCEweCNs4E2k4\"\n    setting: {\n      param: \"updated some text for param\"\n      value: \"updated some text for value\"\n    }\n  ) {\n    id\n    param\n    value\n    insertedAt\n    updatedAt\n  }\n}",
+      "graphiql:docExplorerWidth": 350,
+      "graphiql:variableEditorHeight": 200,
+      "graphiql:editorFlex": 0.40679711637487126,
+      "graphiql:queries": "{\"queries\":[{\"query\":\"mutation {\\n  updateSetting (\\n    id: \\\"AaLxSoCEweCNs4E2k4\\\"\\n    setting: {\\n      param: \\\"updated some text for param\\\"\\n      value: \\\"updated some text for value\\\"\\n    }\\n  ) {\\n    id\\n    param\\n    value\\n  }\\n}\",\"variables\":\"\"},{\"query\":\"mutation {\\n  updateSetting (\\n    id: \\\"AaLxSoCEweCNs4E2k4\\\"\\n    setting: {\\n      param: \\\"updated some text for param\\\"\\n      value: \\\"updated some text for value\\\"\\n    }\\n  ) {\\n    id\\n    param\\n    value\\n    createdAt\\n    updatedAt\\n  }\\n}\"},{\"query\":\"mutation {\\n  updateSetting (\\n    id: \\\"AaLxSoCEweCNs4E2k4\\\"\\n    setting: {\\n      param: \\\"updated some text for param\\\"\\n      value: \\\"updated some text for value\\\"\\n    }\\n  ) {\\n    id\\n    param\\n    value\\n    insertedAt\\n    updatedAt\\n  }\\n}\"}]}"
+    },
+    {
+      "id": "tab7",
+      "name": "Query 6",
+      "url": "http://localhost:4000/graphiql",
+      "websocketUrl": "",
+      "proxy": false,
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer SFMyNTY.g2gDbQAAAEBvdUk2YTJBV3Y2QnFMWVd6NTdXM3luVnpxVnVjMG5pTHBpbXJFU0dVNlM3bFVjcGMySHFaWUk2bHhaZWtiZ3Y4bgYAKfYUg4oBYgABUYA.wZh1jMOMlyHbGOt8mR-bmGEt26XsMGcoUOFFahg8W0w"
+        }
+      ],
+      "collapsed": true,
+      "maxHistory": 20,
+      "history": [
+        {
+          "query": "query {\n  homePage {\n    status\n  }\n}",
+          "variables": null
+        }
+      ],
+      "graphiql:query": "query {\n  homePage {\n    status\n  }\n}",
+      "graphiql:variables": "",
+      "graphiql:queries": "{\"queries\":[{\"query\":\"query {\\n  homePage {\\n    status\\n  }\\n}\",\"variables\":\"\"}]}",
+      "graphiql:editorFlex": 1,
+      "graphiql:variableEditorHeight": 200,
+      "graphiql:docExplorerWidth": 350
+    },
+    {
+      "id": "tab6",
+      "name": "Query 5",
+      "url": "http://localhost:4000/graphiql",
+      "websocketUrl": "",
+      "proxy": false,
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer SFMyNTY.g2gDbQAAAAVIZWxsb24GAMVIFYOKAWIAAVGA.xN_EyvY9bU9zboZqSjq3yTcIwDQ-Zo2d6xtal05NONc"
+        }
+      ],
+      "collapsed": true,
+      "maxHistory": 20,
+      "history": [
+        {
+          "query": "query {\n  homePage {\n    status\n  }\n}",
+          "variables": null
+        }
+      ],
+      "graphiql:query": "query {\n  homePage {\n    status\n  }\n}",
+      "graphiql:variableEditorHeight": 200,
+      "graphiql:editorFlex": 0.2695167286245353,
+      "graphiql:queries": "{\"queries\":[{\"query\":\"query {\\n  homePage {\\n    status\\n  }\\n}\",\"variables\":\"\"}]}",
+      "graphiql:docExplorerWidth": 350
+    },
+    {
+      "id": "tab4",
+      "name": "Query 4",
+      "url": "http://localhost:4000/graphiql",
+      "websocketUrl": "",
+      "proxy": false,
+      "headers": [],
+      "collapsed": true,
+      "maxHistory": 20,
+      "history": [
+        {
+          "query": "query {\n  homePage {\n    status\n  }\n}",
+          "variables": null
+        }
+      ],
+      "graphiql:query": "query {\n  homePage {\n    status\n  }\n}",
+      "graphiql:queries": "{\"queries\":[{\"query\":\"query {\\n  homePage {\\n    status\\n  }\\n}\",\"variables\":\"\"}]}",
+      "graphiql:variableEditorHeight": 200,
+      "graphiql:editorFlex": 0.24181818181818182,
+      "graphiql:docExplorerWidth": 350
+    },
+    {
+      "id": "tab3",
+      "name": "Query 3",
+      "url": "http://localhost:4000/graphiql",
+      "websocketUrl": "",
+      "proxy": false,
+      "headers": [],
+      "collapsed": true,
+      "maxHistory": 20,
+      "history": [
+        {
+          "query": "query {\n  getToken {\n    accessToken\n  }\n}",
+          "variables": null
+        },
+        {
+          "query": "query {\n  homePage {\n    status\n  }\n}",
+          "variables": null
+        }
+      ],
+      "graphiql:query": "query {\n  getToken {\n    accessToken\n  }\n}",
+      "graphiql:docExplorerWidth": 350,
+      "graphiql:queries": "{\"queries\":[{\"query\":\"query {\\n  homePage {\\n    status\\n  }\\n}\",\"variables\":\"\"},{\"query\":\"query {\\n  getToken {\\n    accessToken\\n  }\\n}\",\"variables\":\"\"}]}",
+      "graphiql:variableEditorHeight": 200,
+      "graphiql:editorFlex": 0.26014760147601473
+    },
+    {
+      "id": "tab5",
+      "name": "Query 5",
+      "url": "http://localhost:4000/graphiql",
+      "websocketUrl": "",
+      "proxy": false,
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer xxx"
+        }
+      ],
+      "collapsed": true,
+      "maxHistory": 20,
+      "history": [
+        {
+          "query": "query {\n  homePage {\n    status\n  }\n}",
+          "variables": null
+        }
+      ],
+      "graphiql:query": "query {\n  homePage {\n    status\n  }\n}",
+      "graphiql:variables": "",
+      "graphiql:queries": "{\"queries\":[{\"query\":\"query {\\n  homePage {\\n    status\\n  }\\n}\",\"variables\":\"\"}]}",
+      "graphiql:editorFlex": 1,
+      "graphiql:variableEditorHeight": 200,
+      "graphiql:docExplorerWidth": 350
+    }
+  ],
+  "defaultUrl": "http://localhost:4000/graphiql",
+  "defaultWebsocketUrl": "",
+  "defaultQuery": "",
+  "defaultVariables": "",
+  "defaultProxy": false,
+  "defaultHeaders": [],
+  "usedUrls": [
+    "http://localhost:4000/graphiql"
+  ],
+  "recentHeaders": [
+    {
+      "name": "Authorization",
+      "value": "Bearer SFMyNTY.g2gDbQAAAEBvdUk2YTJBV3Y2QnFMWVd6NTdXM3luVnpxVnVjMG5pTHBpbXJFU0dVNlM3bFVjcGMySHFaWUk2bHhaZWtiZ3Y4bgYAYpKM-ooBYgABUYA.fHLe_5cfKl_fovIT478X0aMuuST7Sh_XsHcTgErOBH0"
+    },
+    {
+      "name": "Authorization",
+      "value": "Bearer SFMyNTY.g2gDbQAAAEBvdUk2YTJBV3Y2QnFMWVd6NTdXM3luVnpxVnVjMG5pTHBpbXJFU0dVNlM3bFVjcGMySHFaWUk2bHhaZWtiZ3Y4bgYAvnF5-ooBYgABUYA.-QqqlDCz3dnBFC4Bz-4vJCPUSiLCjrqZ_9-PC-8XaFs"
+    },
+    {
+      "name": "Authorization",
+      "value": "Bearer SFMyNTY.g2gDbQAAAEBvdUk2YTJBV3Y2QnFMWVd6NTdXM3luVnpxVnVjMG5pTHBpbXJFU0dVNlM3bFVjcGMySHFaWUk2bHhaZWtiZ3Y4bgYA4UdW-ooBYgABUYA.AzH9sZk_Q9yfhwusaxiUvdyCjyO_ATVbJ5omSuwAu1o"
+    },
+    {
+      "name": "Authorization",
+      "value": "Bearer SFMyNTY.g2gDbQAAAEBvdUk2YTJBV3Y2QnFMWVd6NTdXM3luVnpxVnVjMG5pTHBpbXJFU0dVNlM3bFVjcGMySHFaWUk2bHhaZWtiZ3Y4bgYAA4uN-YoBYgABUYA.AQ3gafr0FsPc5_mF9ZPWyg-4en2XyoY_NWJkqHNf_0k"
+    },
+    {
+      "name": "Authorization",
+      "value": "Bearer SFMyNTY.g2gDbQAAAEBvdUk2YTJBV3Y2QnFMWVd6NTdXM3luVnpxVnVjMG5pTHBpbXJFU0dVNlM3bFVjcGMySHFaWUk2bHhaZWtiZ3Y4bgYA9deE-YoBYgABUYA.nbSfBkNO8gMRx8xc7FRJhU5N0e1IUKyy3Rn2hnavB_U"
+    },
+    {
+      "name": "Authorization",
+      "value": "Bearer SFMyNTY.g2gDbQAAAEBvdUk2YTJBV3Y2QnFMWVd6NTdXM3luVnpxVnVjMG5pTHBpbXJFU0dVNlM3bFVjcGMySHFaWUk2bHhaZWtiZ3Y4bgYADo3I9YoBYgABUYA.x43bOSl1yQQkXtzbmvXXb2iDfImT5P_T3LETlg_CM2g"
+    },
+    {
+      "name": "Authorization",
+      "value": "Bearer SFMyNTY.g2gDbQAAAEBvdUk2YTJBV3Y2QnFMWVd6NTdXM3luVnpxVnVjMG5pTHBpbXJFU0dVNlM3bFVjcGMySHFaWUk2bHhaZWtiZ3Y4bgYA0IOm9YoBYgABUYA.XxVpCmBrYQd8quGPAXGzNHxfQ5iWisXcB2s5vC1fjKg"
+    },
+    {
+      "name": "Authorization",
+      "value": "Bearer SFMyNTY.g2gDbQAAAEBvdUk2YTJBV3Y2QnFMWVd6NTdXM3luVnpxVnVjMG5pTHBpbXJFU0dVNlM3bFVjcGMySHFaWUk2bHhaZWtiZ3Y4bgYAsd9j9IoBYgABUYA.-S8Iv_KYO73P1UbBEQa3jRbxvv5YJjq2lRqyPKNyqQ4"
+    },
+    {
+      "name": "Authorization",
+      "value": "Bearer SFMyNTY.g2gDbQAAAEBvdUk2YTJBV3Y2QnFMWVd6NTdXM3luVnpxVnVjMG5pTHBpbXJFU0dVNlM3bFVjcGMySHFaWUk2bHhaZWtiZ3Y4bgYATsuW74oBYgABUYA.7pOHYsiXmkvYBpaMp3efD85XQS1dhrLv5hlNE6JOZ_c"
+    },
+    {
+      "name": "Authorization",
+      "value": "Bearer SFMyNTY.g2gDbQAAAEBvdUk2YTJBV3Y2QnFMWVd6NTdXM3luVnpxVnVjMG5pTHBpbXJFU0dVNlM3bFVjcGMySHFaWUk2bHhaZWtiZ3Y4bgYA15lc74oBYgABUYA.OPzhxBpRJseCY0Dkve9yBqKUJs1IxgovbzEMrO_kdds"
+    },
+    {
+      "name": "Authorization",
+      "value": "Bearer SFMyNTY.g2gDbQAAAAVIZWxsb24GAMVIFYOKAWIAAVGA.xN_EyvY9bU9zboZqSjq3yTcIwDQ-Zo2d6xtal05NONc"
+    },
+    {
+      "name": "Authorization",
+      "value": "Bearer SFMyNTY.g2gDbQAAAEBvdUk2YTJBV3Y2QnFMWVd6NTdXM3luVnpxVnVjMG5pTHBpbXJFU0dVNlM3bFVjcGMySHFaWUk2bHhaZWtiZ3Y4bgYAKfYUg4oBYgABUYA.wZh1jMOMlyHbGOt8mR-bmGEt26XsMGcoUOFFahg8W0w"
+    },
+    {
+      "name": "Authorization",
+      "value": "Bearer SFMyNTY.g2gDbQAAAAVIZWxsb24GABCUE4OKAWIAAVGA.GXblZmaAVs6aEfZDvsa6NWeKIJGYaylz1MQ6JzwJikE"
+    },
+    {
+      "name": "Authorization",
+      "value": "Bearer SFMyNTY.g2gDbQAAAEBvdUk2YTJBV3Y2QnFMWVd6NTdXM3luVnpxVnVjMG5pTHBpbXJFU0dVNlM3bFVjcGMySHFaWUk2bHhaZWtiZ3Y4bgYAHg0Qg4oBYgABUYA.EdzokgakxiJxF2mkI5zysAuAmfnclO7VLmHKLSAnIaA"
+    },
+    {
+      "name": "Authorization",
+      "value": "Bearer SFMyNTY.g2gDbQAAAAVIZWxsb24GAMoiCIOKAWIAAVGA.sw32i7p631iDD29OeTqBnVrlaEKBrBDXWbQoD_HyEpg"
+    },
+    {
+      "name": "Authorization",
+      "value": "Bearer SFMyNTY.g2gDbQAAAEBvdUk2YTJBV3Y2QnFMWVd6NTdXM3luVnpxVnVjMG5pTHBpbXJFU0dVNlM3bFVjcGMySHFaWUk2bHhaZWtiZ3Y4bgYArG4Gg4oBYgABUYA.J17TnutyfHxjyGGM5hgrkTbsx2PGeBhk9yir5QbmE6A"
+    },
+    {
+      "name": "Authorization",
+      "value": "Bearer SFMyNTY.g2gDbQAAAEBvdUk2YTJBV3Y2QnFMWVd6NTdXM3luVnpxVnVjMG5pTHBpbXJFU0dVNlM3bFVjcGMySHFaWUk2bHhaZWtiZ3Y4bgYAXIL0gooBYgABUYA.wssb_KK9jW-v17JLFpCyBKtVInBZD_P8BALOyF6_61E"
+    },
+    {
+      "name": "Authorization",
+      "value": "Bearer xxx"
+    },
+    {
+      "name": "Authorization",
+      "value": "Bearer SFMyNTY.g2gDdwNuaWxuBgDOPjd-igFiAAFRgA.KhhMXVhxEdkLOFZtHTizqkvrECxgM2MviXPU7FtXCWc"
+    }
+  ],
+  "maxTabHistory": 20,
+  "maxUrlHistory": 20,
+  "maxHistory": 20,
+  "savedQueries": [],
+  "activeId": "tab22",
+  "tabs": [
+    {
+      "id": "tab1",
+      "name": "Query 1",
+      "url": "http://localhost:4000/graphiql",
+      "websocketUrl": "",
+      "proxy": false,
+      "headers": [],
+      "collapsed": true,
+      "maxHistory": 20,
+      "history": [
+        {
+          "query": "query {\n  indexPage {\n    status\n  }\n}",
+          "variables": null
+        }
+      ],
+      "graphiql:queries": "{\"queries\":[{\"query\":\"query {\\n  indexPage {\\n    status\\n  }\\n}\",\"variables\":\"\"}]}",
+      "graphiql:editorFlex": 1,
+      "graphiql:variableEditorHeight": 200,
+      "graphiql:docExplorerWidth": 350
+    },
+    {
+      "id": "tab2",
+      "name": "Query 2",
+      "url": "http://localhost:4000/graphiql",
+      "websocketUrl": "",
+      "proxy": false,
+      "headers": [],
+      "collapsed": true,
+      "maxHistory": 20,
+      "history": [
+        {
+          "query": "query {\n  getToken {\n    accessToken\n  }\n}",
+          "variables": null
+        },
+        {
+          "query": "query {\n  indexPage {status}\n}",
+          "variables": null
+        },
+        {
+          "query": "query {\n  homePage {status}\n}",
+          "variables": null
+        },
+        {
+          "query": "query {\n  homePage {status}\n}\n  }\n}",
+          "variables": null
+        },
+        {
+          "query": "query {\n  homePage\n}\n  }\n}",
+          "variables": null
+        },
+        {
+          "query": "query {\n  getToken {\n    accessToken\n  }\n}",
+          "variables": null
+        }
+      ],
+      "graphiql:query": "query {\n  getToken {\n    accessToken\n  }\n}",
+      "graphiql:docExplorerWidth": 350,
+      "graphiql:queries": "{\"queries\":[{\"query\":\"query {\\n  getToken {\\n    accessToken\\n  }\\n}\",\"variables\":\"\"},{\"query\":\"query {\\n  homePage {status}\\n}\"},{\"query\":\"query {\\n  indexPage {status}\\n}\"},{\"query\":\"query {\\n  getToken {\\n    accessToken\\n  }\\n}\"}]}",
+      "graphiql:variableEditorHeight": 200,
+      "graphiql:editorFlex": 0.2718808193668529
+    },
+    {
+      "id": "tab20",
+      "name": "Query 3",
+      "url": "http://localhost:4000/graphiql",
+      "websocketUrl": "",
+      "proxy": false,
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer SFMyNTY.g2gDbQAAAEBvdUk2YTJBV3Y2QnFMWVd6NTdXM3luVnpxVnVjMG5pTHBpbXJFU0dVNlM3bFVjcGMySHFaWUk2bHhaZWtiZ3Y4bgYA4UdW-ooBYgABUYA.AzH9sZk_Q9yfhwusaxiUvdyCjyO_ATVbJ5omSuwAu1o"
+        }
+      ],
+      "collapsed": true,
+      "maxHistory": 20,
+      "history": [
+        {
+          "query": "query {\n  showMessage(id: \"AaQPUvwnOwn54wymDQ\") {\n    id\n    idTax\n    idExternal\n    idTelegram\n    messageBody\n    messageExpiredAt\n    phoneNumber\n    status {\n      id\n      active\n      description\n      statusCode\n      statusName\n      smsLogs {id priority}\n      insertedAt\n    }\n    statusId\n    statusChangedAt\n    smsLogs {id priority}\n    insertedAt\n    updatedAt\n  }\n}",
+          "variables": null
+        },
+        {
+          "query": "query {\n  showMessage(id: \"AaQPUvwnOwn54wymDQ\") {\n    id\n    idTax\n    idExternal\n    idTelegram\n    messageBody\n    messageExpiredAt\n    phoneNumber\n    status {\n      id\n      active\n      description\n      statusCode\n      statusName\n      smsLogs {id priority}\n      insertedAt\n      updatedAt\n    }\n    statusId\n    statusChangedAt\n    smsLogs {id priority}\n    insertedAt\n    updatedAt\n  }\n}",
+          "variables": null
+        },
+        {
+          "query": "query {\n  showMessage(id: \"AaOWLF1Asi3e0NBje4\") {\n    id\n    idTax\n    idExternal\n    idTelegram\n    messageBody\n    messageExpiredAt\n    phoneNumber\n    status {\n      id\n      active\n      description\n      statusCode\n      statusName\n      smsLogs {id priority}\n      insertedAt\n      updatedAt\n    }\n    statusId\n    statusChangedAt\n    smsLogs {id priority}\n    insertedAt\n    updatedAt\n  }\n}",
+          "variables": null
+        },
+        {
+          "query": "query {\n  showMessage(id: \"AaOWLExH7CwFoHMcZE\") {\n    id\n    idTax\n    idExternal\n    idTelegram\n    messageBody\n    messageExpiredAt\n    phoneNumber\n    status {\n      id\n      active\n      description\n      statusCode\n      statusName\n      smsLogs {id priority}\n      insertedAt\n      updatedAt\n    }\n    statusId\n    statusChangedAt\n    smsLogs {id priority}\n    insertedAt\n    updatedAt\n  }\n}",
+          "variables": null
+        },
+        {
+          "query": "query {\n  showMessage(id: \"AaOWLEtNLhorcBXVUO\") {\n    id\n    idTax\n    idExternal\n    idTelegram\n    messageBody\n    messageExpiredAt\n    phoneNumber\n    status {\n      id\n      active\n      description\n      statusCode\n      statusName\n      smsLogs {id priority}\n      insertedAt\n      updatedAt\n    }\n    statusId\n    statusChangedAt\n    smsLogs {id priority}\n    insertedAt\n    updatedAt\n  }\n}",
+          "variables": null
+        },
+        {
+          "query": "query {\n  showMessage(id: \"AaOWLEppYsz3RBsfxo\") {\n    id\n    idTax\n    idExternal\n    idTelegram\n    messageBody\n    messageExpiredAt\n    phoneNumber\n    status {\n      id\n      active\n      description\n      statusCode\n      statusName\n      smsLogs {id priority}\n      insertedAt\n      updatedAt\n    }\n    statusId\n    statusChangedAt\n    smsLogs {id priority}\n    insertedAt\n    updatedAt\n  }\n}",
+          "variables": null
+        },
+        {
+          "query": "query {\n  showMessage(id: \"AaOWLEeUF3uSs0ZcHY\") {\n    id\n    idTax\n    idExternal\n    idTelegram\n    messageBody\n    messageExpiredAt\n    phoneNumber\n    status {\n      id\n      active\n      description\n      statusCode\n      statusName\n      smsLogs {id priority}\n      insertedAt\n      updatedAt\n    }\n    statusId\n    statusChangedAt\n    smsLogs {id priority}\n    insertedAt\n    updatedAt\n  }\n}",
+          "variables": null
+        }
+      ],
+      "graphiql:query": "query {\n  showMessage(id: \"AaQPUvwnOwn54wymDQ\") {\n    id\n    idTax\n    idExternal\n    idTelegram\n    messageBody\n    messageExpiredAt\n    phoneNumber\n    status {\n      id\n      active\n      description\n      statusCode\n      statusName\n      smsLogs {id priority}\n      insertedAt\n    }\n    statusId\n    statusChangedAt\n    smsLogs {id priority}\n    insertedAt\n    updatedAt\n  }\n}",
+      "graphiql:editorFlex": 0.6204033214709371,
+      "graphiql:queries": "{\"queries\":[{\"query\":\"query {\\n  showMessage(id: \\\"AaOWLEeUF3uSs0ZcHY\\\") {\\n    id\\n    idTax\\n    idExternal\\n    idTelegram\\n    messageBody\\n    messageExpiredAt\\n    phoneNumber\\n    status {\\n      id\\n      active\\n      description\\n      statusCode\\n      statusName\\n      smsLogs {id priority}\\n      insertedAt\\n      updatedAt\\n    }\\n    statusId\\n    statusChangedAt\\n    smsLogs {id priority}\\n    insertedAt\\n    updatedAt\\n  }\\n}\",\"variables\":\"\"},{\"query\":\"query {\\n  showMessage(id: \\\"AaOWLEppYsz3RBsfxo\\\") {\\n    id\\n    idTax\\n    idExternal\\n    idTelegram\\n    messageBody\\n    messageExpiredAt\\n    phoneNumber\\n    status {\\n      id\\n      active\\n      description\\n      statusCode\\n      statusName\\n      smsLogs {id priority}\\n      insertedAt\\n      updatedAt\\n    }\\n    statusId\\n    statusChangedAt\\n    smsLogs {id priority}\\n    insertedAt\\n    updatedAt\\n  }\\n}\"},{\"query\":\"query {\\n  showMessage(id: \\\"AaOWLEtNLhorcBXVUO\\\") {\\n    id\\n    idTax\\n    idExternal\\n    idTelegram\\n    messageBody\\n    messageExpiredAt\\n    phoneNumber\\n    status {\\n      id\\n      active\\n      description\\n      statusCode\\n      statusName\\n      smsLogs {id priority}\\n      insertedAt\\n      updatedAt\\n    }\\n    statusId\\n    statusChangedAt\\n    smsLogs {id priority}\\n    insertedAt\\n    updatedAt\\n  }\\n}\"},{\"query\":\"query {\\n  showMessage(id: \\\"AaOWLExH7CwFoHMcZE\\\") {\\n    id\\n    idTax\\n    idExternal\\n    idTelegram\\n    messageBody\\n    messageExpiredAt\\n    phoneNumber\\n    status {\\n      id\\n      active\\n      description\\n      statusCode\\n      statusName\\n      smsLogs {id priority}\\n      insertedAt\\n      updatedAt\\n    }\\n    statusId\\n    statusChangedAt\\n    smsLogs {id priority}\\n    insertedAt\\n    updatedAt\\n  }\\n}\"},{\"query\":\"query {\\n  showMessage(id: \\\"AaOWLF1Asi3e0NBje4\\\") {\\n    id\\n    idTax\\n    idExternal\\n    idTelegram\\n    messageBody\\n    messageExpiredAt\\n    phoneNumber\\n    status {\\n      id\\n      active\\n      description\\n      statusCode\\n      statusName\\n      smsLogs {id priority}\\n      insertedAt\\n      updatedAt\\n    }\\n    statusId\\n    statusChangedAt\\n    smsLogs {id priority}\\n    insertedAt\\n    updatedAt\\n  }\\n}\"},{\"query\":\"query {\\n  showMessage(id: \\\"AaQPUvwnOwn54wymDQ\\\") {\\n    id\\n    idTax\\n    idExternal\\n    idTelegram\\n    messageBody\\n    messageExpiredAt\\n    phoneNumber\\n    status {\\n      id\\n      active\\n      description\\n      statusCode\\n      statusName\\n      smsLogs {id priority}\\n      insertedAt\\n      updatedAt\\n    }\\n    statusId\\n    statusChangedAt\\n    smsLogs {id priority}\\n    insertedAt\\n    updatedAt\\n  }\\n}\"},{\"query\":\"query {\\n  showMessage(id: \\\"AaQPUvwnOwn54wymDQ\\\") {\\n    id\\n    idTax\\n    idExternal\\n    idTelegram\\n    messageBody\\n    messageExpiredAt\\n    phoneNumber\\n    status {\\n      id\\n      active\\n      description\\n      statusCode\\n      statusName\\n      smsLogs {id priority}\\n      insertedAt\\n    }\\n    statusId\\n    statusChangedAt\\n    smsLogs {id priority}\\n    insertedAt\\n    updatedAt\\n  }\\n}\"}]}",
+      "graphiql:variableEditorHeight": 200,
+      "graphiql:docExplorerWidth": 350
+    },
+    {
+      "id": "tab21",
+      "name": "Query 4",
+      "url": "http://localhost:4000/graphiql",
+      "websocketUrl": "",
+      "proxy": false,
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer SFMyNTY.g2gDbQAAAEBvdUk2YTJBV3Y2QnFMWVd6NTdXM3luVnpxVnVjMG5pTHBpbXJFU0dVNlM3bFVjcGMySHFaWUk2bHhaZWtiZ3Y4bgYAvnF5-ooBYgABUYA.-QqqlDCz3dnBFC4Bz-4vJCPUSiLCjrqZ_9-PC-8XaFs"
+        }
+      ],
+      "collapsed": true,
+      "maxHistory": 20,
+      "history": [
+        {
+          "query": "mutation {\n  createMessage (\n    idExternal: \"1\"\n    idTax: 1222333444\n    idTelegram: \"@telegaUser\"\n    messageBody: \"Ваш код - 7777-999-9999-9999\"\n    messageExpiredAt: \"2023-10-07 11:48:55.477759Z\"\n    phoneNumber: \"+380997170609\"\n    statusChangedAt: \"2023-10-07 11:48:55.477759Z\"\n    statusId: \"AaQPUdMKVmvTQdmOsS\"\n  ) {\n    id\n    idTax\n    idExternal\n    idTelegram\n    messageBody\n    messageExpiredAt\n    phoneNumber\n    status {\n      id\n      active\n      description\n      statusCode\n      statusName\n      smsLogs {id priority}\n      insertedAt\n    }\n    statusId\n    statusChangedAt\n    smsLogs {id priority}\n    insertedAt\n    updatedAt\n  }\n}",
+          "variables": null
+        },
+        {
+          "query": "mutation {\n  createMessage (\n    idExternal: \"1\"\n    idTax: 1222333444\n    idTelegram: \"@telegaUser\"\n    messageBody: \"Ваш код - 7777-999-9999-9999\"\n    messageExpiredAt: \"2023-10-07 11:48:55\"\n    phoneNumber: \"+380997170609\"\n    statusChangedAt: \"2023-10-07 11:48:55\"\n    statusId: \"AaQPUdMKVmvTQdmOsS\"\n  ) {\n    id\n    idTax\n    idExternal\n    idTelegram\n    messageBody\n    messageExpiredAt\n    phoneNumber\n    status {\n      id\n      active\n      description\n      statusCode\n      statusName\n      smsLogs {id priority}\n      insertedAt\n    }\n    statusId\n    statusChangedAt\n    smsLogs {id priority}\n    insertedAt\n    updatedAt\n  }\n}",
+          "variables": null
+        },
+        {
+          "query": "mutation {\n  createMessage (\n    idExternal: \"1\"\n    idTax: 1222333444\n    idTelegram: \"@telegaUser\"\n    messageBody: \"Ваш код - 7777-999-9999-9999\"\n    messageExpiredAt: \"2023-10-07 11:48:55.477759\"\n    phoneNumber: \"+380997170609\"\n    statusChangedAt: \"2023-10-07 11:48:55.477759\"\n    statusId: \"AaQPUdMKVmvTQdmOsS\"\n  ) {\n    id\n    idTax\n    idExternal\n    idTelegram\n    messageBody\n    messageExpiredAt\n    phoneNumber\n    status {\n      id\n      active\n      description\n      statusCode\n      statusName\n      smsLogs {id priority}\n      insertedAt\n    }\n    statusId\n    statusChangedAt\n    smsLogs {id priority}\n    insertedAt\n    updatedAt\n  }\n}",
+          "variables": null
+        },
+        {
+          "query": "mutation {\n  createMessage (\n    idExternal: \"1\"\n    idTax: 1222333444\n    idTelegram: \"@telegaUser\"\n    messageBody: \"Ваш код - 7777-999-9999-9999\"\n    messageExpiredAt: \"2023-10-07 11:48:55.477759Z\"\n    phoneNumber: \"+380997170609\"\n    statusChangedAt: \"2023-10-07 11:48:55.477759Z\"\n    statusId: \"AaQPUdMKVmvTQdmOsS\"\n  ) {\n    id\n    idTax\n    idExternal\n    idTelegram\n    messageBody\n    messageExpiredAt\n    phoneNumber\n    status {\n      id\n      active\n      description\n      statusCode\n      statusName\n      smsLogs {id priority}\n      insertedAt\n    }\n    statusId\n    statusChangedAt\n    smsLogs {id priority}\n    insertedAt\n    updatedAt\n  }\n}",
+          "variables": null
+        },
+        {
+          "query": "mutation {\n  createMessage (\n    idExternal: \"1\"\n    idTax: 1222333444\n    idTelegram: \"@telegaUser\"\n    messageBody: \"Ваш код - 7777-999-9999-9999\"\n    messageExpiredAt: \"2023-10-03\"\n    phoneNumber: \"+380997170609\"\n    statusChangedAt: \"2023-10-03\"\n    statusId: \"AaQPUdMKVmvTQdmOsS\"\n  ) {\n    id\n    idTax\n    idExternal\n    idTelegram\n    messageBody\n    messageExpiredAt\n    phoneNumber\n    status {\n      id\n      active\n      description\n      statusCode\n      statusName\n      smsLogs {id priority}\n      insertedAt\n    }\n    statusId\n    statusChangedAt\n    smsLogs {id priority}\n    insertedAt\n    updatedAt\n  }\n}",
+          "variables": null
+        },
+        {
+          "query": "mutation {\n  createMessage (\n    idExternal: \"1\"\n    idTax: 1222333444\n    idTelegram: \"@telegaUser\"\n    messageBody: \"Ваш код - 7777-999-9999-9999\"\n    messageExpiredAt: \"2023-10-3\"\n    phoneNumber: \"+380997170609\"\n    statusChangedAt: \"2023-10-3\"\n    statusId: \"AaQPUdMKVmvTQdmOsS\"\n  ) {\n    id\n    idTax\n    idExternal\n    idTelegram\n    messageBody\n    messageExpiredAt\n    phoneNumber\n    status {\n      id\n      active\n      description\n      statusCode\n      statusName\n      smsLogs {id priority}\n      insertedAt\n    }\n    statusId\n    statusChangedAt\n    smsLogs {id priority}\n    insertedAt\n    updatedAt\n  }\n}",
+          "variables": null
+        },
+        {
+          "query": "mutation {\n  createMessage (\n    idExternal: \"some text\"\n    idTax: 22\n    idTelegram: \"some text\"\n    messageBody: \"some text\"\n    messageExpiredAt: \"2023-10-03\"\n    phoneNumber: \"+380997170609\"\n    statusChangedAt: \"2023-10-03\"\n    statusId: \"AaQPUdMKVmvTQdmOsS\"\n  ) {\n    id\n    idTax\n    idExternal\n    idTelegram\n    messageBody\n    messageExpiredAt\n    phoneNumber\n    status {\n      id\n      active\n      description\n      statusCode\n      statusName\n      smsLogs {id priority}\n      insertedAt\n    }\n    statusId\n    statusChangedAt\n    smsLogs {id priority}\n    insertedAt\n    updatedAt\n  }\n}",
+          "variables": null
+        }
+      ],
+      "graphiql:query": "mutation {\n  createMessage (\n    idExternal: \"1\"\n    idTax: 1222333444\n    idTelegram: \"@telegaUser\"\n    messageBody: \"Ваш код - 7777-999-9999-9999\"\n    messageExpiredAt: \"2023-10-07 11:48:55.477759Z\"\n    phoneNumber: \"+380997170609\"\n    statusChangedAt: \"2023-10-07 11:48:55.477759Z\"\n    statusId: \"AaQPUdMKVmvTQdmOsS\"\n  ) {\n    id\n    idTax\n    idExternal\n    idTelegram\n    messageBody\n    messageExpiredAt\n    phoneNumber\n    status {\n      id\n      active\n      description\n      statusCode\n      statusName\n      smsLogs {id priority}\n      insertedAt\n    }\n    statusId\n    statusChangedAt\n    smsLogs {id priority}\n    insertedAt\n    updatedAt\n  }\n}",
+      "graphiql:queries": "{\"queries\":[{\"query\":\"mutation {\\n  createMessage (\\n    idExternal: \\\"some text\\\"\\n    idTax: 22\\n    idTelegram: \\\"some text\\\"\\n    messageBody: \\\"some text\\\"\\n    messageExpiredAt: \\\"2023-10-03\\\"\\n    phoneNumber: \\\"+380997170609\\\"\\n    statusChangedAt: \\\"2023-10-03\\\"\\n    statusId: \\\"AaQPUdMKVmvTQdmOsS\\\"\\n  ) {\\n    id\\n    idTax\\n    idExternal\\n    idTelegram\\n    messageBody\\n    messageExpiredAt\\n    phoneNumber\\n    status {\\n      id\\n      active\\n      description\\n      statusCode\\n      statusName\\n      smsLogs {id priority}\\n      insertedAt\\n    }\\n    statusId\\n    statusChangedAt\\n    smsLogs {id priority}\\n    insertedAt\\n    updatedAt\\n  }\\n}\"},{\"query\":\"mutation {\\n  createMessage (\\n    idExternal: \\\"1\\\"\\n    idTax: 1222333444\\n    idTelegram: \\\"@telegaUser\\\"\\n    messageBody: \\\"Ваш код - 7777-999-9999-9999\\\"\\n    messageExpiredAt: \\\"2023-10-3\\\"\\n    phoneNumber: \\\"+380997170609\\\"\\n    statusChangedAt: \\\"2023-10-3\\\"\\n    statusId: \\\"AaQPUdMKVmvTQdmOsS\\\"\\n  ) {\\n    id\\n    idTax\\n    idExternal\\n    idTelegram\\n    messageBody\\n    messageExpiredAt\\n    phoneNumber\\n    status {\\n      id\\n      active\\n      description\\n      statusCode\\n      statusName\\n      smsLogs {id priority}\\n      insertedAt\\n    }\\n    statusId\\n    statusChangedAt\\n    smsLogs {id priority}\\n    insertedAt\\n    updatedAt\\n  }\\n}\"},{\"query\":\"mutation {\\n  createMessage (\\n    idExternal: \\\"1\\\"\\n    idTax: 1222333444\\n    idTelegram: \\\"@telegaUser\\\"\\n    messageBody: \\\"Ваш код - 7777-999-9999-9999\\\"\\n    messageExpiredAt: \\\"2023-10-03\\\"\\n    phoneNumber: \\\"+380997170609\\\"\\n    statusChangedAt: \\\"2023-10-03\\\"\\n    statusId: \\\"AaQPUdMKVmvTQdmOsS\\\"\\n  ) {\\n    id\\n    idTax\\n    idExternal\\n    idTelegram\\n    messageBody\\n    messageExpiredAt\\n    phoneNumber\\n    status {\\n      id\\n      active\\n      description\\n      statusCode\\n      statusName\\n      smsLogs {id priority}\\n      insertedAt\\n    }\\n    statusId\\n    statusChangedAt\\n    smsLogs {id priority}\\n    insertedAt\\n    updatedAt\\n  }\\n}\"},{\"query\":\"mutation {\\n  createMessage (\\n    idExternal: \\\"1\\\"\\n    idTax: 1222333444\\n    idTelegram: \\\"@telegaUser\\\"\\n    messageBody: \\\"Ваш код - 7777-999-9999-9999\\\"\\n    messageExpiredAt: \\\"2023-10-07 11:48:55.477759Z\\\"\\n    phoneNumber: \\\"+380997170609\\\"\\n    statusChangedAt: \\\"2023-10-07 11:48:55.477759Z\\\"\\n    statusId: \\\"AaQPUdMKVmvTQdmOsS\\\"\\n  ) {\\n    id\\n    idTax\\n    idExternal\\n    idTelegram\\n    messageBody\\n    messageExpiredAt\\n    phoneNumber\\n    status {\\n      id\\n      active\\n      description\\n      statusCode\\n      statusName\\n      smsLogs {id priority}\\n      insertedAt\\n    }\\n    statusId\\n    statusChangedAt\\n    smsLogs {id priority}\\n    insertedAt\\n    updatedAt\\n  }\\n}\"},{\"query\":\"mutation {\\n  createMessage (\\n    idExternal: \\\"1\\\"\\n    idTax: 1222333444\\n    idTelegram: \\\"@telegaUser\\\"\\n    messageBody: \\\"Ваш код - 7777-999-9999-9999\\\"\\n    messageExpiredAt: \\\"2023-10-07 11:48:55.477759\\\"\\n    phoneNumber: \\\"+380997170609\\\"\\n    statusChangedAt: \\\"2023-10-07 11:48:55.477759\\\"\\n    statusId: \\\"AaQPUdMKVmvTQdmOsS\\\"\\n  ) {\\n    id\\n    idTax\\n    idExternal\\n    idTelegram\\n    messageBody\\n    messageExpiredAt\\n    phoneNumber\\n    status {\\n      id\\n      active\\n      description\\n      statusCode\\n      statusName\\n      smsLogs {id priority}\\n      insertedAt\\n    }\\n    statusId\\n    statusChangedAt\\n    smsLogs {id priority}\\n    insertedAt\\n    updatedAt\\n  }\\n}\"},{\"query\":\"mutation {\\n  createMessage (\\n    idExternal: \\\"1\\\"\\n    idTax: 1222333444\\n    idTelegram: \\\"@telegaUser\\\"\\n    messageBody: \\\"Ваш код - 7777-999-9999-9999\\\"\\n    messageExpiredAt: \\\"2023-10-07 11:48:55\\\"\\n    phoneNumber: \\\"+380997170609\\\"\\n    statusChangedAt: \\\"2023-10-07 11:48:55\\\"\\n    statusId: \\\"AaQPUdMKVmvTQdmOsS\\\"\\n  ) {\\n    id\\n    idTax\\n    idExternal\\n    idTelegram\\n    messageBody\\n    messageExpiredAt\\n    phoneNumber\\n    status {\\n      id\\n      active\\n      description\\n      statusCode\\n      statusName\\n      smsLogs {id priority}\\n      insertedAt\\n    }\\n    statusId\\n    statusChangedAt\\n    smsLogs {id priority}\\n    insertedAt\\n    updatedAt\\n  }\\n}\"},{\"query\":\"mutation {\\n  createMessage (\\n    idExternal: \\\"1\\\"\\n    idTax: 1222333444\\n    idTelegram: \\\"@telegaUser\\\"\\n    messageBody: \\\"Ваш код - 7777-999-9999-9999\\\"\\n    messageExpiredAt: \\\"2023-10-07 11:48:55.477759Z\\\"\\n    phoneNumber: \\\"+380997170609\\\"\\n    statusChangedAt: \\\"2023-10-07 11:48:55.477759Z\\\"\\n    statusId: \\\"AaQPUdMKVmvTQdmOsS\\\"\\n  ) {\\n    id\\n    idTax\\n    idExternal\\n    idTelegram\\n    messageBody\\n    messageExpiredAt\\n    phoneNumber\\n    status {\\n      id\\n      active\\n      description\\n      statusCode\\n      statusName\\n      smsLogs {id priority}\\n      insertedAt\\n    }\\n    statusId\\n    statusChangedAt\\n    smsLogs {id priority}\\n    insertedAt\\n    updatedAt\\n  }\\n}\"}]}",
+      "graphiql:docExplorerWidth": 350,
+      "graphiql:variableEditorHeight": 200,
+      "graphiql:editorFlex": 1
+    },
+    {
+      "id": "tab22",
+      "name": "Query 5",
+      "url": "http://localhost:4000/graphiql",
+      "websocketUrl": "",
+      "proxy": false,
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer SFMyNTY.g2gDbQAAAEBvdUk2YTJBV3Y2QnFMWVd6NTdXM3luVnpxVnVjMG5pTHBpbXJFU0dVNlM3bFVjcGMySHFaWUk2bHhaZWtiZ3Y4bgYAYpKM-ooBYgABUYA.fHLe_5cfKl_fovIT478X0aMuuST7Sh_XsHcTgErOBH0"
+        }
+      ],
+      "collapsed": true,
+      "maxHistory": 20,
+      "history": [
+        {
+          "query": "mutation {\n  updateMessage (\n    id: \"AaQRhmQiXjW42H1Ria\"\n    message: {\n      idExternal: \"3\"\n      idTax: 1234567890\n      idTelegram: \"@telegaUser\"\n      messageBody: \"Ваш код - 7777-888-8888-8888\"\n      messageExpiredAt: \"2023-10-01 11:48:55.477759Z\"\n      phoneNumber: \"+380997171111\"\n      statusChangedAt: \"2023-10-01 11:48:55.477759Z\"\n      statusId: \"AaQPUdjj6ndobCj5LU\"\n    }\n  ) {\n    id\n    idTax\n    idExternal\n    idTelegram\n    messageBody\n    messageExpiredAt\n    phoneNumber\n    status {\n      id\n      active\n      description\n      statusCode\n      statusName\n      smsLogs {id priority}\n      insertedAt\n    }\n    statusId\n    statusChangedAt\n    smsLogs {id priority}\n    insertedAt\n    updatedAt\n  }\n}",
+          "variables": null
+        },
+        {
+          "query": "mutation {\n  updateMessage (\n    id: \"AaQRhmQiXjW42H1Ria\"\n    message: {\n      idExternal: \"1\"\n      idTax: 1234567890\n      idTelegram: \"@telegaUser\"\n      messageBody: \"Ваш код - 7777-888-8888-8888\"\n      messageExpiredAt: \"2023-10-01 11:48:55.477759Z\"\n      phoneNumber: \"+380997171111\"\n      statusChangedAt: \"2023-10-01 11:48:55.477759Z\"\n      statusId: \"AaQPUdjj6ndobCj5LU\"\n    }\n  ) {\n    id\n    idTax\n    idExternal\n    idTelegram\n    messageBody\n    messageExpiredAt\n    phoneNumber\n    status {\n      id\n      active\n      description\n      statusCode\n      statusName\n      smsLogs {id priority}\n      insertedAt\n    }\n    statusId\n    statusChangedAt\n    smsLogs {id priority}\n    insertedAt\n    updatedAt\n  }\n}",
+          "variables": null
+        },
+        {
+          "query": "mutation {\n  updateMessage (\n    id: \"AaQRhmQiXjW42H1Ria\"\n    message: {\n      idExternal: \"3\"\n      idTax: 1234567890\n      idTelegram: \"@telegaUser\"\n      messageBody: \"Ваш код - 7777-888-8888-8888\"\n      messageExpiredAt: \"2023-10-01 11:48:55.477759Z\"\n      phoneNumber: \"+380997171111\"\n      statusChangedAt: \"2023-10-01 11:48:55.477759Z\"\n      statusId: \"AaQPUdjj6ndobCj5LU\"\n    }\n  ) {\n    id\n    idTax\n    idExternal\n    idTelegram\n    messageBody\n    messageExpiredAt\n    phoneNumber\n    status {\n      id\n      active\n      description\n      statusCode\n      statusName\n      smsLogs {id priority}\n      insertedAt\n    }\n    statusId\n    statusChangedAt\n    smsLogs {id priority}\n    insertedAt\n    updatedAt\n  }\n}",
+          "variables": null
+        }
+      ],
+      "graphiql:query": "mutation {\n  updateMessage (\n    id: \"AaQRhmQiXjW42H1Ria\"\n    message: {\n      idExternal: \"3\"\n      idTax: 1234567890\n      idTelegram: \"@telegaUser\"\n      messageBody: \"Ваш код - 7777-888-8888-8888\"\n      messageExpiredAt: \"2023-10-01 11:48:55.477759Z\"\n      phoneNumber: \"+380997171111\"\n      statusChangedAt: \"2023-10-01 11:48:55.477759Z\"\n      statusId: \"AaQPUdjj6ndobCj5LU\"\n    }\n  ) {\n    id\n    idTax\n    idExternal\n    idTelegram\n    messageBody\n    messageExpiredAt\n    phoneNumber\n    status {\n      id\n      active\n      description\n      statusCode\n      statusName\n      smsLogs {id priority}\n      insertedAt\n    }\n    statusId\n    statusChangedAt\n    smsLogs {id priority}\n    insertedAt\n    updatedAt\n  }\n}",
+      "graphiql:docExplorerWidth": 350,
+      "graphiql:queries": "{\"queries\":[{\"query\":\"mutation {\\n  updateMessage (\\n    id: \\\"AaQRhmQiXjW42H1Ria\\\"\\n    message: {\\n      idExternal: \\\"3\\\"\\n      idTax: 1234567890\\n      idTelegram: \\\"@telegaUser\\\"\\n      messageBody: \\\"Ваш код - 7777-888-8888-8888\\\"\\n      messageExpiredAt: \\\"2023-10-01 11:48:55.477759Z\\\"\\n      phoneNumber: \\\"+380997171111\\\"\\n      statusChangedAt: \\\"2023-10-01 11:48:55.477759Z\\\"\\n      statusId: \\\"AaQPUdjj6ndobCj5LU\\\"\\n    }\\n  ) {\\n    id\\n    idTax\\n    idExternal\\n    idTelegram\\n    messageBody\\n    messageExpiredAt\\n    phoneNumber\\n    status {\\n      id\\n      active\\n      description\\n      statusCode\\n      statusName\\n      smsLogs {id priority}\\n      insertedAt\\n    }\\n    statusId\\n    statusChangedAt\\n    smsLogs {id priority}\\n    insertedAt\\n    updatedAt\\n  }\\n}\",\"variables\":\"\"},{\"query\":\"mutation {\\n  updateMessage (\\n    id: \\\"AaQRhmQiXjW42H1Ria\\\"\\n    message: {\\n      idExternal: \\\"1\\\"\\n      idTax: 1234567890\\n      idTelegram: \\\"@telegaUser\\\"\\n      messageBody: \\\"Ваш код - 7777-888-8888-8888\\\"\\n      messageExpiredAt: \\\"2023-10-01 11:48:55.477759Z\\\"\\n      phoneNumber: \\\"+380997171111\\\"\\n      statusChangedAt: \\\"2023-10-01 11:48:55.477759Z\\\"\\n      statusId: \\\"AaQPUdjj6ndobCj5LU\\\"\\n    }\\n  ) {\\n    id\\n    idTax\\n    idExternal\\n    idTelegram\\n    messageBody\\n    messageExpiredAt\\n    phoneNumber\\n    status {\\n      id\\n      active\\n      description\\n      statusCode\\n      statusName\\n      smsLogs {id priority}\\n      insertedAt\\n    }\\n    statusId\\n    statusChangedAt\\n    smsLogs {id priority}\\n    insertedAt\\n    updatedAt\\n  }\\n}\",\"variables\":\"\"},{\"query\":\"mutation {\\n  updateMessage (\\n    id: \\\"AaQRhmQiXjW42H1Ria\\\"\\n    message: {\\n      idExternal: \\\"3\\\"\\n      idTax: 1234567890\\n      idTelegram: \\\"@telegaUser\\\"\\n      messageBody: \\\"Ваш код - 7777-888-8888-8888\\\"\\n      messageExpiredAt: \\\"2023-10-01 11:48:55.477759Z\\\"\\n      phoneNumber: \\\"+380997171111\\\"\\n      statusChangedAt: \\\"2023-10-01 11:48:55.477759Z\\\"\\n      statusId: \\\"AaQPUdjj6ndobCj5LU\\\"\\n    }\\n  ) {\\n    id\\n    idTax\\n    idExternal\\n    idTelegram\\n    messageBody\\n    messageExpiredAt\\n    phoneNumber\\n    status {\\n      id\\n      active\\n      description\\n      statusCode\\n      statusName\\n      smsLogs {id priority}\\n      insertedAt\\n    }\\n    statusId\\n    statusChangedAt\\n    smsLogs {id priority}\\n    insertedAt\\n    updatedAt\\n  }\\n}\"}]}",
+      "graphiql:editorFlex": 1,
+      "graphiql:variableEditorHeight": 200
+    }
+  ]
+}

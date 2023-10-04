@@ -37,7 +37,7 @@ defmodule Core.Monitoring do
   def get_status(id) do
     try do
       Repo.get!(Status, id)
-      |> Repo.preload([:messages, :sms_logs])
+      |> Repo.preload([messages: [:sms_logs]])
     rescue
       Ecto.NoResultsError ->
         {:error, %Ecto.Changeset{}}

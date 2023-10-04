@@ -5,13 +5,18 @@ defmodule Gateway.GraphQL.Schemas.Logs.SmsLogTypes do
 
   use Absinthe.Schema.Notation
 
-  alias Gateway.GraphQL.Resolvers.Logs.SmsLogResolver
+  import Absinthe.Resolution.Helpers, only: [dataloader: 1]
+
+  alias Gateway.GraphQL.{
+    Data,
+    Resolvers.Logs.SmsLogResolver
+  }
 
   @desc "The SmsLogs on the site"
   object :sms_logs do
     field :id, :string, description: "smsLogs id"
     field :priority, :integer, description: "priority is an integer data type"
-    field :statuses, list_of(:status)
+    field :status, list_of(:status), resolve: dataloader(Data), description: "status is list records by Statuses"
   end
 
   object :sms_log_queries do

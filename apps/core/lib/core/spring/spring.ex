@@ -28,7 +28,7 @@ defmodule Core.Spring do
   def get_message(id) do
     try do
       Repo.get!(Message, id)
-      |> Repo.preload(:sms_logs)
+      |> Repo.preload([status: [:sms_logs]])
     rescue
       Ecto.NoResultsError ->
         {:error, %Ecto.Changeset{}}

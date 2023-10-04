@@ -4,6 +4,7 @@ defmodule Gateway.GraphQL.Schemas.Operators.OperatorTypes do
   """
 
   use Absinthe.Schema.Notation
+
   import Absinthe.Resolution.Helpers, only: [dataloader: 1]
 
   alias Gateway.GraphQL.{

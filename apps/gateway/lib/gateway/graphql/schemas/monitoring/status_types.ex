@@ -5,18 +5,22 @@ defmodule Gateway.GraphQL.Schemas.Monitoring.StatusTypes do
 
   use Absinthe.Schema.Notation
 
-  alias Gateway.GraphQL.Resolvers.Monitoring.StatusResolver
+  import Absinthe.Resolution.Helpers, only: [dataloader: 1]
+
+  alias Gateway.GraphQL.{
+    Data,
+    Resolvers.Monitoring.StatusResolver
+  }
 
   @desc "The Statuses on the site"
   object :status do
     field :id, :string, description: "status id"
     field :active, :boolean, description: "active boolean data type"
     field :description, :string, description: "description string data type"
-    field :sms_logs, list_of(:sms_logs)
+    field :sms_logs, list_of(:sms_logs), resolve: dataloader(Data), description: "smsLogs is list records by SmsLogs"
     field :status_code, :integer, description: "status code is integer data type"
     field :status_name, :string, description: "status nameis string data type"
     field :inserted_at, :date, description: "timestamps by DB"
-    field :updated_at, :date, description: "timestamps by DB"
   end
 
   object :status_queries do
