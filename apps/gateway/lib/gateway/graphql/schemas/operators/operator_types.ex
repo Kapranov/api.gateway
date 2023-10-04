@@ -57,8 +57,8 @@ defmodule Gateway.GraphQL.Schemas.Operators.OperatorTypes do
     field :name_operator, :string
     field :operator_type_id, :string
     field :phone_code, :string
-    field :price_ext, :integer
-    field :price_int, :integer
+    field :price_ext, :decimal
+    field :price_int, :decimal
     field :priority, :integer
   end
 
@@ -99,8 +99,8 @@ defmodule Gateway.GraphQL.Schemas.Operators.OperatorTypes do
       arg :name_operator, non_null(:string)
       arg :operator_type_id, non_null(:string)
       arg :phone_code, :string
-      arg :price_ext, non_null(:integer)
-      arg :price_int, non_null(:integer)
+      arg :price_ext, non_null(:decimal)
+      arg :price_int, non_null(:decimal)
       arg :priority, non_null(:integer)
       resolve &OperatorResolver.create/3
     end
