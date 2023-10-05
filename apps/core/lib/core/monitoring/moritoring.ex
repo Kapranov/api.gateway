@@ -30,7 +30,7 @@ defmodule Core.Monitoring do
       %Status{}
 
       iex> get_status(456)
-      ** (Ecto.NoResultsError)
+      {:error, %Ecto.Changeset{}}
 
   """
   @spec get_status(String.t()) :: Status.t() | error_tuple()

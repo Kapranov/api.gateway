@@ -25,13 +25,9 @@ defmodule Gateway.GraphQL.Schemas.UuidTypes do
     UUID.cast(value)
   end
 
-  defp decode(%Absinthe.Blueprint.Input.Null{}) do
-    {:ok, nil}
-  end
+  defp decode(%Absinthe.Blueprint.Input.Null{}), do: {:ok, nil}
 
-  defp decode(_) do
-    :error
-  end
+  defp decode(_), do: :error
 
   defp encode(value), do: value
 end

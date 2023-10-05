@@ -21,7 +21,7 @@ defmodule Core.Logs do
       %SmsLog{}
 
       iex> get_sms_log(456)
-      ** (Ecto.NoResultsError)
+      {:error, %Ecto.Changeset{}}
 
   """
   @spec get_sms_log(String.t()) :: SmsLog.t() | error_tuple()

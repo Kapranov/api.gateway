@@ -107,11 +107,60 @@ defmodule Core.Seeder.Operators do
       Enum.at(operator_type_ids, 7)
     }
 
-    config_nested1 = %{content_type: Lorem.word, name: Lorem.word, size: random_integers(), url: Lorem.word, parameters: %{ key: Lorem.word, value: Lorem.word}}
-    config_nested2 = %{content_type: Lorem.word, name: Lorem.word, size: random_integers(), url: Lorem.word, parameters: %{ key: Lorem.word, value: Lorem.word}}
-    config_nested3 = %{content_type: Lorem.word, name: Lorem.word, size: random_integers(), url: Lorem.word, parameters: %{ key: Lorem.word, value: Lorem.word}}
-    config_nested4 = %{content_type: Lorem.word, name: Lorem.word, size: random_integers(), url: Lorem.word, parameters: %{ key: Lorem.word, value: Lorem.word}}
-    config_nested5 = %{content_type: Lorem.word, name: Lorem.word, size: random_integers(), url: Lorem.word, parameters: %{ key: Lorem.word, value: Lorem.word}}
+    config_nested1 = %{
+      content_type: Lorem.word,
+      name: Lorem.word,
+      size: random_integers(),
+      url: Lorem.word,
+      parameters: %{
+        key: Lorem.word,
+        value: Lorem.word
+      }
+    }
+
+    config_nested2 = %{
+      content_type: Lorem.word,
+      name: Lorem.word,
+      size: random_integers(),
+      url: Lorem.word,
+      parameters: %{
+        key: Lorem.word,
+        value: Lorem.word
+      }
+    }
+
+    config_nested3 = %{
+      content_type: Lorem.word,
+      name: Lorem.word,
+      size: random_integers(),
+      url: Lorem.word,
+      parameters: %{
+        key: Lorem.word,
+        value: Lorem.word
+      }
+    }
+
+    config_nested4 = %{
+      content_type: Lorem.word,
+      name: Lorem.word,
+      size: random_integers(),
+      url: Lorem.word,
+      parameters: %{
+        key: Lorem.word,
+        value: Lorem.word
+      }
+    }
+
+    config_nested5 = %{
+      content_type: Lorem.word,
+      name: Lorem.word,
+      size: random_integers(),
+      url: Lorem.word,
+      parameters: %{
+        key: Lorem.word,
+        value: Lorem.word
+      }
+    }
 
     [
       Operators.create_operator(%{

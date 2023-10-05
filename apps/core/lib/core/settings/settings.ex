@@ -27,7 +27,7 @@ defmodule Core.Settings do
       %Setting{}
 
       iex> get_setting(456)
-      ** (Ecto.NoResultsError)
+      {:error, %Ecto.Changeset{}}
 
   """
   @spec get_setting(String.t()) :: Setting.t() | error_tuple()

@@ -11,10 +11,9 @@ defmodule Gateway.GraphQL.Resolvers.Home.IndexPageResolver do
   @secret Application.compile_env(:gateway, Endpoint)[:secret_key_base]
 
   @type t :: map
-  @type reason :: any
   @type success_tuple :: {:ok, t}
   @type success_list :: {:ok, [t]}
-  @type error_tuple :: {:error, reason}
+  @type error_tuple :: {:ok, nil}
   @type result :: success_tuple | error_tuple
 
   @spec public(any, %{atom => any}, Absinthe.Resolution.t()) :: error_tuple()
@@ -26,7 +25,7 @@ defmodule Gateway.GraphQL.Resolvers.Home.IndexPageResolver do
   @spec index(any, %{atom => any} , %{context: %{token: String.t()}}) :: result()
   def index(_parent, _args, %{context: %{token: token}}) do
     if is_nil(token) do
-      {:error, "Permission denied for token to perform action List"}
+      {:ok, nil}
     else
       struct = %{status: "working"}
       {:ok, struct}

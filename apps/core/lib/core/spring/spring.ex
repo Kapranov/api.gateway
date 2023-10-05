@@ -21,7 +21,7 @@ defmodule Core.Spring do
       %Message{}
 
       iex> get_message(456)
-      ** (Ecto.NoResultsError)
+      {:error, %Ecto.Changeset{}}
 
   """
   @spec get_message(Message.t()) :: Message.t() | error_tuple()

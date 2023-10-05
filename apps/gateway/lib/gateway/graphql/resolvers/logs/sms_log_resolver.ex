@@ -6,10 +6,9 @@ defmodule Gateway.GraphQL.Resolvers.Logs.SmsLogResolver do
   alias Core.Logs
 
   @type t :: map
-  @type reason :: any
   @type success_tuple :: {:ok, t}
   @type success_list :: {:ok, [t]}
-  @type error_tuple :: {:error, reason}
+  @type error_tuple :: {:ok, nil}
   @type result :: success_tuple | error_tuple
 
   @spec show(any, %{id: bitstring}, %{context: %{token: String.t()}}) :: result()

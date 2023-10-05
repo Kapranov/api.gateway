@@ -40,7 +40,7 @@ defmodule Core.Operators do
       %OperatorType{}
 
       iex> get_operator_type(456)
-      ** (Ecto.NoResultsError)
+      {:error, %Ecto.Changeset{}}
 
   """
   @spec get_operator_type(String.t()) :: OperatorType.t() | error_tuple()
@@ -65,7 +65,7 @@ defmodule Core.Operators do
       %Operator{}
 
       iex> get_operator(456)
-      ** (Ecto.NoResultsError)
+      {:error, %Ecto.Changeset{}}
 
   """
   @spec get_operator(String.t()) :: Operator.t() | error_tuple()
