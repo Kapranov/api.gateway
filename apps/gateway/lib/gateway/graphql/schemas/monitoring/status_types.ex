@@ -14,13 +14,13 @@ defmodule Gateway.GraphQL.Schemas.Monitoring.StatusTypes do
 
   @desc "The Statuses on the site"
   object :status do
-    field :id, :string, description: "status id"
-    field :active, :boolean, description: "active boolean data type"
+    field :id, non_null(:string), description: "status id"
+    field :active, non_null(:boolean), description: "active boolean data type"
     field :description, :string, description: "description string data type"
     field :sms_logs, list_of(:sms_logs), resolve: dataloader(Data), description: "smsLogs is list records by SmsLogs"
-    field :status_code, :integer, description: "status code is integer data type"
-    field :status_name, :string, description: "status nameis string data type"
-    field :inserted_at, :date, description: "timestamps by DB"
+    field :status_code, non_null(:integer), description: "status code is integer data type"
+    field :status_name, non_null(:string), description: "status nameis string data type"
+    field :inserted_at, non_null(:datetime), description: "timestamps by DB"
   end
 
   object :status_queries do

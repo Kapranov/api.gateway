@@ -15,52 +15,43 @@ defmodule Gateway.GraphQL.Resolvers.Logs.SmsLogResolver do
   @spec show(any, %{id: bitstring}, %{context: %{token: String.t()}}) :: result()
   def show(_parent, %{id: id}, %{context: %{token: token}}) do
     if is_nil(id) || is_nil(token) do
-      {:error, "Can't be blank or Permission denied for token to perform action Show"}
+      {:ok, nil}
     else
-      try do
-        struct = Logs.get_sms_log(id)
-        {:ok, struct}
-      rescue
-        Ecto.NoResultsError ->
-          {:error, "The SmsLog #{id} not found!"}
+      case Logs.get_sms_log(id) do
+        {:error, %Ecto.Changeset{}} ->
+          {:ok, nil}
+        struct ->
+          {:ok, struct}
       end
     end
   end
 
   @spec show(any, %{atom => any}, Absinthe.Resolution.t()) :: error_tuple()
-  def show(_parent, _args, _info) do
-    {:error, "Unauthenticated"}
-  end
+  def show(_parent, _args, _info), do: {:ok, nil}
 
   @spec create(any, %{atom => any}, %{context: %{token: String.t()}}) :: result()
   def create(_parent, args, %{context: %{token: token}}) do
     if is_nil(token) do
-      {:error, "Permission denied for token to perform action Create"}
+      {:ok, nil}
     else
-      args
+      params = %{
+        priority: args.priority,
+        statuses: args.status_id,
+        operators: args.operator_id,
+        messages: args.message_id
+      }
+
+      params
       |> Logs.create_sms_log()
       |> case do
         {:ok, struct} ->
           {:ok, struct}
-        {:error, changeset} ->
-          {:error, extract_error_msg(changeset)}
+        {:error, %Ecto.Changeset{}} ->
+          {:ok, nil}
       end
     end
   end
 
   @spec create(any, %{atom => any}, Absinthe.Resolution.t()) :: error_tuple()
-  def create(_parent, _args, _info) do
-    {:error, "Unauthenticated"}
-  end
-
-  @spec extract_error_msg(Ecto.Changeset.t()) :: Ecto.Changeset.t()
-  defp extract_error_msg(changeset) do
-    changeset.errors
-    |> Enum.map(fn {field, {error, _details}} ->
-      [
-        field: field,
-        message: String.capitalize(error)
-      ]
-    end)
-  end
+  def create(_parent, _args, _info), do: {:ok, nil}
 end

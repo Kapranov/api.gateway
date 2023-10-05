@@ -9,13 +9,13 @@ defmodule Gateway.GraphQL.Schemas.Settings.SettingTypes do
 
   @desc "The Settings on the site"
   object :setting do
-    field :id, :string, description: "settings id"
-    field :param, :string, description: "param string data type"
-    field :value, :string, description: "value string data type"
+    field :id, non_null(:string), description: "settings id"
+    field :param, non_null(:string), description: "param string data type"
+    field :value, non_null(:string), description: "value string data type"
     field :error, :integer, description: "number report errors"
     field :error_description, :string, description: "report errors when something wrong"
-    field :inserted_at, :date, description: "timestamps by DB"
-    field :updated_at, :date, description: "timestamps by DB"
+    field :inserted_at, non_null(:datetime), description: "timestamps by DB"
+    field :updated_at, non_null(:datetime), description: "timestamps by DB"
   end
 
   @desc "The Setting updated via params"

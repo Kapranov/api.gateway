@@ -13,8 +13,8 @@ defmodule Gateway.GraphQL.Schemas.Operators.OperatorTypeTypes do
     field :active, non_null(:boolean), description: "active is boolean data type"
     field :name_type, non_null(:string), description: "name type is string data type"
     field :priority, :integer, description: "priority is integer data type"
-    field :inserted_at, non_null(:date), description: "timestamps by DB"
-    field :updated_at, non_null(:date), description: "timestamps by DB"
+    field :inserted_at, non_null(:datetime), description: "timestamps by DB"
+    field :updated_at, non_null(:datetime), description: "timestamps by DB"
   end
 
   @desc "The operatorType updated via params"
