@@ -15,5 +15,5 @@ EOF
 curl -X POST \
      -H 'Content-Type: multipart/form-data' \
      -H "Authorization: Bearer ${1:-$TOKEN}" \
-     -F query="mutation { createStatus($(generate_data)) { id active description smsLogs { id priority } statusCode statusName insertedAt updatedAt } }" \
+     -F query="mutation { createStatus($(generate_data)) { id active description smsLogs { id priority } statusCode statusName insertedAt } }" \
      ${URL}

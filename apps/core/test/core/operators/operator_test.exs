@@ -502,17 +502,6 @@ defmodule Core.Operators.OperatorTest do
       assert {:error, %Ecto.Changeset{}} = Operators.update_operator(operator, %{})
     end
 
-    test "change_operator/1" do
-      parameters = build(:parameters)
-      config = build(:config, parameters: parameters)
-      operator = insert(:operator, config: config)
-      assert %Ecto.Changeset{} = Operators.change_operator(operator)
-    end
-
-    test "change_operator_type/1 with empty struct" do
-      assert %Ecto.Changeset{} = Operators.change_operator(%Operator{})
-    end
-
     for schema <- @relations, association <- schema.__schema__(:associations) do
       test "#{schema} has a valid association for #{association}" do
         assert_valid_relationship(unquote(schema), unquote(association))

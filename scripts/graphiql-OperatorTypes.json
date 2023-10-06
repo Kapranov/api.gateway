@@ -285,6 +285,10 @@
   "recentHeaders": [
     {
       "name": "Authorization",
+      "value": "Bearer SFMyNTY.g2gDbQAAAEBvdUk2YTJBV3Y2QnFMWVd6NTdXM3luVnpxVnVjMG5pTHBpbXJFU0dVNlM3bFVjcGMySHFaWUk2bHhaZWtiZ3Y4bgYAJJarBIsBYgABUYA.c-S_7IHghjfv33XnzrATtJctqiCudltHNn3IR-NMDIw"
+    },
+    {
+      "name": "Authorization",
       "value": "Bearer SFMyNTY.g2gDbQAAAEBvdUk2YTJBV3Y2QnFMWVd6NTdXM3luVnpxVnVjMG5pTHBpbXJFU0dVNlM3bFVjcGMySHFaWUk2bHhaZWtiZ3Y4bgYAsd9j9IoBYgABUYA.-S8Iv_KYO73P1UbBEQa3jRbxvv5YJjq2lRqyPKNyqQ4"
     },
     {
@@ -408,7 +412,7 @@
       "headers": [
         {
           "name": "Authorization",
-          "value": "Bearer SFMyNTY.g2gDbQAAAEBvdUk2YTJBV3Y2QnFMWVd6NTdXM3luVnpxVnVjMG5pTHBpbXJFU0dVNlM3bFVjcGMySHFaWUk2bHhaZWtiZ3Y4bgYAsd9j9IoBYgABUYA.-S8Iv_KYO73P1UbBEQa3jRbxvv5YJjq2lRqyPKNyqQ4"
+          "value": "Bearer SFMyNTY.g2gDbQAAAEBvdUk2YTJBV3Y2QnFMWVd6NTdXM3luVnpxVnVjMG5pTHBpbXJFU0dVNlM3bFVjcGMySHFaWUk2bHhaZWtiZ3Y4bgYAJJarBIsBYgABUYA.c-S_7IHghjfv33XnzrATtJctqiCudltHNn3IR-NMDIw"
         }
       ],
       "collapsed": true,
@@ -435,20 +439,24 @@
       "headers": [
         {
           "name": "Authorization",
-          "value": "Bearer SFMyNTY.g2gDbQAAAEBvdUk2YTJBV3Y2QnFMWVd6NTdXM3luVnpxVnVjMG5pTHBpbXJFU0dVNlM3bFVjcGMySHFaWUk2bHhaZWtiZ3Y4bgYAsd9j9IoBYgABUYA.-S8Iv_KYO73P1UbBEQa3jRbxvv5YJjq2lRqyPKNyqQ4"
+          "value": "Bearer SFMyNTY.g2gDbQAAAEBvdUk2YTJBV3Y2QnFMWVd6NTdXM3luVnpxVnVjMG5pTHBpbXJFU0dVNlM3bFVjcGMySHFaWUk2bHhaZWtiZ3Y4bgYAJJarBIsBYgABUYA.c-S_7IHghjfv33XnzrATtJctqiCudltHNn3IR-NMDIw"
         }
       ],
       "collapsed": true,
       "maxHistory": 20,
       "history": [
         {
+          "query": "query {\n  showOperatorType(id: \"AaS3ShmbCL9MfXxoTQ\") {\n    id\n    active\n    nameType\n    priority\n    insertedAt\n    updatedAt\n  }\n}",
+          "variables": null
+        },
+        {
           "query": "query {\n  showOperatorType(id: \"AaGCnHYU7MYvEq0sxU\") {\n    id\n    active\n    nameType\n    priority\n    insertedAt\n    updatedAt\n  }\n}",
           "variables": null
         }
       ],
-      "graphiql:query": "query {\n  showOperatorType(id: \"AaGCnHYU7MYvEq0sxU\") {\n    id\n    active\n    nameType\n    priority\n    insertedAt\n    updatedAt\n  }\n}",
+      "graphiql:query": "query {\n  showOperatorType(id: \"AaS3ShmbCL9MfXxoTQ\") {\n    id\n    active\n    nameType\n    priority\n    insertedAt\n    updatedAt\n  }\n}",
       "graphiql:variables": "",
-      "graphiql:queries": "{\"queries\":[{\"query\":\"query {\\n  showOperatorType(id: \\\"AaGCnHYU7MYvEq0sxU\\\") {\\n    id\\n    active\\n    nameType\\n    priority\\n    insertedAt\\n    updatedAt\\n  }\\n}\",\"variables\":\"\"}]}",
+      "graphiql:queries": "{\"queries\":[{\"query\":\"query {\\n  showOperatorType(id: \\\"AaGCnHYU7MYvEq0sxU\\\") {\\n    id\\n    active\\n    nameType\\n    priority\\n    insertedAt\\n    updatedAt\\n  }\\n}\",\"variables\":\"\"},{\"query\":\"query {\\n  showOperatorType(id: \\\"AaS3ShmbCL9MfXxoTQ\\\") {\\n    id\\n    active\\n    nameType\\n    priority\\n    insertedAt\\n    updatedAt\\n  }\\n}\",\"variables\":\"\"}]}",
       "graphiql:editorFlex": 1,
       "graphiql:variableEditorHeight": 200,
       "graphiql:docExplorerWidth": 350
@@ -462,7 +470,7 @@
       "headers": [
         {
           "name": "Authorization",
-          "value": "Bearer SFMyNTY.g2gDbQAAAEBvdUk2YTJBV3Y2QnFMWVd6NTdXM3luVnpxVnVjMG5pTHBpbXJFU0dVNlM3bFVjcGMySHFaWUk2bHhaZWtiZ3Y4bgYAsd9j9IoBYgABUYA.-S8Iv_KYO73P1UbBEQa3jRbxvv5YJjq2lRqyPKNyqQ4"
+          "value": "Bearer SFMyNTY.g2gDbQAAAEBvdUk2YTJBV3Y2QnFMWVd6NTdXM3luVnpxVnVjMG5pTHBpbXJFU0dVNlM3bFVjcGMySHFaWUk2bHhaZWtiZ3Y4bgYAJJarBIsBYgABUYA.c-S_7IHghjfv33XnzrATtJctqiCudltHNn3IR-NMDIw"
         }
       ],
       "collapsed": true,
@@ -471,11 +479,27 @@
         {
           "query": "mutation {\n  createOperatorType(\n    active: true\n    nameType: \"Kapranov\"\n    priority: 22\n  ) {\n    id\n    active\n    nameType\n    priority\n    insertedAt\n    updatedAt\n  }\n}",
           "variables": null
+        },
+        {
+          "query": "mutation {\n  createOperatorType(\n    active: true\n    nameType: \"Kapranov\"\n    priority: 0\n  ) {\n    id\n    active\n    nameType\n    priority\n    insertedAt\n    updatedAt\n  }\n}",
+          "variables": null
+        },
+        {
+          "query": "mutation {\n  createOperatorType(\n    active: true\n    nameType: \"K\"\n    priority: 0\n  ) {\n    id\n    active\n    nameType\n    priority\n    insertedAt\n    updatedAt\n  }\n}",
+          "variables": null
+        },
+        {
+          "query": "mutation {\n  createOperatorType(\n    active: true\n    nameType: \"K\"\n    priority: 22\n  ) {\n    id\n    active\n    nameType\n    priority\n    insertedAt\n    updatedAt\n  }\n}",
+          "variables": null
+        },
+        {
+          "query": "mutation {\n  createOperatorType(\n    active: true\n    nameType: \"Kapranov\"\n    priority: 22\n  ) {\n    id\n    active\n    nameType\n    priority\n    insertedAt\n    updatedAt\n  }\n}",
+          "variables": null
         }
       ],
       "graphiql:query": "mutation {\n  createOperatorType(\n    active: true\n    nameType: \"Kapranov\"\n    priority: 22\n  ) {\n    id\n    active\n    nameType\n    priority\n    insertedAt\n    updatedAt\n  }\n}",
       "graphiql:variables": "",
-      "graphiql:queries": "{\"queries\":[{\"query\":\"mutation {\\n  createOperatorType(\\n    active: true\\n    nameType: \\\"Kapranov\\\"\\n    priority: 22\\n  ) {\\n    id\\n    active\\n    nameType\\n    priority\\n    insertedAt\\n    updatedAt\\n  }\\n}\",\"variables\":\"\"}]}",
+      "graphiql:queries": "{\"queries\":[{\"query\":\"mutation {\\n  createOperatorType(\\n    active: true\\n    nameType: \\\"Kapranov\\\"\\n    priority: 22\\n  ) {\\n    id\\n    active\\n    nameType\\n    priority\\n    insertedAt\\n    updatedAt\\n  }\\n}\",\"variables\":\"\"},{\"query\":\"mutation {\\n  createOperatorType(\\n    active: true\\n    nameType: \\\"K\\\"\\n    priority: 22\\n  ) {\\n    id\\n    active\\n    nameType\\n    priority\\n    insertedAt\\n    updatedAt\\n  }\\n}\",\"variables\":\"\"},{\"query\":\"mutation {\\n  createOperatorType(\\n    active: true\\n    nameType: \\\"K\\\"\\n    priority: 0\\n  ) {\\n    id\\n    active\\n    nameType\\n    priority\\n    insertedAt\\n    updatedAt\\n  }\\n}\",\"variables\":\"\"},{\"query\":\"mutation {\\n  createOperatorType(\\n    active: true\\n    nameType: \\\"Kapranov\\\"\\n    priority: 0\\n  ) {\\n    id\\n    active\\n    nameType\\n    priority\\n    insertedAt\\n    updatedAt\\n  }\\n}\",\"variables\":\"\"},{\"query\":\"mutation {\\n  createOperatorType(\\n    active: true\\n    nameType: \\\"Kapranov\\\"\\n    priority: 22\\n  ) {\\n    id\\n    active\\n    nameType\\n    priority\\n    insertedAt\\n    updatedAt\\n  }\\n}\",\"variables\":\"\"}]}",
       "graphiql:editorFlex": 1,
       "graphiql:variableEditorHeight": 200,
       "graphiql:docExplorerWidth": 350
@@ -489,20 +513,32 @@
       "headers": [
         {
           "name": "Authorization",
-          "value": "Bearer SFMyNTY.g2gDbQAAAEBvdUk2YTJBV3Y2QnFMWVd6NTdXM3luVnpxVnVjMG5pTHBpbXJFU0dVNlM3bFVjcGMySHFaWUk2bHhaZWtiZ3Y4bgYAsd9j9IoBYgABUYA.-S8Iv_KYO73P1UbBEQa3jRbxvv5YJjq2lRqyPKNyqQ4"
+          "value": "Bearer SFMyNTY.g2gDbQAAAEBvdUk2YTJBV3Y2QnFMWVd6NTdXM3luVnpxVnVjMG5pTHBpbXJFU0dVNlM3bFVjcGMySHFaWUk2bHhaZWtiZ3Y4bgYAJJarBIsBYgABUYA.c-S_7IHghjfv33XnzrATtJctqiCudltHNn3IR-NMDIw"
         }
       ],
       "collapsed": true,
       "maxHistory": 20,
       "history": [
         {
+          "query": "mutation {\n  updateOperatorType(\n    id: \"AaUX1R6Yj7PAdYwH1E\"\n    operatorType: {\n      active: false\n      nameType: \"Kaplanov\"\n      priority: 33\n    }\n  ) {\n    id\n    active\n    nameType\n    priority\n    insertedAt\n  }\n}",
+          "variables": null
+        },
+        {
+          "query": "mutation {\n  updateOperatorType(\n    id: \"AaUX1R6Yj7PAdYwH1E\"\n    operatorType: {\n      active: false\n      nameType: \"Kaplanov\"\n      priority: 0\n    }\n  ) {\n    id\n    active\n    nameType\n    priority\n    insertedAt\n  }\n}",
+          "variables": null
+        },
+        {
+          "query": "mutation {\n  updateOperatorType(\n    id: \"AaUX1R6Yj7PAdYwH1E\"\n    operatorType: {\n      active: false\n      nameType: \"K\"\n      priority: 33\n    }\n  ) {\n    id\n    active\n    nameType\n    priority\n    insertedAt\n  }\n}",
+          "variables": null
+        },
+        {
           "query": "mutation {\n  updateOperatorType(\n    id: \"AaNytKKRSauB81kjvU\"\n    operatorType: {\n      active: false\n      nameType: \"Kaplanov\"\n      priority: 33\n    }\n  ) {\n    id\n    active\n    nameType\n    priority\n    insertedAt\n  }\n}",
           "variables": null
         }
       ],
-      "graphiql:query": "mutation {\n  updateOperatorType(\n    id: \"AaNytKKRSauB81kjvU\"\n    operatorType: {\n      active: false\n      nameType: \"Kaplanov\"\n      priority: 33\n    }\n  ) {\n    id\n    active\n    nameType\n    priority\n    insertedAt\n  }\n}",
+      "graphiql:query": "mutation {\n  updateOperatorType(\n    id: \"AaUX1R6Yj7PAdYwH1E\"\n    operatorType: {\n      active: false\n      nameType: \"Kaplanov\"\n      priority: 33\n    }\n  ) {\n    id\n    active\n    nameType\n    priority\n    insertedAt\n  }\n}",
       "graphiql:variables": "",
-      "graphiql:queries": "{\"queries\":[{\"query\":\"mutation {\\n  updateOperatorType(\\n    id: \\\"AaNytKKRSauB81kjvU\\\"\\n    operatorType: {\\n      active: false\\n      nameType: \\\"Kaplanov\\\"\\n      priority: 33\\n    }\\n  ) {\\n    id\\n    active\\n    nameType\\n    priority\\n    insertedAt\\n  }\\n}\",\"variables\":\"\"}]}",
+      "graphiql:queries": "{\"queries\":[{\"query\":\"mutation {\\n  updateOperatorType(\\n    id: \\\"AaNytKKRSauB81kjvU\\\"\\n    operatorType: {\\n      active: false\\n      nameType: \\\"Kaplanov\\\"\\n      priority: 33\\n    }\\n  ) {\\n    id\\n    active\\n    nameType\\n    priority\\n    insertedAt\\n  }\\n}\",\"variables\":\"\"},{\"query\":\"mutation {\\n  updateOperatorType(\\n    id: \\\"AaUX1R6Yj7PAdYwH1E\\\"\\n    operatorType: {\\n      active: false\\n      nameType: \\\"K\\\"\\n      priority: 33\\n    }\\n  ) {\\n    id\\n    active\\n    nameType\\n    priority\\n    insertedAt\\n  }\\n}\",\"variables\":\"\"},{\"query\":\"mutation {\\n  updateOperatorType(\\n    id: \\\"AaUX1R6Yj7PAdYwH1E\\\"\\n    operatorType: {\\n      active: false\\n      nameType: \\\"Kaplanov\\\"\\n      priority: 0\\n    }\\n  ) {\\n    id\\n    active\\n    nameType\\n    priority\\n    insertedAt\\n  }\\n}\",\"variables\":\"\"},{\"query\":\"mutation {\\n  updateOperatorType(\\n    id: \\\"AaUX1R6Yj7PAdYwH1E\\\"\\n    operatorType: {\\n      active: false\\n      nameType: \\\"Kaplanov\\\"\\n      priority: 33\\n    }\\n  ) {\\n    id\\n    active\\n    nameType\\n    priority\\n    insertedAt\\n  }\\n}\",\"variables\":\"\"}]}",
       "graphiql:editorFlex": 1,
       "graphiql:variableEditorHeight": 200,
       "graphiql:docExplorerWidth": 350

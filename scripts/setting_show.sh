@@ -5,12 +5,12 @@ URL="http://taxgig.me:4000"
 
 generate_data() {
 cat << EOF
-id: "AaGCoQ1e6vTtnYCA88"
+id: "AaUfjqjn1FzrjQ3bFY"
 EOF
 }
 
 curl -X POST \
      -H 'Content-Type: multipart/form-data' \
      -H "Authorization: Bearer ${1:-$TOKEN}" \
-     -F query="query { showStatus($(generate_data)) { id active description smsLogs { id priority } statusCode statusName insertedAt updatedAt } }" \
+     -F query="query { showSetting($(generate_data)) { id param value insertedAt updatedAt } }" \
      ${URL}

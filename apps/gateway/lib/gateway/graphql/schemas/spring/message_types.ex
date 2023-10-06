@@ -45,7 +45,7 @@ defmodule Gateway.GraphQL.Schemas.Spring.MessageTypes do
 
   object :message_queries do
     @desc "Get one record for model's Messages"
-    field :show_message, :message do
+    field :show_message, list_of(:message) do
       arg(:id, non_null(:string))
       resolve(&MessageResolver.show/3)
     end
@@ -53,7 +53,7 @@ defmodule Gateway.GraphQL.Schemas.Spring.MessageTypes do
 
   object :message_mutations do
     @desc "Created the model's Messages"
-    field :create_message, :message, description: "Created a new record for model's Messages" do
+    field :create_message, list_of(:message), description: "Created a new record for model's Messages" do
       arg :id_external, :string
       arg :id_tax, :integer
       arg :id_telegram, :string
@@ -66,7 +66,7 @@ defmodule Gateway.GraphQL.Schemas.Spring.MessageTypes do
     end
 
     @desc "Updated a specific recored for model's Messages"
-    field :update_message, :message, description: "Updated a one record for model's Messages" do
+    field :update_message, list_of(:message), description: "Updated a one record for model's Messages" do
       arg :id, non_null(:string)
       arg :message, :update_message_params
       resolve &MessageResolver.update/3

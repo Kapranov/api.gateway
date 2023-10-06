@@ -149,6 +149,34 @@
   "recentHeaders": [
     {
       "name": "Authorization",
+      "value": "Bearer SFMyNTY.g2gDbQAAAEBvdUk2YTJBV3Y2QnFMWVd6NTdXM3luVnpxVnVjMG5pTHBpbXJFU0dVNlM3bFVjcGMySHFaWUk2bHhaZWtiZ3Y4bgYAlP4YBIsBYgABUYA.yYo0zNrSseTwxVw1d1yLCrm1HgTi1bQ8Shb6lJ1mWy8"
+    },
+    {
+      "name": "Authorization",
+      "value": "Bearer SFMyNTY.g2gDbQAAAEBvdUk2YTJBV3Y2QnFMWVd6NTdXM3luVnpxVnVjMG5pTHBpbXJFU0dVNlM3bFVjcGMySHFaWUk2bHhaZWtiZ3Y4bgYAMwYFBIsBYgABUYA.FxXMnCxzNlZGlDeK23Mfhe3dvqjlAe1i9X_OHhl8uf4"
+    },
+    {
+      "name": "Authorization",
+      "value": "Bearer AaUFH2JQoaWedKRJ0i"
+    },
+    {
+      "name": "Authorization",
+      "value": "Bearer SFMyNTY.g2gDbQAAAEBvdUk2YTJBV3Y2QnFMWVd6NTdXM3luVnpxVnVjMG5pTHBpbXJFU0dVNlM3bFVjcGMySHFaWUk2bHhaZWtiZ3Y4bgYAvuP_A4sBYgABUYA.LZERtEbDbJ_arm1KN5Zr6TGzPF4V01QOZO3zfhnrBoI"
+    },
+    {
+      "name": "Authorization",
+      "value": "Bearer SFMyNTY.g2gDbQAAAEBvdUk2YTJBV3Y2QnFMWVd6NTdXM3luVnpxVnVjMG5pTHBpbXJFU0dVNlM3bFVjcGMySHFaWUk2bHhaZWtiZ3Y4bgYALTX4A4sBYgABUYA.l5jRWA-KpfHN_3lf2H3cnR_AwTVg9gr_smiQ28XJHTA"
+    },
+    {
+      "name": "Authorization",
+      "value": "Bearer SFMyNTY.g2gDbQAAAEBvdUk2YTJBV3Y2QnFMWVd6NTdXM3luVnpxVnVjMG5pTHBpbXJFU0dVNlM3bFVjcGMySHFaWUk2bHhaZWtiZ3Y4bgYA7yvzA4sBYgABUYA.-8fnfrbSVOUNK8xNnlLveWRnmtZnqNKXhCTu-6SQrS0"
+    },
+    {
+      "name": "Authorization",
+      "value": "Bearer SFMyNTY.g2gDbQAAAEBvdUk2YTJBV3Y2QnFMWVd6NTdXM3luVnpxVnVjMG5pTHBpbXJFU0dVNlM3bFVjcGMySHFaWUk2bHhaZWtiZ3Y4bgYAakrwA4sBYgABUYA.x9FZ8Ztu1jC9e8LU6yTzHrwfBbKF4qXv-7sr301bwYQ"
+    },
+    {
+      "name": "Authorization",
       "value": "Bearer SFMyNTY.g2gDbQAAAEBvdUk2YTJBV3Y2QnFMWVd6NTdXM3luVnpxVnVjMG5pTHBpbXJFU0dVNlM3bFVjcGMySHFaWUk2bHhaZWtiZ3Y4bgYATsuW74oBYgABUYA.7pOHYsiXmkvYBpaMp3efD85XQS1dhrLv5hlNE6JOZ_c"
     },
     {
@@ -196,7 +224,7 @@
   "maxUrlHistory": 20,
   "maxHistory": 20,
   "savedQueries": [],
-  "activeId": "tab8",
+  "activeId": "tab11",
   "tabs": [
     {
       "id": "tab1",
@@ -225,7 +253,7 @@
       "websocketUrl": "",
       "proxy": false,
       "headers": [],
-      "collapsed": false,
+      "collapsed": true,
       "maxHistory": 20,
       "history": [
         {
@@ -268,12 +296,16 @@
       "headers": [
         {
           "name": "Authorization",
-          "value": "Bearer SFMyNTY.g2gDbQAAAEBvdUk2YTJBV3Y2QnFMWVd6NTdXM3luVnpxVnVjMG5pTHBpbXJFU0dVNlM3bFVjcGMySHFaWUk2bHhaZWtiZ3Y4bgYATsuW74oBYgABUYA.7pOHYsiXmkvYBpaMp3efD85XQS1dhrLv5hlNE6JOZ_c"
+          "value": "Bearer SFMyNTY.g2gDbQAAAEBvdUk2YTJBV3Y2QnFMWVd6NTdXM3luVnpxVnVjMG5pTHBpbXJFU0dVNlM3bFVjcGMySHFaWUk2bHhaZWtiZ3Y4bgYAlP4YBIsBYgABUYA.yYo0zNrSseTwxVw1d1yLCrm1HgTi1bQ8Shb6lJ1mWy8"
         }
       ],
       "collapsed": true,
       "maxHistory": 20,
       "history": [
+        {
+          "query": "query {\n  listSetting {\n    id\n    param\n    value\n    insertedAt\n    updatedAt\n  }\n}",
+          "variables": null
+        },
         {
           "query": "query {\n  listSetting {\n    id\n    param\n    value\n    error\n    errorDescription\n    insertedAt\n    updatedAt\n  }\n}",
           "variables": null
@@ -295,10 +327,10 @@
           "variables": null
         }
       ],
-      "graphiql:query": "query {\n  listSetting {\n    id\n    param\n    value\n    error\n    errorDescription\n    insertedAt\n    updatedAt\n  }\n}",
+      "graphiql:query": "query {\n  listSetting {\n    id\n    param\n    value\n    insertedAt\n    updatedAt\n  }\n}",
       "graphiql:docExplorerWidth": 350,
       "graphiql:editorFlex": 0.25666973321067155,
-      "graphiql:queries": "{\"queries\":[{\"query\":\"query {\\n  listSetting {\\n    id\\n    param\\n    value\\n  }\\n}\",\"variables\":\"\"},{\"query\":\"query {\\n  listSetting {\\n    id\\n    param\\n    value\\n    error\\n    errorDescription\\n  }\\n}\"},{\"query\":\"query {\\n  listSetting {\\n    id\\n    param\\n    value\\n    error\\n    errorDescription\\n    createdAt\\n    updatedAt\\n  }\\n}\"},{\"query\":\"query {\\n  listSetting {\\n    id\\n    param\\n    value\\n    error\\n    errorDescription\\n    inserted\\n    updatedAt\\n  }\\n}\"},{\"query\":\"query {\\n  listSetting {\\n    id\\n    param\\n    value\\n    error\\n    errorDescription\\n    insertedAt\\n    updatedAt\\n  }\\n}\"}]}",
+      "graphiql:queries": "{\"queries\":[{\"query\":\"query {\\n  listSetting {\\n    id\\n    param\\n    value\\n  }\\n}\",\"variables\":\"\"},{\"query\":\"query {\\n  listSetting {\\n    id\\n    param\\n    value\\n    error\\n    errorDescription\\n  }\\n}\"},{\"query\":\"query {\\n  listSetting {\\n    id\\n    param\\n    value\\n    error\\n    errorDescription\\n    createdAt\\n    updatedAt\\n  }\\n}\"},{\"query\":\"query {\\n  listSetting {\\n    id\\n    param\\n    value\\n    error\\n    errorDescription\\n    inserted\\n    updatedAt\\n  }\\n}\"},{\"query\":\"query {\\n  listSetting {\\n    id\\n    param\\n    value\\n    error\\n    errorDescription\\n    insertedAt\\n    updatedAt\\n  }\\n}\"},{\"query\":\"query {\\n  listSetting {\\n    id\\n    param\\n    value\\n    insertedAt\\n    updatedAt\\n  }\\n}\"}]}",
       "graphiql:variableEditorHeight": 200
     },
     {
@@ -310,12 +342,32 @@
       "headers": [
         {
           "name": "Authorization",
-          "value": "Bearer SFMyNTY.g2gDbQAAAEBvdUk2YTJBV3Y2QnFMWVd6NTdXM3luVnpxVnVjMG5pTHBpbXJFU0dVNlM3bFVjcGMySHFaWUk2bHhaZWtiZ3Y4bgYA15lc74oBYgABUYA.OPzhxBpRJseCY0Dkve9yBqKUJs1IxgovbzEMrO_kdds"
+          "value": "Bearer SFMyNTY.g2gDbQAAAEBvdUk2YTJBV3Y2QnFMWVd6NTdXM3luVnpxVnVjMG5pTHBpbXJFU0dVNlM3bFVjcGMySHFaWUk2bHhaZWtiZ3Y4bgYAlP4YBIsBYgABUYA.yYo0zNrSseTwxVw1d1yLCrm1HgTi1bQ8Shb6lJ1mWy8"
         }
       ],
       "collapsed": true,
       "maxHistory": 20,
       "history": [
+        {
+          "query": "query {\n  showSetting(id: \"AaUFH2JQoaWedKRJ0i\") {\n    id\n    param\n    value\n    insertedAt\n    updatedAt\n  }\n}",
+          "variables": null
+        },
+        {
+          "query": "query {\n  showSetting(id: \"AaUFH2JQoaWedKRJ0x\") {\n    id\n    param\n    value\n    insertedAt\n    updatedAt\n  }\n}",
+          "variables": null
+        },
+        {
+          "query": "query {\n  showSetting(id: \"AaUFH2JQoaWedKRJ0i\") {\n    id\n    param\n    value\n    insertedAt\n    updatedAt\n  }\n}",
+          "variables": null
+        },
+        {
+          "query": "query {\n  showSetting(id: \"AaS3SPMlfdnBYDjvxx\") {\n    id\n    param\n    value\n    insertedAt\n    updatedAt\n  }\n}",
+          "variables": null
+        },
+        {
+          "query": "query {\n  showSetting(id: \"AaS3SPMlfdnBYDjviC\") {\n    id\n    param\n    value\n    insertedAt\n    updatedAt\n  }\n}",
+          "variables": null
+        },
         {
           "query": "query {\n  showSetting(id: \"AaGCn07GxHh59W9PgO\") {\n    id\n    param\n    value\n    insertedAt\n    updatedAt\n  }\n}",
           "variables": null
@@ -329,10 +381,10 @@
           "variables": null
         }
       ],
-      "graphiql:query": "query {\n  showSetting(id: \"AaGCn07GxHh59W9PgO\") {\n    id\n    param\n    value\n    insertedAt\n    updatedAt\n  }\n}",
+      "graphiql:query": "query {\n  showSetting(id: \"AaUFH2JQoaWedKRJ0i\") {\n    id\n    param\n    value\n    insertedAt\n    updatedAt\n  }\n}",
       "graphiql:variableEditorHeight": 200,
       "graphiql:editorFlex": 0.4470338983050847,
-      "graphiql:queries": "{\"queries\":[{\"query\":\"query {\\n  showSetting(id: \\\"AaGCn07GxHh59W9PgO\\\") {\\n    id\\n    param\\n    value\\n  }\\n}\",\"variables\":\"\"},{\"query\":\"query {\\n  showSetting(id: \\\"AaGCn07GxHh59W9PgO\\\") {\\n    id\\n    param\\n    value\\n    createdAt\\n    updatedAt\\n  }\\n}\"},{\"query\":\"query {\\n  showSetting(id: \\\"AaGCn07GxHh59W9PgO\\\") {\\n    id\\n    param\\n    value\\n    insertedAt\\n    updatedAt\\n  }\\n}\"}]}",
+      "graphiql:queries": "{\"queries\":[{\"query\":\"query {\\n  showSetting(id: \\\"AaGCn07GxHh59W9PgO\\\") {\\n    id\\n    param\\n    value\\n  }\\n}\",\"variables\":\"\"},{\"query\":\"query {\\n  showSetting(id: \\\"AaGCn07GxHh59W9PgO\\\") {\\n    id\\n    param\\n    value\\n    createdAt\\n    updatedAt\\n  }\\n}\"},{\"query\":\"query {\\n  showSetting(id: \\\"AaGCn07GxHh59W9PgO\\\") {\\n    id\\n    param\\n    value\\n    insertedAt\\n    updatedAt\\n  }\\n}\"},{\"query\":\"query {\\n  showSetting(id: \\\"AaS3SPMlfdnBYDjviC\\\") {\\n    id\\n    param\\n    value\\n    insertedAt\\n    updatedAt\\n  }\\n}\"},{\"query\":\"query {\\n  showSetting(id: \\\"AaS3SPMlfdnBYDjvxx\\\") {\\n    id\\n    param\\n    value\\n    insertedAt\\n    updatedAt\\n  }\\n}\"},{\"query\":\"query {\\n  showSetting(id: \\\"AaUFH2JQoaWedKRJ0i\\\") {\\n    id\\n    param\\n    value\\n    insertedAt\\n    updatedAt\\n  }\\n}\"},{\"query\":\"query {\\n  showSetting(id: \\\"AaUFH2JQoaWedKRJ0x\\\") {\\n    id\\n    param\\n    value\\n    insertedAt\\n    updatedAt\\n  }\\n}\"},{\"query\":\"query {\\n  showSetting(id: \\\"AaUFH2JQoaWedKRJ0i\\\") {\\n    id\\n    param\\n    value\\n    insertedAt\\n    updatedAt\\n  }\\n}\"}]}",
       "graphiql:docExplorerWidth": 350
     },
     {
@@ -344,21 +396,53 @@
       "headers": [
         {
           "name": "Authorization",
-          "value": "Bearer SFMyNTY.g2gDbQAAAEBvdUk2YTJBV3Y2QnFMWVd6NTdXM3luVnpxVnVjMG5pTHBpbXJFU0dVNlM3bFVjcGMySHFaWUk2bHhaZWtiZ3Y4bgYA15lc74oBYgABUYA.OPzhxBpRJseCY0Dkve9yBqKUJs1IxgovbzEMrO_kdds"
+          "value": "Bearer SFMyNTY.g2gDbQAAAEBvdUk2YTJBV3Y2QnFMWVd6NTdXM3luVnpxVnVjMG5pTHBpbXJFU0dVNlM3bFVjcGMySHFaWUk2bHhaZWtiZ3Y4bgYAlP4YBIsBYgABUYA.yYo0zNrSseTwxVw1d1yLCrm1HgTi1bQ8Shb6lJ1mWy8"
         }
       ],
       "collapsed": true,
       "maxHistory": 20,
       "history": [
         {
+          "query": "mutation {\n  createSetting(\n    param: \"some text2\",\n    value: \"some text\"\n  ) {\n    id\n    param\n    value\n    insertedAt\n    updatedAt\n  }\n}",
+          "variables": null
+        },
+        {
+          "query": "mutation {\n  createSetting(\n    param: \"s\",\n    value: \"some text\"\n  ) {\n    id\n    param\n    value\n    insertedAt\n    updatedAt\n  }\n}",
+          "variables": null
+        },
+        {
+          "query": "mutation {\n  createSetting(\n    param: \"some another text\",\n    value: \"some text\"\n  ) {\n    id\n    param\n    value\n    insertedAt\n    updatedAt\n  }\n}",
+          "variables": null
+        },
+        {
+          "query": "mutation {\n  createSetting(\n    param: \"some text\",\n    value: \"some text\"\n  ) {\n    id\n    param\n    value\n    insertedAt\n    updatedAt\n  }\n}",
+          "variables": null
+        },
+        {
+          "query": "mutation {\n  createSetting(\n    param: \"some text2\",\n    value: \"some text\"\n  ) {\n    id\n    param\n    value\n    insertedAt\n    updatedAt\n  }\n}",
+          "variables": null
+        },
+        {
+          "query": "mutation {\n  createSetting(\n    param: \"s\",\n    value: \"some text\"\n  ) {\n    id\n    param\n    value\n    insertedAt\n    updatedAt\n  }\n}",
+          "variables": null
+        },
+        {
+          "query": "mutation {\n  createSetting(\n    param: \"some text\",\n    value: \"some text\"\n  ) {\n    id\n    param\n    value\n    insertedAt\n    updatedAt\n  }\n}",
+          "variables": null
+        },
+        {
+          "query": "mutation {\n  createSetting(\n    param: \"p\",\n    value: \"v\"\n  ) {\n    id\n    param\n    value\n    insertedAt\n    updatedAt\n  }\n}",
+          "variables": null
+        },
+        {
           "query": "mutation {\n  createSetting(\n    param: \"some text for param\",\n    value: \"some text for value\"\n  ) {\n    id\n    param\n    value\n  }\n}",
           "variables": null
         }
       ],
-      "graphiql:query": "mutation {\n  createSetting(\n    param: \"some text for param\",\n    value: \"some text for value\"\n  ) {\n    id\n    param\n    value\n    insertedAt\n    updatedAt\n  }\n}",
+      "graphiql:query": "mutation {\n  createSetting(\n    param: \"some text2\",\n    value: \"some text\"\n  ) {\n    id\n    param\n    value\n    insertedAt\n    updatedAt\n  }\n}",
       "graphiql:docExplorerWidth": 350,
       "graphiql:variableEditorHeight": 200,
-      "graphiql:queries": "{\"queries\":[{\"query\":\"mutation {\\n  createSetting(\\n    param: \\\"some text for param\\\",\\n    value: \\\"some text for value\\\"\\n  ) {\\n    id\\n    param\\n    value\\n  }\\n}\",\"variables\":\"\"}]}",
+      "graphiql:queries": "{\"queries\":[{\"query\":\"mutation {\\n  createSetting(\\n    param: \\\"some text for param\\\",\\n    value: \\\"some text for value\\\"\\n  ) {\\n    id\\n    param\\n    value\\n  }\\n}\",\"variables\":\"\"},{\"query\":\"mutation {\\n  createSetting(\\n    param: \\\"p\\\",\\n    value: \\\"v\\\"\\n  ) {\\n    id\\n    param\\n    value\\n    insertedAt\\n    updatedAt\\n  }\\n}\"},{\"query\":\"mutation {\\n  createSetting(\\n    param: \\\"some text\\\",\\n    value: \\\"some text\\\"\\n  ) {\\n    id\\n    param\\n    value\\n    insertedAt\\n    updatedAt\\n  }\\n}\"},{\"query\":\"mutation {\\n  createSetting(\\n    param: \\\"s\\\",\\n    value: \\\"some text\\\"\\n  ) {\\n    id\\n    param\\n    value\\n    insertedAt\\n    updatedAt\\n  }\\n}\"},{\"query\":\"mutation {\\n  createSetting(\\n    param: \\\"some text2\\\",\\n    value: \\\"some text\\\"\\n  ) {\\n    id\\n    param\\n    value\\n    insertedAt\\n    updatedAt\\n  }\\n}\"},{\"query\":\"mutation {\\n  createSetting(\\n    param: \\\"some text\\\",\\n    value: \\\"some text\\\"\\n  ) {\\n    id\\n    param\\n    value\\n    insertedAt\\n    updatedAt\\n  }\\n}\"},{\"query\":\"mutation {\\n  createSetting(\\n    param: \\\"some another text\\\",\\n    value: \\\"some text\\\"\\n  ) {\\n    id\\n    param\\n    value\\n    insertedAt\\n    updatedAt\\n  }\\n}\"},{\"query\":\"mutation {\\n  createSetting(\\n    param: \\\"s\\\",\\n    value: \\\"some text\\\"\\n  ) {\\n    id\\n    param\\n    value\\n    insertedAt\\n    updatedAt\\n  }\\n}\"},{\"query\":\"mutation {\\n  createSetting(\\n    param: \\\"some text2\\\",\\n    value: \\\"some text\\\"\\n  ) {\\n    id\\n    param\\n    value\\n    insertedAt\\n    updatedAt\\n  }\\n}\"}]}",
       "graphiql:editorFlex": 1
     },
     {
@@ -370,12 +454,40 @@
       "headers": [
         {
           "name": "Authorization",
-          "value": "Bearer SFMyNTY.g2gDbQAAAEBvdUk2YTJBV3Y2QnFMWVd6NTdXM3luVnpxVnVjMG5pTHBpbXJFU0dVNlM3bFVjcGMySHFaWUk2bHhaZWtiZ3Y4bgYA15lc74oBYgABUYA.OPzhxBpRJseCY0Dkve9yBqKUJs1IxgovbzEMrO_kdds"
+          "value": "Bearer SFMyNTY.g2gDbQAAAEBvdUk2YTJBV3Y2QnFMWVd6NTdXM3luVnpxVnVjMG5pTHBpbXJFU0dVNlM3bFVjcGMySHFaWUk2bHhaZWtiZ3Y4bgYAlP4YBIsBYgABUYA.yYo0zNrSseTwxVw1d1yLCrm1HgTi1bQ8Shb6lJ1mWy8"
         }
       ],
       "collapsed": false,
       "maxHistory": 20,
       "history": [
+        {
+          "query": "mutation {\n  updateSetting (\n    id: \"AaUFH2JQoaWedKRJ0i\"\n    setting: {\n      param: \"updated some text for param\"\n      value: \"updated some text for value\"\n    }\n  ) {\n    id\n    param\n    value\n    insertedAt\n    updatedAt\n  }\n}",
+          "variables": null
+        },
+        {
+          "query": "mutation {\n  updateSetting (\n    id: \"AaUFH2JQoaWedKRJ0x\"\n    setting: {\n      param: \"updated some text for param\"\n      value: \"updated some text for value\"\n    }\n  ) {\n    id\n    param\n    value\n    insertedAt\n    updatedAt\n  }\n}",
+          "variables": null
+        },
+        {
+          "query": "mutation {\n  updateSetting (\n    id: \"AaUFH2JQoaWedKRJ0i\"\n    setting: {\n      param: \"updated some text for param\"\n      value: \"updated some text for value\"\n    }\n  ) {\n    id\n    param\n    value\n    insertedAt\n    updatedAt\n  }\n}",
+          "variables": null
+        },
+        {
+          "query": "mutation {\n  updateSetting (\n    id: \"AaUFH2JQoaWedKRJ0x\"\n    setting: {\n      param: \"updated some text for param\"\n      value: \"updated some text for value\"\n    }\n  ) {\n    id\n    param\n    value\n    insertedAt\n    updatedAt\n  }\n}",
+          "variables": null
+        },
+        {
+          "query": "mutation {\n  updateSetting (\n    id: \"AaUFH2JQoaWedKRJ0i\"\n    setting: {\n      param: \"updated some text for param\"\n      value: \"updated some text for value\"\n    }\n  ) {\n    id\n    param\n    value\n    insertedAt\n    updatedAt\n  }\n}",
+          "variables": null
+        },
+        {
+          "query": "mutation {\n  updateSetting (\n    id: \"AaUFH2JQoaWedKRJxx\"\n    setting: {\n      param: \"updated some text for param\"\n      value: \"updated some text for value\"\n    }\n  ) {\n    id\n    param\n    value\n    insertedAt\n    updatedAt\n  }\n}",
+          "variables": null
+        },
+        {
+          "query": "mutation {\n  updateSetting (\n    id: \"AaUFH2JQoaWedKRJ0i\"\n    setting: {\n      param: \"updated some text for param\"\n      value: \"updated some text for value\"\n    }\n  ) {\n    id\n    param\n    value\n    insertedAt\n    updatedAt\n  }\n}",
+          "variables": null
+        },
         {
           "query": "mutation {\n  updateSetting (\n    id: \"AaLxSoCEweCNs4E2k4\"\n    setting: {\n      param: \"updated some text for param\"\n      value: \"updated some text for value\"\n    }\n  ) {\n    id\n    param\n    value\n    insertedAt\n    updatedAt\n  }\n}",
           "variables": null
@@ -389,11 +501,11 @@
           "variables": null
         }
       ],
-      "graphiql:query": "mutation {\n  updateSetting (\n    id: \"AaLxSoCEweCNs4E2k4\"\n    setting: {\n      param: \"updated some text for param\"\n      value: \"updated some text for value\"\n    }\n  ) {\n    id\n    param\n    value\n    insertedAt\n    updatedAt\n  }\n}",
+      "graphiql:query": "mutation {\n  updateSetting (\n    id: \"AaUFH2JQoaWedKRJ0i\"\n    setting: {\n      param: \"updated some text for param\"\n      value: \"updated some text for value\"\n    }\n  ) {\n    id\n    param\n    value\n    insertedAt\n    updatedAt\n  }\n}",
       "graphiql:docExplorerWidth": 350,
       "graphiql:variableEditorHeight": 200,
       "graphiql:editorFlex": 0.40679711637487126,
-      "graphiql:queries": "{\"queries\":[{\"query\":\"mutation {\\n  updateSetting (\\n    id: \\\"AaLxSoCEweCNs4E2k4\\\"\\n    setting: {\\n      param: \\\"updated some text for param\\\"\\n      value: \\\"updated some text for value\\\"\\n    }\\n  ) {\\n    id\\n    param\\n    value\\n  }\\n}\",\"variables\":\"\"},{\"query\":\"mutation {\\n  updateSetting (\\n    id: \\\"AaLxSoCEweCNs4E2k4\\\"\\n    setting: {\\n      param: \\\"updated some text for param\\\"\\n      value: \\\"updated some text for value\\\"\\n    }\\n  ) {\\n    id\\n    param\\n    value\\n    createdAt\\n    updatedAt\\n  }\\n}\"},{\"query\":\"mutation {\\n  updateSetting (\\n    id: \\\"AaLxSoCEweCNs4E2k4\\\"\\n    setting: {\\n      param: \\\"updated some text for param\\\"\\n      value: \\\"updated some text for value\\\"\\n    }\\n  ) {\\n    id\\n    param\\n    value\\n    insertedAt\\n    updatedAt\\n  }\\n}\"}]}"
+      "graphiql:queries": "{\"queries\":[{\"query\":\"mutation {\\n  updateSetting (\\n    id: \\\"AaLxSoCEweCNs4E2k4\\\"\\n    setting: {\\n      param: \\\"updated some text for param\\\"\\n      value: \\\"updated some text for value\\\"\\n    }\\n  ) {\\n    id\\n    param\\n    value\\n  }\\n}\",\"variables\":\"\"},{\"query\":\"mutation {\\n  updateSetting (\\n    id: \\\"AaLxSoCEweCNs4E2k4\\\"\\n    setting: {\\n      param: \\\"updated some text for param\\\"\\n      value: \\\"updated some text for value\\\"\\n    }\\n  ) {\\n    id\\n    param\\n    value\\n    createdAt\\n    updatedAt\\n  }\\n}\"},{\"query\":\"mutation {\\n  updateSetting (\\n    id: \\\"AaLxSoCEweCNs4E2k4\\\"\\n    setting: {\\n      param: \\\"updated some text for param\\\"\\n      value: \\\"updated some text for value\\\"\\n    }\\n  ) {\\n    id\\n    param\\n    value\\n    insertedAt\\n    updatedAt\\n  }\\n}\"},{\"query\":\"mutation {\\n  updateSetting (\\n    id: \\\"AaUFH2JQoaWedKRJ0i\\\"\\n    setting: {\\n      param: \\\"updated some text for param\\\"\\n      value: \\\"updated some text for value\\\"\\n    }\\n  ) {\\n    id\\n    param\\n    value\\n    insertedAt\\n    updatedAt\\n  }\\n}\"},{\"query\":\"mutation {\\n  updateSetting (\\n    id: \\\"AaUFH2JQoaWedKRJxx\\\"\\n    setting: {\\n      param: \\\"updated some text for param\\\"\\n      value: \\\"updated some text for value\\\"\\n    }\\n  ) {\\n    id\\n    param\\n    value\\n    insertedAt\\n    updatedAt\\n  }\\n}\"},{\"query\":\"mutation {\\n  updateSetting (\\n    id: \\\"AaUFH2JQoaWedKRJ0i\\\"\\n    setting: {\\n      param: \\\"updated some text for param\\\"\\n      value: \\\"updated some text for value\\\"\\n    }\\n  ) {\\n    id\\n    param\\n    value\\n    insertedAt\\n    updatedAt\\n  }\\n}\"},{\"query\":\"mutation {\\n  updateSetting (\\n    id: \\\"AaUFH2JQoaWedKRJ0x\\\"\\n    setting: {\\n      param: \\\"updated some text for param\\\"\\n      value: \\\"updated some text for value\\\"\\n    }\\n  ) {\\n    id\\n    param\\n    value\\n    insertedAt\\n    updatedAt\\n  }\\n}\"},{\"query\":\"mutation {\\n  updateSetting (\\n    id: \\\"AaUFH2JQoaWedKRJ0i\\\"\\n    setting: {\\n      param: \\\"updated some text for param\\\"\\n      value: \\\"updated some text for value\\\"\\n    }\\n  ) {\\n    id\\n    param\\n    value\\n    insertedAt\\n    updatedAt\\n  }\\n}\"},{\"query\":\"mutation {\\n  updateSetting (\\n    id: \\\"AaUFH2JQoaWedKRJ0x\\\"\\n    setting: {\\n      param: \\\"updated some text for param\\\"\\n      value: \\\"updated some text for value\\\"\\n    }\\n  ) {\\n    id\\n    param\\n    value\\n    insertedAt\\n    updatedAt\\n  }\\n}\"},{\"query\":\"mutation {\\n  updateSetting (\\n    id: \\\"AaUFH2JQoaWedKRJ0i\\\"\\n    setting: {\\n      param: \\\"updated some text for param\\\"\\n      value: \\\"updated some text for value\\\"\\n    }\\n  ) {\\n    id\\n    param\\n    value\\n    insertedAt\\n    updatedAt\\n  }\\n}\"}]}"
     }
   ]
 }

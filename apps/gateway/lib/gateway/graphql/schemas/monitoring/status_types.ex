@@ -30,7 +30,7 @@ defmodule Gateway.GraphQL.Schemas.Monitoring.StatusTypes do
     end
 
     @desc "Get one record for model's Statuses"
-    field :show_status, :status do
+    field :show_status, list_of(:status) do
       arg(:id, non_null(:string))
       resolve(&StatusResolver.show/3)
     end
@@ -38,7 +38,7 @@ defmodule Gateway.GraphQL.Schemas.Monitoring.StatusTypes do
 
   object :status_mutations do
     @desc "Created the model's Statuses"
-    field :create_status, :status, description: "Created a new record for model's Statuses" do
+    field :create_status, list_of(:status), description: "Created a new record for model's Statuses" do
       arg :active, non_null(:boolean)
       arg :description, :string
       arg :status_code, non_null(:integer)

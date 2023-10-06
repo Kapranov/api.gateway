@@ -12,5 +12,5 @@ EOF
 curl -X POST \
      -H 'Content-Type: multipart/form-data' \
      -H "Authorization: Bearer ${1:-$TOKEN}" \
-     -F query="query { showSetting($(generate_data)) { id param value insertedAt updatedAt } }" \
+     -F query="query { showSetting($(generate_data)) { id param value insertedAt } }" \
      ${URL}

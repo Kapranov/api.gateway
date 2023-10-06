@@ -85,7 +85,7 @@ defmodule Gateway.GraphQL.Schemas.Operators.OperatorTypes do
     end
 
     @desc "Get one record for model's Operators"
-    field :show_operator, :operator do
+    field :show_operator, list_of(:operator) do
       arg(:id, non_null(:string))
       resolve(&OperatorResolver.show/3)
     end
@@ -93,7 +93,7 @@ defmodule Gateway.GraphQL.Schemas.Operators.OperatorTypes do
 
   object :operator_mutations do
     @desc "Created the model's operators"
-    field :create_operator, :operator, description: "Created a new record for model's operators" do
+    field :create_operator, list_of(:operator), description: "Created a new record for model's operators" do
       arg :active, non_null(:boolean)
       arg :config, non_null(:update_config)
       arg :limit_count, :integer
@@ -107,7 +107,7 @@ defmodule Gateway.GraphQL.Schemas.Operators.OperatorTypes do
     end
 
     @desc "Updated a specific recored for model's operators"
-    field :update_operator, :operator, description: "Updated a one record for model's operators" do
+    field :update_operator, list_of(:operator), description: "Updated a one record for model's operators" do
       arg :id, non_null(:string)
       arg :operator, :update_operator_params
       resolve &OperatorResolver.update/3

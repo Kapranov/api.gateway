@@ -12,62 +12,54 @@ defmodule Gateway.GraphQL.Resolvers.Spring.MessageResolver do
   @type t :: map
   @type success_tuple :: {:ok, t}
   @type success_list :: {:ok, [t]}
-  @type error_tuple :: {:ok, nil}
+  @type error_tuple :: {:ok, []}
   @type result :: success_tuple | error_tuple
 
   @spec show(any, %{id: bitstring}, %{context: %{token: String.t()}}) :: result()
-  def show(_parent, %{id: id}, %{context: %{token: token}}) do
-    if is_nil(id) || is_nil(token) do
-      {:ok, nil}
-    else
-      try do
-        struct = Spring.get_message(id)
+  def show(_parent, %{id: id}, %{context: %{token: _token}}) do
+    case Spring.get_message(id) do
+      {:error, %Ecto.Changeset{}} ->
+        {:ok, []}
+      struct ->
         {:ok, struct}
-      rescue
-        Ecto.NoResultsError ->
-          {:ok, nil}
-      end
     end
   end
 
   @spec show(any, %{atom => any}, Absinthe.Resolution.t()) :: error_tuple()
-  def show(_parent, _args, _info), do: {:ok, nil}
+  def show(_parent, _args, _info), do: {:ok, []}
 
   @spec create(any, %{atom => any}, %{context: %{token: String.t()}}) :: result()
-  def create(_parent, args, %{context: %{token: token}}) do
-    if is_nil(token) do
-      {:ok, nil}
-    else
-      args
-      |> Spring.create_message()
-      |> case do
-        {:ok, struct} ->
-          {:ok, struct}
-        {:error, %Ecto.Changeset{}} ->
-          {:ok, nil}
-      end
+  def create(_parent, args, %{context: %{token: _token}}) do
+    args
+    |> Spring.create_message()
+    |> case do
+      {:error, %Ecto.Changeset{}} ->
+        {:ok, []}
+      {:ok, struct} ->
+        {:ok, struct}
     end
   end
 
   @spec create(any, %{atom => any}, Absinthe.Resolution.t()) :: error_tuple()
-  def create(_parent, _args, _info), do: {:ok, nil}
+  def create(_parent, _args, _info), do: {:ok, []}
 
   @spec update(any, %{id: bitstring, setting: map()}, %{context: %{token: String.t()}}) :: result()
-  def update(_parent, %{id: id, message: params}, %{context: %{token: token}}) do
-    if is_nil(id) || is_nil(token) do
-      {:ok, nil}
-    else
+  def update(_parent, %{id: id, message: params}, %{context: %{token: _token}}) do
+    try do
       Repo.get!(Message, id)
       |> Spring.update_message(params)
       |> case do
+        {:error, %Ecto.Changeset{}} ->
+          {:ok, []}
         {:ok, struct} ->
           {:ok, struct}
-        {:error, %Ecto.Changeset{}} ->
-          {:ok, nil}
       end
+    rescue
+      Ecto.NoResultsError ->
+        {:ok, []}
     end
   end
 
   @spec update(any, %{atom => any}, Absinthe.Resolution.t()) :: error_tuple()
-  def update(_parent, _args, _info), do: {:ok, nil}
+  def update(_parent, _args, _info), do: {:ok, []}
 end

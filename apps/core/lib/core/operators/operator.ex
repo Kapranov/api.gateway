@@ -73,7 +73,7 @@ defmodule Core.Operators.Operator do
   end
 
   @doc """
-  Create changeset for OperatorType.
+  Create changeset for Operator.
   """
   @spec changeset(t, %{atom => any}) :: Ecto.Changeset.t()
   def changeset(struct, attrs) do
@@ -81,6 +81,8 @@ defmodule Core.Operators.Operator do
     |> cast(attrs, @allowed_params)
     |> cast_embed(:config, with: &Config.changeset/2)
     |> validate_required(@required_params)
+    |> validate_integer(:price_ext)
+    |> validate_integer(:price_int)
     |> validate_length(:name_operator, min: @min_chars, max: @max_chars)
     |> validate_number(:price_ext, greater_than_or_equal_to: @zero)
     |> validate_number(:price_int, greater_than_or_equal_to: @zero)
@@ -88,5 +90,21 @@ defmodule Core.Operators.Operator do
     |> validate_inclusion(:limit_count, 0..100_000)
     |> foreign_key_constraint(:name_operator, message: "Select the Name Operator")
     |> unique_constraint(:name_operator, name: :operators_name_operator_index)
+  end
+
+  @spec validate_integer(t, atom) :: Ecto.Changeset.t()
+  defp validate_integer(changeset, field) do
+    if integer?(get_field(changeset, field)) do
+      add_error(changeset, field, "An integer is expected.")
+    else
+      changeset
+    end
+  end
+
+  @spec integer?(String.t()) :: boolean
+  defp integer?(decimal) do
+    decimal
+    |> Decimal.round()
+    |> Decimal.equal?(decimal)
   end
 end

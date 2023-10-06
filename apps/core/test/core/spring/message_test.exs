@@ -283,15 +283,6 @@ defmodule Core.Spring.MessageTest do
       assert {:error, %Ecto.Changeset{}} = Spring.update_message(message, %{})
     end
 
-    test "change_message/1" do
-      message = insert(:message)
-      assert %Ecto.Changeset{} = Spring.change_message(message)
-    end
-
-    test "change_message/1 with empty struct" do
-      assert %Ecto.Changeset{} = Spring.change_message(%Message{})
-    end
-
     test "for belongs_to Status" do
       status = insert(:status)
       message_params = build(:message, status_id: status.id)

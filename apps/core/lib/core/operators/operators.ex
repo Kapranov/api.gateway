@@ -112,9 +112,14 @@ defmodule Core.Operators do
   """
   @spec create_operator(%{atom => any}) :: result() | error_tuple()
   def create_operator(attrs \\ %{}) do
-    %Operator{}
-    |> Operator.changeset(attrs)
-    |> Repo.insert()
+    try do
+      %Operator{}
+      |> Operator.changeset(attrs)
+      |> Repo.insert()
+    rescue
+      Ecto.ConstraintError ->
+        {:error, %Ecto.Changeset{}}
+    end
   end
 
   @doc """
@@ -131,9 +136,14 @@ defmodule Core.Operators do
   """
   @spec update_operator_type(OperatorType.t(), %{atom => any}) :: result() | error_tuple()
   def update_operator_type(%OperatorType{} = struct, attrs) do
-    struct
-    |> OperatorType.changeset(attrs)
-    |> Repo.update()
+    try do
+      struct
+      |> OperatorType.changeset(attrs)
+      |> Repo.update()
+    rescue
+      Ecto.NoResultsError ->
+        {:error, %Ecto.Changeset{}}
+    end
   end
 
   @doc """
@@ -150,36 +160,13 @@ defmodule Core.Operators do
   """
   @spec update_operator(Operator.t(), %{atom => any}) :: result() | error_tuple()
   def update_operator(%Operator{} = struct, attrs) do
-    struct
-    |> Operator.changeset(attrs)
-    |> Repo.update()
-  end
-
-  @doc """
-  Returns an `%Ecto.Changeset{}` for tracking an OperatorType Changes.
-
-  ## Examples
-
-      iex> change_operator_type(struct)
-      %Ecto.Changeset{source: %OperatorType{}}
-
-  """
-  @spec change_operator_type(OperatorType.t()) :: Ecto.Changeset.t()
-  def change_operator_type(%OperatorType{} = struct) do
-    OperatorType.changeset(struct, %{})
-  end
-
-  @doc """
-  Returns an `%Ecto.Changeset{}` for tracking an Operator Changes.
-
-  ## Examples
-
-      iex> change_operator(struct)
-      %Ecto.Changeset{source: %Operator{}}
-
-  """
-  @spec change_operator(Operator.t()) :: Ecto.Changeset.t()
-  def change_operator(%Operator{} = struct) do
-    Operator.changeset(struct, %{})
+    try do
+      struct
+      |> Operator.changeset(attrs)
+      |> Repo.update()
+    rescue
+      Ecto.NoResultsError ->
+        {:error, %Ecto.Changeset{}}
+    end
   end
 end

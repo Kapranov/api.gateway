@@ -31,7 +31,7 @@ defmodule Gateway.GraphQL.Schemas.Operators.OperatorTypeTypes do
     end
 
     @desc "Get one record for model's OperatorTypes"
-    field :show_operator_type, :operator_type do
+    field :show_operator_type, list_of(:operator_type) do
       arg(:id, non_null(:string))
       resolve(&OperatorTypeResolver.show/3)
     end
@@ -39,7 +39,7 @@ defmodule Gateway.GraphQL.Schemas.Operators.OperatorTypeTypes do
 
   object :operator_type_mutations do
     @desc "Created the model's operatorTypes"
-    field :create_operator_type, :operator_type, description: "Created a new record for model's operatorTypes" do
+    field :create_operator_type, list_of(:operator_type), description: "Created a new record for model's operatorTypes" do
       arg :active, non_null(:boolean)
       arg :name_type, non_null(:string)
       arg :priority, :integer
@@ -47,7 +47,7 @@ defmodule Gateway.GraphQL.Schemas.Operators.OperatorTypeTypes do
     end
 
     @desc "Updated a specific recored for model's operatorTypes"
-    field :update_operator_type, :operator_type, description: "Updated a one record for model's operatorTypes" do
+    field :update_operator_type, list_of(:operator_type), description: "Updated a one record for model's operatorTypes" do
       arg :id, non_null(:string)
       arg :operator_type, :update_operator_type_params
       resolve &OperatorTypeResolver.update/3

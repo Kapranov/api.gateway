@@ -29,7 +29,7 @@ defmodule Gateway.GraphQL.Schemas.Settings.SettingTypes do
     end
 
     @desc "Get one record for model's Settings"
-    field :show_setting, :setting do
+    field :show_setting, list_of(:setting) do
       arg(:id, non_null(:string))
       resolve(&SettingResolver.show/3)
     end
@@ -37,14 +37,14 @@ defmodule Gateway.GraphQL.Schemas.Settings.SettingTypes do
 
   object :setting_mutations do
     @desc "Created the model's Settings"
-    field :create_setting, :setting, description: "Created a new record for model's Settings" do
+    field :create_setting, list_of(:setting), description: "Created a new record for model's Settings" do
       arg :param, non_null(:string)
       arg :value, non_null(:string)
       resolve &SettingResolver.create/3
     end
 
     @desc "Updated a specific recored for model's Settings"
-    field :update_setting, :setting, description: "Updated a one record for model's Settings" do
+    field :update_setting, list_of(:setting), description: "Updated a one record for model's Settings" do
       arg :id, non_null(:string)
       arg :setting, :update_setting_params
       resolve &SettingResolver.update/3

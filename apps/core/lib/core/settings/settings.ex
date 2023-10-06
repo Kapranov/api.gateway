@@ -78,22 +78,8 @@ defmodule Core.Settings do
       |> Setting.changeset(attrs)
       |> Repo.update()
     rescue
-      Ecto.CastError ->
+      Ecto.NoResultsError ->
         {:error, %Ecto.Changeset{}}
     end
-  end
-
-  @doc """
-  Returns an `%Ecto.Changeset{}` for tracking Setting Changes.
-
-  ## Examples
-
-      iex> change_setting(struct)
-      %Ecto.Changeset{source: %Setting{}}
-
-  """
-  @spec change_setting(Setting.t()) :: Ecto.Changeset.t()
-  def change_setting(%Setting{} = struct) do
-    Setting.changeset(struct, %{})
   end
 end

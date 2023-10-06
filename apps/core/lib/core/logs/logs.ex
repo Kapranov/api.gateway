@@ -49,8 +49,13 @@ defmodule Core.Logs do
   """
   @spec create_sms_log(%{atom => any}) :: result() | error_tuple()
   def create_sms_log(attrs \\ %{}) do
-    %SmsLog{}
-    |> SmsLog.changeset(attrs)
-    |> Repo.insert()
+    try do
+      %SmsLog{}
+      |> SmsLog.changeset(attrs)
+      |> Repo.insert()
+    rescue
+      Postgrex.Error ->
+        {:error, %Ecto.Changeset{}}
+    end
   end
 end

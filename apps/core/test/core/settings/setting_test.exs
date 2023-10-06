@@ -139,15 +139,6 @@ defmodule Core.Settings.SettingTest do
       assert {:error, %Ecto.Changeset{}} = Settings.update_setting(setting, %{})
     end
 
-    test "change_setting/1" do
-      setting = insert(:setting)
-      assert %Ecto.Changeset{} = Settings.change_setting(setting)
-    end
-
-    test "change_setting/1 with empty struct" do
-      assert %Ecto.Changeset{} = Settings.change_setting(%Setting{})
-    end
-
     test "for unique_constraint param has been taken" do
       insert(:setting)
       assert {:error, changeset} = Settings.create_setting(@valid_attrs)

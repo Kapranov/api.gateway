@@ -68,22 +68,13 @@ defmodule Core.Spring do
   """
   @spec update_message(Message.t(), %{atom => any}) :: result() | error_tuple()
   def update_message(%Message{} = struct, attrs) do
-    struct
-    |> Message.changeset(attrs)
-    |> Repo.update()
-  end
-
-  @doc """
-  Returns an `%Ecto.Changeset{}` for tracking Message Changes.
-
-  ## Examples
-
-      iex> change_message(struct)
-      %Ecto.Changeset{source: %Message{}}
-
-  """
-  @spec change_message(Message.t()) :: Ecto.Changeset.t()
-  def change_message(%Message{} = struct) do
-    Message.changeset(struct, %{})
+    try do
+      struct
+      |> Message.changeset(attrs)
+      |> Repo.update()
+    rescue
+      Ecto.NoResultsError ->
+        {:error, %Ecto.Changeset{}}
+    end
   end
 end

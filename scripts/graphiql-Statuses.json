@@ -283,6 +283,10 @@
   "recentHeaders": [
     {
       "name": "Authorization",
+      "value": "Bearer SFMyNTY.g2gDbQAAAEBvdUk2YTJBV3Y2QnFMWVd6NTdXM3luVnpxVnVjMG5pTHBpbXJFU0dVNlM3bFVjcGMySHFaWUk2bHhaZWtiZ3Y4bgYA3BUkBIsBYgABUYA.8ngQJ3vwumDiNBLrc_SYjO2f3a0HcxQJoC_cFOMVwwY"
+    },
+    {
+      "name": "Authorization",
       "value": "Bearer SFMyNTY.g2gDbQAAAEBvdUk2YTJBV3Y2QnFMWVd6NTdXM3luVnpxVnVjMG5pTHBpbXJFU0dVNlM3bFVjcGMySHFaWUk2bHhaZWtiZ3Y4bgYAsEpk8IoBYgABUYA.zcP0xJ8t_jrZydwXqxrMo1v6bRSymkNL0E4rYG8Ob74"
     },
     {
@@ -338,7 +342,7 @@
   "maxUrlHistory": 20,
   "maxHistory": 20,
   "savedQueries": [],
-  "activeId": "tab15",
+  "activeId": "tab2",
   "tabs": [
     {
       "id": "tab1",
@@ -367,7 +371,7 @@
       "websocketUrl": "",
       "proxy": false,
       "headers": [],
-      "collapsed": true,
+      "collapsed": false,
       "maxHistory": 20,
       "history": [
         {
@@ -410,19 +414,23 @@
       "headers": [
         {
           "name": "Authorization",
-          "value": "Bearer SFMyNTY.g2gDbQAAAEBvdUk2YTJBV3Y2QnFMWVd6NTdXM3luVnpxVnVjMG5pTHBpbXJFU0dVNlM3bFVjcGMySHFaWUk2bHhaZWtiZ3Y4bgYAt1pZ8IoBYgABUYA.qQvq6Y27h2_JQMK0KfocUlUinBYWEoeNhw5wcS_JrO4"
+          "value": "Bearer SFMyNTY.g2gDbQAAAEBvdUk2YTJBV3Y2QnFMWVd6NTdXM3luVnpxVnVjMG5pTHBpbXJFU0dVNlM3bFVjcGMySHFaWUk2bHhaZWtiZ3Y4bgYA3BUkBIsBYgABUYA.8ngQJ3vwumDiNBLrc_SYjO2f3a0HcxQJoC_cFOMVwwY"
         }
       ],
       "collapsed": true,
       "maxHistory": 20,
       "history": [
         {
+          "query": "query {\n  listStatus {\n    id\n    active\n    description\n    smsLogs {id priority}\n    statusCode\n    statusName\n    insertedAt\n  }\n}",
+          "variables": null
+        },
+        {
           "query": "query {\n  listStatus {\n    id\n    active\n    description\n    smsLogs {id priority}\n    statusCode\n    statusName\n  }\n}",
           "variables": null
         }
       ],
-      "graphiql:query": "query {\n  listStatus {\n    id\n    active\n    description\n    smsLogs {id priority}\n    statusCode\n    statusName\n    insertedAt\n    updatedAt\n  }\n}",
-      "graphiql:queries": "{\"queries\":[{\"query\":\"query {\\n  listStatus {\\n    id\\n    active\\n    description\\n    smsLogs {id priority}\\n    statusCode\\n    statusName\\n  }\\n}\",\"variables\":\"\"}]}",
+      "graphiql:query": "query {\n  listStatus {\n    id\n    active\n    description\n    smsLogs {id priority}\n    statusCode\n    statusName\n    insertedAt\n  }\n}",
+      "graphiql:queries": "{\"queries\":[{\"query\":\"query {\\n  listStatus {\\n    id\\n    active\\n    description\\n    smsLogs {id priority}\\n    statusCode\\n    statusName\\n  }\\n}\",\"variables\":\"\"},{\"query\":\"query {\\n  listStatus {\\n    id\\n    active\\n    description\\n    smsLogs {id priority}\\n    statusCode\\n    statusName\\n    insertedAt\\n  }\\n}\"}]}",
       "graphiql:variableEditorHeight": 200,
       "graphiql:editorFlex": 1,
       "graphiql:docExplorerWidth": 350
@@ -436,12 +444,20 @@
       "headers": [
         {
           "name": "Authorization",
-          "value": "Bearer SFMyNTY.g2gDbQAAAEBvdUk2YTJBV3Y2QnFMWVd6NTdXM3luVnpxVnVjMG5pTHBpbXJFU0dVNlM3bFVjcGMySHFaWUk2bHhaZWtiZ3Y4bgYAsEpk8IoBYgABUYA.zcP0xJ8t_jrZydwXqxrMo1v6bRSymkNL0E4rYG8Ob74"
+          "value": "Bearer SFMyNTY.g2gDbQAAAEBvdUk2YTJBV3Y2QnFMWVd6NTdXM3luVnpxVnVjMG5pTHBpbXJFU0dVNlM3bFVjcGMySHFaWUk2bHhaZWtiZ3Y4bgYA3BUkBIsBYgABUYA.8ngQJ3vwumDiNBLrc_SYjO2f3a0HcxQJoC_cFOMVwwY"
         }
       ],
       "collapsed": true,
       "maxHistory": 20,
       "history": [
+        {
+          "query": "query {\n  showStatus (id: \"AaS3TqQkX2rLmLHrm4\") {\n    id\n    active\n    description\n    statusCode\n    statusName\n    smsLogs {id priority}\n    insertedAt\n  }\n}",
+          "variables": null
+        },
+        {
+          "query": "query {\n  showStatus (id: \"AaGCoQ1e6vTtnYCA88\") {\n    id\n    active\n    description\n    statusCode\n    statusName\n    smsLogs {id priority}\n    insertedAt\n  }\n}",
+          "variables": null
+        },
         {
           "query": "query {\n  showStatus (id: \"AaGCoQ1e6vTtnYCA88\") {\n    id\n    active\n    description\n    statusCode\n    statusName\n    smsLogs {id priority}\n  }\n}",
           "variables": null
@@ -455,9 +471,9 @@
           "variables": null
         }
       ],
-      "graphiql:query": "query {\n  showStatus (id: \"AaGCoQ1e6vTtnYCA88\") {\n    id\n    active\n    description\n    statusCode\n    statusName\n    smsLogs {id priority}\n    insertedAt\n    updatedAt\n  }\n}",
+      "graphiql:query": "query {\n  showStatus (id: \"AaS3TqQkX2rLmLHrm4\") {\n    id\n    active\n    description\n    statusCode\n    statusName\n    smsLogs {id priority}\n    insertedAt\n  }\n}",
       "graphiql:variableEditorHeight": 200,
-      "graphiql:queries": "{\"queries\":[{\"query\":\"query {\\n  listStatus {\\n    id\\n    active\\n    description\\n    smsLogs {id priority}\\n    statusCode\\n    statusName\\n  }\\n}\",\"variables\":\"\"},{\"query\":\"query {\\n  showStatus (id: \\\"\\\") {\\n    id\\n    active\\n    description\\n    statusCode\\n    statusName\\n    smsLogs {id priority}\\n  }\\n}\"},{\"query\":\"query {\\n  showStatus (id: \\\"AaGCoQ1e6vTtnYCA88\\\") {\\n    id\\n    active\\n    description\\n    statusCode\\n    statusName\\n    smsLogs {id priority}\\n  }\\n}\"}]}",
+      "graphiql:queries": "{\"queries\":[{\"query\":\"query {\\n  listStatus {\\n    id\\n    active\\n    description\\n    smsLogs {id priority}\\n    statusCode\\n    statusName\\n  }\\n}\",\"variables\":\"\"},{\"query\":\"query {\\n  showStatus (id: \\\"\\\") {\\n    id\\n    active\\n    description\\n    statusCode\\n    statusName\\n    smsLogs {id priority}\\n  }\\n}\"},{\"query\":\"query {\\n  showStatus (id: \\\"AaGCoQ1e6vTtnYCA88\\\") {\\n    id\\n    active\\n    description\\n    statusCode\\n    statusName\\n    smsLogs {id priority}\\n  }\\n}\"},{\"query\":\"query {\\n  showStatus (id: \\\"AaGCoQ1e6vTtnYCA88\\\") {\\n    id\\n    active\\n    description\\n    statusCode\\n    statusName\\n    smsLogs {id priority}\\n    insertedAt\\n  }\\n}\"},{\"query\":\"query {\\n  showStatus (id: \\\"AaS3TqQkX2rLmLHrm4\\\") {\\n    id\\n    active\\n    description\\n    statusCode\\n    statusName\\n    smsLogs {id priority}\\n    insertedAt\\n  }\\n}\"}]}",
       "graphiql:editorFlex": 1,
       "graphiql:docExplorerWidth": 350
     },
@@ -470,21 +486,40 @@
       "headers": [
         {
           "name": "Authorization",
-          "value": "Bearer SFMyNTY.g2gDbQAAAEBvdUk2YTJBV3Y2QnFMWVd6NTdXM3luVnpxVnVjMG5pTHBpbXJFU0dVNlM3bFVjcGMySHFaWUk2bHhaZWtiZ3Y4bgYAsEpk8IoBYgABUYA.zcP0xJ8t_jrZydwXqxrMo1v6bRSymkNL0E4rYG8Ob74"
+          "value": "Bearer SFMyNTY.g2gDbQAAAEBvdUk2YTJBV3Y2QnFMWVd6NTdXM3luVnpxVnVjMG5pTHBpbXJFU0dVNlM3bFVjcGMySHFaWUk2bHhaZWtiZ3Y4bgYA3BUkBIsBYgABUYA.8ngQJ3vwumDiNBLrc_SYjO2f3a0HcxQJoC_cFOMVwwY"
         }
       ],
-      "collapsed": false,
+      "collapsed": true,
       "maxHistory": 20,
       "history": [
+        {
+          "query": "mutation {\n  createStatus (\n    active: true\n    description: \"some text\"\n    statusCode: 22\n    statusName: \"Kapranov\"\n  ) {\n    id\n    active\n    description\n    statusCode\n    statusName\n    smsLogs {id priority}\n    insertedAt\n  }\n}",
+          "variables": null
+        },
+        {
+          "query": "mutation {\n  createStatus (\n    active: true\n    description: \"some text\"\n    statusCode: 22\n    statusName: \"K\"\n  ) {\n    id\n    active\n    description\n    statusCode\n    statusName\n    smsLogs {id priority}\n    insertedAt\n  }\n}",
+          "variables": null
+        },
+        {
+          "query": "mutation {\n  createStatus (\n    active: true\n    description: \"some text\"\n    statusCode: 2222222\n    statusName: \"Kapranov\"\n  ) {\n    id\n    active\n    description\n    statusCode\n    statusName\n    smsLogs {id priority}\n    insertedAt\n  }\n}",
+          "variables": null
+        },
+        {
+          "query": "mutation {\n  createStatus (\n    active: true\n    description: \"some text\"\n    statusCode: 22\n    statusName: \"Kapranov\"\n  ) {\n    id\n    active\n    description\n    statusCode\n    statusName\n    smsLogs {id priority}\n    insertedAt\n  }\n}",
+          "variables": null
+        },
+        {
+          "query": "mutation {\n  createStatus (\n    active: true\n    description: \"some text\"\n    statusCode: 22\n    statusName: \"Kapranov\"\n  ) {\n    id\n    active\n    description\n    statusCode\n    statusName\n    smsLogs {id priority}\n    insertedAt\n    updatedAt\n  }\n}",
+          "variables": null
+        },
         {
           "query": "mutation {\n  createStatus (\n    active: true\n    description: \"some text\"\n    statusCode: 22\n    statusName: \"Kapranov\"\n  ) {\n    id\n    active\n    description\n    statusCode\n    statusName\n    smsLogs {id priority}\n  }\n}",
           "variables": null
         }
       ],
-      "graphiql:query": "mutation {\n  createStatus (\n    active: true\n    description: \"some text\"\n    statusCode: 22\n    statusName: \"Kapranov\"\n  ) {\n    id\n    active\n    description\n    statusCode\n    statusName\n    smsLogs {id priority}\n    insertedAt\n    updatedAt\n  }\n}",
-      "graphiql:variables": "",
+      "graphiql:query": "mutation {\n  createStatus (\n    active: true\n    description: \"some text\"\n    statusCode: 22\n    statusName: \"Kapranov\"\n  ) {\n    id\n    active\n    description\n    statusCode\n    statusName\n    smsLogs {id priority}\n    insertedAt\n  }\n}",
       "graphiql:docExplorerWidth": 350,
-      "graphiql:queries": "{\"queries\":[{\"query\":\"mutation {\\n  createStatus (\\n    active: true\\n    description: \\\"some text\\\"\\n    statusCode: 22\\n    statusName: \\\"Kapranov\\\"\\n  ) {\\n    id\\n    active\\n    description\\n    statusCode\\n    statusName\\n    smsLogs {id priority}\\n  }\\n}\",\"variables\":\"\"}]}",
+      "graphiql:queries": "{\"queries\":[{\"query\":\"mutation {\\n  createStatus (\\n    active: true\\n    description: \\\"some text\\\"\\n    statusCode: 22\\n    statusName: \\\"Kapranov\\\"\\n  ) {\\n    id\\n    active\\n    description\\n    statusCode\\n    statusName\\n    smsLogs {id priority}\\n  }\\n}\",\"variables\":\"\"},{\"query\":\"mutation {\\n  createStatus (\\n    active: true\\n    description: \\\"some text\\\"\\n    statusCode: 22\\n    statusName: \\\"Kapranov\\\"\\n  ) {\\n    id\\n    active\\n    description\\n    statusCode\\n    statusName\\n    smsLogs {id priority}\\n    insertedAt\\n    updatedAt\\n  }\\n}\"},{\"query\":\"mutation {\\n  createStatus (\\n    active: true\\n    description: \\\"some text\\\"\\n    statusCode: 22\\n    statusName: \\\"Kapranov\\\"\\n  ) {\\n    id\\n    active\\n    description\\n    statusCode\\n    statusName\\n    smsLogs {id priority}\\n    insertedAt\\n  }\\n}\"},{\"query\":\"mutation {\\n  createStatus (\\n    active: true\\n    description: \\\"some text\\\"\\n    statusCode: 2222222\\n    statusName: \\\"Kapranov\\\"\\n  ) {\\n    id\\n    active\\n    description\\n    statusCode\\n    statusName\\n    smsLogs {id priority}\\n    insertedAt\\n  }\\n}\"},{\"query\":\"mutation {\\n  createStatus (\\n    active: true\\n    description: \\\"some text\\\"\\n    statusCode: 22\\n    statusName: \\\"K\\\"\\n  ) {\\n    id\\n    active\\n    description\\n    statusCode\\n    statusName\\n    smsLogs {id priority}\\n    insertedAt\\n  }\\n}\"},{\"query\":\"mutation {\\n  createStatus (\\n    active: true\\n    description: \\\"some text\\\"\\n    statusCode: 22\\n    statusName: \\\"Kapranov\\\"\\n  ) {\\n    id\\n    active\\n    description\\n    statusCode\\n    statusName\\n    smsLogs {id priority}\\n    insertedAt\\n  }\\n}\"}]}",
       "graphiql:editorFlex": 0.5093922651933702,
       "graphiql:variableEditorHeight": 200
     }
