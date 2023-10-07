@@ -4,6 +4,7 @@ defmodule Core.Operators.Operator do
   """
 
   use Core.Model
+  require Decimal
 
   alias Core.{
     Logs.SmsLog,
@@ -81,8 +82,8 @@ defmodule Core.Operators.Operator do
     |> cast(attrs, @allowed_params)
     |> cast_embed(:config, with: &Config.changeset/2)
     |> validate_required(@required_params)
-    |> validate_integer(:price_ext)
-    |> validate_integer(:price_int)
+    |> validate_decimal(:price_ext)
+    |> validate_decimal(:price_int)
     |> validate_length(:name_operator, min: @min_chars, max: @max_chars)
     |> validate_number(:price_ext, greater_than_or_equal_to: @zero)
     |> validate_number(:price_int, greater_than_or_equal_to: @zero)
@@ -92,19 +93,34 @@ defmodule Core.Operators.Operator do
     |> unique_constraint(:name_operator, name: :operators_name_operator_index)
   end
 
-  @spec validate_integer(t, atom) :: Ecto.Changeset.t()
-  defp validate_integer(changeset, field) do
+  @spec validate_decimal(t, atom) :: Ecto.Changeset.t()
+  def validate_decimal(changeset, field) do
     if integer?(get_field(changeset, field)) do
-      add_error(changeset, field, "An integer is expected.")
-    else
       changeset
+    else
+      add_error(changeset, field, "The float, integer is expected.")
     end
   end
 
-  @spec integer?(String.t()) :: boolean
-  defp integer?(decimal) do
-    decimal
+  @spec integer?(integer) :: boolean
+  defp integer?(target) when is_integer(target) do
+    target
     |> Decimal.round()
-    |> Decimal.equal?(decimal)
+    |> Decimal.equal?(target)
   end
+
+  @spec integer?(float) :: boolean
+  defp integer?(target) when is_float(target) do
+    target
+    |> Decimal.from_float()
+    |> Decimal.equal?(Decimal.from_float(target))
+  end
+
+  defp integer?(target) when Decimal.is_decimal(target) do
+    target
+    |> Decimal.equal?(Decimal.to_string(target))
+  end
+
+  @spec integer?(any()) :: boolean
+  defp integer?(_), do: false
 end

@@ -64,7 +64,7 @@ defmodule Core.Operators.OperatorTest do
       parameters_attrs = Map.from_struct(parameters)
       data = Map.merge(config_attrs, %{parameters: parameters_attrs})
 
-      attrs = Map.merge(@valid_attrs, %{config: data, operator_type_id: operator_type.id })
+      attrs = Map.merge(@valid_attrs, %{config: data, operator_type_id: operator_type.id})
 
       assert {:ok, %Operator{} = created} = Operators.create_operator(attrs)
       assert created.active                  == @valid_attrs.active
