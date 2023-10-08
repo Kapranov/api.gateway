@@ -325,6 +325,47 @@ defmodule Core.Operators.OperatorTest do
       assert struct.config.parameters.value == updated_parameters.value
     end
 
+    test "update_operator/2 with validate decimal price_ext" do
+      parameters = build(:parameters)
+      updated_parameters = Map.merge(parameters, %{
+        key: "updated some text",
+        value: "updated some text"
+      })
+      config = build(:config, parameters: updated_parameters)
+      updated_config = Map.merge(config, %{
+        content_type: "updated some text",
+        name: "updated some text",
+        size: 2,
+        url: "updated some text"
+      })
+      operator = insert(:operator, config: updated_config)
+      updated_attrs = Map.merge(@update_attrs, %{price_ext: "1.1"})
+      assert {:ok, updated} = Operators.update_operator(operator, updated_attrs)
+      assert updated.id        == operator.id
+      assert updated.price_ext == Decimal.new("1.1")
+    end
+
+    test "update_operator/2 with validate decimal price_int" do
+      parameters = build(:parameters)
+      updated_parameters = Map.merge(parameters, %{
+        key: "updated some text",
+        value: "updated some text"
+      })
+      config = build(:config, parameters: updated_parameters)
+      updated_config = Map.merge(config, %{
+        content_type: "updated some text",
+        name: "updated some text",
+        size: 2,
+        url: "updated some text"
+      })
+      operator = insert(:operator, config: updated_config)
+      updated_attrs = Map.merge(@update_attrs, %{price_int: "1.1"})
+
+      assert {:ok, updated} = Operators.update_operator(operator, updated_attrs)
+      assert updated.id        == operator.id
+      assert updated.price_int == Decimal.new("1.1")
+    end
+
     test "update_operator/2 with nil active" do
       parameters = build(:parameters)
       updated_parameters = Map.merge(parameters, %{
@@ -415,7 +456,7 @@ defmodule Core.Operators.OperatorTest do
       assert {:error, %Ecto.Changeset{}} = Operators.update_operator(operator, updated_attrs)
     end
 
-    test "update_operator/2 with validate decimal price_ext" do
+    test "update_operator/2 with validate decimal when none integer and float price_ext" do
       parameters = build(:parameters)
       updated_parameters = Map.merge(parameters, %{
         key: "updated some text",
@@ -429,13 +470,12 @@ defmodule Core.Operators.OperatorTest do
         url: "updated some text"
       })
       operator = insert(:operator, config: updated_config)
-      updated_attrs = Map.merge(@update_attrs, %{price_ext: "1.1"})
-      assert {:ok, updated} = Operators.update_operator(operator, updated_attrs)
-      assert updated.id        == operator.id
-      assert updated.price_ext == Decimal.new("1.1")
+      updated_attrs = Map.merge(@update_attrs, %{price_ext: "hello"})
+      assert {:error, changeset} = Operators.update_operator(operator, updated_attrs)
+      assert changeset.errors == [price_ext: {"is invalid", [type: :decimal, validation: :cast]}]
     end
 
-    test "update_operator/2 with validate decimal price_int" do
+    test "update_operator/2 with validate decimal when none integer and float price_int" do
       parameters = build(:parameters)
       updated_parameters = Map.merge(parameters, %{
         key: "updated some text",
@@ -449,10 +489,9 @@ defmodule Core.Operators.OperatorTest do
         url: "updated some text"
       })
       operator = insert(:operator, config: updated_config)
-      updated_attrs = Map.merge(@update_attrs, %{price_int: "1.1"})
-      assert {:ok, updated} = Operators.update_operator(operator, updated_attrs)
-      assert updated.id        == operator.id
-      assert updated.price_int == Decimal.new("1.1")
+      updated_attrs = Map.merge(@update_attrs, %{price_int: "hello"})
+      assert {:error, changeset} = Operators.update_operator(operator, updated_attrs)
+      assert changeset.errors == [price_int: {"is invalid", [type: :decimal, validation: :cast]}]
     end
 
     test "update_operator/2 with nil priority" do
