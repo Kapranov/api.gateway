@@ -6,6 +6,6 @@ then
   done
 else
   while true; do
-    inotifywait -r -e modify,move,create,delete apps/core/lib/ apps/core/test/ && mix test --include integration
+    inotifywait -r -e modify,move,create,delete apps/core/lib/ apps/core/test/ apps/gateway/test/ && mix test --include integration
   done
 fi
