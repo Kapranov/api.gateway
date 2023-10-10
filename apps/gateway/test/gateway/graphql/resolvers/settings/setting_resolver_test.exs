@@ -6,10 +6,60 @@ defmodule Gateway.GraphQL.Resolvers.Settings.SettingResolverTest do
     Settings.SettingResolver
   }
 
+  alias Faker.Lorem
+
   setup_all do
     {:ok, token} = IndexPageResolver.token(nil, nil, nil)
     context = %{context: %{token: token}}
     context
+  end
+
+  describe "#unauthorized" do
+    test "returns Setting" do
+      insert(:setting)
+      {:ok, []} = SettingResolver.list(nil, nil, nil)
+    end
+
+    test "returns specific Setting by id" do
+      struct = insert(:setting)
+      {:ok, []} = SettingResolver.show(nil, %{id: struct.id}, nil)
+    end
+
+    test "returns empty list when Setting does not exist" do
+      id = FlakeId.get()
+      {:ok, []} = SettingResolver.show(nil, %{id: id}, nil)
+    end
+
+    test "creates Setting" do
+      args = %{param: "some text", value: "some text"}
+      {:ok, []} = SettingResolver.create(nil, args, nil)
+    end
+
+    test "returns empty list when missing params" do
+      args = %{param: nil, value: nil}
+      {:ok, []} = SettingResolver.create(nil, args, nil)
+    end
+
+    test "update specific Setting by id" do
+      struct = insert(:setting)
+      params = %{param: "updated some text", value: "updated some text"}
+      args = %{id: struct.id, setting: params}
+      {:ok, []} = SettingResolver.update(nil, args, nil)
+    end
+
+    test "nothing change for missing params" do
+      struct = insert(:setting)
+      params = %{}
+      args = %{id: struct.id, setting: params}
+      {:ok, []} = SettingResolver.update(nil, args, nil)
+    end
+
+    test "returns empty list for missing params" do
+      struct = insert(:setting)
+      params = %{param: nil, value: nil}
+      args = %{id: struct.id, setting: params}
+      {:ok, []} = SettingResolver.update(nil, args, nil)
+    end
   end
 
   describe "#list" do
@@ -81,6 +131,38 @@ defmodule Gateway.GraphQL.Resolvers.Settings.SettingResolverTest do
       params = %{param: nil, value: nil}
       args = %{id: struct.id, setting: params}
       {:ok, []} = SettingResolver.update(nil, args, context)
+    end
+
+    test "returns empty list with validations length min 5 for param", context do
+      struct = insert(:setting)
+      params = %{param: Lorem.characters(4), value: "updated some text"}
+      args = %{id: struct.id, setting: params}
+      {:ok, updated} = SettingResolver.update(nil, args, context)
+      assert updated == []
+    end
+
+    test "returns empty list with validations length max 100 for param", context do
+      struct = insert(:setting)
+      params = %{param: Lorem.characters(101), value: "updated some text"}
+      args = %{id: struct.id, setting: params}
+      {:ok, updated} = SettingResolver.update(nil, args, context)
+      assert updated == []
+    end
+
+    test "returns empty list with validations length min 5 for value", context do
+      struct = insert(:setting)
+      params = %{param: "updated some text", value: Lorem.characters(4)}
+      args = %{id: struct.id, setting: params}
+      {:ok, updated} = SettingResolver.update(nil, args, context)
+      assert updated == []
+    end
+
+    test "returns empty list with validations length max 100 for value", context do
+      struct = insert(:setting)
+      params = %{param: "updated some text", value: Lorem.characters(101)}
+      args = %{id: struct.id, setting: params}
+      {:ok, updated} = SettingResolver.update(nil, args, context)
+      assert updated == []
     end
   end
 end
