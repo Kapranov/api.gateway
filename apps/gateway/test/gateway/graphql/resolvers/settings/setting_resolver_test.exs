@@ -15,7 +15,11 @@ defmodule Gateway.GraphQL.Resolvers.Settings.SettingResolverTest do
   end
 
   describe "#unauthorized" do
-    test "returns Setting" do
+    test "returns Setting with empty list" do
+      {:ok, []} = SettingResolver.list(nil, nil, nil)
+    end
+
+    test "returns Setting with data" do
       insert(:setting)
       {:ok, []} = SettingResolver.list(nil, nil, nil)
     end
@@ -40,6 +44,32 @@ defmodule Gateway.GraphQL.Resolvers.Settings.SettingResolverTest do
       {:ok, []} = SettingResolver.create(nil, args, nil)
     end
 
+    test "returns errors when unique_constraint param has been taken" do
+      insert(:setting)
+      args = %{param: "some text", value: "some text"}
+      {:ok, []} = SettingResolver.create(nil, args, nil)
+    end
+
+    test "create Setting with validations length min 5 for param" do
+      args = %{param: Lorem.characters(4), value: "some text"}
+      {:ok, []} = SettingResolver.create(nil, args, nil)
+    end
+
+    test "create Setting with validations length max 100 for param" do
+      args = %{param: Lorem.characters(101), value: "some text"}
+      {:ok, []} = SettingResolver.create(nil, args, nil)
+    end
+
+    test "create Setting with validations length min 5 for value" do
+      args = %{param: "some text", value: Lorem.characters(4)}
+      {:ok, []} = SettingResolver.create(nil, args, nil)
+    end
+
+    test "create Setting with validations length max 100 for value" do
+      args = %{param: "some text", value: Lorem.characters(101)}
+      {:ok, []} = SettingResolver.create(nil, args, nil)
+    end
+
     test "update specific Setting by id" do
       struct = insert(:setting)
       params = %{param: "updated some text", value: "updated some text"}
@@ -59,6 +89,14 @@ defmodule Gateway.GraphQL.Resolvers.Settings.SettingResolverTest do
       params = %{param: nil, value: nil}
       args = %{id: struct.id, setting: params}
       {:ok, []} = SettingResolver.update(nil, args, nil)
+    end
+
+    test "returns empty list when unique_constraint param has been taken" do
+      insert(:setting)
+      struct = insert(:setting, param: "some text#2")
+      params = %{param: "some text", value: "some text"}
+      args = %{id: struct.id, setting: params}
+      {:ok, []} = SettingResolver.create(nil, args, nil)
     end
 
     test "returns empty list with validations length min 5 for param" do
@@ -91,7 +129,12 @@ defmodule Gateway.GraphQL.Resolvers.Settings.SettingResolverTest do
   end
 
   describe "#list" do
-    test "returns Setting", context do
+    test "returns Setting with empty list", context do
+      {:ok, data} = SettingResolver.list(nil, nil, context)
+      assert length(data) == 0
+    end
+
+    test "returns Setting with data", context do
       insert(:setting)
       {:ok, data} = SettingResolver.list(nil, nil, context)
       assert length(data) == 1
@@ -129,6 +172,32 @@ defmodule Gateway.GraphQL.Resolvers.Settings.SettingResolverTest do
       args = %{param: nil, value: nil}
       {:ok, []} = SettingResolver.create(nil, args, context)
     end
+
+    test "returns errors when unique_constraint param has been taken", context do
+      insert(:setting)
+      args = %{param: "some text", value: "some text"}
+      {:ok, []} = SettingResolver.create(nil, args, context)
+    end
+
+    test "create Setting with validations length min 5 for param", context do
+      args = %{param: Lorem.characters(4), value: "some text"}
+      {:ok, []} = SettingResolver.create(nil, args, context)
+    end
+
+    test "create Setting with validations length max 100 for param", context do
+      args = %{param: Lorem.characters(101), value: "some text"}
+      {:ok, []} = SettingResolver.create(nil, args, context)
+    end
+
+    test "create Setting with validations length min 5 for value", context do
+      args = %{param: "some text", value: Lorem.characters(4)}
+      {:ok, []} = SettingResolver.create(nil, args, context)
+    end
+
+    test "create Setting with validations length max 100 for value", context do
+      args = %{param: "some text", value: Lorem.characters(101)}
+      {:ok, []} = SettingResolver.create(nil, args, context)
+    end
   end
 
   describe "#update" do
@@ -160,36 +229,40 @@ defmodule Gateway.GraphQL.Resolvers.Settings.SettingResolverTest do
       {:ok, []} = SettingResolver.update(nil, args, context)
     end
 
+    test "returns empty list when unique_constraint param has been taken", context do
+      insert(:setting)
+      struct = insert(:setting, param: "some text#2")
+      params = %{param: "some text", value: "some text"}
+      args = %{id: struct.id, setting: params}
+      {:ok, []} = SettingResolver.create(nil, args, context)
+    end
+
     test "returns empty list with validations length min 5 for param", context do
       struct = insert(:setting)
       params = %{param: Lorem.characters(4), value: "updated some text"}
       args = %{id: struct.id, setting: params}
-      {:ok, updated} = SettingResolver.update(nil, args, context)
-      assert updated == []
+      {:ok, []} = SettingResolver.update(nil, args, context)
     end
 
     test "returns empty list with validations length max 100 for param", context do
       struct = insert(:setting)
       params = %{param: Lorem.characters(101), value: "updated some text"}
       args = %{id: struct.id, setting: params}
-      {:ok, updated} = SettingResolver.update(nil, args, context)
-      assert updated == []
+      {:ok, []} = SettingResolver.update(nil, args, context)
     end
 
     test "returns empty list with validations length min 5 for value", context do
       struct = insert(:setting)
       params = %{param: "updated some text", value: Lorem.characters(4)}
       args = %{id: struct.id, setting: params}
-      {:ok, updated} = SettingResolver.update(nil, args, context)
-      assert updated == []
+      {:ok, []} = SettingResolver.update(nil, args, context)
     end
 
     test "returns empty list with validations length max 100 for value", context do
       struct = insert(:setting)
       params = %{param: "updated some text", value: Lorem.characters(101)}
       args = %{id: struct.id, setting: params}
-      {:ok, updated} = SettingResolver.update(nil, args, context)
-      assert updated == []
+      {:ok, []} = SettingResolver.update(nil, args, context)
     end
   end
 end
