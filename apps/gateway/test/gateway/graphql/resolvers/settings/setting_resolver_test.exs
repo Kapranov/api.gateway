@@ -60,6 +60,34 @@ defmodule Gateway.GraphQL.Resolvers.Settings.SettingResolverTest do
       args = %{id: struct.id, setting: params}
       {:ok, []} = SettingResolver.update(nil, args, nil)
     end
+
+    test "returns empty list with validations length min 5 for param" do
+      struct = insert(:setting)
+      params = %{param: Lorem.characters(4), value: "updated some text"}
+      args = %{id: struct.id, setting: params}
+      {:ok, []} = SettingResolver.update(nil, args, nil)
+    end
+
+    test "returns empty list with validations length max 100 for param" do
+      struct = insert(:setting)
+      params = %{param: Lorem.characters(101), value: "updated some text"}
+      args = %{id: struct.id, setting: params}
+      {:ok, []} = SettingResolver.update(nil, args, nil)
+    end
+
+    test "returns empty list with validations length min 5 for value" do
+      struct = insert(:setting)
+      params = %{param: "updated some text", value: Lorem.characters(4)}
+      args = %{id: struct.id, setting: params}
+      {:ok, []} = SettingResolver.update(nil, args, nil)
+    end
+
+    test "returns empty list with validations length max 100 for value" do
+      struct = insert(:setting)
+      params = %{param: "updated some text", value: Lorem.characters(101)}
+      args = %{id: struct.id, setting: params}
+      {:ok, []} = SettingResolver.update(nil, args, nil)
+    end
   end
 
   describe "#list" do
@@ -95,7 +123,6 @@ defmodule Gateway.GraphQL.Resolvers.Settings.SettingResolverTest do
       assert created.param      == args.param
       assert created.value      == args.value
       assert created.anonymized == false
-
     end
 
     test "returns empty list when missing params", context do
