@@ -93,7 +93,11 @@ defmodule Gateway.GraphQL.Resolvers.Monitoring.StatusResolverTest do
   end
 
   describe "#list" do
-    test "returns Status", context do
+    test "returns Status with empty list", context do
+      {:ok, []} = StatusResolver.list(nil, nil, context)
+    end
+
+    test "returns Status with data", context do
       insert(:status)
       {:ok, data} = StatusResolver.list(nil, nil, context)
       assert length(data) == 1
