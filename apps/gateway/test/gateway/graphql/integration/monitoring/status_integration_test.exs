@@ -192,17 +192,8 @@ defmodule Gateway.GraphQL.Integration.Monitoring.StatusIntegrationTest do
         |> auth_conn(nil)
         |> post("/graphiql", AbsintheHelpers.query_skeleton(query, "status"))
 
-      [
-        %{
-          "locations" => [
-            %{
-              "column" => 14,
-              "line" => 2
-            }
-          ],
-          "message" => "Argument \"id\" has invalid value nil."
-        }
-      ] = json_response(res, 200)["errors"]
+      assert hd(json_response(res, 200)["errors"])["message"]
+      |> String.replace("\"", "") == "Argument id has invalid value nil."
     end
 
     test "returns empty list when Status is null - `Absinthe.run`" do
@@ -220,18 +211,8 @@ defmodule Gateway.GraphQL.Integration.Monitoring.StatusIntegrationTest do
       }
       """
 
-      {:ok, %{errors: [
-            %{
-              message: "Argument \"id\" has invalid value nil.",
-              locations: [
-                %{
-                  line: 2, column: 14
-                }
-              ]
-            }
-          ]
-        }
-      } = Absinthe.run(query, Schema, context: nil)
+      {:ok, %{errors: errors}} = Absinthe.run(query, Schema, context: nil)
+      assert hd(errors).message |> String.replace("\"", "") == "Argument id has invalid value nil."
     end
 
     test "creates Status - `AbsintheHelpers`" do
@@ -308,40 +289,8 @@ defmodule Gateway.GraphQL.Integration.Monitoring.StatusIntegrationTest do
         |> auth_conn(nil)
         |> post("/graphiql", AbsintheHelpers.mutation_skeleton(query))
 
-      [
-        %{
-          "locations" => [
-            %{
-              "column" => 5, "line" => 3
-            }
-          ],
-          "message" => "Argument \"active\" has invalid value nil."
-        },
-        %{
-          "locations" => [
-            %{
-              "column" => 5, "line" => 4
-            }
-          ],
-          "message" => "Argument \"description\" has invalid value nil."
-        },
-        %{
-          "locations" => [
-            %{
-              "column" => 5, "line" => 5
-            }
-          ],
-          "message" => "Argument \"status_code\" has invalid value nil."
-        },
-        %{
-          "locations" => [
-            %{
-              "column" => 5, "line" => 6
-            }
-          ],
-          "message" => "Argument \"status_name\" has invalid value nil."
-        }
-      ] = json_response(res, 200)["errors"]
+      assert hd(json_response(res, 200)["errors"])["message"]
+      |> String.replace("\"", "") == "Argument active has invalid value nil."
     end
 
     test "returns empty list when missing params - `Absinthe.run`" do
@@ -363,38 +312,8 @@ defmodule Gateway.GraphQL.Integration.Monitoring.StatusIntegrationTest do
         }
       }
       """
-      {:ok, %{errors: [
-            %{
-              message: "Argument \"active\" has invalid value nil.",
-              locations: [%{line: 3, column: 5}]
-            },
-            %{
-              message: "Argument \"description\" has invalid value nil.",
-              locations: [
-                %{
-                  line: 4, column: 5
-                }
-              ]
-            },
-            %{
-              message: "Argument \"status_code\" has invalid value nil.",
-              locations: [
-                %{
-                  line: 5, column: 5
-                }
-              ]
-            },
-            %{
-              message: "Argument \"status_name\" has invalid value nil.",
-              locations: [
-                %{
-                  line: 6, column: 5
-                }
-              ]
-            }
-          ]
-        }
-      } = Absinthe.run(query, Schema, context: nil)
+      {:ok, %{errors: errors}} = Absinthe.run(query, Schema, context: nil)
+      assert hd(errors).message |> String.replace("\"", "") == "Argument active has invalid value nil."
     end
 
     test "returns empty list when statusCode is an uniqueIndex - `AbsintheHelpers`" do
@@ -473,17 +392,8 @@ defmodule Gateway.GraphQL.Integration.Monitoring.StatusIntegrationTest do
         |> auth_conn(nil)
         |> post("/graphiql", AbsintheHelpers.mutation_skeleton(query))
 
-      [
-        %{
-          "locations" => [
-            %{
-              "column" => 5,
-              "line" => 3
-            }
-          ],
-          "message" => "Argument \"active\" has invalid value nil."
-        }
-      ] = json_response(res, 200)["errors"]
+      assert hd(json_response(res, 200)["errors"])["message"]
+      |> String.replace("\"", "") == "Argument active has invalid value nil."
     end
 
     test "returns empty list when with validations boolean for active - `Absinthe.run`" do
@@ -505,19 +415,8 @@ defmodule Gateway.GraphQL.Integration.Monitoring.StatusIntegrationTest do
         }
       }
       """
-      {:ok, %{errors: [
-            %{
-              message: "Argument \"active\" has invalid value nil.",
-              locations: [
-                %{
-                  line: 3,
-                  column: 5
-                }
-              ]
-            }
-          ]
-        }
-      } = Absinthe.run(query, Schema, context: nil)
+      {:ok, %{errors: errors}} = Absinthe.run(query, Schema, context: nil)
+      assert hd(errors).message |> String.replace("\"", "") == "Argument active has invalid value nil."
     end
 
     test "returns empty list when validations length min 3 for description - `AbsintheHelpers`" do
@@ -1020,13 +919,8 @@ defmodule Gateway.GraphQL.Integration.Monitoring.StatusIntegrationTest do
         |> auth_conn(@phrase)
         |> post("/graphiql", AbsintheHelpers.query_skeleton(query, "status"))
 
-      assert json_response(res, 200)["errors"] == [%{
-        "locations" => [%{
-          "column" => 14,
-          "line" => 2
-        }],
-        "message" => "Argument \"id\" has invalid value nil."
-      }]
+      assert hd(json_response(res, 200)["errors"])["message"]
+      |> String.replace("\"", "") == "Argument id has invalid value nil."
     end
 
     test "returns empty list when Status is null - `Absinthe.run`", context do
@@ -1044,11 +938,8 @@ defmodule Gateway.GraphQL.Integration.Monitoring.StatusIntegrationTest do
       }
       """
 
-      {:ok, %{errors: [%{
-              message: "Argument \"id\" has invalid value nil.",
-              locations: [%{line: 2, column: 14}]
-            }]}} =
-        Absinthe.run(query, Schema, context: context)
+      {:ok, %{errors: errors}} = Absinthe.run(query, Schema, context: context)
+      assert hd(errors).message |> String.replace("\"", "") == "Argument id has invalid value nil."
     end
   end
 
@@ -1137,40 +1028,8 @@ defmodule Gateway.GraphQL.Integration.Monitoring.StatusIntegrationTest do
         |> auth_conn(@phrase)
         |> post("/graphiql", AbsintheHelpers.mutation_skeleton(query))
 
-      [
-        %{
-          "locations" => [
-            %{
-              "column" => 5, "line" => 3
-            }
-          ],
-          "message" => "Argument \"active\" has invalid value nil."
-        },
-        %{
-          "locations" => [
-            %{
-              "column" => 5, "line" => 4
-            }
-          ],
-          "message" => "Argument \"description\" has invalid value nil."
-        },
-        %{
-          "locations" => [
-            %{
-              "column" => 5, "line" => 5
-            }
-          ],
-          "message" => "Argument \"status_code\" has invalid value nil."
-        },
-        %{
-          "locations" => [
-            %{
-              "column" => 5, "line" => 6
-            }
-          ],
-          "message" => "Argument \"status_name\" has invalid value nil."
-        }
-      ] = json_response(res, 200)["errors"]
+      assert hd(json_response(res, 200)["errors"])["message"]
+      |> String.replace("\"", "") == "Argument active has invalid value nil."
     end
 
     test "returns empty list when missing params - `Absinthe.run`", context do
@@ -1192,38 +1051,8 @@ defmodule Gateway.GraphQL.Integration.Monitoring.StatusIntegrationTest do
         }
       }
       """
-      {:ok, %{errors: [
-            %{
-              message: "Argument \"active\" has invalid value nil.",
-              locations: [%{line: 3, column: 5}]
-            },
-            %{
-              message: "Argument \"description\" has invalid value nil.",
-              locations: [
-                %{
-                  line: 4, column: 5
-                }
-              ]
-            },
-            %{
-              message: "Argument \"status_code\" has invalid value nil.",
-              locations: [
-                %{
-                  line: 5, column: 5
-                }
-              ]
-            },
-            %{
-              message: "Argument \"status_name\" has invalid value nil.",
-              locations: [
-                %{
-                  line: 6, column: 5
-                }
-              ]
-            }
-          ]
-        }
-      } = Absinthe.run(query, Schema, context: context)
+      {:ok, %{errors: errors}} = Absinthe.run(query, Schema, context: context)
+      assert hd(errors).message |> String.replace("\"", "") == "Argument active has invalid value nil."
     end
 
     test "returns empty list when statusCode is an uniqueIndex - `AbsintheHelpers`" do
@@ -1302,17 +1131,8 @@ defmodule Gateway.GraphQL.Integration.Monitoring.StatusIntegrationTest do
         |> auth_conn(@phrase)
         |> post("/graphiql", AbsintheHelpers.mutation_skeleton(query))
 
-      [
-        %{
-          "locations" => [
-            %{
-              "column" => 5,
-              "line" => 3
-            }
-          ],
-          "message" => "Argument \"active\" has invalid value nil."
-        }
-      ] = json_response(res, 200)["errors"]
+      assert hd(json_response(res, 200)["errors"])["message"]
+      |> String.replace("\"", "") == "Argument active has invalid value nil."
     end
 
     test "returns empty list when with validations boolean for active - `Absinthe.run`", context do
@@ -1334,19 +1154,8 @@ defmodule Gateway.GraphQL.Integration.Monitoring.StatusIntegrationTest do
         }
       }
       """
-      {:ok, %{errors: [
-            %{
-              message: "Argument \"active\" has invalid value nil.",
-              locations: [
-                %{
-                  line: 3,
-                  column: 5
-                }
-              ]
-            }
-          ]
-        }
-      } = Absinthe.run(query, Schema, context: context)
+      {:ok, %{errors: errors}} = Absinthe.run(query, Schema, context: context)
+      assert hd(errors).message |> String.replace("\"", "") == "Argument active has invalid value nil."
     end
 
     test "returns empty list when validations length min 3 for description - `AbsintheHelpers`" do

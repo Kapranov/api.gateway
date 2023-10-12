@@ -130,8 +130,7 @@ defmodule Gateway.GraphQL.Resolvers.Settings.SettingResolverTest do
 
   describe "#list" do
     test "returns Setting with empty list", context do
-      {:ok, data} = SettingResolver.list(nil, nil, context)
-      assert length(data) == 0
+      {:ok, []} = SettingResolver.list(nil, nil, context)
     end
 
     test "returns Setting with data", context do
