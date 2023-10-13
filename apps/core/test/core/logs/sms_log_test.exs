@@ -63,9 +63,9 @@ defmodule Core.Logs.SmsLogTest do
         statuses: [message.status]
       })
       struct = Logs.get_sms_log(sms_log.id)
-      assert  List.first(struct.statuses) |> Map.get(:id) == message.status.id
-      assert  List.first(struct.messages) |> Map.get(:id) == message.id
-      assert List.first(struct.operators) |> Map.get(:id) == operator.id
+      assert hd(struct.statuses)  |> Map.get(:id) == message.status.id
+      assert hd(struct.messages)  |> Map.get(:id) == message.id
+      assert hd(struct.operators) |> Map.get(:id) == operator.id
     end
   end
 end
