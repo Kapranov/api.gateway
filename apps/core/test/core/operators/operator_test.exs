@@ -104,7 +104,19 @@ defmodule Core.Operators.OperatorTest do
       assert {:error, %Ecto.Changeset{}} = Operators.create_operator(attrs)
     end
 
-    test "create_operator/1 with validations length min 3 for name_operator" do
+    test "create_operator/1 with operatorTypeId invalid data returns error changeset" do
+      insert(:operator_type)
+      config = build(:config)
+      parameters = build(:parameters)
+      config_attrs = Map.from_struct(config)
+      parameters_attrs = Map.from_struct(parameters)
+      data = Map.merge(config_attrs, %{parameters: parameters_attrs})
+      attrs = Map.merge(@valid_attrs, %{config: data, operator_type_id: FlakeId.get()})
+      assert {:error, %Ecto.Changeset{}} = Operators.create_operator(attrs)
+    end
+
+
+    test "create_operator/1 with validations length min 3 for nameOperator" do
       operator_type = insert(:operator_type)
       config = build(:config)
       parameters = build(:parameters)
@@ -116,7 +128,7 @@ defmodule Core.Operators.OperatorTest do
       assert {:error, %Ecto.Changeset{}} = Operators.create_operator(new_attrs)
     end
 
-    test "create_operator/1 with validations length max 101 for name_operator" do
+    test "create_operator/1 with validations length max 100 for nameOperator" do
       operator_type = insert(:operator_type)
       config = build(:config)
       parameters = build(:parameters)
@@ -125,6 +137,18 @@ defmodule Core.Operators.OperatorTest do
       data = Map.merge(config_attrs, %{parameters: parameters_attrs})
       attrs = Map.merge(@valid_attrs, %{config: data, operator_type_id: operator_type.id })
       new_attrs = Map.merge(attrs, %{name_operator: Lorem.characters(101)})
+      assert {:error, %Ecto.Changeset{}} = Operators.create_operator(new_attrs)
+    end
+
+    test "create_operator/1 with validations integer min 1 for priority" do
+      operator_type = insert(:operator_type)
+      config = build(:config)
+      parameters = build(:parameters)
+      config_attrs = Map.from_struct(config)
+      parameters_attrs = Map.from_struct(parameters)
+      data = Map.merge(config_attrs, %{parameters: parameters_attrs})
+      attrs = Map.merge(@valid_attrs, %{config: data, operator_type_id: operator_type.id })
+      new_attrs = Map.merge(attrs, %{priority: Faker.random_between(0, 0)})
       assert {:error, %Ecto.Changeset{}} = Operators.create_operator(new_attrs)
     end
 
@@ -140,7 +164,7 @@ defmodule Core.Operators.OperatorTest do
       assert {:error, %Ecto.Changeset{}} = Operators.create_operator(new_attrs)
     end
 
-    test "create_operator/1 with validations integer max 101_000 for limit_count" do
+    test "create_operator/1 with validations integer min 0 for limitCount" do
       operator_type = insert(:operator_type)
       config = build(:config)
       parameters = build(:parameters)
@@ -148,11 +172,24 @@ defmodule Core.Operators.OperatorTest do
       parameters_attrs = Map.from_struct(parameters)
       data = Map.merge(config_attrs, %{parameters: parameters_attrs})
       attrs = Map.merge(@valid_attrs, %{config: data, operator_type_id: operator_type.id })
-      new_attrs = Map.merge(attrs, %{limit_count: Faker.random_between(101_000, 102_000)})
+      new_attrs = Map.merge(attrs, %{limit_count: Faker.random_between(0, 0)})
+      assert {:ok, created} = Operators.create_operator(new_attrs)
+      assert created.limit_count == 0
+    end
+
+    test "create_operator/1 with validations integer max 100_000 for limitCount" do
+      operator_type = insert(:operator_type)
+      config = build(:config)
+      parameters = build(:parameters)
+      config_attrs = Map.from_struct(config)
+      parameters_attrs = Map.from_struct(parameters)
+      data = Map.merge(config_attrs, %{parameters: parameters_attrs})
+      attrs = Map.merge(@valid_attrs, %{config: data, operator_type_id: operator_type.id })
+      new_attrs = Map.merge(attrs, %{limit_count: Faker.random_between(101_000, 101_001)})
       assert {:error, %Ecto.Changeset{}} = Operators.create_operator(new_attrs)
     end
 
-    test "create_operator/1 with validations decimal price_ext" do
+    test "create_operator/1 with validations decimal priceExt" do
       operator_type = insert(:operator_type)
       config = build(:config)
       parameters = build(:parameters)
@@ -164,7 +201,7 @@ defmodule Core.Operators.OperatorTest do
       assert {:error, %Ecto.Changeset{}} = Operators.create_operator(new_attrs)
     end
 
-    test "create_operator/1 with validations decimal price_int" do
+    test "create_operator/1 with validations decimal priceInt" do
       operator_type = insert(:operator_type)
       config = build(:config)
       parameters = build(:parameters)
@@ -176,7 +213,7 @@ defmodule Core.Operators.OperatorTest do
       assert {:error, %Ecto.Changeset{}} = Operators.create_operator(new_attrs)
     end
 
-    test "create_operator/1 with validations name_operator has been taken" do
+    test "create_operator/1 with validations nameOperator has been taken" do
       operator_type = insert(:operator_type)
       config = build(:config)
       parameters = build(:parameters)
@@ -301,7 +338,7 @@ defmodule Core.Operators.OperatorTest do
       assert struct.config.parameters.value == updated_parameters.value
     end
 
-    test "update_operator/2 with validate decimal price_ext" do
+    test "update_operator/2 with validate decimal priceExt" do
       parameters = build(:parameters)
       updated_parameters = Map.merge(parameters, %{
         key: "updated some text",
@@ -321,7 +358,7 @@ defmodule Core.Operators.OperatorTest do
       assert updated.price_ext == Decimal.new("1.1")
     end
 
-    test "update_operator/2 with validate decimal price_int" do
+    test "update_operator/2 with validate decimal priceInt" do
       parameters = build(:parameters)
       updated_parameters = Map.merge(parameters, %{
         key: "updated some text",
@@ -360,7 +397,7 @@ defmodule Core.Operators.OperatorTest do
       assert {:error, %Ecto.Changeset{}} = Operators.update_operator(operator, updated_attrs)
     end
 
-    test "update_operator/2 with nil name_operator" do
+    test "update_operator/2 with nil nameOperator" do
       parameters = build(:parameters)
       updated_parameters = Map.merge(parameters, %{
         key: "updated some text",
@@ -378,7 +415,7 @@ defmodule Core.Operators.OperatorTest do
       assert {:error, %Ecto.Changeset{}} = Operators.update_operator(operator, updated_attrs)
     end
 
-    test "update_operator/2 with nil operator_type_id" do
+    test "update_operator/2 with nil operatorTypeId" do
       parameters = build(:parameters)
       updated_parameters = Map.merge(parameters, %{
         key: "updated some text",
@@ -396,7 +433,7 @@ defmodule Core.Operators.OperatorTest do
       assert {:error, %Ecto.Changeset{}} = Operators.update_operator(operator, updated_attrs)
     end
 
-    test "update_operator/2 with nil price_ext" do
+    test "update_operator/2 with nil priceExt" do
       parameters = build(:parameters)
       updated_parameters = Map.merge(parameters, %{
         key: "updated some text",
@@ -414,7 +451,7 @@ defmodule Core.Operators.OperatorTest do
       assert {:error, %Ecto.Changeset{}} = Operators.update_operator(operator, updated_attrs)
     end
 
-    test "update_operator/2 with nil price_int" do
+    test "update_operator/2 with nil priceInt" do
       parameters = build(:parameters)
       updated_parameters = Map.merge(parameters, %{
         key: "updated some text",
@@ -432,7 +469,7 @@ defmodule Core.Operators.OperatorTest do
       assert {:error, %Ecto.Changeset{}} = Operators.update_operator(operator, updated_attrs)
     end
 
-    test "update_operator/2 with validate decimal when none integer and float price_ext" do
+    test "update_operator/2 with validate decimal when none integer and float priceExt" do
       parameters = build(:parameters)
       updated_parameters = Map.merge(parameters, %{
         key: "updated some text",
@@ -451,7 +488,7 @@ defmodule Core.Operators.OperatorTest do
       assert changeset.errors == [price_ext: {"is invalid", [type: :decimal, validation: :cast]}]
     end
 
-    test "update_operator/2 with validate decimal when none integer and float price_int" do
+    test "update_operator/2 with validate decimal when none integer and float priceInt" do
       parameters = build(:parameters)
       updated_parameters = Map.merge(parameters, %{
         key: "updated some text",
@@ -488,7 +525,7 @@ defmodule Core.Operators.OperatorTest do
       assert {:error, %Ecto.Changeset{}} = Operators.update_operator(operator, updated_attrs)
     end
 
-    test "update_operator/2 with validations length min 3 for name_operator" do
+    test "update_operator/2 with validations length min 3 for nameOperator" do
       parameters = build(:parameters)
       config = build(:config, parameters: parameters)
       updated_config = Map.merge(config, %{
@@ -502,7 +539,7 @@ defmodule Core.Operators.OperatorTest do
       assert {:error, _changeset} = Operators.update_operator(operator, update_attrs)
     end
 
-    test "update_operator/2 with validations length max 101 for name_operator" do
+    test "update_operator/2 with validations length max 100 for nameOperator" do
       parameters = build(:parameters)
       config = build(:config, parameters: parameters)
       updated_config = Map.merge(config, %{
@@ -515,6 +552,21 @@ defmodule Core.Operators.OperatorTest do
       update_attrs = Map.merge(@update_attrs, %{name_operator: Lorem.characters(101)})
       assert {:error, _changeset} = Operators.update_operator(operator, update_attrs)
     end
+
+    test "update_operator/2 with validations integer min 1 for priority" do
+      parameters = build(:parameters)
+      config = build(:config, parameters: parameters)
+      updated_config = Map.merge(config, %{
+        content_type: "updated some text",
+        name: "updated some text",
+        size: 2,
+        url: "updated some text"
+      })
+      operator = insert(:operator, config: updated_config)
+      update_attrs = Map.merge(@update_attrs, %{priority: Faker.random_between(0, 0)})
+      assert {:error, _changeset} = Operators.update_operator(operator, update_attrs)
+    end
+
 
     test "update_operator/2 with validations integer max 99 for priority" do
       parameters = build(:parameters)
@@ -530,7 +582,7 @@ defmodule Core.Operators.OperatorTest do
       assert {:error, _changeset} = Operators.update_operator(operator, update_attrs)
     end
 
-    test "update_operator/2 with validations integer max 101_000 for limit_count" do
+    test "update_operator/2 with validations integer max 100_000 for limitCount" do
       parameters = build(:parameters)
       config = build(:config, parameters: parameters)
       updated_config = Map.merge(config, %{
@@ -540,11 +592,11 @@ defmodule Core.Operators.OperatorTest do
         url: "updated some text"
       })
       operator = insert(:operator, config: updated_config)
-      update_attrs = Map.merge(@update_attrs, %{limit_count: Faker.random_between(101_000, 102_000)})
+      update_attrs = Map.merge(@update_attrs, %{limit_count: Faker.random_between(101_000, 101_001)})
       assert {:error, _changeset} = Operators.update_operator(operator, update_attrs)
     end
 
-    test "update_operator/2 with max 0 for price_ext" do
+    test "update_operator/2 with max 0 for priceExt" do
       parameters = build(:parameters)
       config = build(:config, parameters: parameters)
       updated_config = Map.merge(config, %{
@@ -560,7 +612,7 @@ defmodule Core.Operators.OperatorTest do
       assert updated.price_ext == Decimal.new("0")
     end
 
-    test "update_operator/2 with max 0 for price_int" do
+    test "update_operator/2 with max 0 for priceInt" do
       parameters = build(:parameters)
       config = build(:config, parameters: parameters)
       updated_config = Map.merge(config, %{
