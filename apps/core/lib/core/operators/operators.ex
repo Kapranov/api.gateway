@@ -167,6 +167,8 @@ defmodule Core.Operators do
     rescue
       Ecto.NoResultsError ->
         {:error, %Ecto.Changeset{}}
+      Ecto.ConstraintError ->
+        {:error, %Ecto.Changeset{}}
     end
   end
 end

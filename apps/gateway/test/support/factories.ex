@@ -50,7 +50,7 @@ defmodule Gateway.Factory do
       limit_count: 1,
       name_operator: "some text",
       operator_type: build(:operator_type),
-      phone_code: "+380991111111",
+      phone_code: "063, 093, 096",
       price_ext: 1,
       price_int: 1,
       priority: 1,
