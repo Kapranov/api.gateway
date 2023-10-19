@@ -43,7 +43,7 @@ defmodule Gateway.GraphQL.Resolvers.Spring.MessageResolver do
   @spec create(any, %{atom => any}, Absinthe.Resolution.t()) :: error_tuple()
   def create(_parent, _args, _info), do: {:ok, []}
 
-  @spec update(any, %{id: bitstring, setting: map()}, %{context: %{token: String.t()}}) :: result()
+  @spec update(any, %{id: bitstring, message: map()}, %{context: %{token: String.t()}}) :: result()
   def update(_parent, %{id: id, message: params}, %{context: %{token: _token}}) do
     try do
       Repo.get!(Message, id)
