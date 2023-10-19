@@ -1098,10 +1098,10 @@ defmodule Gateway.GraphQL.Integration.Operators.OperatorTypeIntegrationTest do
 
       assert json_response(res, 200)["errors"] == nil
       data = json_response(res, 200)["data"]["listOperatorType"]
-      assert List.first(data)["id"]        == struct.id
-      assert List.first(data)["active"]    == struct.active
-      assert List.first(data)["name_type"] == struct.name_type
-      assert List.first(data)["priority"]  == struct.priority
+      assert hd(data)["id"]        == struct.id
+      assert hd(data)["active"]    == struct.active
+      assert hd(data)["name_type"] == struct.name_type
+      assert hd(data)["priority"]  == struct.priority
     end
 
     test "returns listOperatorType - `Absinthe.run`", context do

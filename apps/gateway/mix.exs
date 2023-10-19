@@ -43,6 +43,7 @@ defmodule Gateway.MixProject do
       {:ex_spec, "~> 2.0", only: [:test]},
       {:ex_unit_notifier, "~> 1.3"},
       {:faker, "~> 0.17", only: [:dev, :test]},
+      {:gen_state_machine, "~> 3.0"},
       {:jason, "~> 1.2"},
       {:observer_cli, "~> 1.7"},
       {:phoenix, "~> 1.7.7"},
