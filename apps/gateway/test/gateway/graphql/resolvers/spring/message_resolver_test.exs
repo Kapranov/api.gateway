@@ -15,6 +15,478 @@ defmodule Gateway.GraphQL.Resolvers.Spring.MessageResolverTest do
   end
 
   describe "#unauthorized" do
+    test "returns specific Message by id" do
+      message = insert(:message)
+      operator = insert(:operator)
+      insert(:sms_log, %{
+        operators: [operator],
+        messages: [message],
+        statuses: [message.status]
+      })
+      {:ok, []} = MessageResolver.show(nil, %{id: message.id}, nil)
+    end
+
+    test "returns empty list when Message does not exist" do
+      id = FlakeId.get()
+      {:ok, []} = MessageResolver.show(nil, %{id: id}, nil)
+    end
+
+    test "created Message" do
+      status = insert(:status)
+      args = %{
+        id_external: "1",
+        id_tax: 1_111_111_111,
+        id_telegram: "length text",
+        message_body: "some text",
+        message_expired_at: random_datetime(+7),
+        phone_number: "+380991111111",
+        status_changed_at: random_datetime(+3),
+        status_id: status.id
+      }
+      {:ok, []} = MessageResolver.create(nil, args, nil)
+    end
+
+    test "created returns empty list when missing params" do
+      args = %{
+        id_external: "1",
+        id_tax: 1_111_111_111,
+        id_telegram: "length text",
+        message_body: nil,
+        message_expired_at: random_datetime(+7),
+        phone_number: nil,
+        status_changed_at: random_datetime(+3),
+        status_id: nil
+      }
+      {:ok, []} = MessageResolver.create(nil, args, nil)
+    end
+
+    test "created Message with validations phone_number" do
+      status = insert(:status)
+      args = %{
+        id_external: "1",
+        id_tax: 1_111_111_111,
+        id_telegram: "length text",
+        message_body: "some text",
+        message_expired_at: random_datetime(+7),
+        phone_number: "+44991111111",
+        status_changed_at: random_datetime(+3),
+        status_id: status.id
+      }
+      {:ok, []} = MessageResolver.create(nil, args, nil)
+    end
+
+    test "created Message with validations length min 1 for idExternal" do
+      status = insert(:status)
+      args = %{
+        id_external: Lorem.characters(0),
+        id_tax: 1_111_111_111,
+        id_telegram: "length text",
+        message_body: "some text",
+        message_expired_at: random_datetime(+7),
+        phone_number: "+380991111111",
+        status_changed_at: random_datetime(+3),
+        status_id: status.id
+      }
+      {:ok, []} = MessageResolver.create(nil, args, nil)
+    end
+
+    test "created Message with validations length max 10 for idExternal" do
+      status = insert(:status)
+      args = %{
+        id_external: Lorem.characters(11),
+        id_tax: 1_111_111_111,
+        id_telegram: "length text",
+        message_body: "some text",
+        message_expired_at: random_datetime(+7),
+        phone_number: "+380991111111",
+        status_changed_at: random_datetime(+3),
+        status_id: status.id
+      }
+      {:ok, []} = MessageResolver.create(nil, args, nil)
+    end
+
+    test "created Message with validations length min 10 for idTelegram" do
+      status = insert(:status)
+      args = %{
+        id_external: "1",
+        id_tax: 1_111_111_111,
+        id_telegram: Lorem.characters(9),
+        message_body: "some text",
+        message_expired_at: random_datetime(+7),
+        phone_number: "+380991111111",
+        status_changed_at: random_datetime(+3),
+        status_id: status.id
+      }
+      {:ok, []} = MessageResolver.create(nil, args, nil)
+    end
+
+    test "created Message with validations length max 11 for idTelegram" do
+      status = insert(:status)
+      args = %{
+        id_external: "1",
+        id_tax: 1_111_111_111,
+        id_telegram: Lorem.characters(12),
+        message_body: "some text",
+        message_expired_at: random_datetime(+7),
+        phone_number: "+380991111111",
+        status_changed_at: random_datetime(+3),
+        status_id: status.id
+      }
+      {:ok, []} = MessageResolver.create(nil, args, nil)
+    end
+
+    test "created Message with validations length min 5 for messageBody" do
+      status = insert(:status)
+      args = %{
+        id_external: "1",
+        id_tax: 1_111_111_111,
+        id_telegram: "length text",
+        message_body: Lorem.characters(4),
+        message_expired_at: random_datetime(+7),
+        phone_number: "+380991111111",
+        status_changed_at: random_datetime(+3),
+        status_id: status.id
+      }
+      {:ok, []} = MessageResolver.create(nil, args, nil)
+    end
+
+    test "created Message with validations length max 255 for messageBody" do
+      status = insert(:status)
+      args = %{
+        id_external: "1",
+        id_tax: 1_111_111_111,
+        id_telegram: "length text",
+        message_body: Lorem.characters(256),
+        message_expired_at: random_datetime(+7),
+        phone_number: "+380991111111",
+        status_changed_at: random_datetime(+3),
+        status_id: status.id
+      }
+      {:ok, []} = MessageResolver.create(nil, args, nil)
+    end
+
+    test "created Message with validations integer min 1_000_000_000 for idTax" do
+      status = insert(:status)
+      args = %{
+        id_external: "1",
+        id_tax: Faker.random_between(999_999_998, 999_999_999),
+        id_telegram: "length text",
+        message_body: "some text",
+        message_expired_at: random_datetime(+7),
+        phone_number: "+380991111111",
+        status_changed_at: random_datetime(+3),
+        status_id: status.id
+      }
+      {:ok, []} = MessageResolver.create(nil, args, nil)
+    end
+
+    test "created Message with validations integer max 9_999_999_999 for idTax" do
+      status = insert(:status)
+      args = %{
+        id_external: "1",
+        id_tax: Faker.random_between(10_000_000_001, 10_000_000_002),
+        id_telegram: "length text",
+        message_body: "some text",
+        message_expired_at: random_datetime(+7),
+        phone_number: "+380991111111",
+        status_changed_at: random_datetime(+3),
+        status_id: status.id
+      }
+      {:ok, []} = MessageResolver.create(nil, args, nil)
+    end
+
+    test "created returns empty list when none exist statusId" do
+      status_id = FlakeId.get()
+      args = %{
+        id_external: "1",
+        id_tax: 1_111_111_111,
+        id_telegram: "length text",
+        message_body: "some text",
+        message_expired_at: random_datetime(+7),
+        phone_number: "+380991111111",
+        status_changed_at: random_datetime(+3),
+        status_id: status_id
+      }
+      {:ok, []} = MessageResolver.create(nil, args, nil)
+    end
+
+    test "created returns empty list when format dateTime messageExpiredAt" do
+      status = insert(:status)
+      args = %{
+        id_external: "1",
+        id_tax: 1_111_111_111,
+        id_telegram: "length text",
+        message_body: "some text",
+        message_expired_at: Time.utc_now(),
+        phone_number: "+380991111111",
+        status_changed_at: random_datetime(+3),
+        status_id: status.id
+      }
+      {:ok, []} = MessageResolver.create(nil, args, nil)
+    end
+
+    test "created returns empty list when format dateTime statusChangedAt" do
+      status = insert(:status)
+      args = %{
+        id_external: "1",
+        id_tax: 1_111_111_111,
+        id_telegram: "length text",
+        message_body: "some text",
+        message_expired_at: random_datetime(+7),
+        phone_number: "+380991111111",
+        status_changed_at: Time.utc_now(),
+        status_id: status.id
+      }
+      {:ok, []} = MessageResolver.create(nil, args, nil)
+    end
+
+    test "created returns empty list when sms_logs count is max 2" do
+    end
+
+    test "updated specific Message by id" do
+      status = insert(:status, status_code: 2, status_name: "status #2")
+      struct = insert(:message)
+      params = %{
+        id_external: "2",
+        id_tax: 2_222_222_222,
+        id_telegram: "update text",
+        message_body: "updated some text",
+        message_expired_at: DateTime.utc_now |> DateTime.add(10, :day),
+        phone_number: "+380991111333",
+        status_changed_at: DateTime.utc_now |> DateTime.add(8, :day),
+        status_id: status.id
+      }
+      args = %{id: struct.id, message: params}
+      {:ok, []} = MessageResolver.update(nil, args, nil)
+    end
+
+    test "updated nothing change for missing params" do
+      insert(:status, status_code: 2, status_name: "status #2")
+      struct = insert(:message)
+      params = %{}
+      args = %{id: struct.id, message: params}
+      {:ok, []} = MessageResolver.update(nil, args, nil)
+    end
+
+    test "updated returns empty list for missing params" do
+      struct = insert(:message)
+      params = %{
+        id_external: "2",
+        id_tax: 2_222_222_222,
+        id_telegram: "update text",
+        message_body: nil,
+        message_expired_at: DateTime.utc_now |> DateTime.add(10, :day),
+        phone_number: nil,
+        status_changed_at: DateTime.utc_now |> DateTime.add(8, :day),
+        status_id: nil
+      }
+      args = %{id: struct.id, message: params}
+      {:ok, []} = MessageResolver.update(nil, args, nil)
+    end
+
+    test "updated Message with validations phone_number" do
+      status = insert(:status, status_code: 2, status_name: "status #2")
+      struct = insert(:message)
+      params = %{
+        id_external: "2",
+        id_tax: 2_222_222_222,
+        id_telegram: "update text",
+        message_body: "updated some text",
+        message_expired_at: DateTime.utc_now |> DateTime.add(10, :day),
+        phone_number: "+44991111111",
+        status_changed_at: DateTime.utc_now |> DateTime.add(8, :day),
+        status_id: status.id
+      }
+      args = %{id: struct.id, message: params}
+      {:ok, []} = MessageResolver.create(nil, args, nil)
+    end
+
+    test "updated Message with validations length min 1 for idExternal" do
+      status = insert(:status, status_code: 2, status_name: "status #2")
+      struct = insert(:message)
+      params = %{
+        id_external: Lorem.characters(0),
+        id_tax: 2_222_222_222,
+        id_telegram: "update text",
+        message_body: "updated some text",
+        message_expired_at: DateTime.utc_now |> DateTime.add(10, :day),
+        phone_number: "+380991111333",
+        status_changed_at: DateTime.utc_now |> DateTime.add(8, :day),
+        status_id: status.id
+      }
+      args = %{id: struct.id, message: params}
+      {:ok, []} = MessageResolver.create(nil, args, nil)
+    end
+
+    test "updated Message with validations length max 10 for idExternal" do
+      status = insert(:status, status_code: 2, status_name: "status #2")
+      struct = insert(:message)
+      params = %{
+        id_external: Lorem.characters(11),
+        id_tax: 2_222_222_222,
+        id_telegram: "update text",
+        message_body: "updated some text",
+        message_expired_at: DateTime.utc_now |> DateTime.add(10, :day),
+        phone_number: "+380991111333",
+        status_changed_at: DateTime.utc_now |> DateTime.add(8, :day),
+        status_id: status.id
+      }
+      args = %{id: struct.id, message: params}
+      {:ok, []} = MessageResolver.create(nil, args, nil)
+    end
+
+    test "updated Message with validations length min 10 for idTelegram" do
+      status = insert(:status, status_code: 2, status_name: "status #2")
+      struct = insert(:message)
+      params = %{
+        id_external: "2",
+        id_tax: 2_222_222_222,
+        id_telegram: Lorem.characters(9),
+        message_body: "updated some text",
+        message_expired_at: DateTime.utc_now |> DateTime.add(10, :day),
+        phone_number: "+380991111333",
+        status_changed_at: DateTime.utc_now |> DateTime.add(8, :day),
+        status_id: status.id
+      }
+      args = %{id: struct.id, message: params}
+      {:ok, []} = MessageResolver.create(nil, args, nil)
+    end
+
+    test "updated Message with validations length max 11 for idTelegram" do
+      status = insert(:status, status_code: 2, status_name: "status #2")
+      struct = insert(:message)
+      params = %{
+        id_external: "2",
+        id_tax: 2_222_222_222,
+        id_telegram: Lorem.characters(12),
+        message_body: "updated some text",
+        message_expired_at: DateTime.utc_now |> DateTime.add(10, :day),
+        phone_number: "+380991111333",
+        status_changed_at: DateTime.utc_now |> DateTime.add(8, :day),
+        status_id: status.id
+      }
+      args = %{id: struct.id, message: params}
+      {:ok, []} = MessageResolver.create(nil, args, nil)
+    end
+
+    test "updated Message with validations length min 5 for messageBody" do
+      status = insert(:status, status_code: 2, status_name: "status #2")
+      struct = insert(:message)
+      params = %{
+        id_external: "2",
+        id_tax: 2_222_222_222,
+        id_telegram: "update text",
+        message_body: Lorem.characters(4),
+        message_expired_at: DateTime.utc_now |> DateTime.add(10, :day),
+        phone_number: "+380991111333",
+        status_changed_at: DateTime.utc_now |> DateTime.add(8, :day),
+        status_id: status.id
+      }
+      args = %{id: struct.id, message: params}
+      {:ok, []} = MessageResolver.create(nil, args, nil)
+    end
+
+    test "updated Message with validations length max 255 for messageBody" do
+      status = insert(:status, status_code: 2, status_name: "status #2")
+      struct = insert(:message)
+      params = %{
+        id_external: "2",
+        id_tax: 2_222_222_222,
+        id_telegram: "update text",
+        message_body: Lorem.characters(256),
+        message_expired_at: DateTime.utc_now |> DateTime.add(10, :day),
+        phone_number: "+380991111333",
+        status_changed_at: DateTime.utc_now |> DateTime.add(8, :day),
+        status_id: status.id
+      }
+      args = %{id: struct.id, message: params}
+      {:ok, []} = MessageResolver.create(nil, args, nil)
+    end
+
+    test "updated Message with validations integer min 1_000_000_000 for idTax" do
+      status = insert(:status, status_code: 2, status_name: "status #2")
+      struct = insert(:message)
+      params = %{
+        id_external: "2",
+        id_tax: Faker.random_between(999_999_998, 999_999_999),
+        id_telegram: "update text",
+        message_body: "updated some text",
+        message_expired_at: DateTime.utc_now |> DateTime.add(10, :day),
+        phone_number: "+380991111333",
+        status_changed_at: DateTime.utc_now |> DateTime.add(8, :day),
+        status_id: status.id
+      }
+      args = %{id: struct.id, message: params}
+      {:ok, []} = MessageResolver.create(nil, args, nil)
+    end
+
+    test "updated Message with validations integer max 9_999_999_999 for idTax" do
+      status = insert(:status, status_code: 2, status_name: "status #2")
+      struct = insert(:message)
+      params = %{
+        id_external: "2",
+        id_tax: Faker.random_between(10_000_000_001, 10_000_000_002),
+        id_telegram: "update text",
+        message_body: "updated some text",
+        message_expired_at: DateTime.utc_now |> DateTime.add(10, :day),
+        phone_number: "+380991111333",
+        status_changed_at: DateTime.utc_now |> DateTime.add(8, :day),
+        status_id: status.id
+      }
+      args = %{id: struct.id, message: params}
+      {:ok, []} = MessageResolver.create(nil, args, nil)
+    end
+
+    test "updated returns empty list when none exist statusId" do
+      status_id = FlakeId.get()
+      struct = insert(:message)
+      params = %{
+        id_external: "2",
+        id_tax: 2_222_222_222,
+        id_telegram: "update text",
+        message_body: "updated some text",
+        message_expired_at: DateTime.utc_now |> DateTime.add(10, :day),
+        phone_number: "+380991111333",
+        status_changed_at: DateTime.utc_now |> DateTime.add(8, :day),
+        status_id: status_id
+      }
+      args = %{id: struct.id, message: params}
+      {:ok, []} = MessageResolver.create(nil, args, nil)
+    end
+
+    test "updated returns empty list when format dateTime messageExpiredAt" do
+      status = insert(:status, status_code: 2, status_name: "status #2")
+      struct = insert(:message)
+      params = %{
+        id_external: "2",
+        id_tax: 2_222_222_222,
+        id_telegram: "update text",
+        message_body: "updated some text",
+        message_expired_at: Time.utc_now(),
+        phone_number: "+380991111333",
+        status_changed_at: DateTime.utc_now |> DateTime.add(8, :day),
+        status_id: status.id
+      }
+      args = %{id: struct.id, message: params}
+      {:ok, []} = MessageResolver.create(nil, args, nil)
+    end
+
+    test "updated returns empty list when format dateTime statusChangedAt" do
+      status = insert(:status, status_code: 2, status_name: "status #2")
+      struct = insert(:message)
+      params = %{
+        id_external: "2",
+        id_tax: 2_222_222_222,
+        id_telegram: "update text",
+        message_body: "updated some text",
+        message_expired_at: DateTime.utc_now |> DateTime.add(10, :day),
+        phone_number: "+380991111333",
+        status_changed_at: Time.utc_now(),
+        status_id: status.id
+      }
+      args = %{id: struct.id, message: params}
+      {:ok, []} = MessageResolver.create(nil, args, nil)
+    end
   end
 
   describe "#show" do
