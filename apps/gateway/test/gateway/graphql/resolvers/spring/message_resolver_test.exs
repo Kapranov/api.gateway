@@ -524,6 +524,42 @@ defmodule Gateway.GraphQL.Resolvers.Spring.MessageResolverTest do
       id = FlakeId.get()
       {:ok, []} = MessageResolver.show(nil, %{id: id}, context)
     end
+
+    test "returns specific Message by id with sms_logs count is 2", context do
+      message = insert(:message)
+      operator = insert(:operator)
+      sms_logs = insert(:sms_log, %{
+        operators: [operator],
+        messages: [message],
+        statuses: [message.status]
+      })
+      {:ok, found} = MessageResolver.show(nil, %{id: message.id}, context)
+
+      assert found.id                 == message.id
+      assert found.id_external        == message.id_external
+      assert found.id_tax             == message.id_tax
+      assert found.id_telegram        == message.id_telegram
+      assert found.message_body       == message.message_body
+      assert found.message_expired_at == message.message_expired_at
+      assert found.phone_number       == message.phone_number
+      assert found.status_changed_at  == message.status_changed_at
+      assert found.status_id          == message.status_id
+
+      assert found.status.id          == message.status.id
+      assert found.status.active      == message.status.active
+      assert found.status.description == message.status.description
+      assert found.status.status_code == message.status.status_code
+      assert found.status.status_name == message.status.status_name
+
+      assert hd(found.status.sms_logs).id       == sms_logs.id
+      assert hd(found.status.sms_logs).priority == sms_logs.priority
+
+      assert found.status.sms_logs |> Enum.count == 1
+
+      preload = found |> Core.Repo.preload(:sms_logs)
+
+      assert preload.sms_logs |> Enum.count == 2
+    end
   end
 
   describe "#create" do
@@ -742,9 +778,6 @@ defmodule Gateway.GraphQL.Resolvers.Spring.MessageResolverTest do
         status_id: status.id
       }
       {:ok, []} = MessageResolver.create(nil, args, context)
-    end
-
-    test "created returns empty list when sms_logs count is max 2", _context do
     end
   end
 
@@ -1012,7 +1045,7 @@ defmodule Gateway.GraphQL.Resolvers.Spring.MessageResolverTest do
       {:ok, []} = MessageResolver.create(nil, args, context)
     end
 
-    test "created returns empty list when sms_logs count is max 2", _context do
+    test "created returns empty list when sms_logs count is 2", _context do
     end
   end
 
