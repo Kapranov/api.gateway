@@ -24,4 +24,11 @@ config :core, Core.Repo,
   show_sensitive_data_on_connection_error: true,
   username: "kapranov"
 
+config :providers, :dia,
+  adapter: HTTPoison,
+  body: "",
+  header: "application/json",
+  token: "WZTB25QSB25dHxBxCaH86Xe6Jd3dP4LhInrWZKS2ew5Yt4w2SCxMyvPAG8X3ffI8",
+  url: "https://api2t.diia.gov.ua/api/v2/auth/partner"
+
 config :logger, level: :warning
