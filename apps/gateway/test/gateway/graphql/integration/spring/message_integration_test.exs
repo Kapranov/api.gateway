@@ -1114,7 +1114,7 @@ defmodule Gateway.GraphQL.Integration.Settings.MessageIntegrationTest do
         |> post("/graphiql", AbsintheHelpers.mutation_skeleton(query))
 
       assert hd(json_response(res, 200)["errors"])["message"]
-      |> String.replace("\"", "") == "syntax error before: ':'"
+      |> String.replace("\"", "") == "syntax error before: 6"
     end
 
     test "created returns error format dateTime messageExpiredAt - `Absinthe.run`" do
@@ -1150,7 +1150,7 @@ defmodule Gateway.GraphQL.Integration.Settings.MessageIntegrationTest do
       {:ok, %{errors: error}} =
         Absinthe.run(query, Schema, context: nil)
 
-      assert hd(error).message |> String.replace("\"", "") == "syntax error before: ':'"
+      assert hd(error).message |> String.replace("\"", "") == "syntax error before: 6"
     end
 
     test "created returns error when format dateTime statusChangedAt - `AbsintheHelpers`" do
@@ -1189,7 +1189,7 @@ defmodule Gateway.GraphQL.Integration.Settings.MessageIntegrationTest do
         |> post("/graphiql", AbsintheHelpers.mutation_skeleton(query))
 
       assert hd(json_response(res, 200)["errors"])["message"]
-      |> String.replace("\"", "") == "syntax error before: ':'"
+      |> String.replace("\"", "") == "syntax error before: 6"
     end
 
     test "created returns error format dateTime statusChangedAt - `Absinthe.run`" do
@@ -1225,7 +1225,7 @@ defmodule Gateway.GraphQL.Integration.Settings.MessageIntegrationTest do
       {:ok, %{errors: error}} =
         Absinthe.run(query, Schema, context: nil)
 
-      assert hd(error).message |> String.replace("\"", "") == "syntax error before: ':'"
+      assert hd(error).message |> String.replace("\"", "") == "syntax error before: 6"
     end
 
     test "updated specific Message by id - `AbsintheHelpers`" do
@@ -3701,7 +3701,7 @@ defmodule Gateway.GraphQL.Integration.Settings.MessageIntegrationTest do
         |> post("/graphiql", AbsintheHelpers.mutation_skeleton(query))
 
       assert hd(json_response(res, 200)["errors"])["message"]
-      |> String.replace("\"", "") == "syntax error before: ':'"
+      |> String.replace("\"", "") == "syntax error before: 6"
     end
 
     test "created returns error format dateTime messageExpiredAt - `Absinthe.run`", context do
@@ -3737,7 +3737,7 @@ defmodule Gateway.GraphQL.Integration.Settings.MessageIntegrationTest do
       {:ok, %{errors: error}} =
         Absinthe.run(query, Schema, context: context)
 
-      assert hd(error).message |> String.replace("\"", "") == "syntax error before: ':'"
+      assert hd(error).message |> String.replace("\"", "") == "syntax error before: 6"
     end
 
     test "created returns error when format dateTime statusChangedAt - `AbsintheHelpers`" do
@@ -3776,7 +3776,7 @@ defmodule Gateway.GraphQL.Integration.Settings.MessageIntegrationTest do
         |> post("/graphiql", AbsintheHelpers.mutation_skeleton(query))
 
       assert hd(json_response(res, 200)["errors"])["message"]
-      |> String.replace("\"", "") == "syntax error before: ':'"
+      |> String.replace("\"", "") == "syntax error before: 6"
     end
 
     test "created returns error format dateTime statusChangedAt - `Absinthe.run`", context do
@@ -3812,7 +3812,7 @@ defmodule Gateway.GraphQL.Integration.Settings.MessageIntegrationTest do
       {:ok, %{errors: error}} =
         Absinthe.run(query, Schema, context: context)
 
-      assert hd(error).message |> String.replace("\"", "") == "syntax error before: ':'"
+      assert hd(error).message |> String.replace("\"", "") == "syntax error before: 6"
     end
   end
 

@@ -1,0 +1,10 @@
+/.fetch
+/_build/
+/cover/
+/deps/
+/doc/
+/tmp/
+
+*.ez
+erl_crash.dump
+providers-*.tar

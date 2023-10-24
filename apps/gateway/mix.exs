@@ -49,6 +49,7 @@ defmodule Gateway.MixProject do
       {:phoenix, "~> 1.7.7"},
       {:phoenix_swagger, "~> 0.8.3"},
       {:plug_cowboy, "~> 2.5"},
+      {:providers, in_umbrella: true},
       {:telemetry_metrics, "~> 0.6"},
       {:telemetry_poller, "~> 1.0"}
     ]
