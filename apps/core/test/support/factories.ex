@@ -18,8 +18,8 @@ defmodule Core.Factory do
 
   def setting_factory do
     %Setting{
-      param: "some text",
-      value: "some text"
+      param: "calc_priority",
+      value: "priority"
     }
   end
 

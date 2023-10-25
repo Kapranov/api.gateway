@@ -17,9 +17,9 @@ defmodule Core.Seeder.Updated.Settings do
   @spec random_param :: [String.t()]
   def random_param do
     names = [
+      "calc_priority",
       "xxxxxxxxxx",
-      "yyyyyyyyyy",
-      "zzzzzzzzzz"
+      "yyyyyyyyyy"
     ]
 
     numbers = 1..1
@@ -36,9 +36,9 @@ defmodule Core.Seeder.Updated.Settings do
   @spec random_value :: [String.t()]
   def random_value do
     names = [
-      "value #1",
-      "value #2",
-      "value #3"
+      "price",
+      "priceext_priceint",
+      "priority"
     ]
 
     numbers = 1..1

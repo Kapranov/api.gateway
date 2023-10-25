@@ -10,13 +10,13 @@ defmodule Core.Settings.SettingTest do
     alias Faker.Lorem
 
     @valid_attrs %{
-      param: "some text",
-      value: "some text"
+      param: "calc_priority",
+      value: :priority
     }
 
     @update_attrs %{
-      param: "updated some text",
-      value: "updated some text"
+      param: "calc_priority",
+      value: :priceext_priceint
     }
 
     @invalid_attrs %{
@@ -55,15 +55,9 @@ defmodule Core.Settings.SettingTest do
       assert {:error, %Ecto.Changeset{}} = Settings.create_setting(attrs)
     end
 
-    test "create_setting/1 with validations length min 5 for value" do
+    test "create_setting/1 enum for value" do
       insert(:setting)
-      attrs = Map.merge(@valid_attrs, %{value: Lorem.characters(4)})
-      assert {:error, %Ecto.Changeset{}} = Settings.create_setting(attrs)
-    end
-
-    test "create_setting/1 with validations length max 100 for value" do
-      insert(:setting)
-      attrs = Map.merge(@valid_attrs, %{value: Lorem.characters(101)})
+      attrs = Map.merge(@valid_attrs, %{value: :hello})
       assert {:error, %Ecto.Changeset{}} = Settings.create_setting(attrs)
     end
 
@@ -122,15 +116,9 @@ defmodule Core.Settings.SettingTest do
       assert {:error, %Ecto.Changeset{}} = Settings.update_setting(setting, attrs)
     end
 
-    test "update_setting/2 with validations length min 5 for value" do
+    test "update_setting/2 enum for value" do
       setting = insert(:setting)
-      attrs = Map.merge(@update_attrs, %{value: Lorem.characters(4)})
-      assert {:error, %Ecto.Changeset{}} = Settings.update_setting(setting, attrs)
-    end
-
-    test "update_setting/2 with validations length max 100 for value" do
-      setting = insert(:setting)
-      attrs = Map.merge(@update_attrs, %{value: Lorem.characters(101)})
+      attrs = Map.merge(@update_attrs, %{value: :hello})
       assert {:error, %Ecto.Changeset{}} = Settings.update_setting(setting, attrs)
     end
 

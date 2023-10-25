@@ -34,8 +34,15 @@ defmodule Gateway.GraphQL.Resolvers.Spring.MessageResolver do
     |> Spring.create_message()
     |> case do
       {:error, %Ecto.Changeset{}} ->
+        ###
+        ### created sms_logs, priority: number
+        ###
         {:ok, []}
       {:ok, struct} ->
+        #############
+        ### 
+        ###
+        #############
         {:ok, struct}
     end
   end

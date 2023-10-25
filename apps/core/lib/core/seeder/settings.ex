@@ -35,19 +35,15 @@ defmodule Core.Seeder.Settings do
   defp insert_setting do
     [
       Settings.create_setting(%{
-        param: "calc_priority",
-        value: "priority"
+        param: random_param(),
+        value: random_value()
       })
     ]
   end
 
   @spec random_param :: [String.t()]
-  def random_param do
-    names = [
-      "xxxxxxxxxx",
-      "yyyyyyyyyy",
-      "zzzzzzzzzz"
-    ]
+  defp random_param do
+    names = ["calc_priority"]
 
     numbers = 1..1
     number = Enum.random(numbers)
@@ -61,11 +57,11 @@ defmodule Core.Seeder.Settings do
   end
 
   @spec random_value :: [String.t()]
-  def random_value do
+  defp random_value do
     names = [
-      "value #1",
-      "value #2",
-      "value #3"
+      "price",
+      "priceext_priceint",
+      "priority"
     ]
 
     numbers = 1..1

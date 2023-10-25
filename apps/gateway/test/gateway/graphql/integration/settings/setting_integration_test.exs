@@ -74,6 +74,7 @@ defmodule Gateway.GraphQL.Integration.Settings.SettingIntegrationTest do
         |> auth_conn(nil)
         |> post("/graphiql", AbsintheHelpers.query_skeleton(query, "setting"))
 
+      assert json_response(res, 200)["errors"] == nil
       [] = json_response(res, 200)["data"]["listSetting"]
     end
 
@@ -94,7 +95,7 @@ defmodule Gateway.GraphQL.Integration.Settings.SettingIntegrationTest do
         Absinthe.run(query, Schema, context: nil)
     end
 
-    test "returns specific setting by id - `AbsintheHelpers`" do
+    test "show returns specific setting by id - `AbsintheHelpers`" do
       struct = insert(:setting)
       query = """
       {
@@ -115,7 +116,7 @@ defmodule Gateway.GraphQL.Integration.Settings.SettingIntegrationTest do
       [] = json_response(res, 200)["data"]["showSetting"]
     end
 
-    test "returns specific setting by id - `Absinthe.run`" do
+    test "show returns specific setting by id - `Absinthe.run`" do
       struct = insert(:setting)
       query = """
       {
@@ -132,7 +133,7 @@ defmodule Gateway.GraphQL.Integration.Settings.SettingIntegrationTest do
         Absinthe.run(query, Schema, context: nil)
     end
 
-    test "returns empty list when setting does not exist - `AbsintheHelpers`" do
+    test "show returns empty list when setting does not exist - `AbsintheHelpers`" do
       id = FlakeId.get()
 
       query = """
@@ -154,8 +155,9 @@ defmodule Gateway.GraphQL.Integration.Settings.SettingIntegrationTest do
       assert json_response(res, 200)["data"]["showSetting"] == []
     end
 
-    test "returns empty list when setting does not exist - `Absinthe.run`" do
+    test "show returns empty list when setting does not exist - `Absinthe.run`" do
       id = FlakeId.get()
+
       query = """
       {
         showSetting(id: \"#{id}\") {
@@ -171,7 +173,7 @@ defmodule Gateway.GraphQL.Integration.Settings.SettingIntegrationTest do
         Absinthe.run(query, Schema, context: nil)
     end
 
-    test "returns errors for missing params - `AbsintheHelpers`" do
+    test "show returns error for missing params - `AbsintheHelpers`" do
       query = """
       {
         showSetting(id: nil) {
@@ -188,10 +190,11 @@ defmodule Gateway.GraphQL.Integration.Settings.SettingIntegrationTest do
         |> auth_conn(nil)
         |> post("/graphiql", AbsintheHelpers.query_skeleton(query, "setting"))
 
-      assert hd(json_response(res, 200)["errors"])["message"] |> String.replace("\"", "") == "Argument id has invalid value nil."
+      assert hd(json_response(res, 200)["errors"])["message"]
+      |> String.replace("\"", "") == "Argument id has invalid value nil."
     end
 
-    test "returns errors for missing params - `Absinthe.run`" do
+    test "show returns error for missing params - `Absinthe.run`" do
       query = """
       {
         showSetting(id: nil) {
@@ -207,12 +210,12 @@ defmodule Gateway.GraphQL.Integration.Settings.SettingIntegrationTest do
       assert hd(errors).message |> String.replace("\"", "") == "Argument id has invalid value nil."
     end
 
-    test "creates setting - `AbsintheHelpers`" do
+    test "created setting - `AbsintheHelpers`" do
       query = """
       mutation {
         createSetting(
-          param: "some text"
-          value: "some text"
+          param: "calc_priority"
+          value: "priority"
         ) {
           id
           param
@@ -230,12 +233,12 @@ defmodule Gateway.GraphQL.Integration.Settings.SettingIntegrationTest do
       [] = json_response(res, 200)["data"]["createSetting"]
     end
 
-    test "creates setting - `Absinthe.run`" do
+    test "created setting - `Absinthe.run`" do
       query = """
       mutation {
         createSetting(
-          param: "some text"
-          value: "some text"
+          param: "calc_priority"
+          value: "priority"
         ) {
           id
           param
@@ -249,7 +252,7 @@ defmodule Gateway.GraphQL.Integration.Settings.SettingIntegrationTest do
         Absinthe.run(query, Schema, context: nil)
     end
 
-    test "returns empty list for missing params - `AbsintheHelpers`" do
+    test "created returns empty list for missing params - `AbsintheHelpers`" do
       query = """
       mutation {
         createSetting(
@@ -273,7 +276,7 @@ defmodule Gateway.GraphQL.Integration.Settings.SettingIntegrationTest do
       |> String.replace("\"", "") == "Argument param has invalid value nil."
     end
 
-    test "returns error for missing params - `Absinthe.run`" do
+    test "created returns error for missing params - `Absinthe.run`" do
       query = """
       mutation {
         createSetting(
@@ -291,17 +294,16 @@ defmodule Gateway.GraphQL.Integration.Settings.SettingIntegrationTest do
       {:ok, %{errors: error}} =
         Absinthe.run(query, Schema, context: nil)
 
-      assert hd(error).message
-      |> String.replace("\"", "") == "Argument param has invalid value nil."
+      assert hd(error).message |> String.replace("\"", "") == "Argument param has invalid value nil."
     end
 
-    test "returns errors when unique_constraint param has been taken - `AbsintheHelpers`" do
+    test "created returns errors when unique_constraint param has been taken - `AbsintheHelpers`" do
       insert(:setting)
       query = """
       mutation {
         createSetting(
-          param: "some text"
-          value: "some text"
+          param: "calc_priority"
+          value: "priority"
         ) {
           id
           param
@@ -319,13 +321,13 @@ defmodule Gateway.GraphQL.Integration.Settings.SettingIntegrationTest do
       [] = json_response(res, 200)["data"]["createSetting"]
     end
 
-    test "returns errors when unique_constraint param has been taken - `Absinthe.run`" do
+    test "created returns errors when unique_constraint param has been taken - `Absinthe.run`" do
       insert(:setting)
       query = """
       mutation {
         createSetting(
-          param: "some text"
-          value: "some text"
+          param: "calc_priority"
+          value: "priority"
         ) {
           id
           param
@@ -339,12 +341,12 @@ defmodule Gateway.GraphQL.Integration.Settings.SettingIntegrationTest do
         Absinthe.run(query, Schema, context: nil)
     end
 
-    test "create Setting with validations length min 5 for param - `AbsintheHelpers`" do
+    test "created Setting with validations length min 5 for param - `AbsintheHelpers`" do
       query = """
       mutation {
         createSetting(
           param: \"#{Lorem.characters(4)}\"
-          value: "some text"
+          value: "priority"
         ) {
           id
           param
@@ -362,12 +364,12 @@ defmodule Gateway.GraphQL.Integration.Settings.SettingIntegrationTest do
       [] = json_response(res, 200)["data"]["createSetting"]
     end
 
-    test "create Setting with validations length min 5 for param - Absinthe.run" do
+    test "created Setting with validations length min 5 for param - Absinthe.run" do
       query = """
       mutation {
         createSetting(
           param: \"#{Lorem.characters(4)}\"
-          value: "some text"
+          value: "priority"
         ) {
           id
           param
@@ -381,12 +383,12 @@ defmodule Gateway.GraphQL.Integration.Settings.SettingIntegrationTest do
         Absinthe.run(query, Schema, context: nil)
     end
 
-    test "create Setting with validations length max 100 for param - `AbsintheHelpers`" do
+    test "created Setting with validations length max 100 for param - `AbsintheHelpers`" do
       query = """
       mutation {
         createSetting(
           param: \"#{Lorem.characters(101)}\"
-          value: "some text"
+          value: "priority"
         ) {
           id
           param
@@ -404,12 +406,12 @@ defmodule Gateway.GraphQL.Integration.Settings.SettingIntegrationTest do
       [] = json_response(res, 200)["data"]["createSetting"]
     end
 
-    test "create Setting with validations length max 100 for param - Absinthe.run" do
+    test "created Setting with validations length max 100 for param - Absinthe.run" do
       query = """
       mutation {
         createSetting(
           param: \"#{Lorem.characters(101)}\"
-          value: "some text"
+          value: "priority"
         ) {
           id
           param
@@ -423,12 +425,12 @@ defmodule Gateway.GraphQL.Integration.Settings.SettingIntegrationTest do
         Absinthe.run(query, Schema, context: nil)
     end
 
-    test "create Setting with validations length min 5 for value - `AbsintheHelpers`" do
+    test "created Setting enum for value - `AbsintheHelpers`" do
       query = """
       mutation {
         createSetting(
           param: "some text"
-          value: \"#{Lorem.characters(4)}\"
+          value: "hello"
         ) {
           id
           param
@@ -446,12 +448,12 @@ defmodule Gateway.GraphQL.Integration.Settings.SettingIntegrationTest do
       [] = json_response(res, 200)["data"]["createSetting"]
     end
 
-    test "create Setting with validations length min 5 for value - Absinthe.run" do
+    test "created Setting enum for value - Absinthe.run" do
       query = """
       mutation {
         createSetting(
           param: "some text"
-          value: \"#{Lorem.characters(4)}\"
+          value: "hello"
         ) {
           id
           param
@@ -465,57 +467,15 @@ defmodule Gateway.GraphQL.Integration.Settings.SettingIntegrationTest do
         Absinthe.run(query, Schema, context: nil)
     end
 
-    test "create Setting with validations length max 100 for value - `AbsintheHelpers`" do
-      query = """
-      mutation {
-        createSetting(
-          param: "some text"
-          value: \"#{Lorem.characters(101)}\"
-        ) {
-          id
-          param
-          value
-          inserted_at
-          updated_at
-        }
-      }
-      """
-      res =
-        build_conn()
-        |> auth_conn(nil)
-        |> post("/graphiql", AbsintheHelpers.mutation_skeleton(query))
-
-      [] = json_response(res, 200)["data"]["createSetting"]
-    end
-
-    test "create Setting with validations length max 100 for value - `Absinthe.run`" do
-      query = """
-      mutation {
-        createSetting(
-          param: "some text"
-          value: \"#{Lorem.characters(101)}\"
-        ) {
-          id
-          param
-          value
-          inserted_at
-          updated_at
-        }
-      }
-      """
-      {:ok, %{data: %{"createSetting" => []}}} =
-        Absinthe.run(query, Schema, context: nil)
-    end
-
-    test "update specific setting by id - `AbsintheHelpers`" do
+    test "updated specific setting by id - `AbsintheHelpers`" do
       struct = insert(:setting)
       query = """
       mutation {
         updateSetting(
           id: \"#{struct.id}\",
           setting: {
-           param: "updated some text"
-           value: "updated some text"
+           param: "calc_priority"
+           value: "priceext_priceint"
           }
         ) {
           id
@@ -534,15 +494,15 @@ defmodule Gateway.GraphQL.Integration.Settings.SettingIntegrationTest do
       [] = json_response(res, 200)["data"]["updateSetting"]
     end
 
-    test "update specific setting by id - `Absinthe.run`" do
+    test "updated specific setting by id - `Absinthe.run`" do
       struct = insert(:setting)
       query = """
       mutation {
         updateSetting(
           id: \"#{struct.id}\",
           setting: {
-           param: "updated some text"
-           value: "updated some text"
+           param: "calc_priority"
+           value: "priceext_priceint"
           }
         ) {
           id
@@ -557,7 +517,7 @@ defmodule Gateway.GraphQL.Integration.Settings.SettingIntegrationTest do
         Absinthe.run(query, Schema, context: nil)
     end
 
-    test "return empty list setting for uncorrect settingId - `AbsintheHelpers`" do
+    test "updated return empty list setting for uncorrect settingId - `AbsintheHelpers`" do
       insert(:setting)
       setting_id = FlakeId.get()
       query = """
@@ -565,8 +525,8 @@ defmodule Gateway.GraphQL.Integration.Settings.SettingIntegrationTest do
         updateSetting(
           id: \"#{setting_id}\",
           setting: {
-           param: "updated some text"
-           value: "updated some text"
+           param: "calc_priority"
+           value: "priceext_priceint"
           }
         ) {
           id
@@ -585,7 +545,7 @@ defmodule Gateway.GraphQL.Integration.Settings.SettingIntegrationTest do
       assert json_response(res, 200)["data"]["updateSetting"] == []
     end
 
-    test "return empty list setting for uncorrect settingId - `Absinthe.run`" do
+    test "updated return empty list setting for uncorrect settingId - `Absinthe.run`" do
       insert(:setting)
       setting_id = FlakeId.get()
       query = """
@@ -593,8 +553,8 @@ defmodule Gateway.GraphQL.Integration.Settings.SettingIntegrationTest do
         updateSetting(
           id: \"#{setting_id}\",
           setting: {
-           param: "updated some text"
-           value: "updated some text"
+           param: "calc_priority"
+           value: "priceext_priceint"
           }
         ) {
           id
@@ -609,16 +569,16 @@ defmodule Gateway.GraphQL.Integration.Settings.SettingIntegrationTest do
         Absinthe.run(query, Schema, context: nil)
     end
 
-    test "returns empty list when unique_constraint param has been taken - `AbsintheHelpers`" do
+    test "updated returns empty list when unique_constraint param has been taken - `AbsintheHelpers`" do
       insert(:setting)
-      struct = insert(:setting, param: "some text#2")
+      struct = insert(:setting, param: "some text")
       query = """
       mutation {
         updateSetting(
           id: \"#{struct.id}\",
           setting: {
-           param: "some text"
-           value: "updated some text"
+           param: "calc_priority"
+           value: "priceext_priceint"
           }
         ) {
           id
@@ -637,16 +597,16 @@ defmodule Gateway.GraphQL.Integration.Settings.SettingIntegrationTest do
       assert json_response(res, 200)["data"]["updateSetting"] == []
     end
 
-    test "returns empty list when unique_constraint param has been taken - `Absinthe.run`" do
+    test "updated returns empty list when unique_constraint param has been taken - `Absinthe.run`" do
       insert(:setting)
-      struct = insert(:setting, param: "some text#2")
+      struct = insert(:setting, param: "some text")
       query = """
       mutation {
         updateSetting(
           id: \"#{struct.id}\",
           setting: {
-           param: "some text"
-           value: "updated some text"
+           param: "calc_priority"
+           value: "priceext_priceint"
           }
         ) {
           id
@@ -661,7 +621,7 @@ defmodule Gateway.GraphQL.Integration.Settings.SettingIntegrationTest do
         Absinthe.run(query, Schema, context: nil)
     end
 
-    test "returns nothing change for missing params - `AbsintheHelpers`" do
+    test "updated returns nothing change for missing params - `AbsintheHelpers`" do
       struct = insert(:setting)
       query = """
       mutation {
@@ -686,7 +646,7 @@ defmodule Gateway.GraphQL.Integration.Settings.SettingIntegrationTest do
       [] = json_response(res, 200)["data"]["updateSetting"]
     end
 
-    test "return nothing change for missing params - `Absinthe.run`" do
+    test "updated returns nothing change for missing params - `Absinthe.run`" do
       struct = insert(:setting)
       query = """
       mutation {
@@ -707,7 +667,7 @@ defmodule Gateway.GraphQL.Integration.Settings.SettingIntegrationTest do
         Absinthe.run(query, Schema, context: nil)
     end
 
-    test "return error setting when null is param - `AbsintheHelpers`" do
+    test "updated returns error setting when null is param - `AbsintheHelpers`" do
       struct = insert(:setting)
       query = """
       mutation {
@@ -731,15 +691,16 @@ defmodule Gateway.GraphQL.Integration.Settings.SettingIntegrationTest do
         |> auth_conn(nil)
         |> post("/graphiql", AbsintheHelpers.mutation_skeleton(query))
 
+
       assert hd(json_response(res, 200)["errors"])["message"]
       |> String.replace("\"", "")
       |> String.replace("\n", "")
       |> String.replace("{", "")
       |> String.replace("}", "") ==
-        "Argument setting has invalid value param: nil, value: nil.In field param: Expected type String, found nil.In field value: Expected type String, found nil."
+      "Argument setting has invalid value param: nil, value: nil.In field param: Expected type String, found nil.In field value: Expected type String, found nil."
     end
 
-    test "return error setting when null is param - `Absinthe.run`" do
+    test "updated returns error setting when null is param - `Absinthe.run`" do
       struct = insert(:setting)
       query = """
       mutation {
@@ -759,17 +720,15 @@ defmodule Gateway.GraphQL.Integration.Settings.SettingIntegrationTest do
       }
       """
       {:ok, %{errors: errors}} = Absinthe.run(query, Schema, context: nil)
-
       assert hd(errors).message
-      |> String.replace("\"", "")
       |> String.replace("\"", "")
       |> String.replace("\n", "")
       |> String.replace("{", "")
       |> String.replace("}", "") ==
-        "Argument setting has invalid value param: nil, value: nil.In field param: Expected type String, found nil.In field value: Expected type String, found nil."
+      "Argument setting has invalid value param: nil, value: nil.In field param: Expected type String, found nil.In field value: Expected type String, found nil."
     end
 
-    test "return empty list with validations length min 5 for param - `AbsintheHelpers`" do
+    test "updated returns empty list with validations length min 5 for param - `AbsintheHelpers`" do
       struct = insert(:setting)
       query = """
       mutation {
@@ -777,7 +736,7 @@ defmodule Gateway.GraphQL.Integration.Settings.SettingIntegrationTest do
           id: \"#{struct.id}\",
           setting: {
            param: \"#{Lorem.characters(4)}\"
-           value: "updated some text"
+           value: "priceext_priceint"
           }
         ) {
           id
@@ -796,7 +755,7 @@ defmodule Gateway.GraphQL.Integration.Settings.SettingIntegrationTest do
       assert json_response(res, 200)["data"]["updateSetting"] == []
     end
 
-    test "return empty list with validations length min 5 for param - `Absinthe.run`" do
+    test "updated returns empty list with validations length min 5 for param - `Absinthe.run`" do
       struct = insert(:setting)
       query = """
       mutation {
@@ -804,7 +763,7 @@ defmodule Gateway.GraphQL.Integration.Settings.SettingIntegrationTest do
           id: \"#{struct.id}\",
           setting: {
            param: \"#{Lorem.characters(4)}\"
-           value: "updated some text"
+           value: "priceext_priceint"
           }
         ) {
           id
@@ -819,7 +778,7 @@ defmodule Gateway.GraphQL.Integration.Settings.SettingIntegrationTest do
         Absinthe.run(query, Schema, context: nil)
     end
 
-    test "return empty list with validations length max 100 for param - `AbsintheHelpers`" do
+    test "updated returns empty list with validations length max 100 for param - `AbsintheHelpers`" do
       struct = insert(:setting)
       query = """
       mutation {
@@ -827,7 +786,7 @@ defmodule Gateway.GraphQL.Integration.Settings.SettingIntegrationTest do
           id: \"#{struct.id}\",
           setting: {
            param: \"#{Lorem.characters(101)}\"
-           value: "updated some text"
+           value: "priceext_priceint"
           }
         ) {
           id
@@ -846,7 +805,7 @@ defmodule Gateway.GraphQL.Integration.Settings.SettingIntegrationTest do
       assert json_response(res, 200)["data"]["updateSetting"] == []
     end
 
-    test "return empty list with validations length max 100 for param - `Absinthe.run`" do
+    test "updated returns empty list with validations length max 100 for param - `Absinthe.run`" do
       struct = insert(:setting)
       query = """
       mutation {
@@ -854,7 +813,7 @@ defmodule Gateway.GraphQL.Integration.Settings.SettingIntegrationTest do
           id: \"#{struct.id}\",
           setting: {
            param: \"#{Lorem.characters(101)}\"
-           value: "updated some text"
+           value: "priceext_priceint"
           }
         ) {
           id
@@ -869,7 +828,7 @@ defmodule Gateway.GraphQL.Integration.Settings.SettingIntegrationTest do
         Absinthe.run(query, Schema, context: nil)
     end
 
-    test "return empty list with validations length min 5 for value - `AbsintheHelpers`" do
+    test "updated returns empty list enum for value - `AbsintheHelpers`" do
       struct = insert(:setting)
       query = """
       mutation {
@@ -877,7 +836,7 @@ defmodule Gateway.GraphQL.Integration.Settings.SettingIntegrationTest do
           id: \"#{struct.id}\",
           setting: {
            param: "updated some text"
-           value: \"#{Lorem.characters(4)}\"
+           value: "hello"
           }
         ) {
           id
@@ -896,7 +855,7 @@ defmodule Gateway.GraphQL.Integration.Settings.SettingIntegrationTest do
       assert json_response(res, 200)["data"]["updateSetting"] == []
     end
 
-    test "return empty list with validations length min 5 for value - `Absinthe.run`" do
+    test "updated returns empty list enum for value - `Absinthe.run`" do
       struct = insert(:setting)
       query = """
       mutation {
@@ -904,57 +863,7 @@ defmodule Gateway.GraphQL.Integration.Settings.SettingIntegrationTest do
           id: \"#{struct.id}\",
           setting: {
            param: "updated some text"
-           value: \"#{Lorem.characters(4)}\"
-          }
-        ) {
-          id
-          param
-          value
-          inserted_at
-          updated_at
-        }
-      }
-      """
-      {:ok, %{data: %{"updateSetting" => []}}} =
-        Absinthe.run(query, Schema, context: nil)
-    end
-
-    test "return empty list with validations length max 100 for value - `AbsintheHelpers`" do
-      struct = insert(:setting)
-      query = """
-      mutation {
-        updateSetting(
-          id: \"#{struct.id}\",
-          setting: {
-           param: "updated some text"
-           value: \"#{Lorem.characters(101)}\"
-          }
-        ) {
-          id
-          param
-          value
-          inserted_at
-          updated_at
-        }
-      }
-      """
-      res =
-        build_conn()
-        |> auth_conn(nil)
-        |> post("/graphiql", AbsintheHelpers.mutation_skeleton(query))
-
-      assert json_response(res, 200)["data"]["updateSetting"] == []
-    end
-
-    test "return empty list with validations length max 100 for value - `Absinthe.run`" do
-      struct = insert(:setting)
-      query = """
-      mutation {
-        updateSetting(
-          id: \"#{struct.id}\",
-          setting: {
-           param: "updated some text"
-           value: \"#{Lorem.characters(101)}\"
+           value: "hello"
           }
         ) {
           id
@@ -1030,7 +939,7 @@ defmodule Gateway.GraphQL.Integration.Settings.SettingIntegrationTest do
       data = json_response(res, 200)["data"]["listSetting"]
       assert List.first(data)["id"]    == struct.id
       assert List.first(data)["param"] == struct.param
-      assert List.first(data)["value"] == struct.value
+      assert List.first(data)["value"] == "priority"
     end
 
     test "returns listSetting - `Absinthe.run`", context do
@@ -1053,12 +962,12 @@ defmodule Gateway.GraphQL.Integration.Settings.SettingIntegrationTest do
 
       assert first["id"]    == struct.id
       assert first["param"] == struct.param
-      assert first["value"] == struct.value
+      assert first["value"] == "priority"
     end
   end
 
   describe "#show" do
-    test "returns specific setting by id - `AbsintheHelpers`" do
+    test "show returns specific setting by id - `AbsintheHelpers`" do
       struct = insert(:setting)
       query = """
       {
@@ -1080,10 +989,10 @@ defmodule Gateway.GraphQL.Integration.Settings.SettingIntegrationTest do
 
       assert found["id"]    == struct.id
       assert found["param"] == struct.param
-      assert found["value"] == struct.value
+      assert found["value"] == "priority"
     end
 
-    test "returns specific setting by id - `Absinthe.run`", context do
+    test "show returns specific setting by id - `Absinthe.run`", context do
       struct = insert(:setting)
       query = """
       {
@@ -1101,10 +1010,10 @@ defmodule Gateway.GraphQL.Integration.Settings.SettingIntegrationTest do
 
       assert found["id"]    == struct.id
       assert found["param"] == struct.param
-      assert found["value"] == struct.value
+      assert found["value"] == "priority"
     end
 
-    test "returns empty list when setting does not exist - `AbsintheHelpers`" do
+    test "show returns empty list when setting does not exist - `AbsintheHelpers`" do
       id = FlakeId.get()
 
       query = """
@@ -1126,7 +1035,7 @@ defmodule Gateway.GraphQL.Integration.Settings.SettingIntegrationTest do
       assert json_response(res, 200)["data"]["showSetting"] == []
     end
 
-    test "returns empty list when setting does not exist - `Absinthe.run`", context do
+    test "show returns empty list when setting does not exist - `Absinthe.run`", context do
       id = FlakeId.get()
 
       query = """
@@ -1146,7 +1055,7 @@ defmodule Gateway.GraphQL.Integration.Settings.SettingIntegrationTest do
       assert found == []
     end
 
-    test "returns error for missing params - `AbsintheHelpers`" do
+    test "show returns error for missing params - `AbsintheHelpers`" do
       query = """
       {
         showSetting(id: nil) {
@@ -1167,7 +1076,7 @@ defmodule Gateway.GraphQL.Integration.Settings.SettingIntegrationTest do
       |> String.replace("\"", "") == "Argument id has invalid value nil."
     end
 
-    test "returns error for missing params - `Absinthe.run`", context do
+    test "show returns error for missing params - `Absinthe.run`", context do
       query = """
       {
         showSetting(id: nil) {
@@ -1185,12 +1094,12 @@ defmodule Gateway.GraphQL.Integration.Settings.SettingIntegrationTest do
   end
 
   describe "#create" do
-    test "creates setting - `AbsintheHelpers`" do
+    test "created setting - `AbsintheHelpers`" do
       query = """
       mutation {
         createSetting(
-          param: "some text"
-          value: "some text"
+          param: "calc_priority"
+          value: "priority"
         ) {
           id
           param
@@ -1207,16 +1116,16 @@ defmodule Gateway.GraphQL.Integration.Settings.SettingIntegrationTest do
 
       [created] = json_response(res, 200)["data"]["createSetting"]
 
-      assert created["param"] == "some text"
-      assert created["value"] == "some text"
+      assert created["param"] == "calc_priority"
+      assert created["value"] == "priority"
     end
 
-    test "creates setting - `Absinthe.run`", context do
+    test "created setting - `Absinthe.run`", context do
       query = """
       mutation {
         createSetting(
-          param: "some text"
-          value: "some text"
+          param: "calc_priority"
+          value: "priority"
         ) {
           id
           param
@@ -1229,11 +1138,11 @@ defmodule Gateway.GraphQL.Integration.Settings.SettingIntegrationTest do
       {:ok, %{data: %{"createSetting" => [created]}}} =
         Absinthe.run(query, Schema, context: context)
 
-      assert created["param"] == "some text"
-      assert created["value"] == "some text"
+      assert created["param"] == "calc_priority"
+      assert created["value"] == "priority"
     end
 
-    test "returns empty list for missing params - `AbsintheHelpers`" do
+    test "created returns empty list for missing params - `AbsintheHelpers`" do
       query = """
       mutation {
         createSetting(
@@ -1257,7 +1166,7 @@ defmodule Gateway.GraphQL.Integration.Settings.SettingIntegrationTest do
       |> String.replace("\"", "") == "Argument param has invalid value nil."
     end
 
-    test "returns error for missing params - `Absinthe.run`", context do
+    test "created returns error for missing params - `Absinthe.run`", context do
       query = """
       mutation {
         createSetting(
@@ -1278,13 +1187,13 @@ defmodule Gateway.GraphQL.Integration.Settings.SettingIntegrationTest do
       assert hd(error).message |> String.replace("\"", "") == "Argument param has invalid value nil."
     end
 
-    test "returns errors when unique_constraint param has been taken - `AbsintheHelpers`" do
+    test "created returns errors when unique_constraint param has been taken - `AbsintheHelpers`" do
       insert(:setting)
       query = """
       mutation {
         createSetting(
-          param: "some text"
-          value: "some text"
+          param: "calc_priority"
+          value: "priority"
         ) {
           id
           param
@@ -1302,13 +1211,13 @@ defmodule Gateway.GraphQL.Integration.Settings.SettingIntegrationTest do
       [] = json_response(res, 200)["data"]["createSetting"]
     end
 
-    test "returns errors when unique_constraint param has been taken - `Absinthe.run`", context do
+    test "created returns errors when unique_constraint param has been taken - `Absinthe.run`", context do
       insert(:setting)
       query = """
       mutation {
         createSetting(
-          param: "some text"
-          value: "some text"
+          param: "calc_priority"
+          value: "priority"
         ) {
           id
           param
@@ -1322,12 +1231,12 @@ defmodule Gateway.GraphQL.Integration.Settings.SettingIntegrationTest do
         Absinthe.run(query, Schema, context: context)
     end
 
-    test "create Setting with validations length min 5 for param - `AbsintheHelpers`" do
+    test "created Setting with validations length min 5 for param - `AbsintheHelpers`" do
       query = """
       mutation {
         createSetting(
           param: \"#{Lorem.characters(4)}\"
-          value: "some text"
+          value: "priority"
         ) {
           id
           param
@@ -1345,12 +1254,12 @@ defmodule Gateway.GraphQL.Integration.Settings.SettingIntegrationTest do
       [] = json_response(res, 200)["data"]["createSetting"]
     end
 
-    test "create Setting with validations length min 5 for param - Absinthe.run", context do
+    test "created Setting with validations length min 5 for param - Absinthe.run", context do
       query = """
       mutation {
         createSetting(
           param: \"#{Lorem.characters(4)}\"
-          value: "some text"
+          value: "priority"
         ) {
           id
           param
@@ -1364,12 +1273,12 @@ defmodule Gateway.GraphQL.Integration.Settings.SettingIntegrationTest do
         Absinthe.run(query, Schema, context: context)
     end
 
-    test "create Setting with validations length max 100 for param - `AbsintheHelpers`" do
+    test "created Setting with validations length max 100 for param - `AbsintheHelpers`" do
       query = """
       mutation {
         createSetting(
           param: \"#{Lorem.characters(101)}\"
-          value: "some text"
+          value: "priority"
         ) {
           id
           param
@@ -1387,12 +1296,12 @@ defmodule Gateway.GraphQL.Integration.Settings.SettingIntegrationTest do
       [] = json_response(res, 200)["data"]["createSetting"]
     end
 
-    test "create Setting with validations length max 100 for param - Absinthe.run", context do
+    test "created Setting with validations length max 100 for param - Absinthe.run", context do
       query = """
       mutation {
         createSetting(
           param: \"#{Lorem.characters(101)}\"
-          value: "some text"
+          value: "priority"
         ) {
           id
           param
@@ -1406,12 +1315,12 @@ defmodule Gateway.GraphQL.Integration.Settings.SettingIntegrationTest do
         Absinthe.run(query, Schema, context: context)
     end
 
-    test "create Setting with validations length min 5 for value - `AbsintheHelpers`" do
+    test "created Setting enum for value - `AbsintheHelpers`" do
       query = """
       mutation {
         createSetting(
           param: "some text"
-          value: \"#{Lorem.characters(4)}\"
+          value: "hello"
         ) {
           id
           param
@@ -1429,54 +1338,12 @@ defmodule Gateway.GraphQL.Integration.Settings.SettingIntegrationTest do
       [] = json_response(res, 200)["data"]["createSetting"]
     end
 
-    test "create Setting with validations length min 5 for value - Absinthe.run", context do
+    test "created Setting enum for value - Absinthe.run", context do
       query = """
       mutation {
         createSetting(
           param: "some text"
-          value: \"#{Lorem.characters(4)}\"
-        ) {
-          id
-          param
-          value
-          inserted_at
-          updated_at
-        }
-      }
-      """
-      {:ok, %{data: %{"createSetting" => []}}} =
-        Absinthe.run(query, Schema, context: context)
-    end
-
-    test "create Setting with validations length max 100 for value - `AbsintheHelpers`" do
-      query = """
-      mutation {
-        createSetting(
-          param: "some text"
-          value: \"#{Lorem.characters(101)}\"
-        ) {
-          id
-          param
-          value
-          inserted_at
-          updated_at
-        }
-      }
-      """
-      res =
-        build_conn()
-        |> auth_conn(@phrase)
-        |> post("/graphiql", AbsintheHelpers.mutation_skeleton(query))
-
-      [] = json_response(res, 200)["data"]["createSetting"]
-    end
-
-    test "create Setting with validations length max 100 for value - `Absinthe.run`", context do
-      query = """
-      mutation {
-        createSetting(
-          param: "some text"
-          value: \"#{Lorem.characters(101)}\"
+          value: "hello"
         ) {
           id
           param
@@ -1492,15 +1359,15 @@ defmodule Gateway.GraphQL.Integration.Settings.SettingIntegrationTest do
   end
 
   describe "#update" do
-    test "update specific setting by id - `AbsintheHelpers`" do
+    test "updated specific setting by id - `AbsintheHelpers`" do
       struct = insert(:setting)
       query = """
       mutation {
         updateSetting(
           id: \"#{struct.id}\",
           setting: {
-           param: "updated some text"
-           value: "updated some text"
+           param: "calc_priority"
+           value: "priceext_priceint"
           }
         ) {
           id
@@ -1519,19 +1386,19 @@ defmodule Gateway.GraphQL.Integration.Settings.SettingIntegrationTest do
       [updated] = json_response(res, 200)["data"]["updateSetting"]
 
       assert updated["id"]    == struct.id
-      assert updated["param"] == "updated some text"
-      assert updated["value"] == "updated some text"
+      assert updated["param"] == "calc_priority"
+      assert updated["value"] == "priceext_priceint"
     end
 
-    test "update specific setting by id - `Absinthe.run`", context do
+    test "updated specific setting by id - `Absinthe.run`", context do
       struct = insert(:setting)
       query = """
       mutation {
         updateSetting(
           id: \"#{struct.id}\",
           setting: {
-           param: "updated some text"
-           value: "updated some text"
+           param: "calc_priority"
+           value: "priceext_priceint"
           }
         ) {
           id
@@ -1546,11 +1413,11 @@ defmodule Gateway.GraphQL.Integration.Settings.SettingIntegrationTest do
         Absinthe.run(query, Schema, context: context)
 
       assert updated["id"]    == struct.id
-      assert updated["param"] == "updated some text"
-      assert updated["value"] == "updated some text"
+      assert updated["param"] == "calc_priority"
+      assert updated["value"] == "priceext_priceint"
     end
 
-    test "return empty list setting for uncorrect settingId - `AbsintheHelpers`" do
+    test "updated returns empty list setting for uncorrect settingId - `AbsintheHelpers`" do
       insert(:setting)
       setting_id = FlakeId.get()
       query = """
@@ -1558,8 +1425,8 @@ defmodule Gateway.GraphQL.Integration.Settings.SettingIntegrationTest do
         updateSetting(
           id: \"#{setting_id}\",
           setting: {
-           param: "updated some text"
-           value: "updated some text"
+           param: "calc_priority"
+           value: "priceext_priceint"
           }
         ) {
           id
@@ -1578,7 +1445,7 @@ defmodule Gateway.GraphQL.Integration.Settings.SettingIntegrationTest do
       assert json_response(res, 200)["data"]["updateSetting"] == []
     end
 
-    test "return empty list setting for uncorrect settingId - `Absinthe.run`", context do
+    test "updated returns empty list setting for uncorrect settingId - `Absinthe.run`", context do
       insert(:setting)
       setting_id = FlakeId.get()
       query = """
@@ -1586,8 +1453,8 @@ defmodule Gateway.GraphQL.Integration.Settings.SettingIntegrationTest do
         updateSetting(
           id: \"#{setting_id}\",
           setting: {
-           param: "updated some text"
-           value: "updated some text"
+           param: "calc_priority"
+           value: "priceext_priceint"
           }
         ) {
           id
@@ -1602,16 +1469,16 @@ defmodule Gateway.GraphQL.Integration.Settings.SettingIntegrationTest do
         Absinthe.run(query, Schema, context: context)
     end
 
-    test "returns empty list when unique_constraint param has been taken - `AbsintheHelpers`" do
+    test "updated returns empty list when unique_constraint param has been taken - `AbsintheHelpers`" do
       insert(:setting)
-      struct = insert(:setting, param: "some text#2")
+      struct = insert(:setting, param: "some text")
       query = """
       mutation {
         updateSetting(
           id: \"#{struct.id}\",
           setting: {
-           param: "some text"
-           value: "updated some text"
+           param: "calc_priority"
+           value: "priceext_priceint"
           }
         ) {
           id
@@ -1630,16 +1497,16 @@ defmodule Gateway.GraphQL.Integration.Settings.SettingIntegrationTest do
       assert json_response(res, 200)["data"]["updateSetting"] == []
     end
 
-    test "returns empty list when unique_constraint param has been taken - `Absinthe.run`", context do
+    test "updated returns empty list when unique_constraint param has been taken - `Absinthe.run`", context do
       insert(:setting)
-      struct = insert(:setting, param: "some text#2")
+      struct = insert(:setting, param: "some text")
       query = """
       mutation {
         updateSetting(
           id: \"#{struct.id}\",
           setting: {
-           param: "some text"
-           value: "updated some text"
+           param: "calc_priority"
+           value: "priceext_priceint"
           }
         ) {
           id
@@ -1654,7 +1521,7 @@ defmodule Gateway.GraphQL.Integration.Settings.SettingIntegrationTest do
         Absinthe.run(query, Schema, context: context)
     end
 
-    test "returns nothing change for missing params - `AbsintheHelpers`" do
+    test "updated returns nothing change for missing params - `AbsintheHelpers`" do
       struct = insert(:setting)
       query = """
       mutation {
@@ -1680,10 +1547,10 @@ defmodule Gateway.GraphQL.Integration.Settings.SettingIntegrationTest do
 
       assert updated["id"]    == struct.id
       assert updated["param"] == struct.param
-      assert updated["value"] == struct.value
+      assert updated["value"] == "priority"
     end
 
-    test "return nothing change for missing params - `Absinthe.run`", context do
+    test "updated returns nothing change for missing params - `Absinthe.run`", context do
       struct = insert(:setting)
       query = """
       mutation {
@@ -1705,10 +1572,10 @@ defmodule Gateway.GraphQL.Integration.Settings.SettingIntegrationTest do
 
       assert updated["id"]    == struct.id
       assert updated["param"] == struct.param
-      assert updated["value"] == struct.value
+      assert updated["value"] == "priority"
     end
 
-    test "return error setting when null is param - `AbsintheHelpers`" do
+    test "updated returns error setting when null is param - `AbsintheHelpers`" do
       struct = insert(:setting)
       query = """
       mutation {
@@ -1741,7 +1608,7 @@ defmodule Gateway.GraphQL.Integration.Settings.SettingIntegrationTest do
       "Argument setting has invalid value param: nil, value: nil.In field param: Expected type String, found nil.In field value: Expected type String, found nil."
     end
 
-    test "return error setting when null is param - `Absinthe.run`", context do
+    test "updated returns error setting when null is param - `Absinthe.run`", context do
       struct = insert(:setting)
       query = """
       mutation {
@@ -1769,7 +1636,7 @@ defmodule Gateway.GraphQL.Integration.Settings.SettingIntegrationTest do
       "Argument setting has invalid value param: nil, value: nil.In field param: Expected type String, found nil.In field value: Expected type String, found nil."
     end
 
-    test "return empty list with validations length min 5 for param - `AbsintheHelpers`" do
+    test "updated returns empty list with validations length min 5 for param - `AbsintheHelpers`" do
       struct = insert(:setting)
       query = """
       mutation {
@@ -1777,7 +1644,7 @@ defmodule Gateway.GraphQL.Integration.Settings.SettingIntegrationTest do
           id: \"#{struct.id}\",
           setting: {
            param: \"#{Lorem.characters(4)}\"
-           value: "updated some text"
+           value: "priceext_priceint"
           }
         ) {
           id
@@ -1796,7 +1663,7 @@ defmodule Gateway.GraphQL.Integration.Settings.SettingIntegrationTest do
       assert json_response(res, 200)["data"]["updateSetting"] == []
     end
 
-    test "return empty list with validations length min 5 for param - `Absinthe.run`", context do
+    test "updated returns empty list with validations length min 5 for param - `Absinthe.run`", context do
       struct = insert(:setting)
       query = """
       mutation {
@@ -1804,7 +1671,7 @@ defmodule Gateway.GraphQL.Integration.Settings.SettingIntegrationTest do
           id: \"#{struct.id}\",
           setting: {
            param: \"#{Lorem.characters(4)}\"
-           value: "updated some text"
+           value: "priceext_priceint"
           }
         ) {
           id
@@ -1819,7 +1686,7 @@ defmodule Gateway.GraphQL.Integration.Settings.SettingIntegrationTest do
         Absinthe.run(query, Schema, context: context)
     end
 
-    test "return empty list with validations length max 100 for param - `AbsintheHelpers`" do
+    test "updated returns empty list with validations length max 100 for param - `AbsintheHelpers`" do
       struct = insert(:setting)
       query = """
       mutation {
@@ -1827,7 +1694,7 @@ defmodule Gateway.GraphQL.Integration.Settings.SettingIntegrationTest do
           id: \"#{struct.id}\",
           setting: {
            param: \"#{Lorem.characters(101)}\"
-           value: "updated some text"
+           value: "priceext_priceint"
           }
         ) {
           id
@@ -1846,7 +1713,7 @@ defmodule Gateway.GraphQL.Integration.Settings.SettingIntegrationTest do
       assert json_response(res, 200)["data"]["updateSetting"] == []
     end
 
-    test "return empty list with validations length max 100 for param - `Absinthe.run`", context do
+    test "updated returns empty list with validations length max 100 for param - `Absinthe.run`", context do
       struct = insert(:setting)
       query = """
       mutation {
@@ -1854,7 +1721,7 @@ defmodule Gateway.GraphQL.Integration.Settings.SettingIntegrationTest do
           id: \"#{struct.id}\",
           setting: {
            param: \"#{Lorem.characters(101)}\"
-           value: "updated some text"
+           value: "priceext_priceint"
           }
         ) {
           id
@@ -1869,7 +1736,7 @@ defmodule Gateway.GraphQL.Integration.Settings.SettingIntegrationTest do
         Absinthe.run(query, Schema, context: context)
     end
 
-    test "return empty list with validations length min 5 for value - `AbsintheHelpers`" do
+    test "updated returns empty list enum for value - `AbsintheHelpers`" do
       struct = insert(:setting)
       query = """
       mutation {
@@ -1877,7 +1744,7 @@ defmodule Gateway.GraphQL.Integration.Settings.SettingIntegrationTest do
           id: \"#{struct.id}\",
           setting: {
            param: "updated some text"
-           value: \"#{Lorem.characters(4)}\"
+           value: "hello"
           }
         ) {
           id
@@ -1896,7 +1763,7 @@ defmodule Gateway.GraphQL.Integration.Settings.SettingIntegrationTest do
       assert json_response(res, 200)["data"]["updateSetting"] == []
     end
 
-    test "return empty list with validations length min 5 for value - `Absinthe.run`", context do
+    test "updated returns empty list enum for value - `Absinthe.run`", context do
       struct = insert(:setting)
       query = """
       mutation {
@@ -1904,57 +1771,7 @@ defmodule Gateway.GraphQL.Integration.Settings.SettingIntegrationTest do
           id: \"#{struct.id}\",
           setting: {
            param: "updated some text"
-           value: \"#{Lorem.characters(4)}\"
-          }
-        ) {
-          id
-          param
-          value
-          inserted_at
-          updated_at
-        }
-      }
-      """
-      {:ok, %{data: %{"updateSetting" => []}}} =
-        Absinthe.run(query, Schema, context: context)
-    end
-
-    test "return empty list with validations length max 100 for value - `AbsintheHelpers`" do
-      struct = insert(:setting)
-      query = """
-      mutation {
-        updateSetting(
-          id: \"#{struct.id}\",
-          setting: {
-           param: "updated some text"
-           value: \"#{Lorem.characters(101)}\"
-          }
-        ) {
-          id
-          param
-          value
-          inserted_at
-          updated_at
-        }
-      }
-      """
-      res =
-        build_conn()
-        |> auth_conn(@phrase)
-        |> post("/graphiql", AbsintheHelpers.mutation_skeleton(query))
-
-      assert json_response(res, 200)["data"]["updateSetting"] == []
-    end
-
-    test "return empty list with validations length max 100 for value - `Absinthe.run`", context do
-      struct = insert(:setting)
-      query = """
-      mutation {
-        updateSetting(
-          id: \"#{struct.id}\",
-          setting: {
-           param: "updated some text"
-           value: \"#{Lorem.characters(101)}\"
+           value: "hello"
           }
         ) {
           id
