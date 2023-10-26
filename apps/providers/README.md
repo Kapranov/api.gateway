@@ -26,11 +26,11 @@ create list for priorities
 
 1. settings, param: "calc_priority", value: "priority", "price", "priceext_priceint"
 2. operator, active: true
-3. if "calc_priority" => "priority"          => sort operators by field's :priority
-4. if "calc_priority" => "price"             => sort operators by :price_ext (AST)
+3. if "calc_priority" => "priority"          => sort operators by field's :priority (Integer ASC)
+4. if "calc_priority" => "price"             => sort operators by :price_ext (Decimal ASC)
 5. if "calc_priority" => "priceext_priceint" => take args.phone_number(099)
-    select operators by :phone_code search args.phone_number(099) => list_operators(099) (AST :price_int)
-    select operators by :phone_code != (099)  => list_operators(none 099) (AST :price_ext)
+    select operators by :phone_code search args.phone_number(099) => list_operators(099) (ASC :price_int)
+    select operators by :phone_code != (099)  => list_operators(none 099) (ASC :price_ext)
     join list_operators(099) ++ list_operators(none 099) => join_list_operator
 6. join_list_operator => send on connector
 7. create Connector - dia, intertelecom, kyivstar, lifecell, telegram, viber, vodafone, SMTP

@@ -69,3 +69,4 @@ iex> EctoAnon.run(setting, Core.Repo)
 [13]: https://elixirforum.com/t/many-to-many-association-table-with-extra-columns/6563/12
 [14]: https://medium.com/@m.r.nijboer/using-ecto-changesets-for-json-api-request-body-validation-6150e8256c5c
 [15]: https://anonyfox.com/spells/ecto-custom-field-validation/
+[16]: https://gist.github.com/rylev/6906490
