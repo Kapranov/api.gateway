@@ -19,7 +19,8 @@ defmodule Core.Queries do
   @val3 "priority"
 
   @doc """
-  Retrurn list of `value` is `price` or `priceext_priceint` or `priority` when `param` equal `calc_priority`
+  Retrurn list of `value` is `price` or `priceext_priceint`, `priority`
+  when `param` equal `calc_priority`.
 
   ## Example
 
@@ -38,7 +39,7 @@ defmodule Core.Queries do
   end
 
   @doc """
-  Retrurn list of `Operators` when `active` is `true`
+  Retrurn list of `Operators` when `active` is `true`.
 
   ## Example
 
@@ -55,7 +56,7 @@ defmodule Core.Queries do
   end
 
   @doc """
-  Sort list of `Operators` by `priority` to ASC
+  Sort list of `Operators` by `priority` to ASC.
 
   ## Example
 
@@ -70,7 +71,7 @@ defmodule Core.Queries do
   end
 
   @doc """
-  Sort list of `Operators` by `price_ext` to ASC
+  Sort list of `Operators` by `price_ext` to ASC.
 
   ## Example
 
@@ -82,5 +83,33 @@ defmodule Core.Queries do
   def sort_price_ext(structs) do
     structs
     |> Enum.sort_by(&(&1.price_ext), :asc)
+  end
+
+  @doc """
+  Sort listis of `Operators` by `phone_number`
+  when phone_number is valid and invalid.
+
+  ## Example
+
+      iex> sort_priceext_priceint("+380984263462")
+      []
+
+  """
+  @spec sort_priceext_priceint(String.t()) :: [Operator.t()] | []
+  def sort_priceext_priceint(phone_number) do
+    code = String.slice(phone_number, 3..5)
+    structs_valid = Repo.all(
+      from c in Operator,
+      where: c.active == true,
+      where: ilike(fragment("?::text", c.phone_code), ^"%#{code}%"))
+        |> Enum.sort_by(&(&1.price_int), :asc)
+
+    structs_invalid = Repo.all(
+      from c in Operator,
+      where: c.active == true,
+      where: not ilike(fragment("?::text", c.phone_code), ^"%#{code}%"))
+        |> Enum.sort_by(&(&1.price_int), :asc)
+
+    structs_valid ++ structs_invalid
   end
 end
