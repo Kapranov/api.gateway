@@ -23,6 +23,14 @@ defmodule Connector.MixProject do
   end
 
   defp deps do
-    []
+    [
+      {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
+      {:ex_doc, "~> 0.30", only: :dev, runtime: false},
+      {:excoveralls, "~> 0.17", only: :test},
+      {:hackney, "~> 1.20"},
+      {:inch_ex, "~> 2.0", only: [:dev, :test]},
+      {:jason, "~> 1.4"},
+      {:tesla, "~> 1.8"}
+    ]
   end
 end
