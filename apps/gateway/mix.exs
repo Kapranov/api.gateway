@@ -35,6 +35,7 @@ defmodule Gateway.MixProject do
       {:absinthe_phoenix, "~> 2.0", override: true},
       {:absinthe_plug, "~> 1.5", override: true},
       {:absinthe_relay, "~> 1.5", override: true},
+      {:connector, in_umbrella: true},
       {:core, in_umbrella: true},
       {:cors_plug, "~> 3.0"},
       {:dataloader, "~> 2.0"},

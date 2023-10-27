@@ -1,0 +1,10 @@
+/.fetch
+/_build/
+/cover/
+/deps/
+/doc/
+/tmp/
+
+*.ez
+connector-*.tar
+erl_crash.dump
