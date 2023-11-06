@@ -16,4 +16,10 @@ defmodule Connector.Utils do
     |> Map.delete("sms")
     |> Map.delete("text")
   end
+
+  @spec random_timer(Range.t()) :: integer()
+  def random_timer(num \\ 200..999) do
+    num
+    |> Enum.random()
+  end
 end

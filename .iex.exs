@@ -5,7 +5,7 @@ IO.puts IO.ANSI.magenta()
         <> IO.ANSI.bright()
         <> IO.ANSI.underline()
         <> IO.ANSI.blink_slow()
-        <> "Using global .iex.exs (located in ~/.iex.exs)" <> IO.ANSI.reset()
+        <> IO.ANSI.reset()
 
 queue_length = fn ->
   self()
@@ -50,54 +50,6 @@ IEx.configure [
     doc_headings: [:cyan, :underline],
     doc_title: [:cyan, :bright, :underline]
   ],
-  # default_prompt: default_prompt,
   default_prompt: ["\e[G", :light_magenta, "⚡ iex", ">", :white, :reset] |> IO.ANSI.format() |> IO.chardata_to_string(),
   alive_prompt: alive_prompt
 ]
-
-import_if_available Plug.Conn
-import_if_available Phoenix.HTML
-
-phoenix_app = :application.info()
-  |> Keyword.get(:running)
-  |> Enum.reject(fn {_x, y} ->
-    y == :undefined
-  end)
-  |> Enum.find(fn {x, _y} ->
-    x |> Atom.to_string() |> String.match?(~r{_web})
-  end)
-
-case phoenix_app do
-  nil -> IO.puts "No Phoenix App found"
-  {app, _pid} ->
-    IO.puts "Phoenix app found: #{app}"
-    ecto_app = app
-      |> Atom.to_string()
-      |> (&Regex.split(~r{_web}, &1)).()
-      |> Enum.at(0)
-      |> String.to_atom()
-
-    exists = :application.info()
-      |> Keyword.get(:running)
-      |> Enum.reject(fn {_x, y} ->
-        y == :undefined
-      end)
-      |> Enum.map(fn {x, _y} -> x end)
-      |> Enum.member?(ecto_app)
-
-    case exists do
-      false -> IO.puts "Ecto app #{ecto_app} doesn't exist or isn't running"
-      true ->
-        IO.puts "Ecto app found: #{ecto_app}"
-
-        import_if_available Ecto.Query
-        import_if_available Ecto.Changeset
-
-        repo = ecto_app |> Application.get_env(:ecto_repos) |> Enum.at(0)
-        ptin = ecto_app |> Application.get_env(:ecto_repos) |> Enum.at(1)
-        quote do
-          alias unquote(repo), as: Repo
-          alias unquote(ptin), as: DB
-        end
-    end
-end

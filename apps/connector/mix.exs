@@ -24,12 +24,18 @@ defmodule Connector.MixProject do
 
   defp deps do
     [
+      {:core, in_umbrella: true},
+      {:cowboy, "~> 2.10"},
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
       {:ex_doc, "~> 0.30", only: :dev, runtime: false},
       {:excoveralls, "~> 0.17", only: :test},
+      {:gen_state_machine, "~> 3.0"},
       {:hackney, "~> 1.20"},
+      {:httpoison, "~> 2.1"},
       {:inch_ex, "~> 2.0", only: [:dev, :test]},
       {:jason, "~> 1.4"},
+      {:plug, "~> 1.15"},
+      {:plug_cowboy, "~> 2.6"},
       {:tesla, "~> 1.8"}
     ]
   end

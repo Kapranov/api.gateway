@@ -5,13 +5,16 @@ defmodule Connector.Telegram do
 
   alias Connector.Utils
 
+  @message_body "You will beat yourself up if you sell this unit!  I sold mine for a Tak and hate every minute of it."
+  @num 999..9_999
+  @phone_number "+380991111111"
+  @timeout 99_999
+
   use Tesla
   plug Tesla.Middleware.BaseUrl, "http://httpbin.org/"
   plug Tesla.Middleware.Headers, [{"content-type", "application/json"}]
   plug Tesla.Middleware.JSON
-
-  @message_body "You will beat yourself up if you sell this unit!  I sold mine for a Tak and hate every minute of it."
-  @phone_number "+380991111111"
+  plug Tesla.Middleware.Timeout, timeout: @timeout
 
   @doc """
   Virtual Telegram REST API
@@ -31,10 +34,12 @@ defmodule Connector.Telegram do
       :ok ->
         data = %{"status" => "send", "sms" => args.phone_number, "text" => args.message_body}
         {:ok, %Tesla.Env{:body => body}} = post(path, data)
+        :timer.sleep(Utils.random_timer(@num))
         {:ok, Utils.transfer(body["data"])}
       :error ->
         data = %{"status" => "error"}
         {:ok, %Tesla.Env{:body => body}} = post(path, data)
+        Process.sleep(Utils.random_timer(@num))
         {:ok, Utils.transfer(body["data"])}
     end
   end
