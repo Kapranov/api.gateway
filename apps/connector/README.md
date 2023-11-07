@@ -42,9 +42,9 @@ iex> Connector.VodafoneHandler.stop(server)
 
 iex> {:ok, server} = Connector.VodafoneHandler.start_link([{"Ab7ug1IoIJuRlzVjpw"}])
 iex> Connector.VodafoneHandler.get_status("Ab7ug1IoIJuRlzVjpw")
-
+%{status: "send", text: "Ваш код - 7777-999-9999-10003", sms: "+380984263462"}
 iex> :sys.get_state(server)
-
+%{status: "send", text: "Ваш код - 7777-999-9999-10003", sms: "+380984263462"}
 iex> Connector.VodafoneHandler.stop(server)
 :ok
 
@@ -77,6 +77,13 @@ iex> Connector.VodafoneHandler.stop(server)
 :ok
 iex> Process.info(server)
 nil
+```
+
+```elxir
+# Kill the current process after 2 seconds
+iex> :timer.kill_after(:timer.seconds(2))
+# Kill pid after 2 minutes
+:timer.kill_after(:timer.minutes(2), pid)
 ```
 
 ### 27 Oct 2023 by Oleg G.Kapranov
