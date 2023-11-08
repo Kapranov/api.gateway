@@ -2,6 +2,91 @@
 
 **TODO: Add description**
 
+- Priority of Policy
+
+DIA
+INTERTELECOM
+KYIVSTAR
+LIFECELL
+TELEGRAM
+TIMEOUT
+VIBER
+VODAFONE
+
+- Create Message
+
+```elixir
+
+args =>
+  arg :message_body, non_null(:string) => "Код рецепту - 34568"
+  arg :phone_number, non_null(:string) => "+380984263462"
+  arg :status_id,    non_null(:string) => "status_name" => "new", "status_code" => 101
+
+
+@spec create(any, %{atom => any}, %{context: %{token: String.t()}}) :: result()
+def create(_parent, args, %{context: %{token: _token}}) do
+  args
+  |> Spring.create_message()
+  |> case do
+    {:error, %Ecto.Changeset{}} ->
+      ###
+      ### created sms_logs, priority: number
+      ###
+      {:ok, []}
+    {:ok, struct} ->
+      #############
+      ### Policy
+
+      ONLY settings is recored "calc_priority"
+      1. settings, param: "calc_priority", value: "priority", "price", "priceext_priceint"
+         when none via front-end via => sms_logs ???
+      ONLY operator, active: true
+      2. if "calc_priority" => "priority"          => sort operators by field's :priority (Integer ASC)
+         => Core.Queries.sort_priority(structs)
+      3. if "calc_priority" => "price"             => sort operators by :price_ext (Decimal ASC)
+         => Core.Queries.sort_price_ext(structs)
+      4. if "calc_priority" => "priceext_priceint" => take args.phone_number(099)
+          select operators by :phone_code search args.phone_number(099) => list_operators(099) (ASC :price_int)
+          select operators by :phone_code != (099)  => list_operators(none 099) (ASC :price_ext)
+          join list_operators(099) ++ list_operators(none 099) => join_list_operator
+         join_list_operator
+         => Core.Queries.sort_priceext_priceint(phone_number)
+      5. create Connector - dia, intertelecom, kyivstar, lifecell, telegram, viber, vodafone, SMTP
+      - send to connector
+
+      -----------------------------
+       list_ready_send_for_operator
+
+       1. take first from list config  (via connector)
+       2. save recorded to sms_logs priority: num
+       3. send on connector (take name connector via config)
+         - %{status: "send"}
+         - :timeout
+         - :error
+       4. updated recorded to messages when  %{status: "send", id: "xxx"}
+          - after 10s -> take id send on connector via operator => %{status: "send", id: "xxx"} - "send", "delivered" or "error"
+            - "delivered" => updated message status: "delivered", updated sms_logs status_id
+            - "error"     => updated message status "error", updated sms_logs status_id
+          - after 5s -> status: "send", "delivered" or "error"
+            - "delivered" => updated message status: "delivered", updated sms_logs status_id
+            - "error"     => updated message status "error", updated sms_logs status_id
+          - after 5s -> status: "send", "delivered" or "error"
+            - "delivered" => updated message status: "delivered", updated sms_logs status_id
+            - "error"     => updated message status "error", updated sms_logs status_id
+
+       5."send"  => when none delivered take next operator
+         "error" => when none delivered take next operator
+       6. take id send on connector via operator
+
+      ###
+      #############
+      {:ok, struct}
+  end
+end
+```
+
+
+
 ```bash
 bash> mix new connector --sup
 ```

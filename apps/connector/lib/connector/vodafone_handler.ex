@@ -37,9 +37,11 @@ defmodule Connector.VodafoneHandler do
       :exit, _reason -> :timeout
   end
 
-  @spec stop(pid) :: atom()
+  @spec stop(pid) :: :ok | :none
   def stop(pid) do
-    GenServer.stop(pid, :normal, @timeout)
+      GenServer.stop(pid, :normal, @timeout)
+    catch
+      :exit, _reason -> :none
   end
 
   @spec init(String.t()) :: {atom(), String.t(), {:continue, atom()}}
@@ -48,7 +50,10 @@ defmodule Connector.VodafoneHandler do
     {:ok, message_id, {:continue, :fetch_from_db}}
   end
 
-  @spec handle_call({atom(), String.t()}, any(), map() | atom()) :: {:reply, atom(), String.t()} | {:reply, map(), String.t()} | {:noreply, atom()}
+  @spec handle_call({atom(), String.t()}, any(), map() | atom()) ::
+        {:reply, atom(), String.t()} |
+        {:reply, map(), String.t()} |
+        {:noreply, atom()}
   def handle_call({:get_status, message_id}, _pid, state) do
     case check_id(message_id) do
       nil ->
@@ -98,6 +103,8 @@ defmodule Connector.VodafoneHandler do
 
   @spec handle_continue(atom(), map()) :: {:noreply, map()}
   def handle_continue(:found, state) do
+    Connector.Timeout.new(250, backoff: 1.25, backoff_max: 1_250, random: 0.1)
+    |> Connector.Timeout.send_after(self(), :found)
     case get_request(@action, state) do
       {:ok, response} ->
         {:noreply, response}
@@ -114,6 +121,12 @@ defmodule Connector.VodafoneHandler do
   @spec handle_info(atom(), map() | atom() ) :: {:noreply, map()} | {:noreply, atom()}
   def handle_info(:more_init, state) do
     schedule_work()
+    {:noreply, state}
+  end
+
+  @spec handle_info(atom(), map()) :: {:noreply, map()} | {:noreply, atom()}
+  def handle_info(:found, state) do
+    IO.puts("Received arguments: #{inspect(state)}")
     {:noreply, state}
   end
 
