@@ -1,12 +1,13 @@
 {
   "key": "graphiql",
-  "lastId": 22,
+  "lastId": 23,
   "tabIds": [
     "tab1",
     "tab2",
     "tab20",
     "tab21",
-    "tab22"
+    "tab22",
+    "tab23"
   ],
   "closedTabs": [
     {
@@ -520,6 +521,10 @@
   "recentHeaders": [
     {
       "name": "Authorization",
+      "value": "Bearer SFMyNTY.g2gDbQAAAEBvdUk2YTJBV3Y2QnFMWVd6NTdXM3luVnpxVnVjMG5pTHBpbXJFU0dVNlM3bFVjcGMySHFaWUk2bHhaZWtiZ3Y4bgYAMZJAtIsBYgABUYA.RI4o9O9PL8BFpkocgX7TT2vQdH6w2_lGTmzdNH2MhTA"
+    },
+    {
+      "name": "Authorization",
       "value": "Bearer SFMyNTY.g2gDbQAAAEBvdUk2YTJBV3Y2QnFMWVd6NTdXM3luVnpxVnVjMG5pTHBpbXJFU0dVNlM3bFVjcGMySHFaWUk2bHhaZWtiZ3Y4bgYAHA7_BIsBYgABUYA.njQgfoeQ72QWYCq-TU9q26_DEjF_jhRgkqATb5hYeyA"
     },
     {
@@ -593,17 +598,13 @@
     {
       "name": "Authorization",
       "value": "Bearer SFMyNTY.g2gDbQAAAEBvdUk2YTJBV3Y2QnFMWVd6NTdXM3luVnpxVnVjMG5pTHBpbXJFU0dVNlM3bFVjcGMySHFaWUk2bHhaZWtiZ3Y4bgYAHg0Qg4oBYgABUYA.EdzokgakxiJxF2mkI5zysAuAmfnclO7VLmHKLSAnIaA"
-    },
-    {
-      "name": "Authorization",
-      "value": "Bearer SFMyNTY.g2gDbQAAAAVIZWxsb24GAMoiCIOKAWIAAVGA.sw32i7p631iDD29OeTqBnVrlaEKBrBDXWbQoD_HyEpg"
     }
   ],
   "maxTabHistory": 20,
   "maxUrlHistory": 20,
   "maxHistory": 20,
   "savedQueries": [],
-  "activeId": "tab22",
+  "activeId": "tab23",
   "tabs": [
     {
       "id": "tab1",
@@ -682,6 +683,10 @@
       "maxHistory": 20,
       "history": [
         {
+          "query": "query {\n  showMessage(id: \"Ab7ug1IoIJuRlzVjpw\") {\n    id\n    idTax\n    idExternal\n    idTelegram\n    messageBody\n    messageExpiredAt\n    phoneNumber\n    status {\n      id\n      active\n      description\n      statusCode\n      statusName\n      smsLogs {id priority}\n      insertedAt\n    }\n    statusId\n    statusChangedAt\n    smsLogs {id priority}\n    insertedAt\n    updatedAt\n  }\n}",
+          "variables": null
+        },
+        {
           "query": "query {\n  showMessage(id: \"AaUeEtZEq8WxPtHqNM\") {\n    id\n    idTax\n    idExternal\n    idTelegram\n    messageBody\n    messageExpiredAt\n    phoneNumber\n    status {\n      id\n      active\n      description\n      statusCode\n      statusName\n      smsLogs {id priority}\n      insertedAt\n    }\n    statusId\n    statusChangedAt\n    smsLogs {id priority}\n    insertedAt\n    updatedAt\n  }\n}",
           "variables": null
         },
@@ -718,9 +723,9 @@
           "variables": null
         }
       ],
-      "graphiql:query": "query {\n  showMessage(id: \"AaUeEtZEq8WxPtHqNM\") {\n    id\n    idTax\n    idExternal\n    idTelegram\n    messageBody\n    messageExpiredAt\n    phoneNumber\n    status {\n      id\n      active\n      description\n      statusCode\n      statusName\n      smsLogs {id priority}\n      insertedAt\n    }\n    statusId\n    statusChangedAt\n    smsLogs {id priority}\n    insertedAt\n    updatedAt\n  }\n}",
+      "graphiql:query": "query {\n  showMessage(id: \"Ab7ug1IoIJuRlzVjpw\") {\n    id\n    idTax\n    idExternal\n    idTelegram\n    messageBody\n    messageExpiredAt\n    phoneNumber\n    status {\n      id\n      active\n      description\n      statusCode\n      statusName\n      smsLogs {id priority}\n      insertedAt\n    }\n    statusId\n    statusChangedAt\n    smsLogs {id priority}\n    insertedAt\n    updatedAt\n  }\n}",
       "graphiql:editorFlex": 0.6204033214709371,
-      "graphiql:queries": "{\"queries\":[{\"query\":\"query {\\n  showMessage(id: \\\"AaOWLEeUF3uSs0ZcHY\\\") {\\n    id\\n    idTax\\n    idExternal\\n    idTelegram\\n    messageBody\\n    messageExpiredAt\\n    phoneNumber\\n    status {\\n      id\\n      active\\n      description\\n      statusCode\\n      statusName\\n      smsLogs {id priority}\\n      insertedAt\\n      updatedAt\\n    }\\n    statusId\\n    statusChangedAt\\n    smsLogs {id priority}\\n    insertedAt\\n    updatedAt\\n  }\\n}\",\"variables\":\"\"},{\"query\":\"query {\\n  showMessage(id: \\\"AaOWLEppYsz3RBsfxo\\\") {\\n    id\\n    idTax\\n    idExternal\\n    idTelegram\\n    messageBody\\n    messageExpiredAt\\n    phoneNumber\\n    status {\\n      id\\n      active\\n      description\\n      statusCode\\n      statusName\\n      smsLogs {id priority}\\n      insertedAt\\n      updatedAt\\n    }\\n    statusId\\n    statusChangedAt\\n    smsLogs {id priority}\\n    insertedAt\\n    updatedAt\\n  }\\n}\"},{\"query\":\"query {\\n  showMessage(id: \\\"AaOWLEtNLhorcBXVUO\\\") {\\n    id\\n    idTax\\n    idExternal\\n    idTelegram\\n    messageBody\\n    messageExpiredAt\\n    phoneNumber\\n    status {\\n      id\\n      active\\n      description\\n      statusCode\\n      statusName\\n      smsLogs {id priority}\\n      insertedAt\\n      updatedAt\\n    }\\n    statusId\\n    statusChangedAt\\n    smsLogs {id priority}\\n    insertedAt\\n    updatedAt\\n  }\\n}\"},{\"query\":\"query {\\n  showMessage(id: \\\"AaOWLExH7CwFoHMcZE\\\") {\\n    id\\n    idTax\\n    idExternal\\n    idTelegram\\n    messageBody\\n    messageExpiredAt\\n    phoneNumber\\n    status {\\n      id\\n      active\\n      description\\n      statusCode\\n      statusName\\n      smsLogs {id priority}\\n      insertedAt\\n      updatedAt\\n    }\\n    statusId\\n    statusChangedAt\\n    smsLogs {id priority}\\n    insertedAt\\n    updatedAt\\n  }\\n}\"},{\"query\":\"query {\\n  showMessage(id: \\\"AaOWLF1Asi3e0NBje4\\\") {\\n    id\\n    idTax\\n    idExternal\\n    idTelegram\\n    messageBody\\n    messageExpiredAt\\n    phoneNumber\\n    status {\\n      id\\n      active\\n      description\\n      statusCode\\n      statusName\\n      smsLogs {id priority}\\n      insertedAt\\n      updatedAt\\n    }\\n    statusId\\n    statusChangedAt\\n    smsLogs {id priority}\\n    insertedAt\\n    updatedAt\\n  }\\n}\"},{\"query\":\"query {\\n  showMessage(id: \\\"AaQPUvwnOwn54wymDQ\\\") {\\n    id\\n    idTax\\n    idExternal\\n    idTelegram\\n    messageBody\\n    messageExpiredAt\\n    phoneNumber\\n    status {\\n      id\\n      active\\n      description\\n      statusCode\\n      statusName\\n      smsLogs {id priority}\\n      insertedAt\\n      updatedAt\\n    }\\n    statusId\\n    statusChangedAt\\n    smsLogs {id priority}\\n    insertedAt\\n    updatedAt\\n  }\\n}\"},{\"query\":\"query {\\n  showMessage(id: \\\"AaQPUvwnOwn54wymDQ\\\") {\\n    id\\n    idTax\\n    idExternal\\n    idTelegram\\n    messageBody\\n    messageExpiredAt\\n    phoneNumber\\n    status {\\n      id\\n      active\\n      description\\n      statusCode\\n      statusName\\n      smsLogs {id priority}\\n      insertedAt\\n    }\\n    statusId\\n    statusChangedAt\\n    smsLogs {id priority}\\n    insertedAt\\n    updatedAt\\n  }\\n}\"},{\"query\":\"query {\\n  showMessage(id: \\\"AaS3U9YtOzf976F8bY\\\") {\\n    id\\n    idTax\\n    idExternal\\n    idTelegram\\n    messageBody\\n    messageExpiredAt\\n    phoneNumber\\n    status {\\n      id\\n      active\\n      description\\n      statusCode\\n      statusName\\n      smsLogs {id priority}\\n      insertedAt\\n    }\\n    statusId\\n    statusChangedAt\\n    smsLogs {id priority}\\n    insertedAt\\n    updatedAt\\n  }\\n}\"},{\"query\":\"query {\\n  showMessage(id: \\\"AaUeEtZEq8WxPtHqNM\\\") {\\n    id\\n    idTax\\n    idExternal\\n    idTelegram\\n    messageBody\\n    messageExpiredAt\\n    phoneNumber\\n    status {\\n      id\\n      active\\n      description\\n      statusCode\\n      statusName\\n      smsLogs {id priority}\\n      insertedAt\\n    }\\n    statusId\\n    statusChangedAt\\n    smsLogs {id priority}\\n    insertedAt\\n    updatedAt\\n  }\\n}\"}]}",
+      "graphiql:queries": "{\"queries\":[{\"query\":\"query {\\n  showMessage(id: \\\"AaOWLEeUF3uSs0ZcHY\\\") {\\n    id\\n    idTax\\n    idExternal\\n    idTelegram\\n    messageBody\\n    messageExpiredAt\\n    phoneNumber\\n    status {\\n      id\\n      active\\n      description\\n      statusCode\\n      statusName\\n      smsLogs {id priority}\\n      insertedAt\\n      updatedAt\\n    }\\n    statusId\\n    statusChangedAt\\n    smsLogs {id priority}\\n    insertedAt\\n    updatedAt\\n  }\\n}\",\"variables\":\"\"},{\"query\":\"query {\\n  showMessage(id: \\\"AaOWLEppYsz3RBsfxo\\\") {\\n    id\\n    idTax\\n    idExternal\\n    idTelegram\\n    messageBody\\n    messageExpiredAt\\n    phoneNumber\\n    status {\\n      id\\n      active\\n      description\\n      statusCode\\n      statusName\\n      smsLogs {id priority}\\n      insertedAt\\n      updatedAt\\n    }\\n    statusId\\n    statusChangedAt\\n    smsLogs {id priority}\\n    insertedAt\\n    updatedAt\\n  }\\n}\"},{\"query\":\"query {\\n  showMessage(id: \\\"AaOWLEtNLhorcBXVUO\\\") {\\n    id\\n    idTax\\n    idExternal\\n    idTelegram\\n    messageBody\\n    messageExpiredAt\\n    phoneNumber\\n    status {\\n      id\\n      active\\n      description\\n      statusCode\\n      statusName\\n      smsLogs {id priority}\\n      insertedAt\\n      updatedAt\\n    }\\n    statusId\\n    statusChangedAt\\n    smsLogs {id priority}\\n    insertedAt\\n    updatedAt\\n  }\\n}\"},{\"query\":\"query {\\n  showMessage(id: \\\"AaOWLExH7CwFoHMcZE\\\") {\\n    id\\n    idTax\\n    idExternal\\n    idTelegram\\n    messageBody\\n    messageExpiredAt\\n    phoneNumber\\n    status {\\n      id\\n      active\\n      description\\n      statusCode\\n      statusName\\n      smsLogs {id priority}\\n      insertedAt\\n      updatedAt\\n    }\\n    statusId\\n    statusChangedAt\\n    smsLogs {id priority}\\n    insertedAt\\n    updatedAt\\n  }\\n}\"},{\"query\":\"query {\\n  showMessage(id: \\\"AaOWLF1Asi3e0NBje4\\\") {\\n    id\\n    idTax\\n    idExternal\\n    idTelegram\\n    messageBody\\n    messageExpiredAt\\n    phoneNumber\\n    status {\\n      id\\n      active\\n      description\\n      statusCode\\n      statusName\\n      smsLogs {id priority}\\n      insertedAt\\n      updatedAt\\n    }\\n    statusId\\n    statusChangedAt\\n    smsLogs {id priority}\\n    insertedAt\\n    updatedAt\\n  }\\n}\"},{\"query\":\"query {\\n  showMessage(id: \\\"AaQPUvwnOwn54wymDQ\\\") {\\n    id\\n    idTax\\n    idExternal\\n    idTelegram\\n    messageBody\\n    messageExpiredAt\\n    phoneNumber\\n    status {\\n      id\\n      active\\n      description\\n      statusCode\\n      statusName\\n      smsLogs {id priority}\\n      insertedAt\\n      updatedAt\\n    }\\n    statusId\\n    statusChangedAt\\n    smsLogs {id priority}\\n    insertedAt\\n    updatedAt\\n  }\\n}\"},{\"query\":\"query {\\n  showMessage(id: \\\"AaQPUvwnOwn54wymDQ\\\") {\\n    id\\n    idTax\\n    idExternal\\n    idTelegram\\n    messageBody\\n    messageExpiredAt\\n    phoneNumber\\n    status {\\n      id\\n      active\\n      description\\n      statusCode\\n      statusName\\n      smsLogs {id priority}\\n      insertedAt\\n    }\\n    statusId\\n    statusChangedAt\\n    smsLogs {id priority}\\n    insertedAt\\n    updatedAt\\n  }\\n}\"},{\"query\":\"query {\\n  showMessage(id: \\\"AaS3U9YtOzf976F8bY\\\") {\\n    id\\n    idTax\\n    idExternal\\n    idTelegram\\n    messageBody\\n    messageExpiredAt\\n    phoneNumber\\n    status {\\n      id\\n      active\\n      description\\n      statusCode\\n      statusName\\n      smsLogs {id priority}\\n      insertedAt\\n    }\\n    statusId\\n    statusChangedAt\\n    smsLogs {id priority}\\n    insertedAt\\n    updatedAt\\n  }\\n}\"},{\"query\":\"query {\\n  showMessage(id: \\\"AaUeEtZEq8WxPtHqNM\\\") {\\n    id\\n    idTax\\n    idExternal\\n    idTelegram\\n    messageBody\\n    messageExpiredAt\\n    phoneNumber\\n    status {\\n      id\\n      active\\n      description\\n      statusCode\\n      statusName\\n      smsLogs {id priority}\\n      insertedAt\\n    }\\n    statusId\\n    statusChangedAt\\n    smsLogs {id priority}\\n    insertedAt\\n    updatedAt\\n  }\\n}\"},{\"query\":\"query {\\n  showMessage(id: \\\"Ab7ug1IoIJuRlzVjpw\\\") {\\n    id\\n    idTax\\n    idExternal\\n    idTelegram\\n    messageBody\\n    messageExpiredAt\\n    phoneNumber\\n    status {\\n      id\\n      active\\n      description\\n      statusCode\\n      statusName\\n      smsLogs {id priority}\\n      insertedAt\\n    }\\n    statusId\\n    statusChangedAt\\n    smsLogs {id priority}\\n    insertedAt\\n    updatedAt\\n  }\\n}\"}]}",
       "graphiql:variableEditorHeight": 200,
       "graphiql:docExplorerWidth": 350
     },
@@ -806,7 +811,7 @@
           "value": "Bearer SFMyNTY.g2gDbQAAAEBvdUk2YTJBV3Y2QnFMWVd6NTdXM3luVnpxVnVjMG5pTHBpbXJFU0dVNlM3bFVjcGMySHFaWUk2bHhaZWtiZ3Y4bgYAHA7_BIsBYgABUYA.njQgfoeQ72QWYCq-TU9q26_DEjF_jhRgkqATb5hYeyA"
         }
       ],
-      "collapsed": false,
+      "collapsed": true,
       "maxHistory": 20,
       "history": [
         {
@@ -830,10 +835,41 @@
           "variables": null
         }
       ],
-      "graphiql:query": "mutation {\n  updateMessage (\n    id: \"AaUeuKGl7fLgIGXOWe\"\n    message: {\n      idExternal: \"3\"\n      idTax: 1234567890\n      idTelegram: \"@telegaUser\"\n      messageBody: \"Ваш код - 7777-888-8888-8888\"\n      messageExpiredAt: \"2023-10-01 11:48:55.477759Z\"\n      phoneNumber: \"+380997171111\"\n      statusChangedAt: \"2023-10-01 11:48:55.477759Z\"\n      statusId: \"AaUeEbKkdGFMrkN1IO\"\n    }\n  ) {\n    id\n    idTax\n    idExternal\n    idTelegram\n    messageBody\n    messageExpiredAt\n    phoneNumber\n    status {\n      id\n      active\n      description\n      statusCode\n      statusName\n      smsLogs {id priority}\n      insertedAt\n    }\n    statusId\n    statusChangedAt\n    smsLogs {id priority}\n    insertedAt\n    updatedAt\n  }\n}",
+      "graphiql:query": "mutation {\n  updateMessage (\n    id: \"Ab7ug1IoIJuRlzVjpw\"\n    message: {\n      idExternal: \"3\"\n      idTax: 1234567890\n      idTelegram: \"@telegaUser\"\n      messageBody: \"Ваш код - 7777-888-8888-8888\"\n      messageExpiredAt: \"2023-10-01 11:48:55.477759Z\"\n      phoneNumber: \"+380997171111\"\n      statusChangedAt: \"2023-10-01 11:48:55.477759Z\"\n      statusId: \"AaUeEbKkdGFMrkN1IO\"\n    }\n  ) {\n    id\n    idTax\n    idExternal\n    idTelegram\n    messageBody\n    messageExpiredAt\n    phoneNumber\n    status {\n      id\n      active\n      description\n      statusCode\n      statusName\n      smsLogs {id priority}\n      insertedAt\n    }\n    statusId\n    statusChangedAt\n    smsLogs {id priority}\n    insertedAt\n    updatedAt\n  }\n}",
       "graphiql:variableEditorHeight": 200,
       "graphiql:queries": "{\"queries\":[{\"query\":\"mutation {\\n  updateMessage (\\n    id: \\\"AaQRhmQiXjW42H1Ria\\\"\\n    message: {\\n      idExternal: \\\"3\\\"\\n      idTax: 1234567890\\n      idTelegram: \\\"@telegaUser\\\"\\n      messageBody: \\\"Ваш код - 7777-888-8888-8888\\\"\\n      messageExpiredAt: \\\"2023-10-01 11:48:55.477759Z\\\"\\n      phoneNumber: \\\"+380997171111\\\"\\n      statusChangedAt: \\\"2023-10-01 11:48:55.477759Z\\\"\\n      statusId: \\\"AaQPUdjj6ndobCj5LU\\\"\\n    }\\n  ) {\\n    id\\n    idTax\\n    idExternal\\n    idTelegram\\n    messageBody\\n    messageExpiredAt\\n    phoneNumber\\n    status {\\n      id\\n      active\\n      description\\n      statusCode\\n      statusName\\n      smsLogs {id priority}\\n      insertedAt\\n    }\\n    statusId\\n    statusChangedAt\\n    smsLogs {id priority}\\n    insertedAt\\n    updatedAt\\n  }\\n}\",\"variables\":\"\"},{\"query\":\"mutation {\\n  updateMessage (\\n    id: \\\"AaQRhmQiXjW42H1Ria\\\"\\n    message: {\\n      idExternal: \\\"1\\\"\\n      idTax: 1234567890\\n      idTelegram: \\\"@telegaUser\\\"\\n      messageBody: \\\"Ваш код - 7777-888-8888-8888\\\"\\n      messageExpiredAt: \\\"2023-10-01 11:48:55.477759Z\\\"\\n      phoneNumber: \\\"+380997171111\\\"\\n      statusChangedAt: \\\"2023-10-01 11:48:55.477759Z\\\"\\n      statusId: \\\"AaQPUdjj6ndobCj5LU\\\"\\n    }\\n  ) {\\n    id\\n    idTax\\n    idExternal\\n    idTelegram\\n    messageBody\\n    messageExpiredAt\\n    phoneNumber\\n    status {\\n      id\\n      active\\n      description\\n      statusCode\\n      statusName\\n      smsLogs {id priority}\\n      insertedAt\\n    }\\n    statusId\\n    statusChangedAt\\n    smsLogs {id priority}\\n    insertedAt\\n    updatedAt\\n  }\\n}\",\"variables\":\"\"},{\"query\":\"mutation {\\n  updateMessage (\\n    id: \\\"AaQRhmQiXjW42H1Ria\\\"\\n    message: {\\n      idExternal: \\\"3\\\"\\n      idTax: 1234567890\\n      idTelegram: \\\"@telegaUser\\\"\\n      messageBody: \\\"Ваш код - 7777-888-8888-8888\\\"\\n      messageExpiredAt: \\\"2023-10-01 11:48:55.477759Z\\\"\\n      phoneNumber: \\\"+380997171111\\\"\\n      statusChangedAt: \\\"2023-10-01 11:48:55.477759Z\\\"\\n      statusId: \\\"AaQPUdjj6ndobCj5LU\\\"\\n    }\\n  ) {\\n    id\\n    idTax\\n    idExternal\\n    idTelegram\\n    messageBody\\n    messageExpiredAt\\n    phoneNumber\\n    status {\\n      id\\n      active\\n      description\\n      statusCode\\n      statusName\\n      smsLogs {id priority}\\n      insertedAt\\n    }\\n    statusId\\n    statusChangedAt\\n    smsLogs {id priority}\\n    insertedAt\\n    updatedAt\\n  }\\n}\"},{\"query\":\"mutation {\\n  updateMessage (\\n    id: \\\"AaUeuKGl7fLgIGXOWe\\\"\\n    message: {\\n      idExternal: \\\"3\\\"\\n      idTax: 1234567890\\n      idTelegram: \\\"@telegaUser\\\"\\n      messageBody: \\\"Ваш код - 7777-888-8888-8888\\\"\\n      messageExpiredAt: \\\"2023-10-01 11:48:55.477759Z\\\"\\n      phoneNumber: \\\"+380997171111\\\"\\n      statusChangedAt: \\\"2023-10-01 11:48:55.477759Z\\\"\\n      statusId: \\\"AaQPUdjj6ndobCj5LU\\\"\\n    }\\n  ) {\\n    id\\n    idTax\\n    idExternal\\n    idTelegram\\n    messageBody\\n    messageExpiredAt\\n    phoneNumber\\n    status {\\n      id\\n      active\\n      description\\n      statusCode\\n      statusName\\n      smsLogs {id priority}\\n      insertedAt\\n    }\\n    statusId\\n    statusChangedAt\\n    smsLogs {id priority}\\n    insertedAt\\n    updatedAt\\n  }\\n}\"},{\"query\":\"mutation {\\n  updateMessage (\\n    id: \\\"AaUeuKGl7fLgIGXOWe\\\"\\n    message: {\\n      idExternal: \\\"3\\\"\\n      idTax: 1234567890\\n      idTelegram: \\\"@telegaUser\\\"\\n      messageBody: \\\"Ваш код - 7777-888-8888-8888\\\"\\n      messageExpiredAt: \\\"2023-10-01 11:48:55.477759Z\\\"\\n      phoneNumber: \\\"+380997171111\\\"\\n      statusChangedAt: \\\"2023-10-01 11:48:55.477759Z\\\"\\n      statusId: \\\"AaUeEbKkdGFMrkN1IO\\\"\\n    }\\n  ) {\\n    id\\n    idTax\\n    idExternal\\n    idTelegram\\n    messageBody\\n    messageExpiredAt\\n    phoneNumber\\n    status {\\n      id\\n      active\\n      description\\n      statusCode\\n      statusName\\n      smsLogs {id priority}\\n      insertedAt\\n    }\\n    statusId\\n    statusChangedAt\\n    smsLogs {id priority}\\n    insertedAt\\n    updatedAt\\n  }\\n}\"}]}",
       "graphiql:editorFlex": 1,
+      "graphiql:docExplorerWidth": 350
+    },
+    {
+      "id": "tab23",
+      "name": "Query 6",
+      "url": "http://localhost:4000/graphiql",
+      "websocketUrl": "",
+      "proxy": false,
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer SFMyNTY.g2gDbQAAAEBvdUk2YTJBV3Y2QnFMWVd6NTdXM3luVnpxVnVjMG5pTHBpbXJFU0dVNlM3bFVjcGMySHFaWUk2bHhaZWtiZ3Y4bgYAMZJAtIsBYgABUYA.RI4o9O9PL8BFpkocgX7TT2vQdH6w2_lGTmzdNH2MhTA"
+        }
+      ],
+      "collapsed": false,
+      "maxHistory": 20,
+      "history": [
+        {
+          "query": "query {\n  sortedOperators(phoneNumber: \"+380984263462\") {\n    id\n    active\n    config {\n      id\n      contentType\n      parameters {\n        id\n        key\n        value\n        insertedAt\n        updatedAt\n      }\n      name\n      size\n      url\n      insertedAt\n      updatedAt\n    }\n    limitCount\n    smsLogs {id priority }\n    nameOperator\n    phoneCode\n    priceExt\n    priceInt\n    priority\n    operatorType {id active nameType priority insertedAt insertedAt}\n    insertedAt\n    updatedAt\n  }\n}",
+          "variables": null
+        },
+        {
+          "query": "query {\n  sortedOperators(phoneNumber: \"+380984263462\") {\n    id\n    active\n  }\n}",
+          "variables": null
+        }
+      ],
+      "graphiql:query": "query {\n  sortedOperators(phoneNumber: \"+380984263462\") {\n    id\n    active\n    config {\n      id\n      contentType\n      parameters {\n        id\n        key\n        value\n        insertedAt\n        updatedAt\n      }\n      name\n      size\n      url\n      insertedAt\n      updatedAt\n    }\n    limitCount\n    smsLogs {id priority }\n    nameOperator\n    phoneCode\n    priceExt\n    priceInt\n    priority\n    operatorType {id active nameType priority insertedAt insertedAt}\n    insertedAt\n    updatedAt\n  }\n}",
+      "graphiql:variables": "",
+      "graphiql:queries": "{\"queries\":[{\"query\":\"query {\\n  sortedOperators(phoneNumber: \\\"+380984263462\\\") {\\n    id\\n    active\\n  }\\n}\",\"variables\":\"\"},{\"query\":\"query {\\n  sortedOperators(phoneNumber: \\\"+380984263462\\\") {\\n    id\\n    active\\n    config {\\n      id\\n      contentType\\n      parameters {\\n        id\\n        key\\n        value\\n        insertedAt\\n        updatedAt\\n      }\\n      name\\n      size\\n      url\\n      insertedAt\\n      updatedAt\\n    }\\n    limitCount\\n    smsLogs {id priority }\\n    nameOperator\\n    phoneCode\\n    priceExt\\n    priceInt\\n    priority\\n    operatorType {id active nameType priority insertedAt insertedAt}\\n    insertedAt\\n    updatedAt\\n  }\\n}\",\"variables\":\"\"}]}",
+      "graphiql:editorFlex": 0.5365579302587177,
+      "graphiql:variableEditorHeight": 200,
       "graphiql:docExplorerWidth": 350
     }
   ]

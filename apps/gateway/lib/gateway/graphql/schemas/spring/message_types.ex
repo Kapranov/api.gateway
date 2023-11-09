@@ -49,6 +49,12 @@ defmodule Gateway.GraphQL.Schemas.Spring.MessageTypes do
       arg(:id, non_null(:string))
       resolve(&MessageResolver.show/3)
     end
+
+    @desc "List Operators by Message's phoneNumber"
+    field :sorted_operators, list_of(:operator) do
+      arg(:phone_number, non_null(:string))
+      resolve(&MessageResolver.sorted_operators/3)
+    end
   end
 
   object :message_mutations do

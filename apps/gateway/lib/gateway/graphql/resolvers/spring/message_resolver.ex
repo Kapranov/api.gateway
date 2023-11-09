@@ -4,6 +4,7 @@ defmodule Gateway.GraphQL.Resolvers.Spring.MessageResolver do
   """
 
   alias Core.{
+    Queries,
     Repo,
     Spring,
     Spring.Message
@@ -39,10 +40,6 @@ defmodule Gateway.GraphQL.Resolvers.Spring.MessageResolver do
         ###
         {:ok, []}
       {:ok, struct} ->
-        #############
-        ### 
-        ###
-        #############
         {:ok, struct}
     end
   end
@@ -69,4 +66,13 @@ defmodule Gateway.GraphQL.Resolvers.Spring.MessageResolver do
 
   @spec update(any, %{atom => any}, Absinthe.Resolution.t()) :: error_tuple()
   def update(_parent, _args, _info), do: {:ok, []}
+
+  @spec sorted_operators(any, String.t(), %{context: %{token: String.t()}}) :: result()
+  def sorted_operators(_parent, phone_number, %{context: %{token: _token}}) do
+    structs = Queries.sorted_by_operators(phone_number)
+    {:ok, structs}
+  end
+
+  @spec sorted_operators(any, %{atom => any}, Absinthe.Resolution.t()) :: error_tuple()
+  def sorted_operators(_parent, _args, _info), do: {:ok, []}
 end

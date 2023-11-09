@@ -5,15 +5,15 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="ExDoc v0.30.9">
-    <meta name="project" content="APIGateway v0.0.1-beta.1-0-gfa6d13d-main+dev">
+    <meta name="project" content="APIGateway v0.0.1-beta.1-0-g22d89f5-main+dev">
 
-    <title>Core.Queries — APIGateway v0.0.1-beta.1-0-gfa6d13d-main+dev</title>
+    <title>Core.Queries — APIGateway v0.0.1-beta.1-0-g22d89f5-main+dev</title>
     <link rel="stylesheet" href="dist/html-elixir-XFYN5IVA.css" />
 
 
     <script src="dist/handlebars.runtime-NWIB6V2M.js"></script>
     <script src="dist/handlebars.templates-EPF2X7PV.js"></script>
-    <script src="dist/sidebar_items-F178AD20.js"></script>
+    <script src="dist/sidebar_items-2BF0B718.js"></script>
 
       <script src="docs_config.js"></script>
 
@@ -68,7 +68,7 @@
 APIGateway
       </a>
       <div class="sidebar-projectVersion" translate="no">
-        v0.0.1-beta.1-0-gfa6d13d-main+dev
+        v0.0.1-beta.1-0-g22d89f5-main+dev
       </div>
     </div>
     <ul id="sidebar-listNav" class="sidebar-listNav" role="tablist">
@@ -117,7 +117,7 @@ Pages
     </a>
 
   <span translate="no">Core.Queries</span> 
-  <small class="app-vsn" translate="no">(APIGateway v0.0.1-beta.1-0-gfa6d13d-main+dev)</small>
+  <small class="app-vsn" translate="no">(APIGateway v0.0.1-beta.1-0-g22d89f5-main+dev)</small>
 
 </h1>
 
@@ -205,6 +205,16 @@ when phone_number is valid and invalid.</p></div>
 
     </div>
 
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#sorted_by_operators/1" translate="no">sorted_by_operators(phone_number)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Sorted by listOperators to order.</p></div>
+
+    </div>
+
 </div>
 
   </section>
@@ -269,7 +279,7 @@ when phone_number is valid and invalid.</p></div>
     </a>
     <h1 class="signature" translate="no">search_active(term \\ true)</h1>
 
-      <a href="https://github.com/kapranov/api_gateway/blob/main/apps/core/lib/core/queries/queries.ex#L51" class="icon-action" rel="help" title="View Source">
+      <a href="https://github.com/kapranov/api_gateway/blob/main/apps/core/lib/core/queries/queries.ex#L120" class="icon-action" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -289,9 +299,9 @@ when phone_number is valid and invalid.</p></div>
   <a href="#search_active/1-example" class="hover-link">
     <i class="ri-link-m" aria-hidden="true"></i>
   </a>
-  <span class="text">Example</span>
+  <span class="text">Example.</span>
 </h2>
-<p>   iex&gt; search_active(true)
+<p>   iex&gt; Core.Queries.search_active(true)
    []</p>
   </section>
 </section>
@@ -304,7 +314,7 @@ when phone_number is valid and invalid.</p></div>
     </a>
     <h1 class="signature" translate="no">search_calc_priority()</h1>
 
-      <a href="https://github.com/kapranov/api_gateway/blob/main/apps/core/lib/core/queries/queries.ex#L32" class="icon-action" rel="help" title="View Source">
+      <a href="https://github.com/kapranov/api_gateway/blob/main/apps/core/lib/core/queries/queries.ex#L101" class="icon-action" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -325,9 +335,9 @@ when <code class="inline">param</code> equal <code class="inline">calc_priority<
   <a href="#search_calc_priority/0-example" class="hover-link">
     <i class="ri-link-m" aria-hidden="true"></i>
   </a>
-  <span class="text">Example</span>
+  <span class="text">Example.</span>
 </h2>
-<p>   iex&gt; search_calc_priority()
+<p>   iex&gt; Core.Queries.search_calc_priority()
    []</p>
   </section>
 </section>
@@ -340,7 +350,7 @@ when <code class="inline">param</code> equal <code class="inline">calc_priority<
     </a>
     <h1 class="signature" translate="no">sort_price_ext(structs)</h1>
 
-      <a href="https://github.com/kapranov/api_gateway/blob/main/apps/core/lib/core/queries/queries.ex#L83" class="icon-action" rel="help" title="View Source">
+      <a href="https://github.com/kapranov/api_gateway/blob/main/apps/core/lib/core/queries/queries.ex#L152" class="icon-action" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -360,10 +370,10 @@ when <code class="inline">param</code> equal <code class="inline">calc_priority<
   <a href="#sort_price_ext/1-example" class="hover-link">
     <i class="ri-link-m" aria-hidden="true"></i>
   </a>
-  <span class="text">Example</span>
+  <span class="text">Example.</span>
 </h2>
-<pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="n">sort_price_ext</span><span class="p" data-group-id="5453035415-1">(</span><span class="p" data-group-id="5453035415-2">[</span><span class="n">struct</span><span class="p" data-group-id="5453035415-2">]</span><span class="p" data-group-id="5453035415-1">)</span><span class="w">
-</span><span class="p" data-group-id="5453035415-3">[</span><span class="n">struct</span><span class="p" data-group-id="5453035415-3">]</span></code></pre>
+<pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="nc">Core.Queries</span><span class="o">.</span><span class="n">sort_price_ext</span><span class="p" data-group-id="8428915023-1">(</span><span class="p" data-group-id="8428915023-2">[</span><span class="n">struct</span><span class="p" data-group-id="8428915023-2">]</span><span class="p" data-group-id="8428915023-1">)</span><span class="w">
+</span><span class="p" data-group-id="8428915023-3">[</span><span class="n">struct</span><span class="p" data-group-id="8428915023-3">]</span></code></pre>
   </section>
 </section>
 <section class="detail" id="sort_priceext_priceint/1">
@@ -375,7 +385,7 @@ when <code class="inline">param</code> equal <code class="inline">calc_priority<
     </a>
     <h1 class="signature" translate="no">sort_priceext_priceint(phone_number)</h1>
 
-      <a href="https://github.com/kapranov/api_gateway/blob/main/apps/core/lib/core/queries/queries.ex#L99" class="icon-action" rel="help" title="View Source">
+      <a href="https://github.com/kapranov/api_gateway/blob/main/apps/core/lib/core/queries/queries.ex#L168" class="icon-action" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -396,10 +406,10 @@ when phone_number is valid and invalid.</p><h2 id="sort_priceext_priceint/1-exam
   <a href="#sort_priceext_priceint/1-example" class="hover-link">
     <i class="ri-link-m" aria-hidden="true"></i>
   </a>
-  <span class="text">Example</span>
+  <span class="text">Example.</span>
 </h2>
-<pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="n">sort_priceext_priceint</span><span class="p" data-group-id="9456878542-1">(</span><span class="s">&quot;+380984263462&quot;</span><span class="p" data-group-id="9456878542-1">)</span><span class="w">
-</span><span class="p" data-group-id="9456878542-2">[</span><span class="p" data-group-id="9456878542-2">]</span></code></pre>
+<pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="nc">Core.Queries</span><span class="o">.</span><span class="n">sort_priceext_priceint</span><span class="p" data-group-id="1677644543-1">(</span><span class="s">&quot;+380984263462&quot;</span><span class="p" data-group-id="1677644543-1">)</span><span class="w">
+</span><span class="p" data-group-id="1677644543-2">[</span><span class="p" data-group-id="1677644543-2">]</span></code></pre>
   </section>
 </section>
 <section class="detail" id="sort_priority/1">
@@ -411,7 +421,7 @@ when phone_number is valid and invalid.</p><h2 id="sort_priceext_priceint/1-exam
     </a>
     <h1 class="signature" translate="no">sort_priority(structs)</h1>
 
-      <a href="https://github.com/kapranov/api_gateway/blob/main/apps/core/lib/core/queries/queries.ex#L68" class="icon-action" rel="help" title="View Source">
+      <a href="https://github.com/kapranov/api_gateway/blob/main/apps/core/lib/core/queries/queries.ex#L137" class="icon-action" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -431,10 +441,49 @@ when phone_number is valid and invalid.</p><h2 id="sort_priceext_priceint/1-exam
   <a href="#sort_priority/1-example" class="hover-link">
     <i class="ri-link-m" aria-hidden="true"></i>
   </a>
-  <span class="text">Example</span>
+  <span class="text">Example.</span>
 </h2>
-<pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="n">sort_priority</span><span class="p" data-group-id="7351673547-1">(</span><span class="p" data-group-id="7351673547-2">[</span><span class="n">struct</span><span class="p" data-group-id="7351673547-2">]</span><span class="p" data-group-id="7351673547-1">)</span><span class="w">
-</span><span class="p" data-group-id="7351673547-3">[</span><span class="n">struct</span><span class="p" data-group-id="7351673547-3">]</span></code></pre>
+<pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="nc">Core.Queries</span><span class="o">.</span><span class="n">sort_priority</span><span class="p" data-group-id="8930334523-1">(</span><span class="p" data-group-id="8930334523-2">[</span><span class="n">struct</span><span class="p" data-group-id="8930334523-2">]</span><span class="p" data-group-id="8930334523-1">)</span><span class="w">
+</span><span class="p" data-group-id="8930334523-3">[</span><span class="n">struct</span><span class="p" data-group-id="8930334523-3">]</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="sorted_by_operators/1">
+
+  <div class="detail-header">
+    <a href="#sorted_by_operators/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">sorted_by_operators(phone_number)</h1>
+
+      <a href="https://github.com/kapranov/api_gateway/blob/main/apps/core/lib/core/queries/queries.ex#L41" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> sorted_by_operators(<a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()) :: [<a href="Core.Operators.Operator.html#t:t/0">Core.Operators.Operator.t</a>()] | []</pre>
+
+      </div>
+
+<p>Sorted by listOperators to order.</p><ol><li>Founds param is <code class="inline">calc_priority</code> and value by Settings.</li><li>Created list of operators when field is <code class="inline">active</code> equal <code class="inline">true</code>.</li><li>When <code class="inline">calc_priority</code> is <code class="inline">price</code> - sorted operators by field's <code class="inline">:price_ext</code> with <code class="inline">ASC</code></li><li>When <code class="inline">calc_priority</code> is <code class="inline">priority</code> - sorted operators by field's <code class="inline">:priority</code> with <code class="inline">ASC</code></li><li>When <code class="inline">calc_priority</code> is <code class="inline">priceext_priceint</code> - took phone_number(+380984263462)
+then parsed only phone's code and created list of operators by code and sorted
+<code class="inline">:price_init</code> with <code class="inline">ASC</code>, then parsed only is none phone's code and created
+list of operators by none's code and sorted <code class="inline">:price_ext</code> with <code class="inline">ASC</code>.
+And created new list of operators from there are two list of operators.</li></ol><h2 id="sorted_by_operators/1-example" class="section-heading">
+  <a href="#sorted_by_operators/1-example" class="hover-link">
+    <i class="ri-link-m" aria-hidden="true"></i>
+  </a>
+  <span class="text">Example.</span>
+</h2>
+<pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="nc">Core.Queries</span><span class="o">.</span><span class="n">sorted_by_operators</span><span class="p" data-group-id="1862207740-1">(</span><span class="s">&quot;+380984263462&quot;</span><span class="p" data-group-id="1862207740-1">)</span><span class="w">
+</span><span class="p" data-group-id="1862207740-2">[</span><span class="p" data-group-id="1862207740-2">]</span></code></pre>
   </section>
 </section>
 

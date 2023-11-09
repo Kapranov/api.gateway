@@ -54,8 +54,9 @@ def create(_parent, args, %{context: %{token: _token}}) do
       5. create Connector - dia, intertelecom, kyivstar, lifecell, telegram, viber, vodafone, SMTP
       - send to connector
 
-      -----------------------------
-       list_ready_send_for_operator
+      -----------------------------------
+      NEXT - list_ready_send_for_operator
+      -----------------------------------
 
        1. take first from list config  (via connector)
        2. save recorded to sms_logs priority: num
