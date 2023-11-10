@@ -4,11 +4,11 @@ config :gateway, Gateway.Endpoint,
   check_origin: false,
   code_reloader: true,
   debug_errors: true,
-  http: [ip: {127, 0, 0, 1}, port: 4000],
+  http: [ip: {192, 168, 2, 145}, port: 4000],
   phrase: "ouI6a2AWv6BqLYWz57W3ynVzqVuc0niLpimrESGU6S7lUcpc2HqZYI6lxZekbgv8",
   salt: "ksMmovTQMCDHSuGjLSXpRL4uYsqSKKX8PTOl1hVEu1N76WzGqxY5UgucT7bDYggH",
   secret_key_base: "OA0hjIp3fFGYvv8zmyHzJ1g0GtNoEkG1pVQ2NZJIQe0zo3Me54Vts9GGaIzCNM9R",
-  url: [scheme: "http", host: "api.gateway.me", port: 4000],
+  url: [scheme: "http", host: "159.224.174.183", port: 4000],
   watchers: []
 
 config :gateway, dev_routes: true

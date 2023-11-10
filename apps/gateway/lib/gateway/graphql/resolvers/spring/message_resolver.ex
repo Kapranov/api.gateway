@@ -40,6 +40,7 @@ defmodule Gateway.GraphQL.Resolvers.Spring.MessageResolver do
         ###
         {:ok, []}
       {:ok, struct} ->
+        Queries.sorted_by_operators(struct.phone_number)
         {:ok, struct}
     end
   end
