@@ -11,6 +11,7 @@ defmodule Connector.VodafoneHandler do
   }
 
   @action "post"
+  @connector :vodafone
   @headers %{"content-type" => "application/json"}
   @name __MODULE__
   @options []
@@ -103,13 +104,32 @@ defmodule Connector.VodafoneHandler do
 
   @spec handle_continue(atom(), map()) :: {:noreply, map()}
   def handle_continue(:found, state) do
-    Connector.Timeout.new(250, backoff: 1.25, backoff_max: 1_250, random: 0.1)
-    |> Connector.Timeout.send_after(self(), :found)
     case get_request(@action, state) do
       {:ok, response} ->
-        {:noreply, response}
+        {:noreply, response, {:continue, :create_tables}}
       {:error, response} ->
         {:noreply, response}
+    end
+  end
+
+  def handle_continue(:create_tables, state) do
+    Connector.Timeout.new(250, backoff: 1.25, backoff_max: 1_250, random: 0.1)
+    |> Connector.Timeout.send_after(self(), :created_ets)
+    :ets.new(@connector, [:set, :public, :named_table])
+    case is_list(:ets.info(@connector)) do
+      true ->
+        try do
+          :ets.insert(@connector, [
+            {:id, state.id},
+            {:status, state.status},
+            {:text, state.text},
+            {:sms, state.sms}
+          ])
+          {:noreply, state}
+        rescue
+          ArgumentError -> {:noreply, :error}
+        end
+      false -> {:noreply, :error}
     end
   end
 
@@ -126,6 +146,12 @@ defmodule Connector.VodafoneHandler do
 
   @spec handle_info(atom(), map()) :: {:noreply, map()} | {:noreply, atom()}
   def handle_info(:found, state) do
+    IO.puts("Received arguments: #{inspect(state)}")
+    {:noreply, state}
+  end
+
+  @spec handle_info(atom(), map()) :: {:noreply, map()} | {:noreply, atom()}
+  def handle_info(:created_ets, state) do
     IO.puts("Received arguments: #{inspect(state)}")
     {:noreply, state}
   end
@@ -149,8 +175,9 @@ defmodule Connector.VodafoneHandler do
   @spec get_request(String.t(), map()) :: {:ok, map()} | {:error, atom()}
   defp get_request(action, data) do
     body = URI.encode_query(%{
-      "status" => "send",
+      "id" => data.id,
       "sms" => data.phone_number,
+      "status" => "send",
       "text" => data.message_body
     })
     url = api_route(action)
@@ -176,6 +203,7 @@ defmodule Connector.VodafoneHandler do
       |> URI.decode_query
 
     %{
+      id: struct["id"],
       sms: struct["sms"],
       status: struct["status"],
       text: struct["text"]

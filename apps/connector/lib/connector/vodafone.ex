@@ -27,12 +27,17 @@ defmodule Connector.Vodafone do
       {:ok, %{"status" => "error"}}
 
   """
-  @spec send(%{phone_number: String.t(), message_body: String.t()}) :: {:ok, %{String.t() => String.t()}}
-  def send(args \\ %{phone_number: @phone_number, message_body: @message_body}) do
+  @spec send(%{id: String.t(), phone_number: String.t(), message_body: String.t()}) :: {:ok, %{String.t() => String.t()}}
+  def send(args \\ %{id: random_id(), phone_number: @phone_number, message_body: @message_body}) do
     path = "post"
     case Utils.random_state() do
       :ok ->
-        data = %{"status" => "send", "sms" => args.phone_number, "text" => args.message_body}
+        data = %{
+          "id" => args.id,
+          "status" => "send",
+          "sms" => args.phone_number,
+          "text" => args.message_body
+        }
         {:ok, %Tesla.Env{:body => body}} = post(path, data)
         :timer.sleep(Utils.random_timer(@num))
         {:ok, Utils.transfer(body["data"])}
@@ -42,5 +47,11 @@ defmodule Connector.Vodafone do
         Process.sleep(Utils.random_timer(@num))
         {:ok, Utils.transfer(body["data"])}
     end
+  end
+
+  @spec random_id() :: String.t()
+  defp random_id do
+    number = 1..99 |> Enum.random()
+    "msg-#{number}"
   end
 end

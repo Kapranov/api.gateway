@@ -42,48 +42,9 @@ defmodule Core.Queries do
     case find_value_calc_priority() do
       :none -> []
       value ->
-        operators =
-          Enum.reduce(Repo.all(Operator), [], fn(x, acc) ->
-            case x.active do
-              true -> [x | acc]
-              false -> acc
-            end
-          end)
-        case value do
-          :price ->
-            sorted_price_ext =
-              operators
-              |> Enum.sort_by(&(&1.price_ext), :asc)
-
-            sorted_price_ext
-          :priceext_priceint ->
-            code = phone_number |> String.slice(3..5)
-            code_operators =
-              Enum.reduce(operators, [], fn(x, acc) ->
-                case String.contains?(x.phone_code, code) do
-                  true -> [x | acc]
-                  false -> acc
-                end
-              end)
-            code_operators! =
-              Enum.reduce(operators, [], fn(x, acc) ->
-                case String.contains?(x.phone_code, code) do
-                  true -> acc
-                  false -> [x | acc]
-                end
-              end)
-            sorted_code_operators = code_operators |> Enum.sort_by(&(&1.price_int), :asc)
-            sorted_code_operators! = code_operators! |> Enum.sort_by(&(&1.price_ext), :asc)
-            joint_sorted = sorted_code_operators ++ sorted_code_operators!
-
-            joint_sorted
-          :priority ->
-            sorted_priority =
-              operators
-              |> Enum.sort_by(&(&1.priority), :asc)
-
-            sorted_priority
-        end
+        operators = selected_active()
+        sorted = sorted_return(value, phone_number, operators)
+        sorted
     end
   end
 
@@ -188,5 +149,62 @@ defmodule Core.Queries do
       [] -> :none
       [value] -> value
     end
+  end
+
+  @spec selected_active() :: [Operator.t()] | []
+  defp selected_active do
+    Enum.reduce(Repo.all(Operator), [], fn(x, acc) ->
+      case x.active do
+        true -> [x | acc]
+        false -> acc
+      end
+    end)
+  end
+
+  @spec sorted_return(atom(), String.t(), [Operator.t()] | []) :: [Operator.t()] | []
+  defp sorted_return(value, phone_number, operators) do
+    case value do
+      :price ->
+        sorted_price_ext =
+          operators
+          |> Enum.sort_by(&(&1.price_ext), :asc)
+
+        sorted_price_ext
+      :priceext_priceint ->
+        code = phone_number |> String.slice(3..5)
+        code_operators = selected_code(operators, code)
+        code_operators! = selected_code!(operators, code)
+        sorted_code_operators = code_operators |> Enum.sort_by(&(&1.price_int), :asc)
+        sorted_code_operators! = code_operators! |> Enum.sort_by(&(&1.price_ext), :asc)
+        joint_sorted = sorted_code_operators ++ sorted_code_operators!
+
+        joint_sorted
+      :priority ->
+        sorted_priority =
+          operators
+          |> Enum.sort_by(&(&1.priority), :asc)
+
+        sorted_priority
+    end
+  end
+
+  @spec selected_code([Operator.t()] | [], String.t()) :: [Operator.t()] | []
+  defp selected_code(operators, code) do
+    Enum.reduce(operators, [], fn(x, acc) ->
+      case String.contains?(x.phone_code, code) do
+        true -> [x | acc]
+        false -> acc
+      end
+    end)
+  end
+
+  @spec selected_code!([Operator.t()] | [], String.t()) :: [Operator.t()] | []
+  defp selected_code!(operators, code) do
+    Enum.reduce(operators, [], fn(x, acc) ->
+      case String.contains?(x.phone_code, code) do
+        true -> acc
+        false -> [x | acc]
+      end
+    end)
   end
 end

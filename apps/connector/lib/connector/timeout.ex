@@ -96,7 +96,7 @@ defmodule Connector.Timeout do
 
   """
   @spec reset(t) :: t
-  def reset(t = %@name{base: base}) do
+  def reset(%@name{base: base} = t) do
     %{t | backoff_round: 0, timeout: base}
   end
 
@@ -201,10 +201,10 @@ defmodule Connector.Timeout do
 
   """
   @spec next(t) :: t
-  def next(t = %@name{backoff: nil}), do: t
-  def next(t = %@name{base: base, timeout: nil}), do: %{t | timeout: base}
-  def next(t = %@name{timeout: c, backoff_max: c}), do: t
-  def next(t = %@name{base: c, backoff: b, backoff_round: r, backoff_max: m}) do
+  def next(%@name{backoff: nil} = t), do: t
+  def next(%@name{base: base, timeout: nil} = t), do: %{t | timeout: base}
+  def next(%@name{timeout: c, backoff_max: c} = t), do: t
+  def next(%@name{base: c, backoff: b, backoff_round: r, backoff_max: m} = t) do
     timeout = round(c * :math.pow(b, r))
     %{t | backoff_round: r + 1, timeout: (m && (timeout > m and m)) || timeout}
   end
@@ -305,7 +305,7 @@ defmodule Connector.Timeout do
 
   """
   @spec send_after(t, pid, term) ::{t, pos_integer}
-  def send_after(t = %@name{}, pid \\ self(), message) do
+  def send_after(%@name{} = t, pid \\ self(), message) do
     t = next(t)
     delay = current(t)
     {%{t | timer: Process.send_after(pid, message, delay)}, delay}
@@ -340,7 +340,7 @@ defmodule Connector.Timeout do
 
   """
   @spec send_after!(t, pid, term) :: t
-  def send_after!(t = %@name{}, pid \\ self(), message) do
+  def send_after!(%@name{} = t, pid \\ self(), message) do
     with {timeout, _delay} <- send_after(t, pid, message), do: timeout
   end
 
@@ -397,8 +397,8 @@ defmodule Connector.Timeout do
       }, false}
   """
   @spec cancel_timer(t) :: {t, non_neg_integer | false | :ok}
-  def cancel_timer(t = %@name{timer: nil}), do: {t, false}
-  def cancel_timer(t = %@name{timer: timer}) when is_reference(timer) do
+  def cancel_timer(%@name{timer: nil} = t), do: {t, false}
+  def cancel_timer(%@name{timer: timer} = t) when is_reference(timer) do
     {%{t | timer: nil}, Process.cancel_timer(timer)}
   end
 
@@ -433,7 +433,7 @@ defmodule Connector.Timeout do
   `Process.cancel_timer/1` on the stored timer reference.
   """
   @spec cancel_timer!(t) :: t
-  def cancel_timer!(t = %@name{}) do
+  def cancel_timer!(%@name{} = t) do
     with {timeout, _result} <- cancel_timer(t), do: timeout
   end
 
