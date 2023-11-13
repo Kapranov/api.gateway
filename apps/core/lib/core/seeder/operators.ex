@@ -50,8 +50,28 @@ defmodule Core.Seeder.Operators do
   defp insert_operator_type do
     [
       Operators.create_operator_type(%{
+        active: true,
+        name_type: "Дія push",
+        priority: 1
+      }),
+      Operators.create_operator_type(%{
+        active: true,
+        name_type: "Intertelecom",
+        priority: 1
+      }),
+      Operators.create_operator_type(%{
+        active: true,
+        name_type: "Київстар SMS",
+        priority: 1
+      }),
+      Operators.create_operator_type(%{
+        active: true,
+        name_type: "Lifecell SMS",
+        priority: 1
+      }),
+      Operators.create_operator_type(%{
         active: false,
-        name_type: "SMTP",
+        name_type: "Lifecell IP Telephony",
         priority: 1
       }),
       Operators.create_operator_type(%{
@@ -65,28 +85,13 @@ defmodule Core.Seeder.Operators do
         priority: 1
       }),
       Operators.create_operator_type(%{
-        active: false,
-        name_type: "Lifecell IP Telephony",
-        priority: 1
-      }),
-      Operators.create_operator_type(%{
-        active: true,
-        name_type: "Lifecell SMS",
-        priority: 1
-      }),
-      Operators.create_operator_type(%{
         active: true,
         name_type: "Vodafone SMS",
         priority: 1
       }),
       Operators.create_operator_type(%{
-        active: true,
-        name_type: "Київстар SMS",
-        priority: 1
-      }),
-      Operators.create_operator_type(%{
-        active: true,
-        name_type: "Дія push",
+        active: false,
+        name_type: "SMTP",
         priority: 1
       })
     ]
@@ -96,20 +101,26 @@ defmodule Core.Seeder.Operators do
   defp insert_operator do
     operator_type_ids = Enum.map(Repo.all(OperatorType), &(&1))
     {
-      operator_type_5,
-      operator_type_6,
-      operator_type_7,
-      operator_type_8
+      operator_type_dia,
+      operator_type_intertelecom,
+      operator_type_kyivstar,
+      operator_type_lifecell,
+      operator_type_telegram,
+      operator_type_viber,
+      operator_type_vodafone
     } = {
-      Enum.at(operator_type_ids, 4),
+      Enum.at(operator_type_ids, 0),
+      Enum.at(operator_type_ids, 1),
+      Enum.at(operator_type_ids, 2),
+      Enum.at(operator_type_ids, 3),
       Enum.at(operator_type_ids, 5),
       Enum.at(operator_type_ids, 6),
       Enum.at(operator_type_ids, 7)
     }
 
-    config_nested1 = %{
+    config_dia = %{
       content_type: Lorem.word,
-      name: Lorem.word,
+      name: "dia",
       size: random_integers(),
       url: Lorem.word,
       parameters: %{
@@ -118,9 +129,9 @@ defmodule Core.Seeder.Operators do
       }
     }
 
-    config_nested2 = %{
+    config_intertelecom = %{
       content_type: Lorem.word,
-      name: Lorem.word,
+      name: "intertelecom",
       size: random_integers(),
       url: Lorem.word,
       parameters: %{
@@ -129,9 +140,9 @@ defmodule Core.Seeder.Operators do
       }
     }
 
-    config_nested3 = %{
+    config_kyivstar = %{
       content_type: Lorem.word,
-      name: Lorem.word,
+      name: "kyivstar",
       size: random_integers(),
       url: Lorem.word,
       parameters: %{
@@ -140,9 +151,9 @@ defmodule Core.Seeder.Operators do
       }
     }
 
-    config_nested4 = %{
+    config_lifecell = %{
       content_type: Lorem.word,
-      name: Lorem.word,
+      name: "lifecell",
       size: random_integers(),
       url: Lorem.word,
       parameters: %{
@@ -151,9 +162,31 @@ defmodule Core.Seeder.Operators do
       }
     }
 
-    config_nested5 = %{
+    config_telegram = %{
       content_type: Lorem.word,
-      name: Lorem.word,
+      name: "telegram",
+      size: random_integers(),
+      url: Lorem.word,
+      parameters: %{
+        key: Lorem.word,
+        value: Lorem.word
+      }
+    }
+
+    config_viber = %{
+      content_type: Lorem.word,
+      name: "viber",
+      size: random_integers(),
+      url: Lorem.word,
+      parameters: %{
+        key: Lorem.word,
+        value: Lorem.word
+      }
+    }
+
+    config_vodafone = %{
+      content_type: Lorem.word,
+      name: "vodafone",
       size: random_integers(),
       url: Lorem.word,
       parameters: %{
@@ -164,57 +197,88 @@ defmodule Core.Seeder.Operators do
 
     [
       Operators.create_operator(%{
-        active: true,
-        config: config_nested1,
-        phone_code: "066, 099",
-        limit_count: 10_000,
-        name_operator: "Вудафон",
-        operator_type_id: operator_type_6.id,
-        price_ext: 0.10,
-        price_int: 0.45,
-        priority: 1
+        active: false,
+        config: config_dia,
+        limit_count: 0,
+        name_operator: "Дія",
+        operator_type_id: operator_type_dia.id,
+        price_ext: 0.01,
+        price_int: 0.01,
+        priority: 5
       }),
       Operators.create_operator(%{
         active: true,
-        config: config_nested2,
-        phone_code: "067, 098",
+        config: config_intertelecom,
+        phone_code: "094",
+        limit_count: 10_000,
+        name_operator: "Интертелеком",
+        operator_type_id: operator_type_intertelecom.id,
+        price_ext: 0.10,
+        price_int: 0.45,
+        priority: 3
+      }),
+      Operators.create_operator(%{
+        active: true,
+        config: config_kyivstar,
+        phone_code: "039, 067, 068, 096, 097, 098",
         limit_count: 50_000,
         name_operator: "Київстар",
-        operator_type_id: operator_type_7.id,
+        operator_type_id: operator_type_kyivstar.id,
         price_ext: 0.21,
         price_int: 0.45,
         priority: 2
       }),
       Operators.create_operator(%{
         active: false,
-        config: config_nested3,
+        config: config_lifecell,
+        phone_code: "063, 073, 093",
+        limit_count: 1,
+        name_operator: "Life",
+        operator_type_id: operator_type_lifecell.id,
+        price_ext: 0.22,
+        price_int: 0.50,
+        priority: 7
+      }),
+      Operators.create_operator(%{
+        active: false,
+        config: config_telegram,
         limit_count: 0,
-        name_operator: "Дія",
-        operator_type_id: operator_type_8.id,
+        name_operator: "Телеграм",
+        operator_type_id: operator_type_telegram.id,
         price_ext: 0.01,
         price_int: 0.01,
         priority: 5
       }),
       Operators.create_operator(%{
         active: false,
-        config: config_nested4,
-        phone_code: "063, 093, 096",
-        limit_count: 1,
-        name_operator: "Life",
-        operator_type_id: operator_type_5.id,
-        price_ext: 0.22,
-        price_int: 0.50,
-        priority: 7
+        config: config_viber,
+        limit_count: 0,
+        name_operator: "Вайбер",
+        operator_type_id: operator_type_viber.id,
+        price_ext: 0.01,
+        price_int: 0.01,
+        priority: 3
       }),
       Operators.create_operator(%{
         active: true,
-        config: config_nested5,
+        config: config_vodafone,
+        phone_code: "050, 095",
+        limit_count: 10_000,
+        name_operator: "Вудафон",
+        operator_type_id: operator_type_vodafone.id,
+        price_ext: 0.15,
+        price_int: 0.55,
+        priority: 1
+      }),
+      Operators.create_operator(%{
+        active: true,
+        config: config_vodafone,
         phone_code: "066, 099",
         limit_count: 10_000,
         name_operator: "Вудафон Новий",
-        operator_type_id: operator_type_6.id,
-        price_ext: 0.10,
-        price_int: 0.45,
+        operator_type_id: operator_type_vodafone.id,
+        price_ext: 0.11,
+        price_int: 0.44,
         priority: 3
       })
     ]

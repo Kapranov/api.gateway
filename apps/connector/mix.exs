@@ -36,7 +36,8 @@ defmodule Connector.MixProject do
       {:jason, "~> 1.4"},
       {:plug, "~> 1.15"},
       {:plug_cowboy, "~> 2.6"},
-      {:tesla, "~> 1.8"}
+      {:tesla, "~> 1.8"},
+      {:uuid, "~> 1.1"}
     ]
   end
 end

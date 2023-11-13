@@ -5,6 +5,8 @@ defmodule Connector.Vodafone do
 
   alias Connector.Utils
 
+  @id UUID.uuid4()
+  #0..9 |> Enum.map(&%{id: &1, index: &1})
   @message_body "You will beat yourself up if you sell this unit!  I sold mine for a Tak and hate every minute of it."
   @num 999..9_999
   @phone_number "+380991111111"
@@ -28,7 +30,7 @@ defmodule Connector.Vodafone do
 
   """
   @spec send(%{id: String.t(), phone_number: String.t(), message_body: String.t()}) :: {:ok, %{String.t() => String.t()}}
-  def send(args \\ %{id: random_id(), phone_number: @phone_number, message_body: @message_body}) do
+  def send(args \\ %{id: @id, phone_number: @phone_number, message_body: @message_body}) do
     path = "post"
     case Utils.random_state() do
       :ok ->
@@ -47,11 +49,5 @@ defmodule Connector.Vodafone do
         Process.sleep(Utils.random_timer(@num))
         {:ok, Utils.transfer(body["data"])}
     end
-  end
-
-  @spec random_id() :: String.t()
-  defp random_id do
-    number = 1..99 |> Enum.random()
-    "msg-#{number}"
   end
 end
