@@ -61,15 +61,15 @@ defmodule Core.Spring do
 
   ## Examples
 
-      iex> create_msg_with_sms_logs(%{field: value})
+      iex> create_message_for_connector(%{field: value})
       {:ok, %Message{}}
 
-      iex> create_msg_with_sms_logs(%{field: bad_value})
+      iex> create_message_for_connector(%{field: bad_value})
       {:error, %Ecto.Changeset{}}
 
   """
-  @spec create_msg_with_sms_logs(%{atom => any}) :: result() | error_tuple()
-  def create_msg_with_sms_logs(attrs \\ %{}) do
+  @spec create_message_for_connector(%{atom => any}) :: result() | error_tuple()
+  def create_message_for_connector(attrs \\ %{}) do
     message_changeset = Message.changeset(%Message{}, attrs)
     Multi.new
     |> Multi.insert(:messages, message_changeset)

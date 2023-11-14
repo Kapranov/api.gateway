@@ -4,6 +4,7 @@ defmodule Gateway.GraphQL.Resolvers.Spring.MessageResolver do
   """
 
   alias Core.{
+    Operators.Operator,
     Queries,
     Repo,
     Spring,
@@ -32,10 +33,9 @@ defmodule Gateway.GraphQL.Resolvers.Spring.MessageResolver do
   @spec create(any, %{atom => any}, %{context: %{token: String.t()}}) :: result()
   def create(_parent, args, %{context: %{token: _token}}) do
     args
-    |> Spring.create_msg_with_sms_logs()
+    |> Spring.create_message_for_connector()
     |> case do
       {:error, %Ecto.Changeset{}} ->
-        ### created sms_logs, priority: number
         {:ok, []}
       {:ok, struct} ->
         {:ok, struct}
@@ -73,4 +73,39 @@ defmodule Gateway.GraphQL.Resolvers.Spring.MessageResolver do
 
   @spec sorted_operators(any, %{atom => any}, Absinthe.Resolution.t()) :: error_tuple()
   def sorted_operators(_parent, _args, _info), do: {:ok, []}
+
+  @spec msg_for_connector([Operator.t()], String.t()) :: [Operator.t()] | []
+  def msg_for_connector(operators, message_id) do
+    Enum.reduce(operators, [], fn(x, acc) ->
+      case x.config.name do
+        "dia" -> acc
+        "intertelecom" -> acc
+        "kyivstar" -> acc
+        "lifecell" -> acc
+        "telegram" -> acc
+        "viber" -> acc
+#        "vodafone" ->
+#          # ["Connector." <> String.capitalize(x.config.name) <> "Handler" | acc]
+#          # [ "Connector." <> String.capitalize(x.config.name) <> "Handler.start_link(" <> <<34>> <> "#{phone_number}" <> <<34>> <> ")" ]
+#          [x | acc]
+        "vodafone" ->
+          case Connector.VodafoneHandler.start_link([{"#{message_id}"}]) do
+            {:ok, pid} ->
+              case Connector.VodafoneHandler.get_status(pid, 1_000) do
+                :error ->
+                  :ok = Connector.VodafoneHandler.stop(pid)
+                  [x | acc]
+                :timeout ->
+                  :ok = Connector.VodafoneHandler.stop(pid)
+                  [x | acc]
+                data ->
+                  :ok = Connector.VodafoneHandler.stop(pid)
+                  data
+              end
+            _ -> {:ok, []}
+          end
+        _ -> acc
+      end
+    end)
+  end
 end
