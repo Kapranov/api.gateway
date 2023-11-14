@@ -6,8 +6,10 @@ defmodule Core.Spring do
   use Core.Context
 
   alias Core.{
-    Spring.Message,
-    Repo
+    Logs.SmsLog,
+    Queries,
+    Repo,
+    Spring.Message
   }
 
   @doc """
@@ -52,6 +54,48 @@ defmodule Core.Spring do
     %Message{}
     |> Message.changeset(attrs)
     |> Repo.insert()
+  end
+
+  @doc """
+  Creates Message with SmsLogs and sorted Operators
+
+  ## Examples
+
+      iex> create_msg_with_sms_logs(%{field: value})
+      {:ok, %Message{}}
+
+      iex> create_msg_with_sms_logs(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  @spec create_msg_with_sms_logs(%{atom => any}) :: result() | error_tuple()
+  def create_msg_with_sms_logs(attrs \\ %{}) do
+    message_changeset = Message.changeset(%Message{}, attrs)
+    Multi.new
+    |> Multi.insert(:messages, message_changeset)
+    |> Multi.run(:sms_logs, fn _, %{messages: message} ->
+      sms_log_changeset = SmsLog.changeset(%SmsLog{}, %{
+        priority: 1,
+        messages: message.id,
+        statuses: message.status_id
+      })
+      Repo.insert(sms_log_changeset)
+    end)
+    |> Multi.run(:sorted_operators, fn _, %{messages: message} ->
+      operators = Queries.sorted_by_operators(message.phone_number)
+      {:ok, operators}
+    end)
+    |> Repo.transaction()
+    |> case do
+      {:ok, %{messages: message}} ->
+        {:ok, message}
+      {:ok, %{sms_logs: _sms_log}} ->
+        {:ok, []}
+      {:ok, %{sorted_operators: _operators}} ->
+        {:ok, []}
+      {:error, _model, changeset, _completed} ->
+        {:ok, changeset}
+    end
   end
 
   @doc """

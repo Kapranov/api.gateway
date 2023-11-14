@@ -32,15 +32,12 @@ defmodule Gateway.GraphQL.Resolvers.Spring.MessageResolver do
   @spec create(any, %{atom => any}, %{context: %{token: String.t()}}) :: result()
   def create(_parent, args, %{context: %{token: _token}}) do
     args
-    |> Spring.create_message()
+    |> Spring.create_msg_with_sms_logs()
     |> case do
       {:error, %Ecto.Changeset{}} ->
-        ###
         ### created sms_logs, priority: number
-        ###
         {:ok, []}
       {:ok, struct} ->
-        Queries.sorted_by_operators(struct.phone_number)
         {:ok, struct}
     end
   end
@@ -69,8 +66,8 @@ defmodule Gateway.GraphQL.Resolvers.Spring.MessageResolver do
   def update(_parent, _args, _info), do: {:ok, []}
 
   @spec sorted_operators(any, String.t(), %{context: %{token: String.t()}}) :: result()
-  def sorted_operators(_parent, phone_number, %{context: %{token: _token}}) do
-    structs = Queries.sorted_by_operators(phone_number)
+  def sorted_operators(_parent, args, %{context: %{token: _token}}) do
+    structs = Queries.sorted_by_operators(args.phone_number)
     {:ok, structs}
   end
 
