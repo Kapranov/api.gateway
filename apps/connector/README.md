@@ -30,7 +30,7 @@ def create(_parent, args, %{context: %{token: _token}}) do
   |> case do
     {:error, %Ecto.Changeset{}} ->
       ###
-      ### created sms_logs, priority: number
+DONE  ### created sms_logs, priority: number
       ###
       {:ok, []}
     {:ok, struct} ->
@@ -38,21 +38,21 @@ def create(_parent, args, %{context: %{token: _token}}) do
       ### Policy
 
       ONLY settings is recored "calc_priority"
-      1. settings, param: "calc_priority", value: "priority", "price", "priceext_priceint"
+DONE  1. settings, param: "calc_priority", value: "priority", "price", "priceext_priceint"
          when none via front-end via => sms_logs ???
-      ONLY operator, active: true
-      2. if "calc_priority" => "priority"          => sort operators by field's :priority (Integer ASC)
+DONE  ONLY operator, active: true
+DONE  2. if "calc_priority" => "priority"          => sort operators by field's :priority (Integer ASC)
          => Core.Queries.sort_priority(structs)
-      3. if "calc_priority" => "price"             => sort operators by :price_ext (Decimal ASC)
+DONE  3. if "calc_priority" => "price"             => sort operators by :price_ext (Decimal ASC)
          => Core.Queries.sort_price_ext(structs)
-      4. if "calc_priority" => "priceext_priceint" => take args.phone_number(099)
-          select operators by :phone_code search args.phone_number(099) => list_operators(099) (ASC :price_int)
-          select operators by :phone_code != (099)  => list_operators(none 099) (ASC :price_ext)
-          join list_operators(099) ++ list_operators(none 099) => join_list_operator
-         join_list_operator
-         => Core.Queries.sort_priceext_priceint(phone_number)
-      5. create Connector - dia, intertelecom, kyivstar, lifecell, telegram, viber, vodafone, SMTP
-      - send to connector
+DONE  4. if "calc_priority" => "priceext_priceint" => take args.phone_number(099)
+        select operators by :phone_code search args.phone_number(099) => list_operators(099) (ASC :price_int)
+        select operators by :phone_code != (099)  => list_operators(none 099) (ASC :price_ext)
+        join list_operators(099) ++ list_operators(none 099) => join_list_operator
+        join_list_operator
+        => Core.Queries.sort_priceext_priceint(phone_number)
+DONE  5. create Connector - dia, intertelecom, kyivstar, lifecell, telegram, viber, vodafone, SMTP
+         - send to connector
 
       -----------------------------------
       NEXT - list_ready_send_for_operator

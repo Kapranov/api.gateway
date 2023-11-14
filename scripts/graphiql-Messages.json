@@ -607,7 +607,7 @@
   "maxUrlHistory": 20,
   "maxHistory": 20,
   "savedQueries": [],
-  "activeId": "tab22",
+  "activeId": "tab23",
   "tabs": [
     {
       "id": "tab1",
@@ -822,7 +822,7 @@
           "value": "Bearer SFMyNTY.g2gDbQAAAEBvdUk2YTJBV3Y2QnFMWVd6NTdXM3luVnpxVnVjMG5pTHBpbXJFU0dVNlM3bFVjcGMySHFaWUk2bHhaZWtiZ3Y4bgYAHA7_BIsBYgABUYA.njQgfoeQ72QWYCq-TU9q26_DEjF_jhRgkqATb5hYeyA"
         }
       ],
-      "collapsed": false,
+      "collapsed": true,
       "maxHistory": 20,
       "history": [
         {
@@ -868,9 +868,13 @@
           "value": "Bearer SFMyNTY.g2gDbQAAAEBvdUk2YTJBV3Y2QnFMWVd6NTdXM3luVnpxVnVjMG5pTHBpbXJFU0dVNlM3bFVjcGMySHFaWUk2bHhaZWtiZ3Y4bgYAMZJAtIsBYgABUYA.RI4o9O9PL8BFpkocgX7TT2vQdH6w2_lGTmzdNH2MhTA"
         }
       ],
-      "collapsed": true,
+      "collapsed": false,
       "maxHistory": 20,
       "history": [
+        {
+          "query": "query {\n  sortedOperators(phoneNumber: \"+380997171111\") {\n    id\n    active\n    config {\n      id\n      contentType\n      parameters {\n        id\n        key\n        value\n        insertedAt\n        updatedAt\n      }\n      name\n      size\n      url\n      insertedAt\n      updatedAt\n    }\n    limitCount\n    smsLogs {id priority }\n    nameOperator\n    phoneCode\n    priceExt\n    priceInt\n    priority\n    operatorType {id active nameType priority insertedAt insertedAt}\n    insertedAt\n    updatedAt\n  }\n}",
+          "variables": null
+        },
         {
           "query": "query {\n  sortedOperators(phoneNumber: \"+380984263462\") {\n    id\n    active\n    config {\n      id\n      contentType\n      parameters {\n        id\n        key\n        value\n        insertedAt\n        updatedAt\n      }\n      name\n      size\n      url\n      insertedAt\n      updatedAt\n    }\n    limitCount\n    smsLogs {id priority }\n    nameOperator\n    phoneCode\n    priceExt\n    priceInt\n    priority\n    operatorType {id active nameType priority insertedAt insertedAt}\n    insertedAt\n    updatedAt\n  }\n}",
           "variables": null
@@ -880,11 +884,11 @@
           "variables": null
         }
       ],
-      "graphiql:query": "query {\n  sortedOperators(phoneNumber: \"+380984263462\") {\n    id\n    active\n    config {\n      id\n      contentType\n      parameters {\n        id\n        key\n        value\n        insertedAt\n        updatedAt\n      }\n      name\n      size\n      url\n      insertedAt\n      updatedAt\n    }\n    limitCount\n    smsLogs {id priority }\n    nameOperator\n    phoneCode\n    priceExt\n    priceInt\n    priority\n    operatorType {id active nameType priority insertedAt insertedAt}\n    insertedAt\n    updatedAt\n  }\n}",
+      "graphiql:query": "query {\n  sortedOperators(phoneNumber: \"+380997171111\") {\n    id\n    active\n    config {\n      id\n      contentType\n      parameters {\n        id\n        key\n        value\n        insertedAt\n        updatedAt\n      }\n      name\n      size\n      url\n      insertedAt\n      updatedAt\n    }\n    limitCount\n    smsLogs {id priority }\n    nameOperator\n    phoneCode\n    priceExt\n    priceInt\n    priority\n    operatorType {id active nameType priority insertedAt insertedAt}\n    insertedAt\n    updatedAt\n  }\n}",
       "graphiql:docExplorerWidth": 350,
       "graphiql:editorFlex": 0.5365579302587177,
       "graphiql:variableEditorHeight": 200,
-      "graphiql:queries": "{\"queries\":[{\"query\":\"query {\\n  sortedOperators(phoneNumber: \\\"+380984263462\\\") {\\n    id\\n    active\\n  }\\n}\",\"variables\":\"\"},{\"query\":\"query {\\n  sortedOperators(phoneNumber: \\\"+380984263462\\\") {\\n    id\\n    active\\n    config {\\n      id\\n      contentType\\n      parameters {\\n        id\\n        key\\n        value\\n        insertedAt\\n        updatedAt\\n      }\\n      name\\n      size\\n      url\\n      insertedAt\\n      updatedAt\\n    }\\n    limitCount\\n    smsLogs {id priority }\\n    nameOperator\\n    phoneCode\\n    priceExt\\n    priceInt\\n    priority\\n    operatorType {id active nameType priority insertedAt insertedAt}\\n    insertedAt\\n    updatedAt\\n  }\\n}\",\"variables\":\"\"}]}"
+      "graphiql:queries": "{\"queries\":[{\"query\":\"query {\\n  sortedOperators(phoneNumber: \\\"+380984263462\\\") {\\n    id\\n    active\\n  }\\n}\",\"variables\":\"\"},{\"query\":\"query {\\n  sortedOperators(phoneNumber: \\\"+380984263462\\\") {\\n    id\\n    active\\n    config {\\n      id\\n      contentType\\n      parameters {\\n        id\\n        key\\n        value\\n        insertedAt\\n        updatedAt\\n      }\\n      name\\n      size\\n      url\\n      insertedAt\\n      updatedAt\\n    }\\n    limitCount\\n    smsLogs {id priority }\\n    nameOperator\\n    phoneCode\\n    priceExt\\n    priceInt\\n    priority\\n    operatorType {id active nameType priority insertedAt insertedAt}\\n    insertedAt\\n    updatedAt\\n  }\\n}\",\"variables\":\"\"},{\"query\":\"query {\\n  sortedOperators(phoneNumber: \\\"+380997171111\\\") {\\n    id\\n    active\\n    config {\\n      id\\n      contentType\\n      parameters {\\n        id\\n        key\\n        value\\n        insertedAt\\n        updatedAt\\n      }\\n      name\\n      size\\n      url\\n      insertedAt\\n      updatedAt\\n    }\\n    limitCount\\n    smsLogs {id priority }\\n    nameOperator\\n    phoneCode\\n    priceExt\\n    priceInt\\n    priority\\n    operatorType {id active nameType priority insertedAt insertedAt}\\n    insertedAt\\n    updatedAt\\n  }\\n}\"}]}"
     },
     {
       "id": "tab24",
@@ -907,11 +911,10 @@
         }
       ],
       "graphiql:query": "query {\n  listStatus {\n    id\n    active\n    description\n    statusCode\n    statusName\n  }\n}",
-      "graphiql:variables": "",
-      "graphiql:queries": "{\"queries\":[{\"query\":\"query {\\n  listStatus {\\n    id\\n    active\\n    description\\n    statusCode\\n    statusName\\n  }\\n}\",\"variables\":\"\"}]}",
-      "graphiql:editorFlex": 0.4378947368421053,
+      "graphiql:docExplorerWidth": 350,
       "graphiql:variableEditorHeight": 200,
-      "graphiql:docExplorerWidth": 350
+      "graphiql:queries": "{\"queries\":[{\"query\":\"query {\\n  listStatus {\\n    id\\n    active\\n    description\\n    statusCode\\n    statusName\\n  }\\n}\",\"variables\":\"\"}]}",
+      "graphiql:editorFlex": 0.4378947368421053
     }
   ]
 }
