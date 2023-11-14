@@ -84,20 +84,16 @@ defmodule Gateway.GraphQL.Resolvers.Spring.MessageResolver do
         "lifecell" -> acc
         "telegram" -> acc
         "viber" -> acc
-#        "vodafone" ->
-#          # ["Connector." <> String.capitalize(x.config.name) <> "Handler" | acc]
-#          # [ "Connector." <> String.capitalize(x.config.name) <> "Handler.start_link(" <> <<34>> <> "#{phone_number}" <> <<34>> <> ")" ]
-#          [x | acc]
         "vodafone" ->
           case Connector.VodafoneHandler.start_link([{"#{message_id}"}]) do
             {:ok, pid} ->
               case Connector.VodafoneHandler.get_status(pid, 1_000) do
                 :error ->
                   :ok = Connector.VodafoneHandler.stop(pid)
-                  [x | acc]
+                  acc
                 :timeout ->
                   :ok = Connector.VodafoneHandler.stop(pid)
-                  [x | acc]
+                  acc
                 data ->
                   :ok = Connector.VodafoneHandler.stop(pid)
                   data
