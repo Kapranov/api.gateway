@@ -19,7 +19,7 @@ config :gateway, Gateway.Endpoint,
   pubsub_server: Gateway.PubSub,
   redirect_uri: "http://192.168.2.145:4000/graphiql",
   render_errors: [ formats: [json: Gateway.ErrorJSON], layout: false ],
-  url: [host: "", port: 4000, ip: {192, 168, 2, 145}],
+  url: [host: "159.224.174.183", port: 80, ip: {192, 168, 2, 145}],
   version: Mix.Project.config()[:version]
 
 config :gateway,
