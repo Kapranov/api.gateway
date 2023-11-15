@@ -5,15 +5,15 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="ExDoc v0.30.9">
-    <meta name="project" content="APIGateway v0.0.1-beta.1-0-g36e76a8-main+dev">
+    <meta name="project" content="APIGateway v0.0.1-beta.1-0-ga613f9a-main+dev">
 
-    <title>Connector.DiaHandler — APIGateway v0.0.1-beta.1-0-g36e76a8-main+dev</title>
+    <title>Connector.DiaHandler — APIGateway v0.0.1-beta.1-0-ga613f9a-main+dev</title>
     <link rel="stylesheet" href="dist/html-elixir-XFYN5IVA.css" />
 
 
     <script src="dist/handlebars.runtime-NWIB6V2M.js"></script>
     <script src="dist/handlebars.templates-EPF2X7PV.js"></script>
-    <script src="dist/sidebar_items-4E01D183.js"></script>
+    <script src="dist/sidebar_items-BFB1BAFD.js"></script>
 
       <script src="docs_config.js"></script>
 
@@ -68,7 +68,7 @@
 APIGateway
       </a>
       <div class="sidebar-projectVersion" translate="no">
-        v0.0.1-beta.1-0-g36e76a8-main+dev
+        v0.0.1-beta.1-0-ga613f9a-main+dev
       </div>
     </div>
     <ul id="sidebar-listNav" class="sidebar-listNav" role="tablist">
@@ -117,7 +117,7 @@ Pages
     </a>
 
   <span translate="no">Connector.DiaHandler</span> 
-  <small class="app-vsn" translate="no">(APIGateway v0.0.1-beta.1-0-g36e76a8-main+dev)</small>
+  <small class="app-vsn" translate="no">(APIGateway v0.0.1-beta.1-0-ga613f9a-main+dev)</small>
 
 </h1>
 
@@ -141,14 +141,6 @@ Pages
 
     <div class="summary-row">
       <div class="summary-signature">
-        <a href="#check_id/1" translate="no">check_id(id)</a>
-
-      </div>
-
-    </div>
-
-    <div class="summary-row">
-      <div class="summary-signature">
         <a href="#child_spec/1" translate="no">child_spec(init_arg)</a>
 
       </div>
@@ -159,7 +151,15 @@ Pages
 
     <div class="summary-row">
       <div class="summary-signature">
-        <a href="#handle_continue/2" translate="no">handle_continue(atom, state)</a>
+        <a href="#get_status/1" translate="no">get_status(pid)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#handle_continue/2" translate="no">handle_continue(arg1, message_id)</a>
 
       </div>
 
@@ -169,7 +169,7 @@ Pages
 
     <div class="summary-row">
       <div class="summary-signature">
-        <a href="#init/1" translate="no">init(list)</a>
+        <a href="#init/1" translate="no">init(message_id)</a>
 
       </div>
 
@@ -179,7 +179,7 @@ Pages
 
     <div class="summary-row">
       <div class="summary-signature">
-        <a href="#schedule/0" translate="no">schedule()</a>
+        <a href="#start_link/1" translate="no">start_link(list)</a>
 
       </div>
 
@@ -187,15 +187,7 @@ Pages
 
     <div class="summary-row">
       <div class="summary-signature">
-        <a href="#schedule_work/0" translate="no">schedule_work()</a>
-
-      </div>
-
-    </div>
-
-    <div class="summary-row">
-      <div class="summary-signature">
-        <a href="#start_link/1" translate="no">start_link(args)</a>
+        <a href="#stop/1" translate="no">stop(pid)</a>
 
       </div>
 
@@ -214,34 +206,6 @@ Pages
       <span class="text">Functions</span>
     </h1>
     <div class="functions-list">
-<section class="detail" id="check_id/1">
-
-  <div class="detail-header">
-    <a href="#check_id/1" class="detail-link" title="Link to this function">
-      <i class="ri-link-m" aria-hidden="true"></i>
-      <span class="sr-only">Link to this function</span>
-    </a>
-    <h1 class="signature" translate="no">check_id(id)</h1>
-
-      <a href="https://github.com/kapranov/api_gateway/blob/main/apps/connector/lib/connector/dia_handler.ex#L54" class="icon-action" rel="help" title="View Source">
-       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
-       <span class="sr-only">View Source</span>
-     </a>
-
-
-  </div>
-
-  <section class="docstring">
-
-      <div class="specs">
-
-          <pre translate="no"><span class="attribute">@spec</span> check_id(<a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()) :: <a href="Core.Spring.Message.html#t:t/0">Core.Spring.Message.t</a>() | nil</pre>
-
-      </div>
-
-
-  </section>
-</section>
 <section class="detail" id="child_spec/1">
 
   <div class="detail-header">
@@ -264,16 +228,16 @@ Pages
 <p>Returns a specification to start this module under a supervisor.</p><p>See <a href="https://hexdocs.pm/elixir/Supervisor.html"><code class="inline">Supervisor</code></a>.</p>
   </section>
 </section>
-<section class="detail" id="handle_continue/2">
+<section class="detail" id="get_status/1">
 
   <div class="detail-header">
-    <a href="#handle_continue/2" class="detail-link" title="Link to this function">
+    <a href="#get_status/1" class="detail-link" title="Link to this function">
       <i class="ri-link-m" aria-hidden="true"></i>
       <span class="sr-only">Link to this function</span>
     </a>
-    <h1 class="signature" translate="no">handle_continue(atom, state)</h1>
+    <h1 class="signature" translate="no">get_status(pid)</h1>
 
-      <a href="https://github.com/kapranov/api_gateway/blob/main/apps/connector/lib/connector/dia_handler.ex#L39" class="icon-action" rel="help" title="View Source">
+      <a href="https://github.com/kapranov/api_gateway/blob/main/apps/connector/lib/connector/dia_handler.ex#L28" class="icon-action" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -282,6 +246,48 @@ Pages
   </div>
 
   <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> get_status(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">pid</a>()) :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">map</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="handle_continue/2">
+
+  <div class="detail-header">
+    <a href="#handle_continue/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">handle_continue(arg1, message_id)</h1>
+
+      <a href="https://github.com/kapranov/api_gateway/blob/main/apps/connector/lib/connector/dia_handler.ex#L49" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> handle_continue(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>(), <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()) ::
+  {:noreply, <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>(), {:continue, <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>()}}
+  | {:noreply, <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">map</a>(), {:continue, <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>()}}</pre>
+
+          <pre translate="no"><span class="attribute">@spec</span> handle_continue(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>()) :: {:noreply, <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>()}</pre>
+
+          <pre translate="no"><span class="attribute">@spec</span> handle_continue(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">map</a>()) :: {:noreply, <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">map</a>()}</pre>
+
+          <pre translate="no"><span class="attribute">@spec</span> handle_continue(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">any</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">map</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>()) :: {:noreply, <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">map</a>()} | {:noreply, <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>()}</pre>
+
+      </div>
 
 <p>Callback implementation for <a href="https://hexdocs.pm/elixir/GenServer.html#c:handle_continue/2"><code class="inline">GenServer.handle_continue/2</code></a>.</p>
   </section>
@@ -293,9 +299,9 @@ Pages
       <i class="ri-link-m" aria-hidden="true"></i>
       <span class="sr-only">Link to this function</span>
     </a>
-    <h1 class="signature" translate="no">init(list)</h1>
+    <h1 class="signature" translate="no">init(message_id)</h1>
 
-      <a href="https://github.com/kapranov/api_gateway/blob/main/apps/connector/lib/connector/dia_handler.ex#L26" class="icon-action" rel="help" title="View Source">
+      <a href="https://github.com/kapranov/api_gateway/blob/main/apps/connector/lib/connector/dia_handler.ex#L42" class="icon-action" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -304,64 +310,14 @@ Pages
   </div>
 
   <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> init(<a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()) :: {<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>(), <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>(), {:continue, <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>()}}</pre>
+
+      </div>
 
 <p>Callback implementation for <a href="https://hexdocs.pm/elixir/GenServer.html#c:init/1"><code class="inline">GenServer.init/1</code></a>.</p>
-  </section>
-</section>
-<section class="detail" id="schedule/0">
-
-  <div class="detail-header">
-    <a href="#schedule/0" class="detail-link" title="Link to this function">
-      <i class="ri-link-m" aria-hidden="true"></i>
-      <span class="sr-only">Link to this function</span>
-    </a>
-    <h1 class="signature" translate="no">schedule()</h1>
-
-      <a href="https://github.com/kapranov/api_gateway/blob/main/apps/connector/lib/connector/dia_handler.ex#L62" class="icon-action" rel="help" title="View Source">
-       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
-       <span class="sr-only">View Source</span>
-     </a>
-
-
-  </div>
-
-  <section class="docstring">
-
-      <div class="specs">
-
-          <pre translate="no"><span class="attribute">@spec</span> schedule() :: Reference.t()</pre>
-
-      </div>
-
-
-  </section>
-</section>
-<section class="detail" id="schedule_work/0">
-
-  <div class="detail-header">
-    <a href="#schedule_work/0" class="detail-link" title="Link to this function">
-      <i class="ri-link-m" aria-hidden="true"></i>
-      <span class="sr-only">Link to this function</span>
-    </a>
-    <h1 class="signature" translate="no">schedule_work()</h1>
-
-      <a href="https://github.com/kapranov/api_gateway/blob/main/apps/connector/lib/connector/dia_handler.ex#L57" class="icon-action" rel="help" title="View Source">
-       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
-       <span class="sr-only">View Source</span>
-     </a>
-
-
-  </div>
-
-  <section class="docstring">
-
-      <div class="specs">
-
-          <pre translate="no"><span class="attribute">@spec</span> schedule_work() :: Reference.t()</pre>
-
-      </div>
-
-
   </section>
 </section>
 <section class="detail" id="start_link/1">
@@ -371,9 +327,9 @@ Pages
       <i class="ri-link-m" aria-hidden="true"></i>
       <span class="sr-only">Link to this function</span>
     </a>
-    <h1 class="signature" translate="no">start_link(args)</h1>
+    <h1 class="signature" translate="no">start_link(list)</h1>
 
-      <a href="https://github.com/kapranov/api_gateway/blob/main/apps/connector/lib/connector/dia_handler.ex#L15" class="icon-action" rel="help" title="View Source">
+      <a href="https://github.com/kapranov/api_gateway/blob/main/apps/connector/lib/connector/dia_handler.ex#L21" class="icon-action" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -382,6 +338,40 @@ Pages
   </div>
 
   <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> start_link([{<a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()}]) :: {<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">pid</a>()} | <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="stop/1">
+
+  <div class="detail-header">
+    <a href="#stop/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">stop(pid)</h1>
+
+      <a href="https://github.com/kapranov/api_gateway/blob/main/apps/connector/lib/connector/dia_handler.ex#L35" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> stop(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">pid</a>()) :: :ok | :none</pre>
+
+      </div>
 
 
   </section>

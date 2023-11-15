@@ -2,12 +2,17 @@
 Connector.Dia.html
 Connector.DiaHandler.html
 Connector.Intertelecom.html
+Connector.IntertelecomHandler.html
 Connector.Kyivstar.html
+Connector.KyivstarHandler.html
 Connector.Lifecell.html
+Connector.LifecellHandler.html
 Connector.Telegram.html
+Connector.TelegramHandler.html
 Connector.Timeout.html
 Connector.Utils.html
 Connector.Viber.html
+Connector.ViberHandler.html
 Connector.Vodafone.html
 Connector.VodafoneHandler.html
 Connector.html
@@ -105,7 +110,7 @@ dist/merriweather-latin-ext-300-normal-K6L27CZ5.woff2
 dist/merriweather-vietnamese-300-italic-EHHNZPUO.woff2
 dist/merriweather-vietnamese-300-normal-U376L4Z4.woff2
 dist/remixicon-NKANDIL5.woff2
-dist/search_data-349EBB80.js
-dist/sidebar_items-4E01D183.js
+dist/search_data-CA036051.js
+dist/sidebar_items-BFB1BAFD.js
 index.html
 search.html

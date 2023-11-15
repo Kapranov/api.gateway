@@ -172,6 +172,18 @@ iex> :timer.kill_after(:timer.seconds(2))
 :timer.kill_after(:timer.minutes(2), pid)
 ```
 
+```
+iex>
+iex>
+iex>
+iex>
+iex> phone_number = "+380997171111"
+iex> message_id = Core.Repo.all(Core.Spring.Message) |> List.last |> Map.get(:id)
+iex> operators =  Core.Queries.sorted_by_operators(phone_number)
+iex> Gateway.GraphQL.Resolvers.Spring.MessageResolver.selected_connector(operators, message_id)
+iex> Gateway.GraphQL.Resolvers.Spring.MessageResolver.selected_connector(operators, FlakeId.get)
+```
+
 ### 27 Oct 2023 by Oleg G.Kapranov
 
 [1]:  http://httpbin.org

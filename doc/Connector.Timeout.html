@@ -5,15 +5,15 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="ExDoc v0.30.9">
-    <meta name="project" content="APIGateway v0.0.1-beta.1-0-g36e76a8-main+dev">
+    <meta name="project" content="APIGateway v0.0.1-beta.1-0-ga613f9a-main+dev">
 
-    <title>Connector.Timeout — APIGateway v0.0.1-beta.1-0-g36e76a8-main+dev</title>
+    <title>Connector.Timeout — APIGateway v0.0.1-beta.1-0-ga613f9a-main+dev</title>
     <link rel="stylesheet" href="dist/html-elixir-XFYN5IVA.css" />
 
 
     <script src="dist/handlebars.runtime-NWIB6V2M.js"></script>
     <script src="dist/handlebars.templates-EPF2X7PV.js"></script>
-    <script src="dist/sidebar_items-4E01D183.js"></script>
+    <script src="dist/sidebar_items-BFB1BAFD.js"></script>
 
       <script src="docs_config.js"></script>
 
@@ -68,7 +68,7 @@
 APIGateway
       </a>
       <div class="sidebar-projectVersion" translate="no">
-        v0.0.1-beta.1-0-g36e76a8-main+dev
+        v0.0.1-beta.1-0-ga613f9a-main+dev
       </div>
     </div>
     <ul id="sidebar-listNav" class="sidebar-listNav" role="tablist">
@@ -117,7 +117,7 @@ Pages
     </a>
 
   <span translate="no">Connector.Timeout</span> 
-  <small class="app-vsn" translate="no">(APIGateway v0.0.1-beta.1-0-g36e76a8-main+dev)</small>
+  <small class="app-vsn" translate="no">(APIGateway v0.0.1-beta.1-0-ga613f9a-main+dev)</small>
 
 </h1>
 
@@ -507,8 +507,8 @@ the stores the resulting timer on the struct.</p></div>
   </a>
   <span class="text">Example.</span>
 </h2>
-<pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Connector.Timeout</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="3184793204-1">(</span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="ss">backoff</span><span class="p">:</span><span class="w"> </span><span class="mf">1.25</span><span class="p" data-group-id="3184793204-1">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Connector.Timeout</span><span class="o">.</span><span class="n">next</span><span class="p" data-group-id="3184793204-2">(</span><span class="p" data-group-id="3184793204-2">)</span><span class="w">
-</span><span class="p" data-group-id="3184793204-3">%</span><span class="nc" data-group-id="3184793204-3">Connector.Timeout</span><span class="p" data-group-id="3184793204-3">{</span><span class="w">
+<pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Connector.Timeout</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="1912123525-1">(</span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="ss">backoff</span><span class="p">:</span><span class="w"> </span><span class="mf">1.25</span><span class="p" data-group-id="1912123525-1">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Connector.Timeout</span><span class="o">.</span><span class="n">next</span><span class="p" data-group-id="1912123525-2">(</span><span class="p" data-group-id="1912123525-2">)</span><span class="w">
+</span><span class="p" data-group-id="1912123525-3">%</span><span class="nc" data-group-id="1912123525-3">Connector.Timeout</span><span class="p" data-group-id="1912123525-3">{</span><span class="w">
   </span><span class="ss">base</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
   </span><span class="ss">timeout</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
   </span><span class="ss">backoff</span><span class="p">:</span><span class="w"> </span><span class="mf">1.25</span><span class="p">,</span><span class="w">
@@ -516,10 +516,10 @@ the stores the resulting timer on the struct.</p></div>
   </span><span class="ss">backoff_max</span><span class="p">:</span><span class="w"> </span><span class="no">nil</span><span class="p">,</span><span class="w">
   </span><span class="ss">random</span><span class="p">:</span><span class="w"> </span><span class="no">nil</span><span class="p">,</span><span class="w">
   </span><span class="ss">timer</span><span class="p">:</span><span class="w"> </span><span class="no">nil</span><span class="w">
-</span><span class="p" data-group-id="3184793204-3">}</span><span class="w">
+</span><span class="p" data-group-id="1912123525-3">}</span><span class="w">
 
-</span><span class="gp unselectable">iex&gt; </span><span class="nc">Connector.Timeout</span><span class="o">.</span><span class="n">cancel_timer</span><span class="p" data-group-id="3184793204-4">(</span><span class="n">t</span><span class="p" data-group-id="3184793204-4">)</span><span class="w">
-</span><span class="p" data-group-id="3184793204-5">{</span><span class="p" data-group-id="3184793204-6">%</span><span class="nc" data-group-id="3184793204-6">Connector.Timeout</span><span class="p" data-group-id="3184793204-6">{</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Connector.Timeout</span><span class="o">.</span><span class="n">cancel_timer</span><span class="p" data-group-id="1912123525-4">(</span><span class="n">t</span><span class="p" data-group-id="1912123525-4">)</span><span class="w">
+</span><span class="p" data-group-id="1912123525-5">{</span><span class="p" data-group-id="1912123525-6">%</span><span class="nc" data-group-id="1912123525-6">Connector.Timeout</span><span class="p" data-group-id="1912123525-6">{</span><span class="w">
   </span><span class="ss">base</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
   </span><span class="ss">timeout</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
   </span><span class="ss">backoff</span><span class="p">:</span><span class="w"> </span><span class="mf">1.25</span><span class="p">,</span><span class="w">
@@ -527,21 +527,21 @@ the stores the resulting timer on the struct.</p></div>
   </span><span class="ss">backoff_max</span><span class="p">:</span><span class="w"> </span><span class="no">nil</span><span class="p">,</span><span class="w">
   </span><span class="ss">random</span><span class="p">:</span><span class="w"> </span><span class="no">nil</span><span class="p">,</span><span class="w">
   </span><span class="ss">timer</span><span class="p">:</span><span class="w"> </span><span class="no">nil</span><span class="w">
-</span><span class="p" data-group-id="3184793204-6">}</span><span class="p">,</span><span class="w"> </span><span class="no">false</span><span class="p" data-group-id="3184793204-5">}</span><span class="w">
+</span><span class="p" data-group-id="1912123525-6">}</span><span class="p">,</span><span class="w"> </span><span class="no">false</span><span class="p" data-group-id="1912123525-5">}</span><span class="w">
 
-</span><span class="gp unselectable">iex&gt; </span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Connector.Timeout</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="3184793204-7">(</span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="ss">backoff</span><span class="p">:</span><span class="w"> </span><span class="mf">1.25</span><span class="p" data-group-id="3184793204-7">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Connector.Timeout</span><span class="o">.</span><span class="n">next</span><span class="p" data-group-id="3184793204-8">(</span><span class="p" data-group-id="3184793204-8">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Connector.Timeout</span><span class="o">.</span><span class="n">send_after!</span><span class="p" data-group-id="3184793204-9">(</span><span class="ss">:msg</span><span class="p" data-group-id="3184793204-9">)</span><span class="w">
-</span><span class="p" data-group-id="3184793204-10">%</span><span class="nc" data-group-id="3184793204-10">Connector.Timeout</span><span class="p" data-group-id="3184793204-10">{</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Connector.Timeout</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="1912123525-7">(</span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="ss">backoff</span><span class="p">:</span><span class="w"> </span><span class="mf">1.25</span><span class="p" data-group-id="1912123525-7">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Connector.Timeout</span><span class="o">.</span><span class="n">next</span><span class="p" data-group-id="1912123525-8">(</span><span class="p" data-group-id="1912123525-8">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Connector.Timeout</span><span class="o">.</span><span class="n">send_after!</span><span class="p" data-group-id="1912123525-9">(</span><span class="ss">:msg</span><span class="p" data-group-id="1912123525-9">)</span><span class="w">
+</span><span class="p" data-group-id="1912123525-10">%</span><span class="nc" data-group-id="1912123525-10">Connector.Timeout</span><span class="p" data-group-id="1912123525-10">{</span><span class="w">
   </span><span class="ss">base</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
   </span><span class="ss">timeout</span><span class="p">:</span><span class="w"> </span><span class="mi">125</span><span class="p">,</span><span class="w">
   </span><span class="ss">backoff</span><span class="p">:</span><span class="w"> </span><span class="mf">1.25</span><span class="p">,</span><span class="w">
   </span><span class="ss">backoff_round</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
   </span><span class="ss">backoff_max</span><span class="p">:</span><span class="w"> </span><span class="no">nil</span><span class="p">,</span><span class="w">
   </span><span class="ss">random</span><span class="p">:</span><span class="w"> </span><span class="no">nil</span><span class="p">,</span><span class="w">
-  </span><span class="ss">timer</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="3184793204-11">#</span><span class="nc" data-group-id="3184793204-11">Reference</span><span class="p" data-group-id="3184793204-11">&lt;</span><span class="mf">0.2297875499</span><span class="o">.</span><span class="mf">1573126146.97470</span><span class="p" data-group-id="3184793204-11">&gt;</span><span class="w">
-</span><span class="p" data-group-id="3184793204-10">}</span><span class="w">
+  </span><span class="ss">timer</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="1912123525-11">#</span><span class="nc" data-group-id="1912123525-11">Reference</span><span class="p" data-group-id="1912123525-11">&lt;</span><span class="mf">0.2297875499</span><span class="o">.</span><span class="mf">1573126146.97470</span><span class="p" data-group-id="1912123525-11">&gt;</span><span class="w">
+</span><span class="p" data-group-id="1912123525-10">}</span><span class="w">
 
-</span><span class="gp unselectable">iex&gt; </span><span class="nc">Connector.Timeout</span><span class="o">.</span><span class="n">cancel_timer</span><span class="p" data-group-id="3184793204-12">(</span><span class="n">t</span><span class="p" data-group-id="3184793204-12">)</span><span class="w">
-</span><span class="p" data-group-id="3184793204-13">{</span><span class="p" data-group-id="3184793204-14">%</span><span class="nc" data-group-id="3184793204-14">Connector.Timeout</span><span class="p" data-group-id="3184793204-14">{</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Connector.Timeout</span><span class="o">.</span><span class="n">cancel_timer</span><span class="p" data-group-id="1912123525-12">(</span><span class="n">t</span><span class="p" data-group-id="1912123525-12">)</span><span class="w">
+</span><span class="p" data-group-id="1912123525-13">{</span><span class="p" data-group-id="1912123525-14">%</span><span class="nc" data-group-id="1912123525-14">Connector.Timeout</span><span class="p" data-group-id="1912123525-14">{</span><span class="w">
   </span><span class="ss">base</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
   </span><span class="ss">timeout</span><span class="p">:</span><span class="w"> </span><span class="mi">125</span><span class="p">,</span><span class="w">
   </span><span class="ss">backoff</span><span class="p">:</span><span class="w"> </span><span class="mf">1.25</span><span class="p">,</span><span class="w">
@@ -549,7 +549,7 @@ the stores the resulting timer on the struct.</p></div>
   </span><span class="ss">backoff_max</span><span class="p">:</span><span class="w"> </span><span class="no">nil</span><span class="p">,</span><span class="w">
   </span><span class="ss">random</span><span class="p">:</span><span class="w"> </span><span class="no">nil</span><span class="p">,</span><span class="w">
   </span><span class="ss">timer</span><span class="p">:</span><span class="w"> </span><span class="no">nil</span><span class="w">
-</span><span class="p" data-group-id="3184793204-14">}</span><span class="p">,</span><span class="w"> </span><span class="no">false</span><span class="p" data-group-id="3184793204-13">}</span></code></pre>
+</span><span class="p" data-group-id="1912123525-14">}</span><span class="p">,</span><span class="w"> </span><span class="no">false</span><span class="p" data-group-id="1912123525-13">}</span></code></pre>
   </section>
 </section>
 <section class="detail" id="cancel_timer!/1">
@@ -583,19 +583,19 @@ the stores the resulting timer on the struct.</p></div>
   </a>
   <span class="text">Example.</span>
 </h2>
-<pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Connector.Timeout</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="2853644395-1">(</span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="ss">backoff</span><span class="p">:</span><span class="w"> </span><span class="mf">1.25</span><span class="p" data-group-id="2853644395-1">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Connector.Timeout</span><span class="o">.</span><span class="n">next</span><span class="p" data-group-id="2853644395-2">(</span><span class="p" data-group-id="2853644395-2">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Connector.Timeout</span><span class="o">.</span><span class="n">send_after!</span><span class="p" data-group-id="2853644395-3">(</span><span class="ss">:msg</span><span class="p" data-group-id="2853644395-3">)</span><span class="w">
-</span><span class="p" data-group-id="2853644395-4">%</span><span class="nc" data-group-id="2853644395-4">Connector.Timeout</span><span class="p" data-group-id="2853644395-4">{</span><span class="w">
+<pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Connector.Timeout</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="1284471697-1">(</span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="ss">backoff</span><span class="p">:</span><span class="w"> </span><span class="mf">1.25</span><span class="p" data-group-id="1284471697-1">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Connector.Timeout</span><span class="o">.</span><span class="n">next</span><span class="p" data-group-id="1284471697-2">(</span><span class="p" data-group-id="1284471697-2">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Connector.Timeout</span><span class="o">.</span><span class="n">send_after!</span><span class="p" data-group-id="1284471697-3">(</span><span class="ss">:msg</span><span class="p" data-group-id="1284471697-3">)</span><span class="w">
+</span><span class="p" data-group-id="1284471697-4">%</span><span class="nc" data-group-id="1284471697-4">Connector.Timeout</span><span class="p" data-group-id="1284471697-4">{</span><span class="w">
   </span><span class="ss">base</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
   </span><span class="ss">timeout</span><span class="p">:</span><span class="w"> </span><span class="mi">125</span><span class="p">,</span><span class="w">
   </span><span class="ss">backoff</span><span class="p">:</span><span class="w"> </span><span class="mf">1.25</span><span class="p">,</span><span class="w">
   </span><span class="ss">backoff_round</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
   </span><span class="ss">backoff_max</span><span class="p">:</span><span class="w"> </span><span class="no">nil</span><span class="p">,</span><span class="w">
   </span><span class="ss">random</span><span class="p">:</span><span class="w"> </span><span class="no">nil</span><span class="p">,</span><span class="w">
-  </span><span class="ss">timer</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="2853644395-5">#</span><span class="nc" data-group-id="2853644395-5">Reference</span><span class="p" data-group-id="2853644395-5">&lt;</span><span class="mf">0.2297875499</span><span class="o">.</span><span class="mf">1573126146.99983</span><span class="p" data-group-id="2853644395-5">&gt;</span><span class="w">
-</span><span class="p" data-group-id="2853644395-4">}</span><span class="w">
+  </span><span class="ss">timer</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="1284471697-5">#</span><span class="nc" data-group-id="1284471697-5">Reference</span><span class="p" data-group-id="1284471697-5">&lt;</span><span class="mf">0.2297875499</span><span class="o">.</span><span class="mf">1573126146.99983</span><span class="p" data-group-id="1284471697-5">&gt;</span><span class="w">
+</span><span class="p" data-group-id="1284471697-4">}</span><span class="w">
 
-</span><span class="gp unselectable">iex&gt; </span><span class="nc">Connector.Timeout</span><span class="o">.</span><span class="n">cancel_timer!</span><span class="p" data-group-id="2853644395-6">(</span><span class="n">t</span><span class="p" data-group-id="2853644395-6">)</span><span class="w">
-</span><span class="p" data-group-id="2853644395-7">%</span><span class="nc" data-group-id="2853644395-7">Connector.Timeout</span><span class="p" data-group-id="2853644395-7">{</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Connector.Timeout</span><span class="o">.</span><span class="n">cancel_timer!</span><span class="p" data-group-id="1284471697-6">(</span><span class="n">t</span><span class="p" data-group-id="1284471697-6">)</span><span class="w">
+</span><span class="p" data-group-id="1284471697-7">%</span><span class="nc" data-group-id="1284471697-7">Connector.Timeout</span><span class="p" data-group-id="1284471697-7">{</span><span class="w">
   </span><span class="ss">base</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
   </span><span class="ss">timeout</span><span class="p">:</span><span class="w"> </span><span class="mi">125</span><span class="p">,</span><span class="w">
   </span><span class="ss">backoff</span><span class="p">:</span><span class="w"> </span><span class="mf">1.25</span><span class="p">,</span><span class="w">
@@ -603,7 +603,7 @@ the stores the resulting timer on the struct.</p></div>
   </span><span class="ss">backoff_max</span><span class="p">:</span><span class="w"> </span><span class="no">nil</span><span class="p">,</span><span class="w">
   </span><span class="ss">random</span><span class="p">:</span><span class="w"> </span><span class="no">nil</span><span class="p">,</span><span class="w">
   </span><span class="ss">timer</span><span class="p">:</span><span class="w"> </span><span class="no">nil</span><span class="w">
-</span><span class="p" data-group-id="2853644395-7">}</span></code></pre><p>Returns <code class="inline">{%Timeout{}, result}</code> where result is the value returned by calling
+</span><span class="p" data-group-id="1284471697-7">}</span></code></pre><p>Returns <code class="inline">{%Timeout{}, result}</code> where result is the value returned by calling
 <a href="https://hexdocs.pm/elixir/Process.html#cancel_timer/1"><code class="inline">Process.cancel_timer/1</code></a> on the stored timer reference.</p>
   </section>
 </section>
@@ -638,17 +638,17 @@ the stores the resulting timer on the struct.</p></div>
   </a>
   <span class="text">Example.</span>
 </h2>
-<pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="nc">Connector.Timeout</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="1889326894-1">(</span><span class="mi">100</span><span class="p" data-group-id="1889326894-1">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Connector.Timeout</span><span class="o">.</span><span class="n">current</span><span class="p" data-group-id="1889326894-2">(</span><span class="p" data-group-id="1889326894-2">)</span><span class="w">
+<pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="nc">Connector.Timeout</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="8378349137-1">(</span><span class="mi">100</span><span class="p" data-group-id="8378349137-1">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Connector.Timeout</span><span class="o">.</span><span class="n">current</span><span class="p" data-group-id="8378349137-2">(</span><span class="p" data-group-id="8378349137-2">)</span><span class="w">
 </span><span class="mi">100</span></code></pre><p>If <code class="inline">backoff</code> was configured, returns the current timeout with backoff applied:</p><h2 id="current/1-example-1" class="section-heading">
   <a href="#current/1-example-1" class="hover-link">
     <i class="ri-link-m" aria-hidden="true"></i>
   </a>
   <span class="text">Example.</span>
 </h2>
-<pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="nc">Connector.Timeout</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="3756747300-1">(</span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="ss">backoff</span><span class="p">:</span><span class="w"> </span><span class="mf">1.25</span><span class="p" data-group-id="3756747300-1">)</span><span class="w">
-  </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Connector.Timeout</span><span class="o">.</span><span class="n">next</span><span class="p" data-group-id="3756747300-2">(</span><span class="p" data-group-id="3756747300-2">)</span><span class="w">
-  </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Connector.Timeout</span><span class="o">.</span><span class="n">next</span><span class="p" data-group-id="3756747300-3">(</span><span class="p" data-group-id="3756747300-3">)</span><span class="w">
-  </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Connector.Timeout</span><span class="o">.</span><span class="n">current</span><span class="p" data-group-id="3756747300-4">(</span><span class="n">t</span><span class="p" data-group-id="3756747300-4">)</span><span class="w">
+<pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="nc">Connector.Timeout</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="6244497176-1">(</span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="ss">backoff</span><span class="p">:</span><span class="w"> </span><span class="mf">1.25</span><span class="p" data-group-id="6244497176-1">)</span><span class="w">
+  </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Connector.Timeout</span><span class="o">.</span><span class="n">next</span><span class="p" data-group-id="6244497176-2">(</span><span class="p" data-group-id="6244497176-2">)</span><span class="w">
+  </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Connector.Timeout</span><span class="o">.</span><span class="n">next</span><span class="p" data-group-id="6244497176-3">(</span><span class="p" data-group-id="6244497176-3">)</span><span class="w">
+  </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Connector.Timeout</span><span class="o">.</span><span class="n">current</span><span class="p" data-group-id="6244497176-4">(</span><span class="n">t</span><span class="p" data-group-id="6244497176-4">)</span><span class="w">
 </span><span class="mi">125</span></code></pre><p>If <code class="inline">random</code> was configured, the current timeout out is randomized within the
 configured range:</p><h2 id="current/1-example-2" class="section-heading">
   <a href="#current/1-example-2" class="hover-link">
@@ -656,18 +656,18 @@ configured range:</p><h2 id="current/1-example-2" class="section-heading">
   </a>
   <span class="text">Example.</span>
 </h2>
-<pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Connector.Timeout</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="9790284630-1">(</span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="ss">random</span><span class="p">:</span><span class="w"> </span><span class="mf">0.10</span><span class="p" data-group-id="9790284630-1">)</span><span class="w">
-</span><span class="p" data-group-id="9790284630-2">%</span><span class="nc" data-group-id="9790284630-2">Connector.Timeout</span><span class="p" data-group-id="9790284630-2">{</span><span class="w">
+<pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Connector.Timeout</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="3141235717-1">(</span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="ss">random</span><span class="p">:</span><span class="w"> </span><span class="mf">0.10</span><span class="p" data-group-id="3141235717-1">)</span><span class="w">
+</span><span class="p" data-group-id="3141235717-2">%</span><span class="nc" data-group-id="3141235717-2">Connector.Timeout</span><span class="p" data-group-id="3141235717-2">{</span><span class="w">
   </span><span class="ss">base</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
   </span><span class="ss">timeout</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
   </span><span class="ss">backoff</span><span class="p">:</span><span class="w"> </span><span class="no">nil</span><span class="p">,</span><span class="w">
   </span><span class="ss">backoff_round</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
   </span><span class="ss">backoff_max</span><span class="p">:</span><span class="w"> </span><span class="no">nil</span><span class="p">,</span><span class="w">
-  </span><span class="ss">random</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="9790284630-3">{</span><span class="mf">1.1</span><span class="p">,</span><span class="w"> </span><span class="mf">0.9</span><span class="p" data-group-id="9790284630-3">}</span><span class="p">,</span><span class="w">
+  </span><span class="ss">random</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="3141235717-3">{</span><span class="mf">1.1</span><span class="p">,</span><span class="w"> </span><span class="mf">0.9</span><span class="p" data-group-id="3141235717-3">}</span><span class="p">,</span><span class="w">
   </span><span class="ss">timer</span><span class="p">:</span><span class="w"> </span><span class="no">nil</span><span class="w">
-</span><span class="p" data-group-id="9790284630-2">}</span><span class="w">
+</span><span class="p" data-group-id="3141235717-2">}</span><span class="w">
 
-</span><span class="gp unselectable">iex&gt; </span><span class="k">if</span><span class="w"> </span><span class="nc">Connector.Timeout</span><span class="o">.</span><span class="n">current</span><span class="p" data-group-id="9790284630-4">(</span><span class="n">t</span><span class="p" data-group-id="9790284630-4">)</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="mi">91</span><span class="o">..</span><span class="mi">110</span><span class="p">,</span><span class="w"> </span><span class="ss">do</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="p">,</span><span class="w"> </span><span class="ss">else</span><span class="p">:</span><span class="w"> </span><span class="no">false</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="k">if</span><span class="w"> </span><span class="nc">Connector.Timeout</span><span class="o">.</span><span class="n">current</span><span class="p" data-group-id="3141235717-4">(</span><span class="n">t</span><span class="p" data-group-id="3141235717-4">)</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="mi">91</span><span class="o">..</span><span class="mi">110</span><span class="p">,</span><span class="w"> </span><span class="ss">do</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="p">,</span><span class="w"> </span><span class="ss">else</span><span class="p">:</span><span class="w"> </span><span class="no">false</span><span class="w">
 </span><span class="no">true</span></code></pre>
   </section>
 </section>
@@ -706,16 +706,16 @@ use <code class="inline">0.10</code> to randomize within +/- 10% of the desired 
   </a>
   <span class="text">Example.</span>
 </h2>
-<pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="nc">Connector.Timeout</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="2318302536-1">(</span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="ss">backoff</span><span class="p">:</span><span class="w"> </span><span class="mf">1.25</span><span class="p">,</span><span class="w"> </span><span class="ss">backoff_max</span><span class="p">:</span><span class="w"> </span><span class="mi">1_250</span><span class="p">,</span><span class="w"> </span><span class="ss">random</span><span class="p">:</span><span class="w"> </span><span class="mf">0.10</span><span class="p" data-group-id="2318302536-1">)</span><span class="w">
-</span><span class="p" data-group-id="2318302536-2">%</span><span class="nc" data-group-id="2318302536-2">Connector.Timeout</span><span class="p" data-group-id="2318302536-2">{</span><span class="w">
+<pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="nc">Connector.Timeout</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="7342035342-1">(</span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="ss">backoff</span><span class="p">:</span><span class="w"> </span><span class="mf">1.25</span><span class="p">,</span><span class="w"> </span><span class="ss">backoff_max</span><span class="p">:</span><span class="w"> </span><span class="mi">1_250</span><span class="p">,</span><span class="w"> </span><span class="ss">random</span><span class="p">:</span><span class="w"> </span><span class="mf">0.10</span><span class="p" data-group-id="7342035342-1">)</span><span class="w">
+</span><span class="p" data-group-id="7342035342-2">%</span><span class="nc" data-group-id="7342035342-2">Connector.Timeout</span><span class="p" data-group-id="7342035342-2">{</span><span class="w">
   </span><span class="ss">base</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
   </span><span class="ss">timeout</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
   </span><span class="ss">backoff</span><span class="p">:</span><span class="w"> </span><span class="mf">1.25</span><span class="p">,</span><span class="w">
   </span><span class="ss">backoff_round</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
   </span><span class="ss">backoff_max</span><span class="p">:</span><span class="w"> </span><span class="mi">1250</span><span class="p">,</span><span class="w">
-  </span><span class="ss">random</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="2318302536-3">{</span><span class="mf">1.1</span><span class="p">,</span><span class="w"> </span><span class="mf">0.9</span><span class="p" data-group-id="2318302536-3">}</span><span class="p">,</span><span class="w">
+  </span><span class="ss">random</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="7342035342-3">{</span><span class="mf">1.1</span><span class="p">,</span><span class="w"> </span><span class="mf">0.9</span><span class="p" data-group-id="7342035342-3">}</span><span class="p">,</span><span class="w">
   </span><span class="ss">timer</span><span class="p">:</span><span class="w"> </span><span class="no">nil</span><span class="w">
-</span><span class="p" data-group-id="2318302536-2">}</span></code></pre>
+</span><span class="p" data-group-id="7342035342-2">}</span></code></pre>
   </section>
 </section>
 <section class="detail" id="next/1">
@@ -751,8 +751,8 @@ above that value.</p><p>The first call to <a href="#next/1"><code class="inline"
   </a>
   <span class="text">Example.</span>
 </h2>
-<pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="n">now</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Connector.Timeout</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="6195874342-1">(</span><span class="mi">100</span><span class="p" data-group-id="6195874342-1">)</span><span class="w">
-</span><span class="p" data-group-id="6195874342-2">%</span><span class="nc" data-group-id="6195874342-2">Connector.Timeout</span><span class="p" data-group-id="6195874342-2">{</span><span class="w">
+<pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="n">now</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Connector.Timeout</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="8237746997-1">(</span><span class="mi">100</span><span class="p" data-group-id="8237746997-1">)</span><span class="w">
+</span><span class="p" data-group-id="8237746997-2">%</span><span class="nc" data-group-id="8237746997-2">Connector.Timeout</span><span class="p" data-group-id="8237746997-2">{</span><span class="w">
   </span><span class="ss">base</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
   </span><span class="ss">timeout</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
   </span><span class="ss">backoff</span><span class="p">:</span><span class="w"> </span><span class="no">nil</span><span class="p">,</span><span class="w">
@@ -760,10 +760,10 @@ above that value.</p><p>The first call to <a href="#next/1"><code class="inline"
   </span><span class="ss">backoff_max</span><span class="p">:</span><span class="w"> </span><span class="no">nil</span><span class="p">,</span><span class="w">
   </span><span class="ss">random</span><span class="p">:</span><span class="w"> </span><span class="no">nil</span><span class="p">,</span><span class="w">
   </span><span class="ss">timer</span><span class="p">:</span><span class="w"> </span><span class="no">nil</span><span class="w">
-</span><span class="p" data-group-id="6195874342-2">}</span><span class="w">
+</span><span class="p" data-group-id="8237746997-2">}</span><span class="w">
 
-</span><span class="gp unselectable">iex&gt; </span><span class="n">now</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Connector.Timeout</span><span class="o">.</span><span class="n">next</span><span class="p" data-group-id="6195874342-3">(</span><span class="p" data-group-id="6195874342-3">)</span><span class="w">
-</span><span class="p" data-group-id="6195874342-4">%</span><span class="nc" data-group-id="6195874342-4">Connector.Timeout</span><span class="p" data-group-id="6195874342-4">{</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">now</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Connector.Timeout</span><span class="o">.</span><span class="n">next</span><span class="p" data-group-id="8237746997-3">(</span><span class="p" data-group-id="8237746997-3">)</span><span class="w">
+</span><span class="p" data-group-id="8237746997-4">%</span><span class="nc" data-group-id="8237746997-4">Connector.Timeout</span><span class="p" data-group-id="8237746997-4">{</span><span class="w">
   </span><span class="ss">base</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
   </span><span class="ss">timeout</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
   </span><span class="ss">backoff</span><span class="p">:</span><span class="w"> </span><span class="no">nil</span><span class="p">,</span><span class="w">
@@ -771,10 +771,10 @@ above that value.</p><p>The first call to <a href="#next/1"><code class="inline"
   </span><span class="ss">backoff_max</span><span class="p">:</span><span class="w"> </span><span class="no">nil</span><span class="p">,</span><span class="w">
   </span><span class="ss">random</span><span class="p">:</span><span class="w"> </span><span class="no">nil</span><span class="p">,</span><span class="w">
   </span><span class="ss">timer</span><span class="p">:</span><span class="w"> </span><span class="no">nil</span><span class="w">
-</span><span class="p" data-group-id="6195874342-4">}</span><span class="w">
+</span><span class="p" data-group-id="8237746997-4">}</span><span class="w">
 
-</span><span class="gp unselectable">iex&gt; </span><span class="n">now</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Connector.Timeout</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="6195874342-5">(</span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="ss">backoff</span><span class="p">:</span><span class="w"> </span><span class="mf">1.25</span><span class="p" data-group-id="6195874342-5">)</span><span class="w">
-</span><span class="p" data-group-id="6195874342-6">%</span><span class="nc" data-group-id="6195874342-6">Connector.Timeout</span><span class="p" data-group-id="6195874342-6">{</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">now</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Connector.Timeout</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="8237746997-5">(</span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="ss">backoff</span><span class="p">:</span><span class="w"> </span><span class="mf">1.25</span><span class="p" data-group-id="8237746997-5">)</span><span class="w">
+</span><span class="p" data-group-id="8237746997-6">%</span><span class="nc" data-group-id="8237746997-6">Connector.Timeout</span><span class="p" data-group-id="8237746997-6">{</span><span class="w">
   </span><span class="ss">base</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
   </span><span class="ss">timeout</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
   </span><span class="ss">backoff</span><span class="p">:</span><span class="w"> </span><span class="mf">1.25</span><span class="p">,</span><span class="w">
@@ -782,10 +782,10 @@ above that value.</p><p>The first call to <a href="#next/1"><code class="inline"
   </span><span class="ss">backoff_max</span><span class="p">:</span><span class="w"> </span><span class="no">nil</span><span class="p">,</span><span class="w">
   </span><span class="ss">random</span><span class="p">:</span><span class="w"> </span><span class="no">nil</span><span class="p">,</span><span class="w">
   </span><span class="ss">timer</span><span class="p">:</span><span class="w"> </span><span class="no">nil</span><span class="w">
-</span><span class="p" data-group-id="6195874342-6">}</span><span class="w">
+</span><span class="p" data-group-id="8237746997-6">}</span><span class="w">
 
-</span><span class="gp unselectable">iex&gt; </span><span class="n">now</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Connector.Timeout</span><span class="o">.</span><span class="n">next</span><span class="p" data-group-id="6195874342-7">(</span><span class="p" data-group-id="6195874342-7">)</span><span class="w">
-</span><span class="p" data-group-id="6195874342-8">%</span><span class="nc" data-group-id="6195874342-8">Connector.Timeout</span><span class="p" data-group-id="6195874342-8">{</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">now</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Connector.Timeout</span><span class="o">.</span><span class="n">next</span><span class="p" data-group-id="8237746997-7">(</span><span class="p" data-group-id="8237746997-7">)</span><span class="w">
+</span><span class="p" data-group-id="8237746997-8">%</span><span class="nc" data-group-id="8237746997-8">Connector.Timeout</span><span class="p" data-group-id="8237746997-8">{</span><span class="w">
   </span><span class="ss">base</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
   </span><span class="ss">timeout</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
   </span><span class="ss">backoff</span><span class="p">:</span><span class="w"> </span><span class="mf">1.25</span><span class="p">,</span><span class="w">
@@ -793,10 +793,10 @@ above that value.</p><p>The first call to <a href="#next/1"><code class="inline"
   </span><span class="ss">backoff_max</span><span class="p">:</span><span class="w"> </span><span class="no">nil</span><span class="p">,</span><span class="w">
   </span><span class="ss">random</span><span class="p">:</span><span class="w"> </span><span class="no">nil</span><span class="p">,</span><span class="w">
   </span><span class="ss">timer</span><span class="p">:</span><span class="w"> </span><span class="no">nil</span><span class="w">
-</span><span class="p" data-group-id="6195874342-8">}</span><span class="w">
+</span><span class="p" data-group-id="8237746997-8">}</span><span class="w">
 
-</span><span class="gp unselectable">iex&gt; </span><span class="n">now</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Connector.Timeout</span><span class="o">.</span><span class="n">next</span><span class="p" data-group-id="6195874342-9">(</span><span class="p" data-group-id="6195874342-9">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Connector.Timeout</span><span class="o">.</span><span class="n">next</span><span class="p" data-group-id="6195874342-10">(</span><span class="p" data-group-id="6195874342-10">)</span><span class="w">
-</span><span class="p" data-group-id="6195874342-11">%</span><span class="nc" data-group-id="6195874342-11">Connector.Timeout</span><span class="p" data-group-id="6195874342-11">{</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">now</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Connector.Timeout</span><span class="o">.</span><span class="n">next</span><span class="p" data-group-id="8237746997-9">(</span><span class="p" data-group-id="8237746997-9">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Connector.Timeout</span><span class="o">.</span><span class="n">next</span><span class="p" data-group-id="8237746997-10">(</span><span class="p" data-group-id="8237746997-10">)</span><span class="w">
+</span><span class="p" data-group-id="8237746997-11">%</span><span class="nc" data-group-id="8237746997-11">Connector.Timeout</span><span class="p" data-group-id="8237746997-11">{</span><span class="w">
   </span><span class="ss">base</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
   </span><span class="ss">timeout</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
   </span><span class="ss">backoff</span><span class="p">:</span><span class="w"> </span><span class="mf">1.25</span><span class="p">,</span><span class="w">
@@ -804,10 +804,10 @@ above that value.</p><p>The first call to <a href="#next/1"><code class="inline"
   </span><span class="ss">backoff_max</span><span class="p">:</span><span class="w"> </span><span class="no">nil</span><span class="p">,</span><span class="w">
   </span><span class="ss">random</span><span class="p">:</span><span class="w"> </span><span class="no">nil</span><span class="p">,</span><span class="w">
   </span><span class="ss">timer</span><span class="p">:</span><span class="w"> </span><span class="no">nil</span><span class="w">
-</span><span class="p" data-group-id="6195874342-11">}</span><span class="w">
+</span><span class="p" data-group-id="8237746997-11">}</span><span class="w">
 
-</span><span class="gp unselectable">iex&gt; </span><span class="n">now</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Connector.Timeout</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="6195874342-12">(</span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="ss">backoff</span><span class="p">:</span><span class="w"> </span><span class="mf">1.25</span><span class="p">,</span><span class="w"> </span><span class="ss">backoff_max</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p" data-group-id="6195874342-12">)</span><span class="w">
-</span><span class="p" data-group-id="6195874342-13">%</span><span class="nc" data-group-id="6195874342-13">Connector.Timeout</span><span class="p" data-group-id="6195874342-13">{</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">now</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Connector.Timeout</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="8237746997-12">(</span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="ss">backoff</span><span class="p">:</span><span class="w"> </span><span class="mf">1.25</span><span class="p">,</span><span class="w"> </span><span class="ss">backoff_max</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p" data-group-id="8237746997-12">)</span><span class="w">
+</span><span class="p" data-group-id="8237746997-13">%</span><span class="nc" data-group-id="8237746997-13">Connector.Timeout</span><span class="p" data-group-id="8237746997-13">{</span><span class="w">
   </span><span class="ss">base</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
   </span><span class="ss">timeout</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
   </span><span class="ss">backoff</span><span class="p">:</span><span class="w"> </span><span class="mf">1.25</span><span class="p">,</span><span class="w">
@@ -815,10 +815,10 @@ above that value.</p><p>The first call to <a href="#next/1"><code class="inline"
   </span><span class="ss">backoff_max</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
   </span><span class="ss">random</span><span class="p">:</span><span class="w"> </span><span class="no">nil</span><span class="p">,</span><span class="w">
   </span><span class="ss">timer</span><span class="p">:</span><span class="w"> </span><span class="no">nil</span><span class="w">
-</span><span class="p" data-group-id="6195874342-13">}</span><span class="w">
+</span><span class="p" data-group-id="8237746997-13">}</span><span class="w">
 
-</span><span class="gp unselectable">iex&gt; </span><span class="n">now</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Connector.Timeout</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="6195874342-14">(</span><span class="p" data-group-id="6195874342-14">)</span><span class="w">
-</span><span class="p" data-group-id="6195874342-15">%</span><span class="nc" data-group-id="6195874342-15">Connector.Timeout</span><span class="p" data-group-id="6195874342-15">{</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">now</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Connector.Timeout</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="8237746997-14">(</span><span class="p" data-group-id="8237746997-14">)</span><span class="w">
+</span><span class="p" data-group-id="8237746997-15">%</span><span class="nc" data-group-id="8237746997-15">Connector.Timeout</span><span class="p" data-group-id="8237746997-15">{</span><span class="w">
   </span><span class="ss">base</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
   </span><span class="ss">timeout</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
   </span><span class="ss">backoff</span><span class="p">:</span><span class="w"> </span><span class="mf">1.25</span><span class="p">,</span><span class="w">
@@ -826,10 +826,10 @@ above that value.</p><p>The first call to <a href="#next/1"><code class="inline"
   </span><span class="ss">backoff_max</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
   </span><span class="ss">random</span><span class="p">:</span><span class="w"> </span><span class="no">nil</span><span class="p">,</span><span class="w">
   </span><span class="ss">timer</span><span class="p">:</span><span class="w"> </span><span class="no">nil</span><span class="w">
-</span><span class="p" data-group-id="6195874342-15">}</span><span class="w">
+</span><span class="p" data-group-id="8237746997-15">}</span><span class="w">
 
-</span><span class="gp unselectable">iex&gt; </span><span class="n">now</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Connector.Timeout</span><span class="o">.</span><span class="n">next</span><span class="p" data-group-id="6195874342-16">(</span><span class="p" data-group-id="6195874342-16">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Connector.Timeout</span><span class="o">.</span><span class="n">next</span><span class="p" data-group-id="6195874342-17">(</span><span class="p" data-group-id="6195874342-17">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Connector.Timeout</span><span class="o">.</span><span class="n">next</span><span class="p" data-group-id="6195874342-18">(</span><span class="p" data-group-id="6195874342-18">)</span><span class="w">
-</span><span class="p" data-group-id="6195874342-19">%</span><span class="nc" data-group-id="6195874342-19">Connector.Timeout</span><span class="p" data-group-id="6195874342-19">{</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">now</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Connector.Timeout</span><span class="o">.</span><span class="n">next</span><span class="p" data-group-id="8237746997-16">(</span><span class="p" data-group-id="8237746997-16">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Connector.Timeout</span><span class="o">.</span><span class="n">next</span><span class="p" data-group-id="8237746997-17">(</span><span class="p" data-group-id="8237746997-17">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Connector.Timeout</span><span class="o">.</span><span class="n">next</span><span class="p" data-group-id="8237746997-18">(</span><span class="p" data-group-id="8237746997-18">)</span><span class="w">
+</span><span class="p" data-group-id="8237746997-19">%</span><span class="nc" data-group-id="8237746997-19">Connector.Timeout</span><span class="p" data-group-id="8237746997-19">{</span><span class="w">
   </span><span class="ss">base</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
   </span><span class="ss">timeout</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
   </span><span class="ss">backoff</span><span class="p">:</span><span class="w"> </span><span class="mf">1.25</span><span class="p">,</span><span class="w">
@@ -837,7 +837,7 @@ above that value.</p><p>The first call to <a href="#next/1"><code class="inline"
   </span><span class="ss">backoff_max</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
   </span><span class="ss">random</span><span class="p">:</span><span class="w"> </span><span class="no">nil</span><span class="p">,</span><span class="w">
   </span><span class="ss">timer</span><span class="p">:</span><span class="w"> </span><span class="no">nil</span><span class="w">
-</span><span class="p" data-group-id="6195874342-19">}</span></code></pre>
+</span><span class="p" data-group-id="8237746997-19">}</span></code></pre>
   </section>
 </section>
 <section class="detail" id="reset/1">
@@ -871,27 +871,27 @@ above that value.</p><p>The first call to <a href="#next/1"><code class="inline"
   </a>
   <span class="text">Example.</span>
 </h2>
-<pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="n">now</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Connector.Timeout</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="1908403243-1">(</span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="ss">backoff</span><span class="p">:</span><span class="w"> </span><span class="mf">1.25</span><span class="p">,</span><span class="w"> </span><span class="ss">backoff_max</span><span class="p">:</span><span class="w"> </span><span class="mi">1_250</span><span class="p">,</span><span class="w"> </span><span class="ss">random</span><span class="p">:</span><span class="w"> </span><span class="mf">0.10</span><span class="p" data-group-id="1908403243-1">)</span><span class="w">
-</span><span class="p" data-group-id="1908403243-2">%</span><span class="nc" data-group-id="1908403243-2">Connector.Timeout</span><span class="p" data-group-id="1908403243-2">{</span><span class="w">
+<pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="n">now</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Connector.Timeout</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="6106669659-1">(</span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="ss">backoff</span><span class="p">:</span><span class="w"> </span><span class="mf">1.25</span><span class="p">,</span><span class="w"> </span><span class="ss">backoff_max</span><span class="p">:</span><span class="w"> </span><span class="mi">1_250</span><span class="p">,</span><span class="w"> </span><span class="ss">random</span><span class="p">:</span><span class="w"> </span><span class="mf">0.10</span><span class="p" data-group-id="6106669659-1">)</span><span class="w">
+</span><span class="p" data-group-id="6106669659-2">%</span><span class="nc" data-group-id="6106669659-2">Connector.Timeout</span><span class="p" data-group-id="6106669659-2">{</span><span class="w">
   </span><span class="ss">base</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
   </span><span class="ss">timeout</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
   </span><span class="ss">backoff</span><span class="p">:</span><span class="w"> </span><span class="mf">1.25</span><span class="p">,</span><span class="w">
   </span><span class="ss">backoff_round</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
   </span><span class="ss">backoff_max</span><span class="p">:</span><span class="w"> </span><span class="mi">1250</span><span class="p">,</span><span class="w">
-  </span><span class="ss">random</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="1908403243-3">{</span><span class="mf">1.1</span><span class="p">,</span><span class="w"> </span><span class="mf">0.9</span><span class="p" data-group-id="1908403243-3">}</span><span class="p">,</span><span class="w">
+  </span><span class="ss">random</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="6106669659-3">{</span><span class="mf">1.1</span><span class="p">,</span><span class="w"> </span><span class="mf">0.9</span><span class="p" data-group-id="6106669659-3">}</span><span class="p">,</span><span class="w">
   </span><span class="ss">timer</span><span class="p">:</span><span class="w"> </span><span class="no">nil</span><span class="w">
-</span><span class="p" data-group-id="1908403243-2">}</span><span class="w">
+</span><span class="p" data-group-id="6106669659-2">}</span><span class="w">
 
-</span><span class="gp unselectable">iex&gt; </span><span class="nc">Connector.Timeout</span><span class="o">.</span><span class="n">reset</span><span class="p" data-group-id="1908403243-4">(</span><span class="n">now</span><span class="p" data-group-id="1908403243-4">)</span><span class="w">
-</span><span class="p" data-group-id="1908403243-5">%</span><span class="nc" data-group-id="1908403243-5">Connector.Timeout</span><span class="p" data-group-id="1908403243-5">{</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Connector.Timeout</span><span class="o">.</span><span class="n">reset</span><span class="p" data-group-id="6106669659-4">(</span><span class="n">now</span><span class="p" data-group-id="6106669659-4">)</span><span class="w">
+</span><span class="p" data-group-id="6106669659-5">%</span><span class="nc" data-group-id="6106669659-5">Connector.Timeout</span><span class="p" data-group-id="6106669659-5">{</span><span class="w">
   </span><span class="ss">base</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
   </span><span class="ss">timeout</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
   </span><span class="ss">backoff</span><span class="p">:</span><span class="w"> </span><span class="mf">1.25</span><span class="p">,</span><span class="w">
   </span><span class="ss">backoff_round</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
   </span><span class="ss">backoff_max</span><span class="p">:</span><span class="w"> </span><span class="mi">1250</span><span class="p">,</span><span class="w">
-  </span><span class="ss">random</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="1908403243-6">{</span><span class="mf">1.1</span><span class="p">,</span><span class="w"> </span><span class="mf">0.9</span><span class="p" data-group-id="1908403243-6">}</span><span class="p">,</span><span class="w">
+  </span><span class="ss">random</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="6106669659-6">{</span><span class="mf">1.1</span><span class="p">,</span><span class="w"> </span><span class="mf">0.9</span><span class="p" data-group-id="6106669659-6">}</span><span class="p">,</span><span class="w">
   </span><span class="ss">timer</span><span class="p">:</span><span class="w"> </span><span class="no">nil</span><span class="w">
-</span><span class="p" data-group-id="1908403243-5">}</span></code></pre>
+</span><span class="p" data-group-id="6106669659-5">}</span></code></pre>
   </section>
 </section>
 <section class="detail" id="send_after/3">
@@ -930,8 +930,8 @@ the stores the resulting timer on the struct.</p><p>Sends the message to <code c
   </a>
   <span class="text">Example.</span>
 </h2>
-<pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Connector.Timeout</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="3278916216-1">(</span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="ss">backoff</span><span class="p">:</span><span class="w"> </span><span class="mf">1.25</span><span class="p" data-group-id="3278916216-1">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Connector.Timeout</span><span class="o">.</span><span class="n">next</span><span class="p" data-group-id="3278916216-2">(</span><span class="p" data-group-id="3278916216-2">)</span><span class="w">
-</span><span class="p" data-group-id="3278916216-3">%</span><span class="nc" data-group-id="3278916216-3">Connector.Timeout</span><span class="p" data-group-id="3278916216-3">{</span><span class="w">
+<pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Connector.Timeout</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="6256625898-1">(</span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="ss">backoff</span><span class="p">:</span><span class="w"> </span><span class="mf">1.25</span><span class="p" data-group-id="6256625898-1">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Connector.Timeout</span><span class="o">.</span><span class="n">next</span><span class="p" data-group-id="6256625898-2">(</span><span class="p" data-group-id="6256625898-2">)</span><span class="w">
+</span><span class="p" data-group-id="6256625898-3">%</span><span class="nc" data-group-id="6256625898-3">Connector.Timeout</span><span class="p" data-group-id="6256625898-3">{</span><span class="w">
   </span><span class="ss">base</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
   </span><span class="ss">timeout</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
   </span><span class="ss">backoff</span><span class="p">:</span><span class="w"> </span><span class="mf">1.25</span><span class="p">,</span><span class="w">
@@ -939,32 +939,32 @@ the stores the resulting timer on the struct.</p><p>Sends the message to <code c
   </span><span class="ss">backoff_max</span><span class="p">:</span><span class="w"> </span><span class="no">nil</span><span class="p">,</span><span class="w">
   </span><span class="ss">random</span><span class="p">:</span><span class="w"> </span><span class="no">nil</span><span class="p">,</span><span class="w">
   </span><span class="ss">timer</span><span class="p">:</span><span class="w"> </span><span class="no">nil</span><span class="w">
-</span><span class="p" data-group-id="3278916216-3">}</span><span class="w">
+</span><span class="p" data-group-id="6256625898-3">}</span><span class="w">
 
-</span><span class="gp unselectable">iex&gt; </span><span class="n">timer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Process</span><span class="o">.</span><span class="n">send_after</span><span class="p" data-group-id="3278916216-4">(</span><span class="n">self</span><span class="p" data-group-id="3278916216-5">(</span><span class="p" data-group-id="3278916216-5">)</span><span class="p">,</span><span class="w"> </span><span class="ss">:message</span><span class="p">,</span><span class="w"> </span><span class="nc">Connector.Timeout</span><span class="o">.</span><span class="n">current</span><span class="p" data-group-id="3278916216-6">(</span><span class="n">t</span><span class="p" data-group-id="3278916216-6">)</span><span class="p" data-group-id="3278916216-4">)</span><span class="w">
-</span><span class="p" data-group-id="3278916216-7">#</span><span class="nc" data-group-id="3278916216-7">Reference</span><span class="p" data-group-id="3278916216-7">&lt;</span><span class="mf">0.4208700307</span><span class="o">.</span><span class="mf">1029439489.100612</span><span class="p" data-group-id="3278916216-7">&gt;</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">timer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Process</span><span class="o">.</span><span class="n">send_after</span><span class="p" data-group-id="6256625898-4">(</span><span class="n">self</span><span class="p" data-group-id="6256625898-5">(</span><span class="p" data-group-id="6256625898-5">)</span><span class="p">,</span><span class="w"> </span><span class="ss">:message</span><span class="p">,</span><span class="w"> </span><span class="nc">Connector.Timeout</span><span class="o">.</span><span class="n">current</span><span class="p" data-group-id="6256625898-6">(</span><span class="n">t</span><span class="p" data-group-id="6256625898-6">)</span><span class="p" data-group-id="6256625898-4">)</span><span class="w">
+</span><span class="p" data-group-id="6256625898-7">#</span><span class="nc" data-group-id="6256625898-7">Reference</span><span class="p" data-group-id="6256625898-7">&lt;</span><span class="mf">0.4208700307</span><span class="o">.</span><span class="mf">1029439489.100612</span><span class="p" data-group-id="6256625898-7">&gt;</span><span class="w">
 
-</span><span class="gp unselectable">iex&gt; </span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="3278916216-8">%{</span><span class="n">t</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="ss">timer</span><span class="p">:</span><span class="w"> </span><span class="n">timer</span><span class="p" data-group-id="3278916216-8">}</span><span class="w">
-</span><span class="p" data-group-id="3278916216-9">%</span><span class="nc" data-group-id="3278916216-9">Connector.Timeout</span><span class="p" data-group-id="3278916216-9">{</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="6256625898-8">%{</span><span class="n">t</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="ss">timer</span><span class="p">:</span><span class="w"> </span><span class="n">timer</span><span class="p" data-group-id="6256625898-8">}</span><span class="w">
+</span><span class="p" data-group-id="6256625898-9">%</span><span class="nc" data-group-id="6256625898-9">Connector.Timeout</span><span class="p" data-group-id="6256625898-9">{</span><span class="w">
   </span><span class="ss">base</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
   </span><span class="ss">timeout</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
   </span><span class="ss">backoff</span><span class="p">:</span><span class="w"> </span><span class="mf">1.25</span><span class="p">,</span><span class="w">
   </span><span class="ss">backoff_round</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
   </span><span class="ss">backoff_max</span><span class="p">:</span><span class="w"> </span><span class="no">nil</span><span class="p">,</span><span class="w">
   </span><span class="ss">random</span><span class="p">:</span><span class="w"> </span><span class="no">nil</span><span class="p">,</span><span class="w">
-  </span><span class="ss">timer</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="3278916216-10">#</span><span class="nc" data-group-id="3278916216-10">Reference</span><span class="p" data-group-id="3278916216-10">&lt;</span><span class="mf">0.4208700307</span><span class="o">.</span><span class="mf">1029439489.100612</span><span class="p" data-group-id="3278916216-10">&gt;</span><span class="w">
-</span><span class="p" data-group-id="3278916216-9">}</span><span class="w">
+  </span><span class="ss">timer</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="6256625898-10">#</span><span class="nc" data-group-id="6256625898-10">Reference</span><span class="p" data-group-id="6256625898-10">&lt;</span><span class="mf">0.4208700307</span><span class="o">.</span><span class="mf">1029439489.100612</span><span class="p" data-group-id="6256625898-10">&gt;</span><span class="w">
+</span><span class="p" data-group-id="6256625898-9">}</span><span class="w">
 
-</span><span class="gp unselectable">iex&gt; </span><span class="nc">Connector.Timeout</span><span class="o">.</span><span class="n">send_after</span><span class="p" data-group-id="3278916216-11">(</span><span class="n">t</span><span class="p">,</span><span class="w"> </span><span class="n">self</span><span class="p" data-group-id="3278916216-12">(</span><span class="p" data-group-id="3278916216-12">)</span><span class="p">,</span><span class="w"> </span><span class="ss">:message</span><span class="p" data-group-id="3278916216-11">)</span><span class="w">
-</span><span class="p" data-group-id="3278916216-13">{</span><span class="p" data-group-id="3278916216-14">%</span><span class="nc" data-group-id="3278916216-14">Connector.Timeout</span><span class="p" data-group-id="3278916216-14">{</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Connector.Timeout</span><span class="o">.</span><span class="n">send_after</span><span class="p" data-group-id="6256625898-11">(</span><span class="n">t</span><span class="p">,</span><span class="w"> </span><span class="n">self</span><span class="p" data-group-id="6256625898-12">(</span><span class="p" data-group-id="6256625898-12">)</span><span class="p">,</span><span class="w"> </span><span class="ss">:message</span><span class="p" data-group-id="6256625898-11">)</span><span class="w">
+</span><span class="p" data-group-id="6256625898-13">{</span><span class="p" data-group-id="6256625898-14">%</span><span class="nc" data-group-id="6256625898-14">Connector.Timeout</span><span class="p" data-group-id="6256625898-14">{</span><span class="w">
     </span><span class="ss">base</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
     </span><span class="ss">timeout</span><span class="p">:</span><span class="w"> </span><span class="mi">125</span><span class="p">,</span><span class="w">
     </span><span class="ss">backoff</span><span class="p">:</span><span class="w"> </span><span class="mf">1.25</span><span class="p">,</span><span class="w">
     </span><span class="ss">backoff_round</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
     </span><span class="ss">backoff_max</span><span class="p">:</span><span class="w"> </span><span class="no">nil</span><span class="p">,</span><span class="w">
     </span><span class="ss">random</span><span class="p">:</span><span class="w"> </span><span class="no">nil</span><span class="p">,</span><span class="w">
-    </span><span class="ss">timer</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="3278916216-15">#</span><span class="nc" data-group-id="3278916216-15">Reference</span><span class="p" data-group-id="3278916216-15">&lt;</span><span class="mf">0.2639114114</span><span class="o">.</span><span class="mf">226230273.225894</span><span class="p" data-group-id="3278916216-15">&gt;</span><span class="w">
-</span><span class="p" data-group-id="3278916216-14">}</span><span class="p">,</span><span class="w"> </span><span class="mi">125</span><span class="p" data-group-id="3278916216-13">}</span></code></pre><p>Returns <code class="inline">{%Timeout{}, delay}</code> where delay is the message schedule delay.</p>
+    </span><span class="ss">timer</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="6256625898-15">#</span><span class="nc" data-group-id="6256625898-15">Reference</span><span class="p" data-group-id="6256625898-15">&lt;</span><span class="mf">0.2639114114</span><span class="o">.</span><span class="mf">226230273.225894</span><span class="p" data-group-id="6256625898-15">&gt;</span><span class="w">
+</span><span class="p" data-group-id="6256625898-14">}</span><span class="p">,</span><span class="w"> </span><span class="mi">125</span><span class="p" data-group-id="6256625898-13">}</span></code></pre><p>Returns <code class="inline">{%Timeout{}, delay}</code> where delay is the message schedule delay.</p>
   </section>
 </section>
 <section class="detail" id="send_after!/3">
@@ -1000,8 +1000,8 @@ the stores the resulting timer on the struct.</p><p>Sends the message to <code c
   </a>
   <span class="text">Example.</span>
 </h2>
-<pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Connector.Timeout</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="8331899449-1">(</span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="ss">backoff</span><span class="p">:</span><span class="w"> </span><span class="mf">1.25</span><span class="p" data-group-id="8331899449-1">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Connector.Timeout</span><span class="o">.</span><span class="n">next</span><span class="p" data-group-id="8331899449-2">(</span><span class="p" data-group-id="8331899449-2">)</span><span class="w">
-</span><span class="p" data-group-id="8331899449-3">%</span><span class="nc" data-group-id="8331899449-3">Connector.Timeout</span><span class="p" data-group-id="8331899449-3">{</span><span class="w">
+<pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Connector.Timeout</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="0572626399-1">(</span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="ss">backoff</span><span class="p">:</span><span class="w"> </span><span class="mf">1.25</span><span class="p" data-group-id="0572626399-1">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Connector.Timeout</span><span class="o">.</span><span class="n">next</span><span class="p" data-group-id="0572626399-2">(</span><span class="p" data-group-id="0572626399-2">)</span><span class="w">
+</span><span class="p" data-group-id="0572626399-3">%</span><span class="nc" data-group-id="0572626399-3">Connector.Timeout</span><span class="p" data-group-id="0572626399-3">{</span><span class="w">
   </span><span class="ss">base</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
   </span><span class="ss">timeout</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
   </span><span class="ss">backoff</span><span class="p">:</span><span class="w"> </span><span class="mf">1.25</span><span class="p">,</span><span class="w">
@@ -1009,18 +1009,18 @@ the stores the resulting timer on the struct.</p><p>Sends the message to <code c
   </span><span class="ss">backoff_max</span><span class="p">:</span><span class="w"> </span><span class="no">nil</span><span class="p">,</span><span class="w">
   </span><span class="ss">random</span><span class="p">:</span><span class="w"> </span><span class="no">nil</span><span class="p">,</span><span class="w">
   </span><span class="ss">timer</span><span class="p">:</span><span class="w"> </span><span class="no">nil</span><span class="w">
-</span><span class="p" data-group-id="8331899449-3">}</span><span class="w">
+</span><span class="p" data-group-id="0572626399-3">}</span><span class="w">
 
-</span><span class="gp unselectable">iex&gt; </span><span class="nc">Connector.Timeout</span><span class="o">.</span><span class="n">send_after!</span><span class="p" data-group-id="8331899449-4">(</span><span class="n">t</span><span class="p">,</span><span class="w"> </span><span class="n">self</span><span class="p" data-group-id="8331899449-5">(</span><span class="p" data-group-id="8331899449-5">)</span><span class="p">,</span><span class="w"> </span><span class="ss">:message</span><span class="p" data-group-id="8331899449-4">)</span><span class="w">
-</span><span class="p" data-group-id="8331899449-6">%</span><span class="nc" data-group-id="8331899449-6">Connector.Timeout</span><span class="p" data-group-id="8331899449-6">{</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Connector.Timeout</span><span class="o">.</span><span class="n">send_after!</span><span class="p" data-group-id="0572626399-4">(</span><span class="n">t</span><span class="p">,</span><span class="w"> </span><span class="n">self</span><span class="p" data-group-id="0572626399-5">(</span><span class="p" data-group-id="0572626399-5">)</span><span class="p">,</span><span class="w"> </span><span class="ss">:message</span><span class="p" data-group-id="0572626399-4">)</span><span class="w">
+</span><span class="p" data-group-id="0572626399-6">%</span><span class="nc" data-group-id="0572626399-6">Connector.Timeout</span><span class="p" data-group-id="0572626399-6">{</span><span class="w">
   </span><span class="ss">base</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
   </span><span class="ss">timeout</span><span class="p">:</span><span class="w"> </span><span class="mi">125</span><span class="p">,</span><span class="w">
   </span><span class="ss">backoff</span><span class="p">:</span><span class="w"> </span><span class="mf">1.25</span><span class="p">,</span><span class="w">
   </span><span class="ss">backoff_round</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
   </span><span class="ss">backoff_max</span><span class="p">:</span><span class="w"> </span><span class="no">nil</span><span class="p">,</span><span class="w">
   </span><span class="ss">random</span><span class="p">:</span><span class="w"> </span><span class="no">nil</span><span class="p">,</span><span class="w">
-  </span><span class="ss">timer</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="8331899449-7">#</span><span class="nc" data-group-id="8331899449-7">Reference</span><span class="p" data-group-id="8331899449-7">&lt;</span><span class="mf">0.2639114114</span><span class="o">.</span><span class="mf">226230273.225162</span><span class="p" data-group-id="8331899449-7">&gt;</span><span class="w">
-</span><span class="p" data-group-id="8331899449-6">}</span></code></pre>
+  </span><span class="ss">timer</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="0572626399-7">#</span><span class="nc" data-group-id="0572626399-7">Reference</span><span class="p" data-group-id="0572626399-7">&lt;</span><span class="mf">0.2639114114</span><span class="o">.</span><span class="mf">226230273.225162</span><span class="p" data-group-id="0572626399-7">&gt;</span><span class="w">
+</span><span class="p" data-group-id="0572626399-6">}</span></code></pre>
   </section>
 </section>
 
