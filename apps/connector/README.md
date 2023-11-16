@@ -58,13 +58,13 @@ DONE  5. create Connector - dia, intertelecom, kyivstar, lifecell, telegram, vib
       NEXT - list_ready_send_for_operator
       -----------------------------------
 
-       1. take first from list config  (via connector)
-       2. save recorded to sms_logs priority: num
-       3. send on connector (take name connector via config)
+DONE   1. take first from list config  (via connector)
+DONE   2. save recorded to sms_logs priority: num
+DONE   3. send on connector (take name connector via config)
          - %{status: "send"}
          - :timeout
          - :error
-       4. updated recorded to messages when  %{status: "send", id: "xxx"}
+DONE   4. updated recorded to messages when  %{status: "send", id: "xxx"}
           - after 10s -> take id send on connector via operator => %{status: "send", id: "xxx"} - "send", "delivered" or "error"
             - "delivered" => updated message status: "delivered", updated sms_logs status_id
             - "error"     => updated message status "error", updated sms_logs status_id
@@ -75,9 +75,10 @@ DONE  5. create Connector - dia, intertelecom, kyivstar, lifecell, telegram, vib
             - "delivered" => updated message status: "delivered", updated sms_logs status_id
             - "error"     => updated message status "error", updated sms_logs status_id
 
-       5."send"  => when none delivered take next operator
-         "error" => when none delivered take next operator
-       6. take id send on connector via operator
+DONE   5.   "send" => when none delivered take next operator
+           "error" => when none delivered take next operator
+         "timeout" => when none delivered take next operator
+DONE   6. take id send on connector via operator
 
       ###
       #############
@@ -173,10 +174,6 @@ iex> :timer.kill_after(:timer.seconds(2))
 ```
 
 ```
-iex>
-iex>
-iex>
-iex>
 iex> phone_number = "+380997171111"
 iex> message_id = Core.Repo.all(Core.Spring.Message) |> List.last |> Map.get(:id)
 iex> operators =  Core.Queries.sorted_by_operators(phone_number)

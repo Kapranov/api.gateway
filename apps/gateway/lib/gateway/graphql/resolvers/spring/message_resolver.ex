@@ -33,7 +33,7 @@ defmodule Gateway.GraphQL.Resolvers.Spring.MessageResolver do
   @spec create(any, %{atom => any}, %{context: %{token: String.t()}}) :: result()
   def create(_parent, args, %{context: %{token: _token}}) do
     args
-    |> Spring.create_message_for_connector()
+    |> Spring.create_message_via_connector()
     |> case do
       {:error, %Ecto.Changeset{}} ->
         {:ok, []}
@@ -177,7 +177,7 @@ defmodule Gateway.GraphQL.Resolvers.Spring.MessageResolver do
         "vodafone" ->
           case Connector.VodafoneHandler.start_link([{"#{message_id}"}]) do
             {:ok, pid} ->
-              case Connector.VodafoneHandler.get_status(pid, 1_000) do
+              case Connector.VodafoneHandler.get_status(pid) do
                 :error ->
                   :ok = Connector.VodafoneHandler.stop(pid)
                   acc
