@@ -5,15 +5,15 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="ExDoc v0.30.9">
-    <meta name="project" content="APIGateway v0.0.1-beta.1-0-g338dcb2-main+dev">
+    <meta name="project" content="APIGateway v0.0.1-beta.1-0-g0d60328-main+dev">
 
-    <title>Connector.VodafoneHandler — APIGateway v0.0.1-beta.1-0-g338dcb2-main+dev</title>
+    <title>Connector.VodafoneHandler — APIGateway v0.0.1-beta.1-0-g0d60328-main+dev</title>
     <link rel="stylesheet" href="dist/html-elixir-XFYN5IVA.css" />
 
 
     <script src="dist/handlebars.runtime-NWIB6V2M.js"></script>
     <script src="dist/handlebars.templates-EPF2X7PV.js"></script>
-    <script src="dist/sidebar_items-55424000.js"></script>
+    <script src="dist/sidebar_items-AC95EAA9.js"></script>
 
       <script src="docs_config.js"></script>
 
@@ -68,7 +68,7 @@
 APIGateway
       </a>
       <div class="sidebar-projectVersion" translate="no">
-        v0.0.1-beta.1-0-g338dcb2-main+dev
+        v0.0.1-beta.1-0-g0d60328-main+dev
       </div>
     </div>
     <ul id="sidebar-listNav" class="sidebar-listNav" role="tablist">
@@ -117,7 +117,7 @@ Pages
     </a>
 
   <span translate="no">Connector.VodafoneHandler</span> 
-  <small class="app-vsn" translate="no">(APIGateway v0.0.1-beta.1-0-g338dcb2-main+dev)</small>
+  <small class="app-vsn" translate="no">(APIGateway v0.0.1-beta.1-0-g0d60328-main+dev)</small>
 
 </h1>
 
@@ -180,14 +180,6 @@ Pages
     <div class="summary-row">
       <div class="summary-signature">
         <a href="#start_link/1" translate="no">start_link(list)</a>
-
-      </div>
-
-    </div>
-
-    <div class="summary-row">
-      <div class="summary-signature">
-        <a href="#status_names/0" translate="no">status_names()</a>
 
       </div>
 
@@ -295,6 +287,11 @@ Pages
 
           <pre translate="no"><span class="attribute">@spec</span> handle_continue(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">map</a>()) :: {:noreply, <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">map</a>()}</pre>
 
+          <pre translate="no"><span class="attribute">@spec</span> handle_continue(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">map</a>()) ::
+  {:noreply, <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">map</a>(), {:continue, <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>()}} | {:noreply, <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>()}</pre>
+
+          <pre translate="no"><span class="attribute">@spec</span> handle_continue(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">map</a>()) :: {:noreply, <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">map</a>()} | {:noreply, <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>()}</pre>
+
           <pre translate="no"><span class="attribute">@spec</span> handle_continue(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">any</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">map</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>()) :: {:noreply, <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">map</a>()} | {:noreply, <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>()}</pre>
 
       </div>
@@ -352,34 +349,6 @@ Pages
       <div class="specs">
 
           <pre translate="no"><span class="attribute">@spec</span> start_link([{<a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()}]) :: {<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">pid</a>()} | <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>()</pre>
-
-      </div>
-
-
-  </section>
-</section>
-<section class="detail" id="status_names/0">
-
-  <div class="detail-header">
-    <a href="#status_names/0" class="detail-link" title="Link to this function">
-      <i class="ri-link-m" aria-hidden="true"></i>
-      <span class="sr-only">Link to this function</span>
-    </a>
-    <h1 class="signature" translate="no">status_names()</h1>
-
-      <a href="https://github.com/kapranov/api_gateway/blob/main/apps/connector/lib/connector/vodafone_handler.ex#L259" class="icon-action" rel="help" title="View Source">
-       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
-       <span class="sr-only">View Source</span>
-     </a>
-
-
-  </div>
-
-  <section class="docstring">
-
-      <div class="specs">
-
-          <pre translate="no"><span class="attribute">@spec</span> status_names() :: [<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>()]</pre>
 
       </div>
 

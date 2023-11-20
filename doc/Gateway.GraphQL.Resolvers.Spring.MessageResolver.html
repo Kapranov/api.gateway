@@ -5,15 +5,15 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="ExDoc v0.30.9">
-    <meta name="project" content="APIGateway v0.0.1-beta.1-0-g338dcb2-main+dev">
+    <meta name="project" content="APIGateway v0.0.1-beta.1-0-g0d60328-main+dev">
 
-    <title>Gateway.GraphQL.Resolvers.Spring.MessageResolver — APIGateway v0.0.1-beta.1-0-g338dcb2-main+dev</title>
+    <title>Gateway.GraphQL.Resolvers.Spring.MessageResolver — APIGateway v0.0.1-beta.1-0-g0d60328-main+dev</title>
     <link rel="stylesheet" href="dist/html-elixir-XFYN5IVA.css" />
 
 
     <script src="dist/handlebars.runtime-NWIB6V2M.js"></script>
     <script src="dist/handlebars.templates-EPF2X7PV.js"></script>
-    <script src="dist/sidebar_items-55424000.js"></script>
+    <script src="dist/sidebar_items-AC95EAA9.js"></script>
 
       <script src="docs_config.js"></script>
 
@@ -68,7 +68,7 @@
 APIGateway
       </a>
       <div class="sidebar-projectVersion" translate="no">
-        v0.0.1-beta.1-0-g338dcb2-main+dev
+        v0.0.1-beta.1-0-g0d60328-main+dev
       </div>
     </div>
     <ul id="sidebar-listNav" class="sidebar-listNav" role="tablist">
@@ -117,7 +117,7 @@ Pages
     </a>
 
   <span translate="no">Gateway.GraphQL.Resolvers.Spring.MessageResolver</span> 
-  <small class="app-vsn" translate="no">(APIGateway v0.0.1-beta.1-0-g338dcb2-main+dev)</small>
+  <small class="app-vsn" translate="no">(APIGateway v0.0.1-beta.1-0-g0d60328-main+dev)</small>
 
 </h1>
 
@@ -188,6 +188,14 @@ Pages
     <div class="summary-row">
       <div class="summary-signature">
         <a href="#create/3" translate="no">create(parent, args, arg3)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#create_via_connector/3" translate="no">create_via_connector(parent, args, arg3)</a>
 
       </div>
 
@@ -422,6 +430,44 @@ Pages
 
   </section>
 </section>
+<section class="detail" id="create_via_connector/3">
+
+  <div class="detail-header">
+    <a href="#create_via_connector/3" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">create_via_connector(parent, args, arg3)</h1>
+
+      <a href="https://github.com/kapranov/api_gateway/blob/main/apps/gateway/lib/gateway/graphql/resolvers/spring/message_resolver.ex#L49" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> create_via_connector(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">any</a>(), %{required(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>()) =&gt; <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">any</a>()}, %{
+  context: %{token: <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()}
+}) ::
+  <a href="#t:result/0">result</a>()</pre>
+
+          <pre translate="no"><span class="attribute">@spec</span> create_via_connector(
+  <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">any</a>(),
+  %{required(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>()) =&gt; <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">any</a>()},
+  <a href="https://hexdocs.pm/absinthe/1.7.5/Absinthe.Resolution.html#t:t/0">Absinthe.Resolution.t</a>()
+) ::
+  <a href="#t:error_tuple/0">error_tuple</a>()</pre>
+
+      </div>
+
+
+  </section>
+</section>
 <section class="detail" id="selected_connector/2">
 
   <div class="detail-header">
@@ -431,7 +477,7 @@ Pages
     </a>
     <h1 class="signature" translate="no">selected_connector(operators, message_id)</h1>
 
-      <a href="https://github.com/kapranov/api_gateway/blob/main/apps/gateway/lib/gateway/graphql/resolvers/spring/message_resolver.ex#L78" class="icon-action" rel="help" title="View Source">
+      <a href="https://github.com/kapranov/api_gateway/blob/main/apps/gateway/lib/gateway/graphql/resolvers/spring/message_resolver.ex#L93" class="icon-action" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -491,7 +537,7 @@ Pages
     </a>
     <h1 class="signature" translate="no">sorted_operators(parent, args, arg3)</h1>
 
-      <a href="https://github.com/kapranov/api_gateway/blob/main/apps/gateway/lib/gateway/graphql/resolvers/spring/message_resolver.ex#L69" class="icon-action" rel="help" title="View Source">
+      <a href="https://github.com/kapranov/api_gateway/blob/main/apps/gateway/lib/gateway/graphql/resolvers/spring/message_resolver.ex#L84" class="icon-action" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -523,7 +569,7 @@ Pages
     </a>
     <h1 class="signature" translate="no">update(parent, arg2, arg3)</h1>
 
-      <a href="https://github.com/kapranov/api_gateway/blob/main/apps/gateway/lib/gateway/graphql/resolvers/spring/message_resolver.ex#L49" class="icon-action" rel="help" title="View Source">
+      <a href="https://github.com/kapranov/api_gateway/blob/main/apps/gateway/lib/gateway/graphql/resolvers/spring/message_resolver.ex#L64" class="icon-action" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
