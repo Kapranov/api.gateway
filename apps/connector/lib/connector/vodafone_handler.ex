@@ -113,6 +113,9 @@ defmodule Connector.VodafoneHandler do
     end
   end
 
+  @spec handle_continue(atom(), map()) ::
+        {:noreply, map(), {:continue, atom()}} |
+        {:noreply, atom()}
   def handle_continue(:created_table, state) do
     :ets.new(@connector, [:set, :public, :named_table])
     case is_list(:ets.info(@connector)) do
@@ -128,12 +131,15 @@ defmodule Connector.VodafoneHandler do
     end
   end
 
+  @spec handle_continue(atom(), map()) ::
+        {:noreply, map()} |
+        {:noreply, atom()}
   def handle_continue(:updated_table, state) do
     Connector.Timeout.new(10_000, backoff: 1.25, backoff_max: 1_250, random: 0.1) |> Connector.Timeout.send_after(self(), :updated_ets)
     case is_list(:ets.info(@connector)) do
       true ->
         try do
-          if :ets.lookup_element(:vodafone, state.id, 1) == state.id do
+          if :ets.lookup_element(@connector, state.id, 1) == state.id do
             Enum.reduce(status_names(), [], fn(x, acc) ->
               case x do
                 :delivered ->
@@ -203,6 +209,7 @@ defmodule Connector.VodafoneHandler do
   @spec terminate(any(), any()) :: atom()
   def terminate(_reason, _state), do: :ok
 
+  @spec schedule_work() :: reference()
   defp schedule_work do
     Process.send_after(self(), :more_init, 250)
   end
@@ -256,7 +263,7 @@ defmodule Connector.VodafoneHandler do
   end
 
   @spec status_names() :: [atom()]
-  def status_names do
+  defp status_names do
     names = ~W(delivered error send)a
     names
   end
