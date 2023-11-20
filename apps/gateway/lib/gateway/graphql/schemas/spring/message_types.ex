@@ -71,6 +71,19 @@ defmodule Gateway.GraphQL.Schemas.Spring.MessageTypes do
       resolve &MessageResolver.create/3
     end
 
+    @desc "Created the model's Messages via sorted operator's connector"
+    field :create_message_via_connector, list_of(:message), description: "Created a new record for model's Messages and send via sorted connectors" do
+      arg :id_external, :string
+      arg :id_tax, :integer
+      arg :id_telegram, :string
+      arg :message_body, non_null(:string)
+      arg :message_expired_at, :datetime
+      arg :phone_number, non_null(:string)
+      arg :status_changed_at, :datetime
+      arg :status_id, non_null(:string)
+      resolve &MessageResolver.create_via_connector/3
+    end
+
     @desc "Updated a specific recored for model's Messages"
     field :update_message, list_of(:message), description: "Updated a one record for model's Messages" do
       arg :id, non_null(:string)

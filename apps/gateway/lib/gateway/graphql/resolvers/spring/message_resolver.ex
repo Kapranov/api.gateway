@@ -33,7 +33,7 @@ defmodule Gateway.GraphQL.Resolvers.Spring.MessageResolver do
   @spec create(any, %{atom => any}, %{context: %{token: String.t()}}) :: result()
   def create(_parent, args, %{context: %{token: _token}}) do
     args
-    |> Spring.create_message_via_connector()
+    |> Spring.create_message()
     |> case do
       {:error, %Ecto.Changeset{}} ->
         {:ok, []}
@@ -44,6 +44,21 @@ defmodule Gateway.GraphQL.Resolvers.Spring.MessageResolver do
 
   @spec create(any, %{atom => any}, Absinthe.Resolution.t()) :: error_tuple()
   def create(_parent, _args, _info), do: {:ok, []}
+
+  @spec create_via_connector(any, %{atom => any}, %{context: %{token: String.t()}}) :: result()
+  def create_via_connector(_parent, args, %{context: %{token: _token}}) do
+    args
+    |> Spring.create_message_via_connector()
+    |> case do
+      {:error, %Ecto.Changeset{}} ->
+        {:ok, []}
+      {:ok, struct} ->
+        {:ok, struct}
+    end
+  end
+
+  @spec create_via_connector(any, %{atom => any}, Absinthe.Resolution.t()) :: error_tuple()
+  def create_via_connector(_parent, _args, _info), do: {:ok, []}
 
   @spec update(any, %{id: bitstring, message: map()}, %{context: %{token: String.t()}}) :: result()
   def update(_parent, %{id: id, message: params}, %{context: %{token: _token}}) do

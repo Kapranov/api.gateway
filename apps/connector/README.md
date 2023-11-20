@@ -181,6 +181,14 @@ iex> Gateway.GraphQL.Resolvers.Spring.MessageResolver.selected_connector(operato
 iex> Gateway.GraphQL.Resolvers.Spring.MessageResolver.selected_connector(operators, FlakeId.get)
 ```
 
+### Notes for field `active` is `true` to allow only one record for `false` one and a more records
+
+```
+iex>
+iex> grouped = Enum.group_by(operators, fn x -> x.config.name end)
+iex> grouped["vodafone"] |> List.first
+```
+
 ### 27 Oct 2023 by Oleg G.Kapranov
 
 [1]:  http://httpbin.org
