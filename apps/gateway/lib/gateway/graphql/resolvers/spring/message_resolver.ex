@@ -91,7 +91,7 @@ defmodule Gateway.GraphQL.Resolvers.Spring.MessageResolver do
 
   @spec selected_connector([Operator.t()], String.t()) :: map() | []
   def selected_connector(operators, message_id) do
-    Enum.reduce(operators, [], fn(x, acc) ->
+    Enum.reduce_while(operators, [], fn(x, acc) ->
       case x.config.name do
         "dia" ->
           case Connector.DiaHandler.start_link([{"#{message_id}"}]) do
@@ -99,15 +99,15 @@ defmodule Gateway.GraphQL.Resolvers.Spring.MessageResolver do
               case Connector.DiaHandler.get_status(pid) do
                 :error ->
                   Connector.DiaHandler.stop(pid)
-                  acc
+                  {:cont, acc}
                 :timeout ->
                   Connector.DiaHandler.stop(pid)
-                  acc
+                  {:cont, acc}
                 data ->
                   Connector.DiaHandler.stop(pid)
-                  data
+                  {:halt, data}
               end
-            _ -> acc
+            _ -> {:cont, acc}
           end
         "intertelecom" ->
           case Connector.IntertelecomHandler.start_link([{"#{message_id}"}]) do
@@ -115,15 +115,15 @@ defmodule Gateway.GraphQL.Resolvers.Spring.MessageResolver do
               case Connector.IntertelecomHandler.get_status(pid) do
                 :error ->
                   Connector.IntertelecomHandler.stop(pid)
-                  acc
+                  {:cont, acc}
                 :timeout ->
                   Connector.IntertelecomHandler.stop(pid)
-                  acc
+                  {:cont, acc}
                 data ->
                   Connector.IntertelecomHandler.stop(pid)
-                  data
+                  {:halt, data}
               end
-            _ -> acc
+            _ -> {:cont, acc}
           end
         "kyivstar" ->
           case Connector.KyivstarHandler.start_link([{"#{message_id}"}]) do
@@ -131,15 +131,15 @@ defmodule Gateway.GraphQL.Resolvers.Spring.MessageResolver do
               case Connector.KyivstarHandler.get_status(pid) do
                 :error ->
                   Connector.KyivstarHandler.stop(pid)
-                  acc
+                  {:cont, acc}
                 :timeout ->
                   Connector.KyivstarHandler.stop(pid)
-                  acc
+                  {:cont, acc}
                 data ->
                   Connector.KyivstarHandler.stop(pid)
-                  data
+                  {:halt, data}
               end
-            _ -> acc
+            _ -> {:cont, acc}
           end
         "lifecell" ->
           case Connector.LifecellHandler.start_link([{"#{message_id}"}]) do
@@ -147,15 +147,15 @@ defmodule Gateway.GraphQL.Resolvers.Spring.MessageResolver do
               case Connector.LifecellHandler.get_status(pid) do
                 :error ->
                   Connector.LifecellHandler.stop(pid)
-                  acc
+                  {:cont, acc}
                 :timeout ->
                   Connector.LifecellHandler.stop(pid)
-                  acc
+                  {:cont, acc}
                 data ->
                   Connector.LifecellHandler.stop(pid)
-                  data
+                  {:halt, data}
               end
-            _ -> acc
+            _ -> {:cont, acc}
           end
         "telegram" ->
           case Connector.TelegramHandler.start_link([{"#{message_id}"}]) do
@@ -163,15 +163,15 @@ defmodule Gateway.GraphQL.Resolvers.Spring.MessageResolver do
               case Connector.TelegramHandler.get_status(pid) do
                 :error ->
                   Connector.TelegramHandler.stop(pid)
-                  acc
+                  {:cont, acc}
                 :timeout ->
                   Connector.TelegramHandler.stop(pid)
-                  acc
+                  {:cont, acc}
                 data ->
                   Connector.TelegramHandler.stop(pid)
-                  data
+                  {:halt, data}
               end
-            _ -> acc
+            _ -> {:cont, acc}
           end
         "viber" ->
           case Connector.ViberHandler.start_link([{"#{message_id}"}]) do
@@ -179,15 +179,15 @@ defmodule Gateway.GraphQL.Resolvers.Spring.MessageResolver do
               case Connector.ViberHandler.get_status(pid) do
                 :error ->
                   Connector.ViberHandler.stop(pid)
-                  acc
+                  {:cont, acc}
                 :timeout ->
                   Connector.ViberHandler.stop(pid)
-                  acc
+                  {:cont, acc}
                 data ->
                   Connector.ViberHandler.stop(pid)
-                  data
+                  {:halt, data}
               end
-            _ -> acc
+            _ -> {:cont, acc}
           end
         "vodafone" ->
           case Connector.VodafoneHandler.start_link([{"#{message_id}"}]) do
@@ -195,17 +195,17 @@ defmodule Gateway.GraphQL.Resolvers.Spring.MessageResolver do
               case Connector.VodafoneHandler.get_status(pid) do
                 :error ->
                   Connector.VodafoneHandler.stop(pid)
-                  acc
+                  {:cont, acc}
                 :timeout ->
                   Connector.VodafoneHandler.stop(pid)
-                  acc
+                  {:cont, acc}
                 data ->
                   Connector.VodafoneHandler.stop(pid)
-                  data
+                  {:halt, data}
               end
-            _ -> acc
+            _ -> {:cont, acc}
           end
-        _ -> []
+        _ -> {:cont, acc}
       end
     end)
   end
