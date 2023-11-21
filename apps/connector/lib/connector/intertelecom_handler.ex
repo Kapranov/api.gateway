@@ -15,7 +15,7 @@ defmodule Connector.IntertelecomHandler do
   @headers %{"content-type" => "application/json"}
   @name __MODULE__
   @options []
-  @timeout 3_000
+  @timeout 1_000
 
   @spec start_link([{String.t()}]) :: {atom(), pid} | atom()
   def start_link([{args}]) do
@@ -31,11 +31,11 @@ defmodule Connector.IntertelecomHandler do
       :exit, _reason -> :timeout
   end
 
-  @spec stop(pid) :: :ok | :none
+  @spec stop(pid) :: :ok | :error
   def stop(pid) do
       GenServer.stop(pid, :normal, @timeout)
     catch
-      :exit, _reason -> :none
+      :exit, _reason -> :error
   end
 
   @spec init(String.t()) :: {atom(), String.t(), {:continue, atom()}}
@@ -99,7 +99,6 @@ defmodule Connector.IntertelecomHandler do
         {:noreply, map()} |
         {:noreply, atom()}
   def handle_continue(:updated_table, state) do
-    Connector.Timeout.new(10_000, backoff: 1.25, backoff_max: 1_250, random: 0.1) |> Connector.Timeout.send_after(self(), :updated_ets)
     case is_list(:ets.info(@connector)) do
       true ->
         try do
@@ -116,12 +115,14 @@ defmodule Connector.IntertelecomHandler do
                     status: status,
                     text: state.text
                   }
+                  Connector.Timeout.new(1_000, backoff: 1.25, backoff_max: 1_250, random: 0.1)
+                  |> Connector.Timeout.send_after(self(), :updated_ets)
                   {:noreply, new_state}
                 :error ->
-                  Process.sleep(2_000)
+                  Process.sleep(1_000)
                   acc
                 :send ->
-                  Process.sleep(2_000)
+                  Process.sleep(1_000)
                   acc
               end
             end)
@@ -222,7 +223,7 @@ defmodule Connector.IntertelecomHandler do
 
   @spec timer(non_neg_integer()) :: non_neg_integer()
   defp timer(num) do
-    Enum.random(num..5_000)
+    Enum.random(num..4_000)
     |> Process.sleep()
   end
 

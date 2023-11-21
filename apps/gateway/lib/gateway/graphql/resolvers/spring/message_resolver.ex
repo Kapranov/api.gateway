@@ -89,7 +89,7 @@ defmodule Gateway.GraphQL.Resolvers.Spring.MessageResolver do
   @spec sorted_operators(any, %{atom => any}, Absinthe.Resolution.t()) :: error_tuple()
   def sorted_operators(_parent, _args, _info), do: {:ok, []}
 
-  @spec selected_connector([Operator.t()], String.t()) :: [Operator.t()] | []
+  @spec selected_connector([Operator.t()], String.t()) :: map() | []
   def selected_connector(operators, message_id) do
     Enum.reduce(operators, [], fn(x, acc) ->
       case x.config.name do
@@ -98,114 +98,114 @@ defmodule Gateway.GraphQL.Resolvers.Spring.MessageResolver do
             {:ok, pid} ->
               case Connector.DiaHandler.get_status(pid) do
                 :error ->
-                  :ok = Connector.DiaHandler.stop(pid)
+                  Connector.DiaHandler.stop(pid)
                   acc
                 :timeout ->
-                  :ok = Connector.DiaHandler.stop(pid)
+                  Connector.DiaHandler.stop(pid)
                   acc
                 data ->
-                  :ok = Connector.DiaHandler.stop(pid)
+                  Connector.DiaHandler.stop(pid)
                   data
               end
-            _ -> {:ok, []}
+            _ -> acc
           end
         "intertelecom" ->
           case Connector.IntertelecomHandler.start_link([{"#{message_id}"}]) do
             {:ok, pid} ->
               case Connector.IntertelecomHandler.get_status(pid) do
                 :error ->
-                  :ok = Connector.IntertelecomHandler.stop(pid)
+                  Connector.IntertelecomHandler.stop(pid)
                   acc
                 :timeout ->
-                  :ok = Connector.IntertelecomHandler.stop(pid)
+                  Connector.IntertelecomHandler.stop(pid)
                   acc
                 data ->
-                  :ok = Connector.IntertelecomHandler.stop(pid)
+                  Connector.IntertelecomHandler.stop(pid)
                   data
               end
-            _ -> {:ok, []}
+            _ -> acc
           end
         "kyivstar" ->
           case Connector.KyivstarHandler.start_link([{"#{message_id}"}]) do
             {:ok, pid} ->
               case Connector.KyivstarHandler.get_status(pid) do
                 :error ->
-                  :ok = Connector.KyivstarHandler.stop(pid)
+                  Connector.KyivstarHandler.stop(pid)
                   acc
                 :timeout ->
-                  :ok = Connector.KyivstarHandler.stop(pid)
+                  Connector.KyivstarHandler.stop(pid)
                   acc
                 data ->
-                  :ok = Connector.KyivstarHandler.stop(pid)
+                  Connector.KyivstarHandler.stop(pid)
                   data
               end
-            _ -> {:ok, []}
+            _ -> acc
           end
         "lifecell" ->
           case Connector.LifecellHandler.start_link([{"#{message_id}"}]) do
             {:ok, pid} ->
               case Connector.LifecellHandler.get_status(pid) do
                 :error ->
-                  :ok = Connector.LifecellHandler.stop(pid)
+                  Connector.LifecellHandler.stop(pid)
                   acc
                 :timeout ->
-                  :ok = Connector.LifecellHandler.stop(pid)
+                  Connector.LifecellHandler.stop(pid)
                   acc
                 data ->
-                  :ok = Connector.LifecellHandler.stop(pid)
+                  Connector.LifecellHandler.stop(pid)
                   data
               end
-            _ -> {:ok, []}
+            _ -> acc
           end
         "telegram" ->
           case Connector.TelegramHandler.start_link([{"#{message_id}"}]) do
             {:ok, pid} ->
               case Connector.TelegramHandler.get_status(pid) do
                 :error ->
-                  :ok = Connector.TelegramHandler.stop(pid)
+                  Connector.TelegramHandler.stop(pid)
                   acc
                 :timeout ->
-                  :ok = Connector.TelegramHandler.stop(pid)
+                  Connector.TelegramHandler.stop(pid)
                   acc
                 data ->
-                  :ok = Connector.TelegramHandler.stop(pid)
+                  Connector.TelegramHandler.stop(pid)
                   data
               end
-            _ -> {:ok, []}
+            _ -> acc
           end
         "viber" ->
           case Connector.ViberHandler.start_link([{"#{message_id}"}]) do
             {:ok, pid} ->
               case Connector.ViberHandler.get_status(pid) do
                 :error ->
-                  :ok = Connector.ViberHandler.stop(pid)
+                  Connector.ViberHandler.stop(pid)
                   acc
                 :timeout ->
-                  :ok = Connector.ViberHandler.stop(pid)
+                  Connector.ViberHandler.stop(pid)
                   acc
                 data ->
-                  :ok = Connector.ViberHandler.stop(pid)
+                  Connector.ViberHandler.stop(pid)
                   data
               end
-            _ -> {:ok, []}
+            _ -> acc
           end
         "vodafone" ->
           case Connector.VodafoneHandler.start_link([{"#{message_id}"}]) do
             {:ok, pid} ->
               case Connector.VodafoneHandler.get_status(pid) do
                 :error ->
-                  :ok = Connector.VodafoneHandler.stop(pid)
+                  Connector.VodafoneHandler.stop(pid)
                   acc
                 :timeout ->
-                  :ok = Connector.VodafoneHandler.stop(pid)
+                  Connector.VodafoneHandler.stop(pid)
                   acc
                 data ->
-                  :ok = Connector.VodafoneHandler.stop(pid)
+                  Connector.VodafoneHandler.stop(pid)
                   data
               end
-            _ -> {:ok, []}
+            _ -> acc
           end
-        _ -> acc
+        _ -> []
       end
     end)
   end

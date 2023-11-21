@@ -184,7 +184,6 @@ iex> Gateway.GraphQL.Resolvers.Spring.MessageResolver.selected_connector(operato
 ### Notes for field `active` is `true` to allow only one record for `false` one and a more records
 
 ```
-iex>
 iex> grouped = Enum.group_by(operators, fn x -> x.config.name end)
 iex> grouped["vodafone"] |> List.first
 ```
