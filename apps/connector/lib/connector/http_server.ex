@@ -21,8 +21,24 @@ defmodule Connector.HTTPServer do
       iex> args = %{connector: "vodafone", id: FlakeId.get, phone_number: "+380991111111", message_body: "Aloha!"}
       iex> {:ok, pid} = Connector.HTTPServer.start_link(args)
       {:ok, pid}
+      Received arguments: %{id: "Ac4B2O2hMTwoBGc7vc", connector: "vodafone", phone_number: "+380991111111", message_body: "Aloha!"}
+      Received arguments: %{id: "Ac4B2O2hMTwoBGc7vc", status: "send", text: "Aloha!", connector: "vodafone", sms: "+380991111111"}
+      Received arguments: %{id: "Ac4B2O2hMTwoBGc7vc", status: "delivered", text: "Aloha!", connector: "vodafone", sms: "+380991111111"}
       iex> :sys.get_state(pid)
-      %{id: "Ac3jGQ8zL7Ys08o8MS", status: "delivered", text: "Aloha!", connector: "vodafone", sms: "+380997170609"}
+      %{id: "Ac49dpJdkaGO4kKHb6", status: "delivered", text: "Aloha!", connector: "vodafone", sms: "+380997170609"}
+      iex> Connector.HTTPServer.get_status
+      %{id: "Ac49dpJdkaGO4kKHb6", status: "delivered", text: "Aloha!", connector: "vodafone", sms: "+380991111111"}
+      iex> Connector.HTTPServer.stop(pid)
+      :ok
+
+      iex> args = %{connector: "vodafone", id: FlakeId.get, phone_number: "+380991111111", message_body: "Aloha!"}
+      iex> {:ok, pid} = Connector.HTTPServer.start_link(args)
+      {:ok, pid}
+      Received arguments: %{id: "Ac4BAqSjeT8A2A8ZBg", connector: "vodafone", phone_number: "+380991111111", message_body: "Aloha!"}
+      Received arguments: %{id: "Ac4BAqSjeT8A2A8ZBg", status: "send", text: "Aloha!", connector: "vodafone", sms: "+380991111111"}
+      iex> Connector.HTTPServer.get_status
+      :timeout
+      Received arguments: %{id: "Ac4BAqSjeT8A2A8ZBg", status: "delivered", text: "Aloha!", connector: "vodafone", sms: "+380991111111"}
       iex> Connector.HTTPServer.stop(pid)
       :ok
 
@@ -34,15 +50,51 @@ defmodule Connector.HTTPServer do
       :exit, _reason -> :error
   end
 
+  def get_status do
+    try do
+      GenServer.call(@name, :timer_one)
+    catch
+      :exit, _reason ->
+        try do
+          GenServer.call(@name, :timer_two)
+        catch
+          :exit, _reason ->
+            try do
+              GenServer.call(@name, :timer_three)
+            catch
+              :exit, _reason ->
+                :timeout
+            end
+        end
+    end
+        catch
+          :exit, _reason ->
+            GenServer.call(@name, :timer_three)
+  end
+
   @spec stop(pid) :: :ok | :error
   def stop(pid) do
-    GenServer.stop(pid, :normal, @timeout)
+      GenServer.stop(pid, :normal, @timeout)
+    catch
+      :exit, _reason -> :error
   end
 
   @spec init(map()) ::
         {atom(), map(), {:continue, atom()}}
   def init(state) do
     {:ok, state, {:continue, :external_api_post}}
+  end
+
+  def handle_call(:timer_one, _pid, state) do
+    {:reply, state, state, 10_000}
+  end
+
+  def handle_call(:timer_two, _pid, state) do
+    {:reply, state, state, 5_000}
+  end
+
+  def handle_call(:timer_three, _pid, state) do
+    {:reply, state, state, 5_000}
   end
 
   @spec handle_continue(atom(), map()) ::
@@ -52,6 +104,8 @@ defmodule Connector.HTTPServer do
     action = Keyword.get(@action, :post)
     case post_request(action, state) do
       {:ok, response} ->
+        IO.puts("Received arguments: #{inspect(state)}")
+        IO.puts("Received arguments: #{inspect(response)}")
         {:noreply, response, {:continue, :external_api_get}}
       {:error, response} ->
         {:noreply, response}
@@ -65,17 +119,23 @@ defmodule Connector.HTTPServer do
     action = Keyword.get(@action, :post)
     case get_request(action, state) do
       {:ok, response} ->
+        IO.puts("Received arguments: #{inspect(response)}")
         {:noreply, response}
       {:error, response} ->
         {:noreply, response}
     end
   end
 
+  @spec handle_info(any(), map()) :: {:noreply, map()} | {:noreply, atom()}
+  def handle_info(:timeout, state) do
+    {:noreply, state}
+  end
+
   @spec terminate(any(), any()) :: atom()
   def terminate(_reason, _state), do: :ok
 
   @spec post_request(String.t(), map()) :: {:ok, map()} | {:error, atom()}
-  def post_request(action, data) do
+  defp post_request(action, data) do
     body = URI.encode_query(%{
       "id" => data.id,
       "connector" => data.connector,
@@ -97,7 +157,7 @@ defmodule Connector.HTTPServer do
   end
 
   @spec get_request(String.t(), map()) :: {:ok, map()} | {:error, atom()}
-  def get_request(action, data) do
+  defp get_request(action, data) do
     body = URI.encode_query(%{
       "id" => data.id,
       "connector" => data.connector,
@@ -113,16 +173,16 @@ defmodule Connector.HTTPServer do
         {:error, reason}
       {:ok, %HTTPoison.Response{body: body}} ->
         state = decode(body)
-        timer(1_000)
+        timer(20_000)
         {:ok, state}
     end
   end
 
   @spec api_route(String.t()) :: String.t()
-  def api_route(action), do: "http://httpbin.org/#{action}"
+  defp api_route(action), do: "http://httpbin.org/#{action}"
 
   @spec decode(map()) :: map()
-  def decode(data) do
+  defp decode(data) do
     struct =
       data
       |> Jason.decode!
@@ -139,8 +199,8 @@ defmodule Connector.HTTPServer do
   end
 
   @spec timer(non_neg_integer()) :: non_neg_integer()
-  def timer(num) do
-    Enum.random(num..3_000)
+  defp timer(num) do
+    Enum.random(num..30_000)
     |> Process.sleep()
   end
 end

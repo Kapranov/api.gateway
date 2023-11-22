@@ -5,15 +5,15 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="ExDoc v0.30.9">
-    <meta name="project" content="APIGateway v0.0.1-beta.1-0-g18aeee6-main+dev">
+    <meta name="project" content="APIGateway v0.0.1-beta.1-0-g03882ad-main+dev">
 
-    <title>Connector.HTTPServer — APIGateway v0.0.1-beta.1-0-g18aeee6-main+dev</title>
+    <title>Connector.HTTPServer — APIGateway v0.0.1-beta.1-0-g03882ad-main+dev</title>
     <link rel="stylesheet" href="dist/html-elixir-XFYN5IVA.css" />
 
 
     <script src="dist/handlebars.runtime-NWIB6V2M.js"></script>
     <script src="dist/handlebars.templates-EPF2X7PV.js"></script>
-    <script src="dist/sidebar_items-BE7775AF.js"></script>
+    <script src="dist/sidebar_items-EF880C17.js"></script>
 
       <script src="docs_config.js"></script>
 
@@ -68,7 +68,7 @@
 APIGateway
       </a>
       <div class="sidebar-projectVersion" translate="no">
-        v0.0.1-beta.1-0-g18aeee6-main+dev
+        v0.0.1-beta.1-0-g03882ad-main+dev
       </div>
     </div>
     <ul id="sidebar-listNav" class="sidebar-listNav" role="tablist">
@@ -117,7 +117,7 @@ Pages
     </a>
 
   <span translate="no">Connector.HTTPServer</span> 
-  <small class="app-vsn" translate="no">(APIGateway v0.0.1-beta.1-0-g18aeee6-main+dev)</small>
+  <small class="app-vsn" translate="no">(APIGateway v0.0.1-beta.1-0-g03882ad-main+dev)</small>
 
 </h1>
 
@@ -141,14 +141,6 @@ Pages
 
     <div class="summary-row">
       <div class="summary-signature">
-        <a href="#api_route/1" translate="no">api_route(action)</a>
-
-      </div>
-
-    </div>
-
-    <div class="summary-row">
-      <div class="summary-signature">
         <a href="#child_spec/1" translate="no">child_spec(init_arg)</a>
 
       </div>
@@ -159,15 +151,7 @@ Pages
 
     <div class="summary-row">
       <div class="summary-signature">
-        <a href="#decode/1" translate="no">decode(data)</a>
-
-      </div>
-
-    </div>
-
-    <div class="summary-row">
-      <div class="summary-signature">
-        <a href="#get_request/2" translate="no">get_request(action, data)</a>
+        <a href="#get_status/0" translate="no">get_status()</a>
 
       </div>
 
@@ -195,14 +179,6 @@ Pages
 
     <div class="summary-row">
       <div class="summary-signature">
-        <a href="#post_request/2" translate="no">post_request(action, data)</a>
-
-      </div>
-
-    </div>
-
-    <div class="summary-row">
-      <div class="summary-signature">
         <a href="#start_link/1" translate="no">start_link(args)</a>
 
       </div>
@@ -214,14 +190,6 @@ Pages
     <div class="summary-row">
       <div class="summary-signature">
         <a href="#stop/1" translate="no">stop(pid)</a>
-
-      </div>
-
-    </div>
-
-    <div class="summary-row">
-      <div class="summary-signature">
-        <a href="#timer/1" translate="no">timer(num)</a>
 
       </div>
 
@@ -240,34 +208,6 @@ Pages
       <span class="text">Functions</span>
     </h1>
     <div class="functions-list">
-<section class="detail" id="api_route/1">
-
-  <div class="detail-header">
-    <a href="#api_route/1" class="detail-link" title="Link to this function">
-      <i class="ri-link-m" aria-hidden="true"></i>
-      <span class="sr-only">Link to this function</span>
-    </a>
-    <h1 class="signature" translate="no">api_route(action)</h1>
-
-      <a href="https://github.com/kapranov/api_gateway/blob/main/apps/connector/lib/connector/http_server.ex#L122" class="icon-action" rel="help" title="View Source">
-       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
-       <span class="sr-only">View Source</span>
-     </a>
-
-
-  </div>
-
-  <section class="docstring">
-
-      <div class="specs">
-
-          <pre translate="no"><span class="attribute">@spec</span> api_route(<a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()) :: <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()</pre>
-
-      </div>
-
-
-  </section>
-</section>
 <section class="detail" id="child_spec/1">
 
   <div class="detail-header">
@@ -290,16 +230,16 @@ Pages
 <p>Returns a specification to start this module under a supervisor.</p><p>See <a href="https://hexdocs.pm/elixir/Supervisor.html"><code class="inline">Supervisor</code></a>.</p>
   </section>
 </section>
-<section class="detail" id="decode/1">
+<section class="detail" id="get_status/0">
 
   <div class="detail-header">
-    <a href="#decode/1" class="detail-link" title="Link to this function">
+    <a href="#get_status/0" class="detail-link" title="Link to this function">
       <i class="ri-link-m" aria-hidden="true"></i>
       <span class="sr-only">Link to this function</span>
     </a>
-    <h1 class="signature" translate="no">decode(data)</h1>
+    <h1 class="signature" translate="no">get_status()</h1>
 
-      <a href="https://github.com/kapranov/api_gateway/blob/main/apps/connector/lib/connector/http_server.ex#L125" class="icon-action" rel="help" title="View Source">
+      <a href="https://github.com/kapranov/api_gateway/blob/main/apps/connector/lib/connector/http_server.ex#L53" class="icon-action" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -308,40 +248,6 @@ Pages
   </div>
 
   <section class="docstring">
-
-      <div class="specs">
-
-          <pre translate="no"><span class="attribute">@spec</span> decode(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">map</a>()) :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">map</a>()</pre>
-
-      </div>
-
-
-  </section>
-</section>
-<section class="detail" id="get_request/2">
-
-  <div class="detail-header">
-    <a href="#get_request/2" class="detail-link" title="Link to this function">
-      <i class="ri-link-m" aria-hidden="true"></i>
-      <span class="sr-only">Link to this function</span>
-    </a>
-    <h1 class="signature" translate="no">get_request(action, data)</h1>
-
-      <a href="https://github.com/kapranov/api_gateway/blob/main/apps/connector/lib/connector/http_server.ex#L100" class="icon-action" rel="help" title="View Source">
-       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
-       <span class="sr-only">View Source</span>
-     </a>
-
-
-  </div>
-
-  <section class="docstring">
-
-      <div class="specs">
-
-          <pre translate="no"><span class="attribute">@spec</span> get_request(<a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">map</a>()) :: {:ok, <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">map</a>()} | {:error, <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>()}</pre>
-
-      </div>
 
 
   </section>
@@ -355,7 +261,7 @@ Pages
     </a>
     <h1 class="signature" translate="no">handle_continue(atom, state)</h1>
 
-      <a href="https://github.com/kapranov/api_gateway/blob/main/apps/connector/lib/connector/http_server.ex#L51" class="icon-action" rel="help" title="View Source">
+      <a href="https://github.com/kapranov/api_gateway/blob/main/apps/connector/lib/connector/http_server.ex#L103" class="icon-action" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -385,7 +291,7 @@ Pages
     </a>
     <h1 class="signature" translate="no">init(state)</h1>
 
-      <a href="https://github.com/kapranov/api_gateway/blob/main/apps/connector/lib/connector/http_server.ex#L44" class="icon-action" rel="help" title="View Source">
+      <a href="https://github.com/kapranov/api_gateway/blob/main/apps/connector/lib/connector/http_server.ex#L84" class="icon-action" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -404,34 +310,6 @@ Pages
 <p>Callback implementation for <a href="https://hexdocs.pm/elixir/GenServer.html#c:init/1"><code class="inline">GenServer.init/1</code></a>.</p>
   </section>
 </section>
-<section class="detail" id="post_request/2">
-
-  <div class="detail-header">
-    <a href="#post_request/2" class="detail-link" title="Link to this function">
-      <i class="ri-link-m" aria-hidden="true"></i>
-      <span class="sr-only">Link to this function</span>
-    </a>
-    <h1 class="signature" translate="no">post_request(action, data)</h1>
-
-      <a href="https://github.com/kapranov/api_gateway/blob/main/apps/connector/lib/connector/http_server.ex#L78" class="icon-action" rel="help" title="View Source">
-       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
-       <span class="sr-only">View Source</span>
-     </a>
-
-
-  </div>
-
-  <section class="docstring">
-
-      <div class="specs">
-
-          <pre translate="no"><span class="attribute">@spec</span> post_request(<a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">map</a>()) :: {:ok, <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">map</a>()} | {:error, <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>()}</pre>
-
-      </div>
-
-
-  </section>
-</section>
 <section class="detail" id="start_link/1">
 
   <div class="detail-header">
@@ -441,7 +319,7 @@ Pages
     </a>
     <h1 class="signature" translate="no">start_link(args)</h1>
 
-      <a href="https://github.com/kapranov/api_gateway/blob/main/apps/connector/lib/connector/http_server.ex#L31" class="icon-action" rel="help" title="View Source">
+      <a href="https://github.com/kapranov/api_gateway/blob/main/apps/connector/lib/connector/http_server.ex#L47" class="icon-action" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -463,12 +341,28 @@ Pages
   </a>
   <span class="text">Example.</span>
 </h2>
-<pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="n">args</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="5952940633-1">%{</span><span class="ss">connector</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;vodafone&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="nc">FlakeId</span><span class="o">.</span><span class="n">get</span><span class="p">,</span><span class="w"> </span><span class="ss">phone_number</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;+380991111111&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">message_body</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Aloha!&quot;</span><span class="p" data-group-id="5952940633-1">}</span><span class="w">
-</span><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="5952940633-2">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="n">pid</span><span class="p" data-group-id="5952940633-2">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Connector.HTTPServer</span><span class="o">.</span><span class="n">start_link</span><span class="p" data-group-id="5952940633-3">(</span><span class="n">args</span><span class="p" data-group-id="5952940633-3">)</span><span class="w">
-</span><span class="p" data-group-id="5952940633-4">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="n">pid</span><span class="p" data-group-id="5952940633-4">}</span><span class="w">
-</span><span class="gp unselectable">iex&gt; </span><span class="nc">:sys</span><span class="o">.</span><span class="n">get_state</span><span class="p" data-group-id="5952940633-5">(</span><span class="n">pid</span><span class="p" data-group-id="5952940633-5">)</span><span class="w">
-</span><span class="p" data-group-id="5952940633-6">%{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Ac3jGQ8zL7Ys08o8MS&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">status</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;delivered&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">text</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Aloha!&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">connector</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;vodafone&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">sms</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;+380997170609&quot;</span><span class="p" data-group-id="5952940633-6">}</span><span class="w">
-</span><span class="gp unselectable">iex&gt; </span><span class="nc">Connector.HTTPServer</span><span class="o">.</span><span class="n">stop</span><span class="p" data-group-id="5952940633-7">(</span><span class="n">pid</span><span class="p" data-group-id="5952940633-7">)</span><span class="w">
+<pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="n">args</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="3961178624-1">%{</span><span class="ss">connector</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;vodafone&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="nc">FlakeId</span><span class="o">.</span><span class="n">get</span><span class="p">,</span><span class="w"> </span><span class="ss">phone_number</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;+380991111111&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">message_body</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Aloha!&quot;</span><span class="p" data-group-id="3961178624-1">}</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="3961178624-2">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="n">pid</span><span class="p" data-group-id="3961178624-2">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Connector.HTTPServer</span><span class="o">.</span><span class="n">start_link</span><span class="p" data-group-id="3961178624-3">(</span><span class="n">args</span><span class="p" data-group-id="3961178624-3">)</span><span class="w">
+</span><span class="p" data-group-id="3961178624-4">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="n">pid</span><span class="p" data-group-id="3961178624-4">}</span><span class="w">
+</span><span class="nc">Received</span><span class="w"> </span><span class="ss">arguments</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="3961178624-5">%{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Ac4B2O2hMTwoBGc7vc&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">connector</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;vodafone&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">phone_number</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;+380991111111&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">message_body</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Aloha!&quot;</span><span class="p" data-group-id="3961178624-5">}</span><span class="w">
+</span><span class="nc">Received</span><span class="w"> </span><span class="ss">arguments</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="3961178624-6">%{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Ac4B2O2hMTwoBGc7vc&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">status</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;send&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">text</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Aloha!&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">connector</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;vodafone&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">sms</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;+380991111111&quot;</span><span class="p" data-group-id="3961178624-6">}</span><span class="w">
+</span><span class="nc">Received</span><span class="w"> </span><span class="ss">arguments</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="3961178624-7">%{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Ac4B2O2hMTwoBGc7vc&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">status</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;delivered&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">text</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Aloha!&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">connector</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;vodafone&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">sms</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;+380991111111&quot;</span><span class="p" data-group-id="3961178624-7">}</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">:sys</span><span class="o">.</span><span class="n">get_state</span><span class="p" data-group-id="3961178624-8">(</span><span class="n">pid</span><span class="p" data-group-id="3961178624-8">)</span><span class="w">
+</span><span class="p" data-group-id="3961178624-9">%{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Ac49dpJdkaGO4kKHb6&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">status</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;delivered&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">text</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Aloha!&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">connector</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;vodafone&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">sms</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;+380997170609&quot;</span><span class="p" data-group-id="3961178624-9">}</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Connector.HTTPServer</span><span class="o">.</span><span class="n">get_status</span><span class="w">
+</span><span class="p" data-group-id="3961178624-10">%{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Ac49dpJdkaGO4kKHb6&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">status</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;delivered&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">text</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Aloha!&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">connector</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;vodafone&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">sms</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;+380991111111&quot;</span><span class="p" data-group-id="3961178624-10">}</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Connector.HTTPServer</span><span class="o">.</span><span class="n">stop</span><span class="p" data-group-id="3961178624-11">(</span><span class="n">pid</span><span class="p" data-group-id="3961178624-11">)</span><span class="w">
+</span><span class="ss">:ok</span><span class="w">
+
+</span><span class="gp unselectable">iex&gt; </span><span class="n">args</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="3961178624-12">%{</span><span class="ss">connector</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;vodafone&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="nc">FlakeId</span><span class="o">.</span><span class="n">get</span><span class="p">,</span><span class="w"> </span><span class="ss">phone_number</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;+380991111111&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">message_body</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Aloha!&quot;</span><span class="p" data-group-id="3961178624-12">}</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="3961178624-13">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="n">pid</span><span class="p" data-group-id="3961178624-13">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Connector.HTTPServer</span><span class="o">.</span><span class="n">start_link</span><span class="p" data-group-id="3961178624-14">(</span><span class="n">args</span><span class="p" data-group-id="3961178624-14">)</span><span class="w">
+</span><span class="p" data-group-id="3961178624-15">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="n">pid</span><span class="p" data-group-id="3961178624-15">}</span><span class="w">
+</span><span class="nc">Received</span><span class="w"> </span><span class="ss">arguments</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="3961178624-16">%{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Ac4BAqSjeT8A2A8ZBg&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">connector</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;vodafone&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">phone_number</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;+380991111111&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">message_body</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Aloha!&quot;</span><span class="p" data-group-id="3961178624-16">}</span><span class="w">
+</span><span class="nc">Received</span><span class="w"> </span><span class="ss">arguments</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="3961178624-17">%{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Ac4BAqSjeT8A2A8ZBg&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">status</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;send&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">text</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Aloha!&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">connector</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;vodafone&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">sms</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;+380991111111&quot;</span><span class="p" data-group-id="3961178624-17">}</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Connector.HTTPServer</span><span class="o">.</span><span class="n">get_status</span><span class="w">
+</span><span class="ss">:timeout</span><span class="w">
+</span><span class="nc">Received</span><span class="w"> </span><span class="ss">arguments</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="3961178624-18">%{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Ac4BAqSjeT8A2A8ZBg&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">status</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;delivered&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">text</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Aloha!&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">connector</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;vodafone&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">sms</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;+380991111111&quot;</span><span class="p" data-group-id="3961178624-18">}</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Connector.HTTPServer</span><span class="o">.</span><span class="n">stop</span><span class="p" data-group-id="3961178624-19">(</span><span class="n">pid</span><span class="p" data-group-id="3961178624-19">)</span><span class="w">
 </span><span class="ss">:ok</span></code></pre>
   </section>
 </section>
@@ -481,7 +375,7 @@ Pages
     </a>
     <h1 class="signature" translate="no">stop(pid)</h1>
 
-      <a href="https://github.com/kapranov/api_gateway/blob/main/apps/connector/lib/connector/http_server.ex#L38" class="icon-action" rel="help" title="View Source">
+      <a href="https://github.com/kapranov/api_gateway/blob/main/apps/connector/lib/connector/http_server.ex#L76" class="icon-action" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -494,34 +388,6 @@ Pages
       <div class="specs">
 
           <pre translate="no"><span class="attribute">@spec</span> stop(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">pid</a>()) :: :ok | :error</pre>
-
-      </div>
-
-
-  </section>
-</section>
-<section class="detail" id="timer/1">
-
-  <div class="detail-header">
-    <a href="#timer/1" class="detail-link" title="Link to this function">
-      <i class="ri-link-m" aria-hidden="true"></i>
-      <span class="sr-only">Link to this function</span>
-    </a>
-    <h1 class="signature" translate="no">timer(num)</h1>
-
-      <a href="https://github.com/kapranov/api_gateway/blob/main/apps/connector/lib/connector/http_server.ex#L142" class="icon-action" rel="help" title="View Source">
-       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
-       <span class="sr-only">View Source</span>
-     </a>
-
-
-  </div>
-
-  <section class="docstring">
-
-      <div class="specs">
-
-          <pre translate="no"><span class="attribute">@spec</span> timer(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">non_neg_integer</a>()) :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">non_neg_integer</a>()</pre>
 
       </div>
 
