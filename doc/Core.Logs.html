@@ -5,9 +5,9 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="ExDoc v0.30.9">
-    <meta name="project" content="APIGateway v0.0.1-beta.1-0-g03882ad-main+dev">
+    <meta name="project" content="APIGateway v0.0.1-beta.1-0-g6d113ec-main+dev">
 
-    <title>Core.Logs — APIGateway v0.0.1-beta.1-0-g03882ad-main+dev</title>
+    <title>Core.Logs — APIGateway v0.0.1-beta.1-0-g6d113ec-main+dev</title>
     <link rel="stylesheet" href="dist/html-elixir-XFYN5IVA.css" />
 
 
@@ -68,7 +68,7 @@
 APIGateway
       </a>
       <div class="sidebar-projectVersion" translate="no">
-        v0.0.1-beta.1-0-g03882ad-main+dev
+        v0.0.1-beta.1-0-g6d113ec-main+dev
       </div>
     </div>
     <ul id="sidebar-listNav" class="sidebar-listNav" role="tablist">
@@ -117,7 +117,7 @@ Pages
     </a>
 
   <span translate="no">Core.Logs</span> 
-  <small class="app-vsn" translate="no">(APIGateway v0.0.1-beta.1-0-g03882ad-main+dev)</small>
+  <small class="app-vsn" translate="no">(APIGateway v0.0.1-beta.1-0-g6d113ec-main+dev)</small>
 
 </h1>
 
@@ -403,11 +403,11 @@ Pages
   </a>
   <span class="text">Examples</span>
 </h2>
-<pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="n">create_sms_log</span><span class="p" data-group-id="5284465851-1">(</span><span class="p" data-group-id="5284465851-2">%{</span><span class="ss">field</span><span class="p">:</span><span class="w"> </span><span class="n">value</span><span class="p" data-group-id="5284465851-2">}</span><span class="p" data-group-id="5284465851-1">)</span><span class="w">
-</span><span class="p" data-group-id="5284465851-3">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="5284465851-4">%</span><span class="nc" data-group-id="5284465851-4">SmsLog</span><span class="p" data-group-id="5284465851-4">{</span><span class="p" data-group-id="5284465851-4">}</span><span class="p" data-group-id="5284465851-3">}</span><span class="w">
+<pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="n">create_sms_log</span><span class="p" data-group-id="1630538062-1">(</span><span class="p" data-group-id="1630538062-2">%{</span><span class="ss">field</span><span class="p">:</span><span class="w"> </span><span class="n">value</span><span class="p" data-group-id="1630538062-2">}</span><span class="p" data-group-id="1630538062-1">)</span><span class="w">
+</span><span class="p" data-group-id="1630538062-3">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="1630538062-4">%</span><span class="nc" data-group-id="1630538062-4">SmsLog</span><span class="p" data-group-id="1630538062-4">{</span><span class="p" data-group-id="1630538062-4">}</span><span class="p" data-group-id="1630538062-3">}</span><span class="w">
 
-</span><span class="gp unselectable">iex&gt; </span><span class="n">create_sms_log</span><span class="p" data-group-id="5284465851-5">(</span><span class="p" data-group-id="5284465851-6">%{</span><span class="ss">field</span><span class="p">:</span><span class="w"> </span><span class="n">bad_value</span><span class="p" data-group-id="5284465851-6">}</span><span class="p" data-group-id="5284465851-5">)</span><span class="w">
-</span><span class="p" data-group-id="5284465851-7">{</span><span class="ss">:error</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="5284465851-8">%</span><span class="nc" data-group-id="5284465851-8">Ecto.Changeset</span><span class="p" data-group-id="5284465851-8">{</span><span class="p" data-group-id="5284465851-8">}</span><span class="p" data-group-id="5284465851-7">}</span></code></pre>
+</span><span class="gp unselectable">iex&gt; </span><span class="n">create_sms_log</span><span class="p" data-group-id="1630538062-5">(</span><span class="p" data-group-id="1630538062-6">%{</span><span class="ss">field</span><span class="p">:</span><span class="w"> </span><span class="n">bad_value</span><span class="p" data-group-id="1630538062-6">}</span><span class="p" data-group-id="1630538062-5">)</span><span class="w">
+</span><span class="p" data-group-id="1630538062-7">{</span><span class="ss">:error</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="1630538062-8">%</span><span class="nc" data-group-id="1630538062-8">Ecto.Changeset</span><span class="p" data-group-id="1630538062-8">{</span><span class="p" data-group-id="1630538062-8">}</span><span class="p" data-group-id="1630538062-7">}</span></code></pre>
   </section>
 </section>
 <section class="detail" id="get_sms_log/1">
@@ -441,11 +441,11 @@ Pages
   </a>
   <span class="text">Examples</span>
 </h2>
-<pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="n">get_sms_log</span><span class="p" data-group-id="9367233543-1">(</span><span class="mi">123</span><span class="p" data-group-id="9367233543-1">)</span><span class="w">
-</span><span class="p" data-group-id="9367233543-2">%</span><span class="nc" data-group-id="9367233543-2">SmsLog</span><span class="p" data-group-id="9367233543-2">{</span><span class="p" data-group-id="9367233543-2">}</span><span class="w">
+<pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="n">get_sms_log</span><span class="p" data-group-id="3211632191-1">(</span><span class="mi">123</span><span class="p" data-group-id="3211632191-1">)</span><span class="w">
+</span><span class="p" data-group-id="3211632191-2">%</span><span class="nc" data-group-id="3211632191-2">SmsLog</span><span class="p" data-group-id="3211632191-2">{</span><span class="p" data-group-id="3211632191-2">}</span><span class="w">
 
-</span><span class="gp unselectable">iex&gt; </span><span class="n">get_sms_log</span><span class="p" data-group-id="9367233543-3">(</span><span class="mi">456</span><span class="p" data-group-id="9367233543-3">)</span><span class="w">
-</span><span class="p" data-group-id="9367233543-4">{</span><span class="ss">:error</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="9367233543-5">%</span><span class="nc" data-group-id="9367233543-5">Ecto.Changeset</span><span class="p" data-group-id="9367233543-5">{</span><span class="p" data-group-id="9367233543-5">}</span><span class="p" data-group-id="9367233543-4">}</span></code></pre>
+</span><span class="gp unselectable">iex&gt; </span><span class="n">get_sms_log</span><span class="p" data-group-id="3211632191-3">(</span><span class="mi">456</span><span class="p" data-group-id="3211632191-3">)</span><span class="w">
+</span><span class="p" data-group-id="3211632191-4">{</span><span class="ss">:error</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="3211632191-5">%</span><span class="nc" data-group-id="3211632191-5">Ecto.Changeset</span><span class="p" data-group-id="3211632191-5">{</span><span class="p" data-group-id="3211632191-5">}</span><span class="p" data-group-id="3211632191-4">}</span></code></pre>
   </section>
 </section>
 

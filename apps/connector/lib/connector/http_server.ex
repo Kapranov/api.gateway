@@ -50,6 +50,7 @@ defmodule Connector.HTTPServer do
       :exit, _reason -> :error
   end
 
+  @spec get_status() :: map() | atom()
   def get_status do
     try do
       GenServer.call(@name, :timer_one)
@@ -85,14 +86,23 @@ defmodule Connector.HTTPServer do
     {:ok, state, {:continue, :external_api_post}}
   end
 
+  @spec handle_call(atom, any(), map() | atom()) ::
+        {:reply, map(), map()} |
+        {:reply, map(), atom()}
   def handle_call(:timer_one, _pid, state) do
     {:reply, state, state, 10_000}
   end
 
+  @spec handle_call(atom, any(), map() | atom()) ::
+        {:reply, map(), map()} |
+        {:reply, map(), atom()}
   def handle_call(:timer_two, _pid, state) do
     {:reply, state, state, 5_000}
   end
 
+  @spec handle_call(atom, any(), map() | atom()) ::
+        {:reply, map(), map()} |
+        {:reply, map(), atom()}
   def handle_call(:timer_three, _pid, state) do
     {:reply, state, state, 5_000}
   end
@@ -173,7 +183,7 @@ defmodule Connector.HTTPServer do
         {:error, reason}
       {:ok, %HTTPoison.Response{body: body}} ->
         state = decode(body)
-        timer(20_000)
+        timer(1_000)
         {:ok, state}
     end
   end
@@ -200,7 +210,7 @@ defmodule Connector.HTTPServer do
 
   @spec timer(non_neg_integer()) :: non_neg_integer()
   defp timer(num) do
-    Enum.random(num..30_000)
+    Enum.random(num..4_000)
     |> Process.sleep()
   end
 end
