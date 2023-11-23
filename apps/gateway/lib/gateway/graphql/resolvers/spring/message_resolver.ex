@@ -4,12 +4,16 @@ defmodule Gateway.GraphQL.Resolvers.Spring.MessageResolver do
   """
 
   alias Core.{
+    Logs.SmsLog,
+    Monitoring.Status,
     Operators.Operator,
     Queries,
     Repo,
     Spring,
     Spring.Message
   }
+
+  alias Ecto.Multi
 
   @type t :: map
   @type success_tuple :: {:ok, t}
@@ -48,7 +52,7 @@ defmodule Gateway.GraphQL.Resolvers.Spring.MessageResolver do
   @spec create_via_connector(any, %{atom => any}, %{context: %{token: String.t()}}) :: result()
   def create_via_connector(_parent, args, %{context: %{token: _token}}) do
     args
-    |> Spring.create_message_via_connector()
+    |> create_message_via_connector()
     |> case do
       {:error, %Ecto.Changeset{}} ->
         {:ok, []}
@@ -88,6 +92,54 @@ defmodule Gateway.GraphQL.Resolvers.Spring.MessageResolver do
 
   @spec sorted_operators(any, %{atom => any}, Absinthe.Resolution.t()) :: error_tuple()
   def sorted_operators(_parent, _args, _info), do: {:ok, []}
+
+  def create_message_via_connector(attrs \\ %{}) do
+    message_changeset = Message.changeset(%Message{}, attrs)
+    Multi.new
+    |> Multi.insert(:created, message_changeset)
+    |> Multi.run(:sms_logs, fn _, %{created: message} ->
+      sms_log_changeset = SmsLog.changeset(%SmsLog{}, %{
+        priority: 1,
+        messages: message.id,
+        statuses: message.status_id
+      })
+      Repo.insert(sms_log_changeset)
+    end)
+    |> Multi.run(:sorted, fn _, %{created: message} ->
+      operators = Queries.sorted_by_operators(message.phone_number)
+      {:ok, operators}
+    end)
+    |> Multi.run(:connector, fn _, %{sorted: operators, created: message} ->
+      connector = selected_connector(operators, message.id)
+      {:ok, connector}
+    end)
+    |> Multi.run(:updated, fn _, %{connector: connector, created: message} ->
+      if connector == [] do
+        {:ok, message}
+      else
+        status = Repo.get_by(Status, %{status_name: "delivered"})
+        changeset = Message.changeset(message, %{status_id: status.id})
+        updated = Repo.update(changeset)
+        {:ok, updated}
+      end
+    end)
+    |> Multi.inspect()
+    |> Repo.transaction()
+    |> case do
+      {:ok, %{created: message}} ->
+        {:ok, message}
+      {:ok, %{sms_logs: sms_log}} ->
+        {:ok, sms_log}
+      {:ok, %{sorted: sorted}} ->
+        {:ok, sorted}
+      {:ok, %{connector: connector}} ->
+          {:ok, connector}
+      {:ok, %{updated: message}} ->
+          {:ok, message}
+      {:error, _model, changeset, _completed} ->
+        {:ok, changeset}
+    end
+  end
 
   @spec selected_connector([Operator.t()], String.t()) :: map() | []
   def selected_connector(operators, message_id) do
