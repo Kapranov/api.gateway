@@ -52,12 +52,16 @@ defmodule Gateway.GraphQL.Resolvers.Spring.MessageResolver do
   @spec create_via_connector(any, %{atom => any}, %{context: %{token: String.t()}}) :: result()
   def create_via_connector(_parent, args, %{context: %{token: _token}}) do
     args
-    |> create_message_via_connector()
+    |> Spring.create_message()
     |> case do
-      {:error, %Ecto.Changeset{}} ->
-        {:ok, []}
+      {:error, %Ecto.Changeset{}} -> []
       {:ok, struct} ->
-        {:ok, struct}
+        sorted = Queries.sorted_by_operators(struct.phone_number)
+        connector = selected_connector(sorted, struct.id)
+        status = Repo.get_by(Status, %{status_name: connector.status})
+        changeset = Message.changeset(struct, %{status_id: status.id, message_body: "#{struct.message_body} - #{connector.connector}"})
+        {:ok, updated} = Repo.update(changeset)
+        {:ok, updated}
     end
   end
 

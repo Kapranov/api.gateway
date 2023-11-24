@@ -75,7 +75,9 @@ defmodule Connector.VodafoneHandler do
     end
   end
 
-  @spec handle_call(any(), any(), map() | atom()) :: {:reply, list(), map()} | {:reply, list(), atom()}
+  @spec handle_call(any(), any(), map() | atom()) ::
+        {:reply, list(), map()} |
+        {:reply, list(), atom()}
   def handle_call(_term, _pid, state) do
     {:reply, [], state}
   end
@@ -259,7 +261,7 @@ defmodule Connector.VodafoneHandler do
 
   @spec timer(non_neg_integer()) :: non_neg_integer()
   defp timer(num) do
-    Enum.random(num..4_000)
+    Enum.random(num..1_000)
     |> Process.sleep()
   end
 

@@ -608,7 +608,7 @@
   "maxUrlHistory": 20,
   "maxHistory": 20,
   "savedQueries": [],
-  "activeId": "tab25",
+  "activeId": "tab22",
   "tabs": [
     {
       "id": "tab1",
@@ -941,7 +941,7 @@
           "value": "Bearer SFMyNTY.g2gDbQAAAEBvdUk2YTJBV3Y2QnFMWVd6NTdXM3luVnpxVnVjMG5pTHBpbXJFU0dVNlM3bFVjcGMySHFaWUk2bHhaZWtiZ3Y4bgYA0LTTzIsBYgABUYA.BNvLcyhmQQHquoQhBniocbIRKHHrlcxh5fgBVbD0TBU"
         }
       ],
-      "collapsed": false,
+      "collapsed": true,
       "maxHistory": 20,
       "history": [
         {
