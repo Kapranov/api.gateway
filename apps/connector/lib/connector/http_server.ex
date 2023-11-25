@@ -5,6 +5,9 @@ defmodule Connector.HTTPServer do
 
   use GenServer
 
+  alias Core.{Logs.SmsLog, Repo}
+  alias Ecto.Multi
+
   @action [post: "post"]
   @headers %{"content-type" => "application/json"}
   @name __MODULE__
@@ -50,27 +53,27 @@ defmodule Connector.HTTPServer do
       :exit, _reason -> :error
   end
 
-  @spec get_status() :: map() | atom()
-  def get_status do
+  @spec get_status(String.t(), integer(), String.t(), String.t(), String.t()) :: map() | atom()
+  def get_status(message_id, priority, status_one, status_two, status_three) do
     try do
       GenServer.call(@name, :timer_one)
     catch
       :exit, _reason ->
+        {:ok, _} = save_logs(message_id, priority, status_one)
         try do
           GenServer.call(@name, :timer_two)
         catch
           :exit, _reason ->
+            {:ok, _} = save_logs(message_id, priority, status_two)
             try do
               GenServer.call(@name, :timer_three)
             catch
               :exit, _reason ->
+                {:ok, _} = save_logs(message_id, priority, status_three)
                 :timeout
             end
         end
     end
-        catch
-          :exit, _reason ->
-            GenServer.call(@name, :timer_three)
   end
 
   @spec stop(pid) :: :ok | :error
@@ -183,7 +186,7 @@ defmodule Connector.HTTPServer do
         {:error, reason}
       {:ok, %HTTPoison.Response{body: body}} ->
         state = decode(body)
-        timer(1_000)
+        timer(20_000)
         {:ok, state}
     end
   end
@@ -210,7 +213,28 @@ defmodule Connector.HTTPServer do
 
   @spec timer(non_neg_integer()) :: non_neg_integer()
   defp timer(num) do
-    Enum.random(num..4_000)
+    Enum.random(num..30_000)
     |> Process.sleep()
+  end
+
+  @spec save_logs(String.t(), integer(), String.t()) ::
+        {atom(), map()} |
+        {atom(), []}
+  defp save_logs(message_id, priority, status_id) do
+    changeset = SmsLog.changeset(%SmsLog{}, %{
+      priority: priority,
+      messages: message_id,
+      statuses: status_id
+    })
+    Multi.new
+    |> Multi.insert(:sms_logs, changeset)
+    |> Multi.inspect()
+    |> Repo.transaction()
+    |> case do
+      {:ok, %{sms_logs: sms_log}} ->
+        {:ok, sms_log}
+      {:error, _model, _changeset, _completed} ->
+        {:ok, []}
+    end
   end
 end
