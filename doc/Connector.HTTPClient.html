@@ -7,7 +7,7 @@
     <meta name="generator" content="ExDoc v0.30.9">
     <meta name="project" content="APIGateway v0.0.1-beta.1-0-g39cc9c1-main+dev">
 
-    <title>Core.Operators.Config — APIGateway v0.0.1-beta.1-0-g39cc9c1-main+dev</title>
+    <title>Connector.HTTPClient — APIGateway v0.0.1-beta.1-0-g39cc9c1-main+dev</title>
     <link rel="stylesheet" href="dist/html-elixir-XFYN5IVA.css" />
 
 
@@ -111,19 +111,19 @@ Pages
 </button>
 
 
-    <a href="https://github.com/kapranov/api_gateway/blob/main/apps/core/lib/core/operators/config.ex#L1" title="View Source" class="icon-action" rel="help">
+    <a href="https://github.com/kapranov/api_gateway/blob/main/apps/connector/lib/connector/http_client.ex#L1" title="View Source" class="icon-action" rel="help">
       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
       <span class="sr-only">View Source</span>
     </a>
 
-  <span translate="no">Core.Operators.Config</span> 
+  <span translate="no">Connector.HTTPClient</span> 
   <small class="app-vsn" translate="no">(APIGateway v0.0.1-beta.1-0-g39cc9c1-main+dev)</small>
 
 </h1>
 
 
   <section id="moduledoc">
-<p>Represents the config entity for operators.</p>
+<p>Http web client for api calls.</p>
   </section>
 
 
@@ -134,20 +134,6 @@ Pages
       </a>
       <span class="text">Summary</span>
     </h1>
-<div class="summary-types summary">
-  <h2>
-    <a href="#types">Types</a>
-  </h2>
-
-    <div class="summary-row">
-      <div class="summary-signature">
-        <a href="#t:t/0" translate="no">t()</a>
-
-      </div>
-
-    </div>
-
-</div>
 <div class="summary-functions summary">
   <h2>
     <a href="#functions">Functions</a>
@@ -155,7 +141,37 @@ Pages
 
     <div class="summary-row">
       <div class="summary-signature">
-        <a href="#changeset/1" translate="no">changeset(attrs)</a>
+        <a href="#child_spec/1" translate="no">child_spec(init_arg)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Returns a specification to start this module under a supervisor.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#handle_continue/2" translate="no">handle_continue(arg1, state)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Callback implementation for <a href="https://hexdocs.pm/elixir/GenServer.html#c:handle_continue/2"><code class="inline">GenServer.handle_continue/2</code></a>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#init/1" translate="no">init(args)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Callback implementation for <a href="https://hexdocs.pm/elixir/GenServer.html#c:init/1"><code class="inline">GenServer.init/1</code></a>.</p></div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#start_link/1" translate="no">start_link(args)</a>
 
       </div>
 
@@ -163,33 +179,7 @@ Pages
 
     <div class="summary-row">
       <div class="summary-signature">
-        <a href="#changeset/2" translate="no">changeset(config, attrs)</a>
-
-      </div>
-
-        <div class="summary-synopsis"><p>Create changeset for Config.</p></div>
-
-    </div>
-
-    <div class="summary-row">
-      <div class="summary-signature">
-        <a href="#create/1" translate="no">create(attrs)</a>
-
-      </div>
-
-    </div>
-
-    <div class="summary-row">
-      <div class="summary-signature">
-        <a href="#find/1" translate="no">find(id)</a>
-
-      </div>
-
-    </div>
-
-    <div class="summary-row">
-      <div class="summary-signature">
-        <a href="#find_by/1" translate="no">find_by(conds)</a>
+        <a href="#stop/1" translate="no">stop(pid)</a>
 
       </div>
 
@@ -199,55 +189,6 @@ Pages
 
   </section>
 
-
-  <section id="types" class="details-list">
-    <h1 class="section-heading">
-      <a class="hover-link" href="#types">
-        <i class="ri-link-m" aria-hidden="true"></i>
-      </a>
-      <span class="text">Types</span>
-    </h1>
-    <div class="types-list">
-<section class="detail" id="t:t/0">
-
-  <div class="detail-header">
-    <a href="#t:t/0" class="detail-link" title="Link to this type">
-      <i class="ri-link-m" aria-hidden="true"></i>
-      <span class="sr-only">Link to this type</span>
-    </a>
-    <h1 class="signature" translate="no">t()</h1>
-
-      <a href="https://github.com/kapranov/api_gateway/blob/main/apps/core/lib/core/operators/config.ex#L17" class="icon-action" rel="help" title="View Source">
-       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
-       <span class="sr-only">View Source</span>
-     </a>
-
-
-  </div>
-
-  <section class="docstring">
-
-      <div class="specs">
-
-          <pre translate="no"><span class="attribute">@type</span> t() :: %Core.Operators.Config{
-  content_type: <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>(),
-  id: FlakeId.Ecto.Type,
-  inserted_at: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>(),
-  name: <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>(),
-  parameters: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">map</a>(),
-  size: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>(),
-  updated_at: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>(),
-  url: <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()
-}</pre>
-
-      </div>
-
-
-  </section>
-</section>
-
-    </div>
-  </section>
 
   <section id="functions" class="details-list">
     <h1 class="section-heading">
@@ -257,16 +198,38 @@ Pages
       <span class="text">Functions</span>
     </h1>
     <div class="functions-list">
-<section class="detail" id="changeset/1">
+<section class="detail" id="child_spec/1">
 
   <div class="detail-header">
-    <a href="#changeset/1" class="detail-link" title="Link to this function">
+    <a href="#child_spec/1" class="detail-link" title="Link to this function">
       <i class="ri-link-m" aria-hidden="true"></i>
       <span class="sr-only">Link to this function</span>
     </a>
-    <h1 class="signature" translate="no">changeset(attrs)</h1>
+    <h1 class="signature" translate="no">child_spec(init_arg)</h1>
 
-      <a href="https://github.com/kapranov/api_gateway/blob/main/apps/core/lib/core/operators/config.ex#L6" class="icon-action" rel="help" title="View Source">
+      <a href="https://github.com/kapranov/api_gateway/blob/main/apps/connector/lib/connector/http_client.ex#L6" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+<p>Returns a specification to start this module under a supervisor.</p><p>See <a href="https://hexdocs.pm/elixir/Supervisor.html"><code class="inline">Supervisor</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="handle_continue/2">
+
+  <div class="detail-header">
+    <a href="#handle_continue/2" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">handle_continue(arg1, state)</h1>
+
+      <a href="https://github.com/kapranov/api_gateway/blob/main/apps/connector/lib/connector/http_client.ex#L41" class="icon-action" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -278,23 +241,87 @@ Pages
 
       <div class="specs">
 
-          <pre translate="no"><span class="attribute">@spec</span> changeset(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">map</a>()) :: <a href="https://hexdocs.pm/ecto/3.10.3/Ecto.Changeset.html#t:t/0">Ecto.Changeset.t</a>()</pre>
+          <pre translate="no"><span class="attribute">@spec</span> handle_continue(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">map</a>()) ::
+  {:noreply, <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>(), {:continue, <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>()}}
+  | {:noreply, <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">map</a>(), {:continue, <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>()}}</pre>
+
+          <pre translate="no"><span class="attribute">@spec</span> handle_continue(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>()) :: {:noreply, <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>()}</pre>
+
+          <pre translate="no"><span class="attribute">@spec</span> handle_continue(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">map</a>()) :: {:noreply, <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">map</a>()}</pre>
+
+          <pre translate="no"><span class="attribute">@spec</span> handle_continue(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">any</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">map</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>()) :: {:noreply, <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">map</a>()} | {:noreply, <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>()}</pre>
+
+      </div>
+
+<p>Callback implementation for <a href="https://hexdocs.pm/elixir/GenServer.html#c:handle_continue/2"><code class="inline">GenServer.handle_continue/2</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="init/1">
+
+  <div class="detail-header">
+    <a href="#init/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">init(args)</h1>
+
+      <a href="https://github.com/kapranov/api_gateway/blob/main/apps/connector/lib/connector/http_client.ex#L34" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> init(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">map</a>()) :: {<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">map</a>()}</pre>
+
+      </div>
+
+<p>Callback implementation for <a href="https://hexdocs.pm/elixir/GenServer.html#c:init/1"><code class="inline">GenServer.init/1</code></a>.</p>
+  </section>
+</section>
+<section class="detail" id="start_link/1">
+
+  <div class="detail-header">
+    <a href="#start_link/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">start_link(args)</h1>
+
+      <a href="https://github.com/kapranov/api_gateway/blob/main/apps/connector/lib/connector/http_client.ex#L20" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> start_link(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">map</a>()) :: {<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">pid</a>()} | <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>()</pre>
 
       </div>
 
 
   </section>
 </section>
-<section class="detail" id="changeset/2">
+<section class="detail" id="stop/1">
 
   <div class="detail-header">
-    <a href="#changeset/2" class="detail-link" title="Link to this function">
+    <a href="#stop/1" class="detail-link" title="Link to this function">
       <i class="ri-link-m" aria-hidden="true"></i>
       <span class="sr-only">Link to this function</span>
     </a>
-    <h1 class="signature" translate="no">changeset(config, attrs)</h1>
+    <h1 class="signature" translate="no">stop(pid)</h1>
 
-      <a href="https://github.com/kapranov/api_gateway/blob/main/apps/core/lib/core/operators/config.ex#L52" class="icon-action" rel="help" title="View Source">
+      <a href="https://github.com/kapranov/api_gateway/blob/main/apps/connector/lib/connector/http_client.ex#L27" class="icon-action" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -306,91 +333,7 @@ Pages
 
       <div class="specs">
 
-          <pre translate="no"><span class="attribute">@spec</span> changeset(<a href="#t:t/0">t</a>(), %{required(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>()) =&gt; <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">any</a>()}) :: <a href="https://hexdocs.pm/ecto/3.10.3/Ecto.Changeset.html#t:t/0">Ecto.Changeset.t</a>()</pre>
-
-      </div>
-
-<p>Create changeset for Config.</p>
-  </section>
-</section>
-<section class="detail" id="create/1">
-
-  <div class="detail-header">
-    <a href="#create/1" class="detail-link" title="Link to this function">
-      <i class="ri-link-m" aria-hidden="true"></i>
-      <span class="sr-only">Link to this function</span>
-    </a>
-    <h1 class="signature" translate="no">create(attrs)</h1>
-
-      <a href="https://github.com/kapranov/api_gateway/blob/main/apps/core/lib/core/operators/config.ex#L6" class="icon-action" rel="help" title="View Source">
-       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
-       <span class="sr-only">View Source</span>
-     </a>
-
-
-  </div>
-
-  <section class="docstring">
-
-      <div class="specs">
-
-          <pre translate="no"><span class="attribute">@spec</span> create(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">map</a>()) :: {:ok, <a href="https://hexdocs.pm/ecto/3.10.3/Ecto.Schema.html#t:t/0">Ecto.Schema.t</a>()} | {:error, <a href="https://hexdocs.pm/ecto/3.10.3/Ecto.Changeset.html#t:t/0">Ecto.Changeset.t</a>()}</pre>
-
-      </div>
-
-
-  </section>
-</section>
-<section class="detail" id="find/1">
-
-  <div class="detail-header">
-    <a href="#find/1" class="detail-link" title="Link to this function">
-      <i class="ri-link-m" aria-hidden="true"></i>
-      <span class="sr-only">Link to this function</span>
-    </a>
-    <h1 class="signature" translate="no">find(id)</h1>
-
-      <a href="https://github.com/kapranov/api_gateway/blob/main/apps/core/lib/core/operators/config.ex#L6" class="icon-action" rel="help" title="View Source">
-       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
-       <span class="sr-only">View Source</span>
-     </a>
-
-
-  </div>
-
-  <section class="docstring">
-
-      <div class="specs">
-
-          <pre translate="no"><span class="attribute">@spec</span> find(<a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()) :: <a href="https://hexdocs.pm/ecto/3.10.3/Ecto.Schema.html#t:t/0">Ecto.Schema.t</a>() | nil</pre>
-
-      </div>
-
-
-  </section>
-</section>
-<section class="detail" id="find_by/1">
-
-  <div class="detail-header">
-    <a href="#find_by/1" class="detail-link" title="Link to this function">
-      <i class="ri-link-m" aria-hidden="true"></i>
-      <span class="sr-only">Link to this function</span>
-    </a>
-    <h1 class="signature" translate="no">find_by(conds)</h1>
-
-      <a href="https://github.com/kapranov/api_gateway/blob/main/apps/core/lib/core/operators/config.ex#L6" class="icon-action" rel="help" title="View Source">
-       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
-       <span class="sr-only">View Source</span>
-     </a>
-
-
-  </div>
-
-  <section class="docstring">
-
-      <div class="specs">
-
-          <pre translate="no"><span class="attribute">@spec</span> find_by(<a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()) :: <a href="https://hexdocs.pm/ecto/3.10.3/Ecto.Schema.html#t:t/0">Ecto.Schema.t</a>() | nil</pre>
+          <pre translate="no"><span class="attribute">@spec</span> stop(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">pid</a>()) :: :ok | :error</pre>
 
       </div>
 
