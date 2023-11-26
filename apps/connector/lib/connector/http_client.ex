@@ -23,14 +23,16 @@ defmodule Connector.HTTPClient do
       :exit, _reason -> :error
   end
 
-  @spec stop(pid) :: :ok | :error
+  @spec stop(pid) :: atom()
   def stop(pid) do
       GenServer.stop(pid, :normal, @timeout)
     catch
       :exit, _reason -> :error
   end
 
-  @spec init(map()) :: {atom(), map()}
+  @spec init(map()) ::
+        {atom(), map(), {:continue, atom()}} |
+        {atom(), atom(), {:continue, atom()}}
   def init(args) do
     {:ok, args, {:continue, :fetch_from_db}}
   end
@@ -53,12 +55,15 @@ defmodule Connector.HTTPClient do
     end
   end
 
-  @spec handle_continue(atom(), atom()) :: {:noreply, atom()}
+  @spec handle_continue(atom(), atom()) ::
+        {:noreply, atom()}
   def handle_continue(:none_record, state) do
     {:noreply, state}
   end
 
-  @spec handle_continue(atom(), map()) :: {:noreply, map()}
+  @spec handle_continue(atom(), map()) ::
+        {:noreply, map()} |
+        {:noreply, atom(), {:continue, atom()}}
   def handle_continue(:connected, state) do
     case Connector.HTTPServer.start_link(state) do
       {:ok, pid} ->
@@ -82,24 +87,32 @@ defmodule Connector.HTTPClient do
     end
   end
 
-  @spec handle_continue(any(), map() | atom()) :: {:noreply, map()} | {:noreply, atom()}
+  @spec handle_continue(any(), map() | atom()) ::
+        {:noreply, map()} |
+        {:noreply, atom()}
   def handle_continue(_args, state) do
     {:noreply, state}
   end
 
-  @spec handle_info(atom(), map()) :: {:noreply, map()} | {:noreply, atom()}
+  @spec handle_info(atom(), map()) ::
+        {:noreply, map()} |
+        {:noreply, atom()}
   def handle_info(:none_record, state) do
     IO.puts("Received arguments: #{inspect(state)}")
     {:noreply, state}
   end
 
-  @spec handle_info(atom(), map()) :: {:noreply, map()} | {:noreply, atom()}
+  @spec handle_info(atom(), map()) ::
+        {:noreply, map()} |
+        {:noreply, atom()}
   def handle_info(:found, state) do
     IO.puts("Received arguments: #{inspect(state)}")
     {:noreply, state}
   end
 
-  @spec handle_info(any(), map()) :: {:noreply, map()} | {:noreply, atom()}
+  @spec handle_info(any(), map()) ::
+        {:noreply, map()} |
+        {:noreply, atom()}
   def handle_info(_msg, state) do
     IO.puts("Received arguments: #{inspect(state)}")
     {:noreply, state}
