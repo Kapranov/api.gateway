@@ -5,9 +5,9 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="ExDoc v0.30.9">
-    <meta name="project" content="APIGateway v0.0.1-beta.1-0-g39cc9c1-main+dev">
+    <meta name="project" content="APIGateway v0.0.1-beta.1-0-gb72de1d-main+dev">
 
-    <title>Connector.HTTPClient — APIGateway v0.0.1-beta.1-0-g39cc9c1-main+dev</title>
+    <title>Connector.HTTPClient — APIGateway v0.0.1-beta.1-0-gb72de1d-main+dev</title>
     <link rel="stylesheet" href="dist/html-elixir-XFYN5IVA.css" />
 
 
@@ -68,7 +68,7 @@
 APIGateway
       </a>
       <div class="sidebar-projectVersion" translate="no">
-        v0.0.1-beta.1-0-g39cc9c1-main+dev
+        v0.0.1-beta.1-0-gb72de1d-main+dev
       </div>
     </div>
     <ul id="sidebar-listNav" class="sidebar-listNav" role="tablist">
@@ -117,7 +117,7 @@ Pages
     </a>
 
   <span translate="no">Connector.HTTPClient</span> 
-  <small class="app-vsn" translate="no">(APIGateway v0.0.1-beta.1-0-g39cc9c1-main+dev)</small>
+  <small class="app-vsn" translate="no">(APIGateway v0.0.1-beta.1-0-gb72de1d-main+dev)</small>
 
 </h1>
 
@@ -175,6 +175,8 @@ Pages
 
       </div>
 
+        <div class="summary-synopsis"><p>Client HTTP Request &amp; Response Service.</p></div>
+
     </div>
 
     <div class="summary-row">
@@ -229,7 +231,7 @@ Pages
     </a>
     <h1 class="signature" translate="no">handle_continue(arg1, state)</h1>
 
-      <a href="https://github.com/kapranov/api_gateway/blob/main/apps/connector/lib/connector/http_client.ex#L41" class="icon-action" rel="help" title="View Source">
+      <a href="https://github.com/kapranov/api_gateway/blob/main/apps/connector/lib/connector/http_client.ex#L86" class="icon-action" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -247,7 +249,8 @@ Pages
 
           <pre translate="no"><span class="attribute">@spec</span> handle_continue(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>()) :: {:noreply, <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>()}</pre>
 
-          <pre translate="no"><span class="attribute">@spec</span> handle_continue(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">map</a>()) :: {:noreply, <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">map</a>()}</pre>
+          <pre translate="no"><span class="attribute">@spec</span> handle_continue(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">map</a>()) ::
+  {:noreply, <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">map</a>()} | {:noreply, <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>(), {:continue, <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>()}}</pre>
 
           <pre translate="no"><span class="attribute">@spec</span> handle_continue(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">any</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">map</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>()) :: {:noreply, <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">map</a>()} | {:noreply, <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>()}</pre>
 
@@ -265,7 +268,7 @@ Pages
     </a>
     <h1 class="signature" translate="no">init(args)</h1>
 
-      <a href="https://github.com/kapranov/api_gateway/blob/main/apps/connector/lib/connector/http_client.ex#L34" class="icon-action" rel="help" title="View Source">
+      <a href="https://github.com/kapranov/api_gateway/blob/main/apps/connector/lib/connector/http_client.ex#L79" class="icon-action" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -277,7 +280,8 @@ Pages
 
       <div class="specs">
 
-          <pre translate="no"><span class="attribute">@spec</span> init(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">map</a>()) :: {<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">map</a>()}</pre>
+          <pre translate="no"><span class="attribute">@spec</span> init(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">map</a>()) ::
+  {<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">map</a>(), {:continue, <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>()}} | {<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>(), {:continue, <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>()}}</pre>
 
       </div>
 
@@ -293,7 +297,7 @@ Pages
     </a>
     <h1 class="signature" translate="no">start_link(args)</h1>
 
-      <a href="https://github.com/kapranov/api_gateway/blob/main/apps/connector/lib/connector/http_client.ex#L20" class="icon-action" rel="help" title="View Source">
+      <a href="https://github.com/kapranov/api_gateway/blob/main/apps/connector/lib/connector/http_client.ex#L63" class="icon-action" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -309,7 +313,48 @@ Pages
 
       </div>
 
+<p>Client HTTP Request &amp; Response Service.</p><h2 id="start_link/1-example" class="section-heading">
+  <a href="#start_link/1-example" class="hover-link">
+    <i class="ri-link-m" aria-hidden="true"></i>
+  </a>
+  <span class="text">Example.</span>
+</h2>
+<pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="n">message_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Core.Repo</span><span class="o">.</span><span class="n">all</span><span class="p" data-group-id="2528878289-1">(</span><span class="nc">Core.Spring.Message</span><span class="p" data-group-id="2528878289-1">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">List</span><span class="o">.</span><span class="n">last</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Map</span><span class="o">.</span><span class="n">get</span><span class="p" data-group-id="2528878289-2">(</span><span class="ss">:id</span><span class="p" data-group-id="2528878289-2">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">args</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="2528878289-3">%{</span><span class="ss">connector</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;vodafone&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="n">message_id</span><span class="p">,</span><span class="w"> </span><span class="ss">phone_number</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;+380991111111&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">message_body</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Aloha!&quot;</span><span class="p" data-group-id="2528878289-3">}</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="2528878289-4">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="n">pid</span><span class="p" data-group-id="2528878289-4">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Connector.HTTPClient</span><span class="o">.</span><span class="n">start_link</span><span class="p" data-group-id="2528878289-5">(</span><span class="n">args</span><span class="p" data-group-id="2528878289-5">)</span><span class="w">
+</span><span class="p" data-group-id="2528878289-6">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="n">pid</span><span class="p" data-group-id="2528878289-6">}</span><span class="w">
+</span><span class="nc">Received</span><span class="w"> </span><span class="ss">arguments</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="2528878289-7">%{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Ac7y2LxiD9lsV2Oeiu&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">connector</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;vodafone&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">message_body</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Ваш код - 7777-999-9999-9999 - vodafone&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">phone_number</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;+380991111111&quot;</span><span class="p" data-group-id="2528878289-7">}</span><span class="w">
+</span><span class="nc">Received</span><span class="w"> </span><span class="ss">arguments</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="2528878289-8">%{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Ac7y2LxiD9lsV2Oeiu&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">status</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;send&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">text</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Ваш код - 7777-999-9999-9999 - vodafone&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">connector</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;vodafone&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">sms</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;+380991111111&quot;</span><span class="p" data-group-id="2528878289-8">}</span><span class="w">
+</span><span class="nc">Received</span><span class="w"> </span><span class="ss">arguments</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="2528878289-9">%{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Ac7y2LxiD9lsV2Oeiu&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">status</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;delivered&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">text</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Ваш код - 7777-999-9999-9999 - vodafone&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">connector</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;vodafone&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">sms</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;+380991111111&quot;</span><span class="p" data-group-id="2528878289-9">}</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">:sys</span><span class="o">.</span><span class="n">get_state</span><span class="p" data-group-id="2528878289-10">(</span><span class="n">pid</span><span class="p" data-group-id="2528878289-10">)</span><span class="w">
+</span><span class="p" data-group-id="2528878289-11">%{</span><span class="w">
+  </span><span class="ss">connector</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;vodafone&quot;</span><span class="p">,</span><span class="w">
+  </span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Ac7y2LxiD9lsV2Oeiu&quot;</span><span class="p">,</span><span class="w">
+  </span><span class="ss">sms</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;+380991111111&quot;</span><span class="p">,</span><span class="w">
+  </span><span class="ss">status</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;delivered&quot;</span><span class="p">,</span><span class="w">
+  </span><span class="ss">text</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Ваш код - 7777-999-9999-9999 - vodafone&quot;</span><span class="w">
+</span><span class="p" data-group-id="2528878289-11">}</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="2528878289-12">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="n">pid</span><span class="p" data-group-id="2528878289-12">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Connector.HTTPClient</span><span class="o">.</span><span class="n">stop</span><span class="p" data-group-id="2528878289-13">(</span><span class="n">pid</span><span class="p" data-group-id="2528878289-13">)</span><span class="w">
 
+</span><span class="gp unselectable">iex&gt; </span><span class="n">message_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Core.Repo</span><span class="o">.</span><span class="n">all</span><span class="p" data-group-id="2528878289-14">(</span><span class="nc">Core.Spring.Message</span><span class="p" data-group-id="2528878289-14">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">List</span><span class="o">.</span><span class="n">last</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Map</span><span class="o">.</span><span class="n">get</span><span class="p" data-group-id="2528878289-15">(</span><span class="ss">:id</span><span class="p" data-group-id="2528878289-15">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">args</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="2528878289-16">%{</span><span class="ss">connector</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;vodafone&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="n">message_id</span><span class="p">,</span><span class="w"> </span><span class="ss">phone_number</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;+380991111111&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">message_body</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Aloha!&quot;</span><span class="p" data-group-id="2528878289-16">}</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="2528878289-17">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="n">pid</span><span class="p" data-group-id="2528878289-17">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Connector.HTTPClient</span><span class="o">.</span><span class="n">start_link</span><span class="p" data-group-id="2528878289-18">(</span><span class="n">args</span><span class="p" data-group-id="2528878289-18">)</span><span class="w">
+</span><span class="p" data-group-id="2528878289-19">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="n">pid</span><span class="p" data-group-id="2528878289-19">}</span><span class="w">
+</span><span class="nc">Received</span><span class="w"> </span><span class="ss">arguments</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="2528878289-20">%{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Ac7y2LxiD9lsV2Oeiu&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">connector</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;vodafone&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">message_body</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Ваш код - 7777-999-9999-9999 - vodafone&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">phone_number</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;+380991111111&quot;</span><span class="p" data-group-id="2528878289-20">}</span><span class="w">
+</span><span class="nc">Received</span><span class="w"> </span><span class="ss">arguments</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="2528878289-21">%{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Ac7y2LxiD9lsV2Oeiu&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">status</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;send&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">text</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Ваш код - 7777-999-9999-9999 - vodafone&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">connector</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;vodafone&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">sms</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;+380991111111&quot;</span><span class="p" data-group-id="2528878289-21">}</span><span class="w">
+</span><span class="nc">Received</span><span class="w"> </span><span class="ss">arguments</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="2528878289-22">%{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Ac7y2LxiD9lsV2Oeiu&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">status</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;delivered&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">text</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Ваш код - 7777-999-9999-9999 - vodafone&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">connector</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;vodafone&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">sms</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;+380991111111&quot;</span><span class="p" data-group-id="2528878289-22">}</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">:sys</span><span class="o">.</span><span class="n">get_state</span><span class="p" data-group-id="2528878289-23">(</span><span class="n">pid</span><span class="p" data-group-id="2528878289-23">)</span><span class="w">
+</span><span class="ss">:error</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="2528878289-24">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="n">pid</span><span class="p" data-group-id="2528878289-24">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Connector.HTTPClient</span><span class="o">.</span><span class="n">stop</span><span class="p" data-group-id="2528878289-25">(</span><span class="n">pid</span><span class="p" data-group-id="2528878289-25">)</span><span class="w">
+
+</span><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="2528878289-26">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="n">pid</span><span class="p" data-group-id="2528878289-26">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Connector.HTTPClient</span><span class="o">.</span><span class="n">start_link</span><span class="p" data-group-id="2528878289-27">(</span><span class="n">args</span><span class="p" data-group-id="2528878289-27">)</span><span class="w">
+</span><span class="p" data-group-id="2528878289-28">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="n">pid</span><span class="p" data-group-id="2528878289-28">}</span><span class="w">
+</span><span class="nc">Received</span><span class="w"> </span><span class="ss">arguments</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="2528878289-29">%{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Ac7y2LxiD9lsV2Oeiu&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">connector</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;vodafone&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">message_body</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Ваш код - 7777-999-9999-9999 - vodafone&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">phone_number</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;+380991111111&quot;</span><span class="p" data-group-id="2528878289-29">}</span><span class="w">
+</span><span class="nc">Received</span><span class="w"> </span><span class="ss">arguments</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="2528878289-30">%{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Ac7y2LxiD9lsV2Oeiu&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">status</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;send&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">text</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Ваш код - 7777-999-9999-9999 - vodafone&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">connector</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;vodafone&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">sms</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;+380991111111&quot;</span><span class="p" data-group-id="2528878289-30">}</span><span class="w">
+</span><span class="nc">Received</span><span class="w"> </span><span class="ss">arguments</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="2528878289-31">%{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Ac7y2LxiD9lsV2Oeiu&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">status</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;delivered&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">text</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Ваш код - 7777-999-9999-9999 - vodafone&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">connector</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;vodafone&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">sms</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;+380991111111&quot;</span><span class="p" data-group-id="2528878289-31">}</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">:sys</span><span class="o">.</span><span class="n">get_state</span><span class="p" data-group-id="2528878289-32">(</span><span class="n">pid</span><span class="p" data-group-id="2528878289-32">)</span><span class="w">
+</span><span class="ss">:timeout</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="2528878289-33">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="n">pid</span><span class="p" data-group-id="2528878289-33">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Connector.HTTPClient</span><span class="o">.</span><span class="n">stop</span><span class="p" data-group-id="2528878289-34">(</span><span class="n">pid</span><span class="p" data-group-id="2528878289-34">)</span></code></pre>
   </section>
 </section>
 <section class="detail" id="stop/1">
@@ -321,7 +366,7 @@ Pages
     </a>
     <h1 class="signature" translate="no">stop(pid)</h1>
 
-      <a href="https://github.com/kapranov/api_gateway/blob/main/apps/connector/lib/connector/http_client.ex#L27" class="icon-action" rel="help" title="View Source">
+      <a href="https://github.com/kapranov/api_gateway/blob/main/apps/connector/lib/connector/http_client.ex#L70" class="icon-action" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -333,7 +378,7 @@ Pages
 
       <div class="specs">
 
-          <pre translate="no"><span class="attribute">@spec</span> stop(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">pid</a>()) :: :ok | :error</pre>
+          <pre translate="no"><span class="attribute">@spec</span> stop(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">pid</a>()) :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>()</pre>
 
       </div>
 

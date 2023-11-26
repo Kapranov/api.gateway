@@ -16,6 +16,49 @@ defmodule Connector.HTTPClient do
   @name __MODULE__
   @timeout 1_000
 
+  @doc """
+  Client HTTP Request & Response Service.
+
+  ## Example.
+
+      iex> message_id = Core.Repo.all(Core.Spring.Message) |> List.last |> Map.get(:id)
+      iex> args = %{connector: "vodafone", id: message_id, phone_number: "+380991111111", message_body: "Aloha!"}
+      iex> {:ok, pid} = Connector.HTTPClient.start_link(args)
+      {:ok, pid}
+      Received arguments: %{id: "Ac7y2LxiD9lsV2Oeiu", connector: "vodafone", message_body: "Ваш код - 7777-999-9999-9999 - vodafone", phone_number: "+380991111111"}
+      Received arguments: %{id: "Ac7y2LxiD9lsV2Oeiu", status: "send", text: "Ваш код - 7777-999-9999-9999 - vodafone", connector: "vodafone", sms: "+380991111111"}
+      Received arguments: %{id: "Ac7y2LxiD9lsV2Oeiu", status: "delivered", text: "Ваш код - 7777-999-9999-9999 - vodafone", connector: "vodafone", sms: "+380991111111"}
+      iex> :sys.get_state(pid)
+      %{
+        connector: "vodafone",
+        id: "Ac7y2LxiD9lsV2Oeiu",
+        sms: "+380991111111",
+        status: "delivered",
+        text: "Ваш код - 7777-999-9999-9999 - vodafone"
+      }
+      iex> {:ok, pid} = Connector.HTTPClient.stop(pid)
+
+      iex> message_id = Core.Repo.all(Core.Spring.Message) |> List.last |> Map.get(:id)
+      iex> args = %{connector: "vodafone", id: message_id, phone_number: "+380991111111", message_body: "Aloha!"}
+      iex> {:ok, pid} = Connector.HTTPClient.start_link(args)
+      {:ok, pid}
+      Received arguments: %{id: "Ac7y2LxiD9lsV2Oeiu", connector: "vodafone", message_body: "Ваш код - 7777-999-9999-9999 - vodafone", phone_number: "+380991111111"}
+      Received arguments: %{id: "Ac7y2LxiD9lsV2Oeiu", status: "send", text: "Ваш код - 7777-999-9999-9999 - vodafone", connector: "vodafone", sms: "+380991111111"}
+      Received arguments: %{id: "Ac7y2LxiD9lsV2Oeiu", status: "delivered", text: "Ваш код - 7777-999-9999-9999 - vodafone", connector: "vodafone", sms: "+380991111111"}
+      iex> :sys.get_state(pid)
+      :error
+      iex> {:ok, pid} = Connector.HTTPClient.stop(pid)
+
+      iex> {:ok, pid} = Connector.HTTPClient.start_link(args)
+      {:ok, pid}
+      Received arguments: %{id: "Ac7y2LxiD9lsV2Oeiu", connector: "vodafone", message_body: "Ваш код - 7777-999-9999-9999 - vodafone", phone_number: "+380991111111"}
+      Received arguments: %{id: "Ac7y2LxiD9lsV2Oeiu", status: "send", text: "Ваш код - 7777-999-9999-9999 - vodafone", connector: "vodafone", sms: "+380991111111"}
+      Received arguments: %{id: "Ac7y2LxiD9lsV2Oeiu", status: "delivered", text: "Ваш код - 7777-999-9999-9999 - vodafone", connector: "vodafone", sms: "+380991111111"}
+      iex> :sys.get_state(pid)
+      :timeout
+      iex> {:ok, pid} = Connector.HTTPClient.stop(pid)
+
+  """
   @spec start_link(map()) :: {atom(), pid} | atom()
   def start_link(args) do
       GenServer.start_link(@name, args, name: @name)
@@ -77,7 +120,7 @@ defmodule Connector.HTTPClient do
             {:noreply, :error, {:continue, :none_record}}
           :timeout ->
             HTTPServer.stop(pid)
-            {:noreply, :error, {:continue, :none_record}}
+            {:noreply, :timeout, {:continue, :none_record}}
           data ->
             HTTPServer.stop(pid)
             {:noreply, data}

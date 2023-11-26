@@ -17,7 +17,7 @@ defmodule Connector.HTTPServer do
   defstruct [:id, :connector, :sms, :status, :text]
 
   @doc """
-  Client HTTP Request & Response Service.
+  Server HTTP Request & Response Service.
 
   ## Example.
 
