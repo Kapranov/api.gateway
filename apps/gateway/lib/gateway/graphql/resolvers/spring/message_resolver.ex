@@ -265,4 +265,111 @@ defmodule Gateway.GraphQL.Resolvers.Spring.MessageResolver do
       end
     end)
   end
+
+  @spec by_connector([Operator.t()], Message.t()) :: map() | []
+  def by_connector(operators, struct) do
+    Enum.reduce_while(operators, [], fn(x, acc) ->
+      case x.config.name do
+        "dia" ->
+          data = Map.merge(struct, %{connector: "dia"})
+          case Connector.HTTPClient.start_link(data) do
+            {:ok, pid} ->
+              case Connector.HTTPClient.get_state(pid) do
+                :error ->
+                  {:cont, acc}
+                :timeout ->
+                  {:cont, acc}
+                data ->
+                  {:halt, data}
+              end
+            _ -> {:cont, acc}
+          end
+        "intertelecom" ->
+          data = Map.merge(struct, %{connector: "intertelecom"})
+          case Connector.HTTPClient.start_link(data) do
+            {:ok, pid} ->
+              case Connector.HTTPClient.get_state(pid) do
+                :error ->
+                  {:cont, acc}
+                :timeout ->
+                  {:cont, acc}
+                data ->
+                  {:halt, data}
+              end
+            _ -> {:cont, acc}
+          end
+        "kyivstar" ->
+          data = Map.merge(struct, %{connector: "kyivstar"})
+          case Connector.HTTPClient.start_link(data) do
+            {:ok, pid} ->
+              case Connector.HTTPClient.get_state(pid) do
+                :error ->
+                  {:cont, acc}
+                :timeout ->
+                  {:cont, acc}
+                data ->
+                  {:halt, data}
+              end
+            _ -> {:cont, acc}
+          end
+        "lifecell" ->
+          data = Map.merge(struct, %{connector: "lifecell"})
+          case Connector.HTTPClient.start_link(data) do
+            {:ok, pid} ->
+              case Connector.HTTPClient.get_state(pid) do
+                :error ->
+                  {:cont, acc}
+                :timeout ->
+                  {:cont, acc}
+                data ->
+                  {:halt, data}
+              end
+            _ -> {:cont, acc}
+          end
+        "telegram" ->
+          data = Map.merge(struct, %{connector: "telegram"})
+          case Connector.HTTPClient.start_link(data) do
+            {:ok, pid} ->
+              case Connector.HTTPClient.get_state(pid) do
+                :error ->
+                  {:cont, acc}
+                :timeout ->
+                  {:cont, acc}
+                data ->
+                  {:halt, data}
+              end
+            _ -> {:cont, acc}
+          end
+        "viber" ->
+          data = Map.merge(struct, %{connector: "viber"})
+          case Connector.HTTPClient.start_link(data) do
+            {:ok, pid} ->
+              case Connector.HTTPClient.get_state(pid) do
+                :error ->
+                  {:cont, acc}
+                :timeout ->
+                  {:cont, acc}
+                data ->
+                  {:halt, data}
+              end
+            _ -> {:cont, acc}
+          end
+        "vodafone" ->
+          data = Map.merge(struct, %{connector: "vodafone"})
+          case Connector.HTTPClient.start_link(data) do
+            {:ok, pid} ->
+              case Connector.HTTPClient.get_state(pid) do
+                :error ->
+                  {:cont, acc}
+                :timeout ->
+                  {:cont, acc}
+                data ->
+                  {:halt, data}
+              end
+            _ -> {:cont, acc}
+          end
+        _ -> {:cont, acc}
+      end
+    end)
+  end
 end

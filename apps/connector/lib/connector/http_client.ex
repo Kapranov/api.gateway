@@ -21,14 +21,14 @@ defmodule Connector.HTTPClient do
 
   ## Example.
 
-      iex> message_id = Core.Repo.all(Core.Spring.Message) |> List.last |> Map.get(:id)
-      iex> args = %{connector: "vodafone", id: message_id, phone_number: "+380991111111", message_body: "Aloha!"}
+      iex> struct = Core.Repo.all(Core.Spring.Message) |> List.last |> Map.from_struct
+      iex> args = Map.merge(struct, %{connector: "vodafone"})
       iex> {:ok, pid} = Connector.HTTPClient.start_link(args)
       {:ok, pid}
       Received arguments: %{id: "Ac7y2LxiD9lsV2Oeiu", connector: "vodafone", message_body: "Ваш код - 7777-999-9999-9999 - vodafone", phone_number: "+380991111111"}
       Received arguments: %{id: "Ac7y2LxiD9lsV2Oeiu", status: "send", text: "Ваш код - 7777-999-9999-9999 - vodafone", connector: "vodafone", sms: "+380991111111"}
       Received arguments: %{id: "Ac7y2LxiD9lsV2Oeiu", status: "delivered", text: "Ваш код - 7777-999-9999-9999 - vodafone", connector: "vodafone", sms: "+380991111111"}
-      iex> :sys.get_state(pid)
+      iex> Connector.HTTPClient.get_state(pid)
       %{
         connector: "vodafone",
         id: "Ac7y2LxiD9lsV2Oeiu",
@@ -38,14 +38,12 @@ defmodule Connector.HTTPClient do
       }
       iex> {:ok, pid} = Connector.HTTPClient.stop(pid)
 
-      iex> message_id = Core.Repo.all(Core.Spring.Message) |> List.last |> Map.get(:id)
-      iex> args = %{connector: "vodafone", id: message_id, phone_number: "+380991111111", message_body: "Aloha!"}
       iex> {:ok, pid} = Connector.HTTPClient.start_link(args)
       {:ok, pid}
       Received arguments: %{id: "Ac7y2LxiD9lsV2Oeiu", connector: "vodafone", message_body: "Ваш код - 7777-999-9999-9999 - vodafone", phone_number: "+380991111111"}
       Received arguments: %{id: "Ac7y2LxiD9lsV2Oeiu", status: "send", text: "Ваш код - 7777-999-9999-9999 - vodafone", connector: "vodafone", sms: "+380991111111"}
       Received arguments: %{id: "Ac7y2LxiD9lsV2Oeiu", status: "delivered", text: "Ваш код - 7777-999-9999-9999 - vodafone", connector: "vodafone", sms: "+380991111111"}
-      iex> :sys.get_state(pid)
+      iex> Connector.HTTPClient.get_state(pid)
       :error
       iex> {:ok, pid} = Connector.HTTPClient.stop(pid)
 
@@ -54,7 +52,7 @@ defmodule Connector.HTTPClient do
       Received arguments: %{id: "Ac7y2LxiD9lsV2Oeiu", connector: "vodafone", message_body: "Ваш код - 7777-999-9999-9999 - vodafone", phone_number: "+380991111111"}
       Received arguments: %{id: "Ac7y2LxiD9lsV2Oeiu", status: "send", text: "Ваш код - 7777-999-9999-9999 - vodafone", connector: "vodafone", sms: "+380991111111"}
       Received arguments: %{id: "Ac7y2LxiD9lsV2Oeiu", status: "delivered", text: "Ваш код - 7777-999-9999-9999 - vodafone", connector: "vodafone", sms: "+380991111111"}
-      iex> :sys.get_state(pid)
+      iex> Connector.HTTPClient.get_state(pid)
       :timeout
       iex> {:ok, pid} = Connector.HTTPClient.stop(pid)
 
@@ -64,6 +62,28 @@ defmodule Connector.HTTPClient do
       GenServer.start_link(@name, args, name: @name)
     catch
       :exit, _reason -> :error
+  end
+
+  @doc """
+  Get information by process.
+
+  ## Example.
+
+      iex> struct = Core.Repo.all(Core.Spring.Message) |> List.last |> Map.from_struct
+      iex> args = Map.merge(struct, %{connector: "vodafone"})
+      iex> {:ok, pid} = Connector.HTTPClient.start_link(args)
+      {:ok, pid}
+      iex> Connector.HTTPClient.get_state(pid)
+      :timeout
+      iex> {:ok, pid} = Connector.HTTPClient.stop(pid)
+      :ok
+
+  """
+  @spec get_state(pid()) :: map() | atom()
+  def get_state(pid) when is_pid(pid) do
+      :sys.get_state(pid)
+    catch
+      :exit, _reason -> :timeout
   end
 
   @spec stop(pid) :: atom()
