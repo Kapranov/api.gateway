@@ -56,12 +56,19 @@ defmodule Gateway.GraphQL.Resolvers.Spring.MessageResolver do
     |> case do
       {:error, %Ecto.Changeset{}} -> []
       {:ok, struct} ->
-        sorted = Queries.sorted_by_operators(struct.phone_number)
-        connector = selected_connector(sorted, struct.id)
-        status = Repo.get_by(Status, %{status_name: connector.status})
-        changeset = Message.changeset(struct, %{status_id: status.id, message_body: "#{struct.message_body} - #{connector.connector}"})
-        {:ok, updated} = Repo.update(changeset)
-        {:ok, updated}
+        operators = Queries.sorted_by_operators(struct.phone_number)
+        # selected_connector(operators, struct.id)
+        case by_connector(operators, struct) do
+          [] -> {:ok, struct}
+          connector ->
+            status = Repo.get_by(Status, %{status_name: connector.status})
+            changeset = Message.changeset(struct, %{
+              status_id: status.id,
+              message_body: "#{struct.message_body} - #{connector.connector}"
+            })
+            {:ok, _updated} = Repo.update(changeset)
+            {:ok, struct}
+        end
     end
   end
 
