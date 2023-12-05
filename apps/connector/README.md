@@ -190,19 +190,38 @@ iex> grouped["vodafone"] |> List.first
 
 ### 27 Oct 2023 by Oleg G.Kapranov
 
-[1]:  http://httpbin.org
-[2]:  https://blog.lelonek.me/how-to-mock-httpoison-in-elixir-7947917a9266
-[3]:  https://elixirforum.com/t/guides-to-making-a-library-to-wrap-an-api/20795/2
-[4]:  https://github.com/brianmay/ex_tesla/blob/master/lib/ex_tesla/api.ex
-[5]:  https://github.com/cambiatus/eosrpc-elixir-wrapper/blob/master/test/eosrpc/middleware/error_test.exs
-[6]:  https://github.com/chulkilee/ex_force/blob/main/lib/ex_force/client/tesla/tesla.ex
-[7]:  https://github.com/saneery/viberex
-[8]:  https://hexdocs.pm/ex_mono_wrapper/api-reference.html
-[9]:  https://hexdocs.pm/tesla/1.8.0/readme.html
-[10]: https://medium.com/@anatolyniky/how-to-create-viber-bot-with-elixir-2ff079f989e6
-[11]: https://medium.com/@russbredihin/building-an-api-wrapper-with-elixir-and-tesla-468889ce820
-[12]: https://mrdotb.com/posts/probuild-ex-part-one
-[13]: https://stackoverflow.com/questions/53524611/how-to-make-post-request-using-tesla-in-elixir
-[14]: https://elixirforum.com/t/please-help-me-to-convert-curl-request-to-tesla-post-request/37509
-[15]: https://copyprogramming.com/howto/how-to-make-post-request-using-tesla-in-elixir
-[16]: https://gitlab.com/adamwight/mediawiki_client_ex/-/blob/main/lib/action.ex
+ [1]: http://httpbin.org
+ [2]: https://blog.lelonek.me/how-to-mock-httpoison-in-elixir-7947917a9266
+ [3]: https://copyprogramming.com/howto/how-to-make-post-request-using-tesla-in-elixir
+ [4]: https://elixirforum.com/t/guides-to-making-a-library-to-wrap-an-api/20795/2
+ [5]: https://elixirforum.com/t/please-help-me-to-convert-curl-request-to-tesla-post-request/37509
+ [6]: https://github.com/brianmay/ex_tesla/blob/master/lib/ex_tesla/api.ex
+ [7]: https://github.com/cambiatus/eosrpc-elixir-wrapper/blob/master/test/eosrpc/middleware/error_test.exs
+ [8]: https://github.com/chulkilee/ex_force/blob/main/lib/ex_force/client/tesla/tesla.ex
+ [9]: https://github.com/saneery/viberex
+[10]: https://gitlab.com/adamwight/mediawiki_client_ex/-/blob/main/lib/action.ex
+[11]: https://hexdocs.pm/ex_mono_wrapper/api-reference.html
+[12]: https://hexdocs.pm/tesla/1.8.0/readme.html
+[13]: https://medium.com/@anatolyniky/how-to-create-viber-bot-with-elixir-2ff079f989e6
+[14]: https://medium.com/@russbredihin/building-an-api-wrapper-with-elixir-and-tesla-468889ce820
+[15]: https://mrdotb.com/posts/probuild-ex-part-one
+[16]: https://stackoverflow.com/questions/53524611/how-to-make-post-request-using-tesla-in-elixir
+[17]: https://gist.github.com/IanVaughan/1b3f14b430bb8480e07e2d8c9d48d94d
+[18]: https://github.com/thure/so-genserver-timeout/blob/master/lib/parent.ex
+[19]: https://github.com/TheFirstAvenger/ets/blob/master/lib/ets/base.ex
+[20]: https://elixirforum.com/t/waiting-for-multiple-tasks-in-a-genserver/57031
+[21]: https://github.com/gottfrois/tus/blob/master/lib/tus/cache/memory.ex
+[22]: https://gist.github.com/gottfrois
+[23]: https://medium.com/@carlogilmar/process-in-elixir-a-simple-example-d5522028ee7b
+[24]: https://hexdocs.pm/timeout/readme.html
+[25]: https://bitwalker.org/posts/2018-03-18-functional-imperative-programming-with-elixir/
+[26]: https://bitwalker.org/posts/2018-03-18-functional-imperative-programming-with-elixir/
+[27]: https://dockyard.com/blog/2020/01/31/state-timeouts-with-gen_statem
+[28]: https://thoughtbot.com/blog/how-to-start-processes-with-dynamic-names-in-elixir
+
+
+
+
+
+
+

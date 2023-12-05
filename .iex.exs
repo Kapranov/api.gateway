@@ -6,7 +6,7 @@ IO.puts IO.ANSI.magenta()
         <> IO.ANSI.underline()
         <> IO.ANSI.blink_slow()
         <> IO.ANSI.reset()
-
+        #
 queue_length = fn ->
   self()
   |> Process.info()
@@ -20,7 +20,6 @@ last = IO.ANSI.yellow() <> "➤➤➤" <> IO.ANSI.reset()
 alive = IO.ANSI.bright() <> IO.ANSI.yellow() <> IO.ANSI.blink_rapid() <> "⚡" <> IO.ANSI.reset()
 
 default_prompt = prefix <> counter <> " | " <> info <> " | " <> last
-alive_prompt = prefix <> counter <> " | " <> info <> " | " <> alive <> last
 
 inspect_limit = 150
 history_size = 1_000_000_000
@@ -29,7 +28,7 @@ eval_result = [:green, :bright]
 eval_error = [:red, :bright]
 eval_info = [:blue, :bright]
 
-IEx.configure [
+IEx.configure(
   inspect: [limit: inspect_limit],
   history_size: history_size,
   colors: [
@@ -50,6 +49,14 @@ IEx.configure [
     doc_headings: [:cyan, :underline],
     doc_title: [:cyan, :bright, :underline]
   ],
-  default_prompt: ["\e[G", :light_magenta, "⚡ iex", ">", :white, :reset] |> IO.ANSI.format() |> IO.chardata_to_string(),
-  alive_prompt: alive_prompt
-]
+  default_prompt:
+    [
+      :light_magenta,
+      "⚡ iex",
+      ">",
+      :white,
+      :reset
+    ]
+    |> IO.ANSI.format()
+    |> IO.chardata_to_string()
+)

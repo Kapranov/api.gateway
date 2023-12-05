@@ -17,7 +17,7 @@ defmodule Connector.MixProject do
 
   def application do
     [
-      extra_applications: [:logger],
+      extra_applications: [:logger, :kaffe],
       mod: {Connector.Application, []}
     ]
   end
@@ -34,6 +34,7 @@ defmodule Connector.MixProject do
       {:httpoison, "~> 2.1"},
       {:inch_ex, "~> 2.0", only: [:dev, :test]},
       {:jason, "~> 1.4"},
+      {:kaffe, "~> 1.24"},
       {:plug, "~> 1.15"},
       {:plug_cowboy, "~> 2.6"},
       {:tesla, "~> 1.8"},

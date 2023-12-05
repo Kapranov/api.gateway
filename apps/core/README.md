@@ -54,19 +54,23 @@ iex> EctoAnon.run(setting, Core.Repo)
 
 ### 5 September 2023 by Oleg G.Kapranov
 
-[1]:  https://fullstackphoenix.com/tutorials/add-jsonb-field-in-phoenix-and-ecto
-[2]:  https://medium.com/coletiv-stories/ecto-embedded-schemas-quick-search-through-a-jsonb-array-in-postgresql-f9d91cf90843
-[3]:  https://hexdocs.pm/ecto/Ecto.Changeset.html
-[4]:  https://hexdocs.pm/ecto/polymorphic-associations-with-many-to-many.html
-[5]:  https://hexdocs.pm/ecto/self-referencing-many-to-many.html
-[6]:  https://github.com/elixir-ecto/ecto/blob/master/test/ecto/changeset/many_to_many_test.exs
-[7]:  https://elixirschool.com/ru/lessons/ecto/associations#many-to-many-11
-[8]:  https://blog.plataformatec.com.br/2016/12/many-to-many-and-upserts/
-[9]:  https://medium.com/coletiv-stories/ecto-elixir-many-to-many-relationships-66403933f8c1
-[10]: https://geoffreylessel.com/2017/using-ecto-multi-to-group-database-operations/
-[11]: https://colinramsay.co.uk/2021/02/12/many-to-many-tags-ecto-phoenix.html
-[12]: https://elixirforum.com/t/ecto-insert-many-to-many-with-extra-foreign-key/49556/2
-[13]: https://elixirforum.com/t/many-to-many-association-table-with-extra-columns/6563/12
-[14]: https://medium.com/@m.r.nijboer/using-ecto-changesets-for-json-api-request-body-validation-6150e8256c5c
-[15]: https://anonyfox.com/spells/ecto-custom-field-validation/
-[16]: https://gist.github.com/rylev/6906490
+ [1]: https://anonyfox.com/spells/ecto-custom-field-validation/
+ [2]: https://blog.plataformatec.com.br/2016/12/many-to-many-and-upserts/
+ [3]: https://colinramsay.co.uk/2021/02/12/many-to-many-tags-ecto-phoenix.html
+ [4]: https://elixirforum.com/t/ecto-insert-many-to-many-with-extra-foreign-key/49556/2
+ [5]: https://elixirforum.com/t/many-to-many-association-table-with-extra-columns/6563/12
+ [6]: https://elixirschool.com/ru/lessons/ecto/associations#many-to-many-11
+ [7]: https://fullstackphoenix.com/tutorials/add-jsonb-field-in-phoenix-and-ecto
+ [8]: https://geoffreylessel.com/2017/using-ecto-multi-to-group-database-operations/
+ [9]: https://gist.github.com/rylev/6906490
+[10]: https://github.com/elixir-ecto/ecto/blob/master/test/ecto/changeset/many_to_many_test.exs
+[11]: https://hexdocs.pm/ecto/Ecto.Changeset.html
+[12]: https://hexdocs.pm/ecto/Ecto.Multi.html
+[13]: https://hexdocs.pm/ecto/composable-transactions-with-multi.html
+[14]: https://hexdocs.pm/ecto/polymorphic-associations-with-many-to-many.html
+[15]: https://hexdocs.pm/ecto/self-referencing-many-to-many.html
+[16]: https://medium.com/@m.r.nijboer/using-ecto-changesets-for-json-api-request-body-validation-6150e8256c5c
+[17]: https://medium.com/coletiv-stories/ecto-elixir-many-to-many-relationships-66403933f8c1
+[18]: https://medium.com/coletiv-stories/ecto-embedded-schemas-quick-search-through-a-jsonb-array-in-postgresql-f9d91cf90843
+[19]: https://smartlogic.io/blog/advanced-ecto-multi-usage/
+[20]: https://smartlogic.io/blog/introduction-to-ecto-multi/

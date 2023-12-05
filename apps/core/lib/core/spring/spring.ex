@@ -51,9 +51,16 @@ defmodule Core.Spring do
   """
   @spec create_message(%{atom => any}) :: result() | error_tuple()
   def create_message(attrs \\ %{}) do
-    %Message{}
-    |> Message.changeset(attrs)
-    |> Repo.insert()
+    created =
+      %Message{}
+      |> Message.changeset(attrs)
+      |> Repo.insert()
+
+    case created do
+      {:error, %Ecto.Changeset{}} -> {:error, %Ecto.Changeset{}}
+      {:ok, struct} ->
+        {:ok, Repo.preload(struct, [:sms_logs, status: [:sms_logs]])}
+    end
   end
 
   @doc """

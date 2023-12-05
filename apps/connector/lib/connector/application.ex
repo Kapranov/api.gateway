@@ -8,6 +8,10 @@ defmodule Connector.Application do
   @impl true
   def start(_type, _args) do
     children = [
+      %{
+        id: Kaffe.Consumer,
+        start: {Kaffe.Consumer, :start_link, []}
+      }
       #{VodafoneHandler, [{FlakeId.get()}]}
       #{VodafoneHandler, [{"Ab7ug1QFqdre94zgRM"}]}
     ]

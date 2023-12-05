@@ -17,9 +17,9 @@ config :gateway, Gateway.Endpoint,
   live_view: [signing_salt: "W871n4Ux"],
   max_age: 300 * 24 * 3600,
   pubsub_server: Gateway.PubSub,
-  redirect_uri: "http://192.168.2.145:4000/graphiql",
+  redirect_uri: "http://192.168.2.157:4000/graphiql",
   render_errors: [ formats: [json: Gateway.ErrorJSON], layout: false ],
-  url: [host: "159.224.174.183", port: 80, ip: {192, 168, 2, 145}],
+  url: [host: "159.224.174.183", port: 80, ip: {192, 168, 2, 157}],
   version: Mix.Project.config()[:version]
 
 config :gateway,
@@ -44,5 +44,17 @@ config :absinthe_error_payload,
   field_constructor: AbsintheErrorPayload.FieldConstructor
 
 config :tesla, adapter: Tesla.Adapter.Hackney
+
+config :kaffe,
+  consumer: [
+    endpoints: [localhost: 9092],
+    topics: ["MyTopic"],
+    consumer_group: "example-consumer-group",
+    message_handler: Connector.Consumer
+  ],
+  producer: [
+    endpoints: [localhost: 9092],
+    topics: ["MyTopic"]
+  ]
 
 import_config "#{config_env()}.exs"

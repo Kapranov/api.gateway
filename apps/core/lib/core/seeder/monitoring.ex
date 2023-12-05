@@ -67,7 +67,7 @@ defmodule Core.Seeder.Monitoring do
       Monitoring.create_status(%{
         active: true,
         description: "sending error",
-        status_name: "error ",
+        status_name: "error",
         status_code: 106
       })
     ]

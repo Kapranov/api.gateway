@@ -54,7 +54,7 @@ defmodule Gateway.GraphQL.Resolvers.Spring.MessageResolver do
     args
     |> Spring.create_message()
     |> case do
-      {:error, %Ecto.Changeset{}} -> []
+      {:error, %Ecto.Changeset{}} -> {:ok, []}
       {:ok, struct} ->
         operators = Queries.sorted_by_operators(struct.phone_number)
         # selected_connector(operators, struct.id)
@@ -283,10 +283,13 @@ defmodule Gateway.GraphQL.Resolvers.Spring.MessageResolver do
             {:ok, pid} ->
               case Connector.HTTPClient.get_state(pid) do
                 :error ->
+                  Connector.HTTPClient.stop(pid)
                   {:cont, acc}
                 :timeout ->
+                  Connector.HTTPClient.stop(pid)
                   {:cont, acc}
                 data ->
+                  Connector.HTTPClient.stop(pid)
                   {:halt, data}
               end
             _ -> {:cont, acc}
@@ -297,10 +300,13 @@ defmodule Gateway.GraphQL.Resolvers.Spring.MessageResolver do
             {:ok, pid} ->
               case Connector.HTTPClient.get_state(pid) do
                 :error ->
+                  Connector.HTTPClient.stop(pid)
                   {:cont, acc}
                 :timeout ->
+                  Connector.HTTPClient.stop(pid)
                   {:cont, acc}
                 data ->
+                  Connector.HTTPClient.stop(pid)
                   {:halt, data}
               end
             _ -> {:cont, acc}
@@ -311,10 +317,13 @@ defmodule Gateway.GraphQL.Resolvers.Spring.MessageResolver do
             {:ok, pid} ->
               case Connector.HTTPClient.get_state(pid) do
                 :error ->
+                  Connector.HTTPClient.stop(pid)
                   {:cont, acc}
                 :timeout ->
+                  Connector.HTTPClient.stop(pid)
                   {:cont, acc}
                 data ->
+                  Connector.HTTPClient.stop(pid)
                   {:halt, data}
               end
             _ -> {:cont, acc}
@@ -325,10 +334,13 @@ defmodule Gateway.GraphQL.Resolvers.Spring.MessageResolver do
             {:ok, pid} ->
               case Connector.HTTPClient.get_state(pid) do
                 :error ->
+                  Connector.HTTPClient.stop(pid)
                   {:cont, acc}
                 :timeout ->
+                  Connector.HTTPClient.stop(pid)
                   {:cont, acc}
                 data ->
+                  Connector.HTTPClient.stop(pid)
                   {:halt, data}
               end
             _ -> {:cont, acc}
@@ -339,10 +351,13 @@ defmodule Gateway.GraphQL.Resolvers.Spring.MessageResolver do
             {:ok, pid} ->
               case Connector.HTTPClient.get_state(pid) do
                 :error ->
+                  Connector.HTTPClient.stop(pid)
                   {:cont, acc}
                 :timeout ->
+                  Connector.HTTPClient.stop(pid)
                   {:cont, acc}
                 data ->
+                  Connector.HTTPClient.stop(pid)
                   {:halt, data}
               end
             _ -> {:cont, acc}
@@ -353,10 +368,13 @@ defmodule Gateway.GraphQL.Resolvers.Spring.MessageResolver do
             {:ok, pid} ->
               case Connector.HTTPClient.get_state(pid) do
                 :error ->
+                  Connector.HTTPClient.stop(pid)
                   {:cont, acc}
                 :timeout ->
+                  Connector.HTTPClient.stop(pid)
                   {:cont, acc}
                 data ->
+                  Connector.HTTPClient.stop(pid)
                   {:halt, data}
               end
             _ -> {:cont, acc}
@@ -367,10 +385,13 @@ defmodule Gateway.GraphQL.Resolvers.Spring.MessageResolver do
             {:ok, pid} ->
               case Connector.HTTPClient.get_state(pid) do
                 :error ->
+                  Connector.HTTPClient.stop(pid)
                   {:cont, acc}
                 :timeout ->
+                  Connector.HTTPClient.stop(pid)
                   {:cont, acc}
                 data ->
+                  Connector.HTTPClient.stop(pid)
                   {:halt, data}
               end
             _ -> {:cont, acc}
