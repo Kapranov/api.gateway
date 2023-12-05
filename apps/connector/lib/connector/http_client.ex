@@ -130,7 +130,6 @@ defmodule Connector.HTTPClient do
   def handle_continue(:connected, state) do
     case Connector.HTTPServer.start_link(state) do
       {:ok, pid} ->
-        IO.puts("Received arguments: #{inspect(state)}")
         error = Repo.get_by(Status, %{status_name: "error"})
         expired = Repo.get_by(Status, %{status_name: "expired"})
         queue = Repo.get_by(Status, %{status_name: "queue"})
