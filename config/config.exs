@@ -50,7 +50,7 @@ config :kaffe,
     endpoints: [localhost: 9092],
     topics: ["MyTopic"],
     consumer_group: "example-consumer-group",
-    message_handler: Connector.Consumer
+    message_handler: Connector
   ],
   producer: [
     endpoints: [localhost: 9092],

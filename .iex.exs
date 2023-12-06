@@ -1,3 +1,6 @@
+import_if_available(Ecto.Query)
+import_if_available(Ecto.Changeset)
+
 Application.put_env(:elixir, :ansi_enabled, true)
 
 IO.puts IO.ANSI.magenta()
@@ -6,7 +9,7 @@ IO.puts IO.ANSI.magenta()
         <> IO.ANSI.underline()
         <> IO.ANSI.blink_slow()
         <> IO.ANSI.reset()
-        #
+
 queue_length = fn ->
   self()
   |> Process.info()
@@ -20,6 +23,7 @@ last = IO.ANSI.yellow() <> "➤➤➤" <> IO.ANSI.reset()
 alive = IO.ANSI.bright() <> IO.ANSI.yellow() <> IO.ANSI.blink_rapid() <> "⚡" <> IO.ANSI.reset()
 
 default_prompt = prefix <> counter <> " | " <> info <> " | " <> last
+alive_prompt = prefix <> counter <> " | " <> info <> " | " <> alive <> last
 
 inspect_limit = 150
 history_size = 1_000_000_000
@@ -29,7 +33,12 @@ eval_error = [:red, :bright]
 eval_info = [:blue, :bright]
 
 IEx.configure(
-  inspect: [limit: inspect_limit],
+  inspect: [
+    pretty: true,
+    limit: inspect_limit,
+    width: 80
+  ],
+  width: 80,
   history_size: history_size,
   colors: [
     eval_result: eval_result,
@@ -49,6 +58,7 @@ IEx.configure(
     doc_headings: [:cyan, :underline],
     doc_title: [:cyan, :bright, :underline]
   ],
+  alive_prompt: alive_prompt,
   default_prompt:
     [
       :light_magenta,
