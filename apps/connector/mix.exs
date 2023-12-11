@@ -31,14 +31,17 @@ defmodule Connector.MixProject do
       {:excoveralls, "~> 0.17", only: :test},
       {:gen_state_machine, "~> 3.0"},
       {:hackney, "~> 1.20"},
+      {:honeybadger, "~> 0.21.0"},
       {:httpoison, "~> 2.1"},
       {:inch_ex, "~> 2.0", only: [:dev, :test]},
       {:jason, "~> 1.4"},
       {:kaffe, "~> 1.24"},
+      {:murmur, "~> 1.0"},
       {:plug, "~> 1.15"},
       {:plug_cowboy, "~> 2.6"},
       {:tesla, "~> 1.8"},
-      {:uuid, "~> 1.1"}
+      {:uuid, "~> 1.1"},
+      {:wormhole, "~> 2.3"}
     ]
   end
 end

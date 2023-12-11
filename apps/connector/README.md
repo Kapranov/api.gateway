@@ -4,14 +4,14 @@
 
 - Priority of Policy
 
-DIA
-INTERTELECOM
-KYIVSTAR
-LIFECELL
-TELEGRAM
-TIMEOUT
-VIBER
-VODAFONE
+* DIA
+* INTERTELECOM
+* KYIVSTAR
+* LIFECELL
+* TELEGRAM
+* TIMEOUT
+* VIBER
+* VODAFONE
 
 - Create Message
 
@@ -188,6 +188,28 @@ iex> grouped = Enum.group_by(operators, fn x -> x.config.name end)
 iex> grouped["vodafone"] |> List.first
 ```
 
+### Kafka
+
+```bash
+bash> sudo -u kafka /opt/kafka/bin/kafka-topics.sh --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic MyTopic
+bash> sudo -u kafka /opt/kafka/bin/kafka-topics.sh --list --bootstrap-server localhost:9092
+
+bash> sudo -u kafka /opt/kafka/bin/kafka-console-producer.sh --broker-list localhost:9092 --topic MyTopic
+bash> sudo -u kafka /opt/kafka/bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic MyTopic --from-beginning
+```
+
+```
+iex> Logger.log(:info, "Run took #{run_end - run_start} ms, #{messages_count} messages, #{messages_sec} msg/sec")
+```
+
+```
+iex>
+iex> id = "Ac7y2LxiD9lsV2Oeiu"
+iex> message = ~s({"status":"send","text":"Ваш код - 7777-999-9999-9999 - vodafone","connector":"vodafone","sms":"+380991111111","ts":#{:os.system_time(:milli_seconds)}})
+iex> messages = [%{key: id, value: message}]
+iex> Connector.Monitor.produce("MyTopic", messages)
+```
+
 ### 27 Oct 2023 by Oleg G.Kapranov
 
  [1]: http://httpbin.org
@@ -218,10 +240,7 @@ iex> grouped["vodafone"] |> List.first
 [26]: https://bitwalker.org/posts/2018-03-18-functional-imperative-programming-with-elixir/
 [27]: https://dockyard.com/blog/2020/01/31/state-timeouts-with-gen_statem
 [28]: https://thoughtbot.com/blog/how-to-start-processes-with-dynamic-names-in-elixir
-
-
-
-
-
-
-
+[29]: https://github.com/spreedly/kaffe/issues/93
+[30]: https://hexdocs.pm/elixir/main/dynamic-supervisor.html
+[31]: https://thoughtbot.com/blog/how-to-start-processes-with-dynamic-names-in-elixir
+[32]: https://www.thegreatcodeadventure.com/how-we-used-elixirs-genservers-dynamic-supervisors-to-build-concurrent-fault-tolerant-workflows/

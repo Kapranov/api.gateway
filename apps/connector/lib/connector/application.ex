@@ -11,6 +11,7 @@ defmodule Connector.Application do
         start: {Kaffe.GroupMemberSupervisor, :start_link, []},
         type: :supervisor
       }
+      #{Connector.Monitor, []}
       #{VodafoneHandler, [{FlakeId.get()}]}
       #{VodafoneHandler, [{"Ab7ug1QFqdre94zgRM"}]}
     ]

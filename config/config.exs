@@ -57,4 +57,8 @@ config :kaffe,
     topics: ["MyTopic"]
   ]
 
+config :honeybadger,
+  api_key: System.get_env("HONEYBADGER_API_KEY"),
+  environment_name: :dev
+
 import_config "#{config_env()}.exs"
