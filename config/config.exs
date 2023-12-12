@@ -47,12 +47,13 @@ config :tesla, adapter: Tesla.Adapter.Hackney
 
 config :kaffe,
   consumer: [
-    endpoints: [localhost: 9092],
-    topics: ["MyTopic"],
     consumer_group: "example-consumer-group",
-    message_handler: Connector
+    endpoints: [localhost: 9092],
+    message_handler: Connector,
+    topics: ["MyTopic"]
   ],
   producer: [
+    allow_topic_auto_creation: true,
     endpoints: [localhost: 9092],
     topics: ["MyTopic"]
   ]

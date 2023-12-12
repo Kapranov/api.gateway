@@ -11,30 +11,60 @@ defmodule Connector.Monitor do
 
   @brokers Application.compile_env(:kaffe, :producer)[:endpoints]
   @client_name :kaffe_producer_client
-  @kafka Application.compile_env(:kaffe, :kafka_mod, :brod)
   @name __MODULE__
-  @none "none"
   @restart_wait_seconds 60
 
+  @doc """
+  Server up Server `Connector.Monitor`.
+
+  ## Example.
+
+      iex> {:ok, monitor} = Connector.Monitor.start_link([])
+      iex> :sys.get_state(monitor)
+      {%{}, %{}, #Reference<0.4294242267.2699034626.84614>, %{}}
+      iex> :sys.get_status(monitor)
+      iex> Process.whereis(KaffeMonitor) == monitor
+      true
+
+  """
+  @spec start_link(list()) :: {atom(), pid} | atom()
   def start_link(opts \\ []) do
     GenServer.start_link(@name, opts, name: KaffeMonitor)
   end
 
+  @spec up() :: boolean()
   def up do
     Application.started_applications() |> Enum.any?(fn {app, _, _} -> app == :kaffe end)
   end
 
+  @doc """
+  Send messages to Kafka.
+
+    ## Example.
+
+        iex> id = "Ac7y2LxiD9lsV2Oeiu"
+        iex> topic = "MyTopic"
+        iex> message = ~s({"status":"send","text":"Ваш код - 7777-999-9999-9999 - vodafone","connector":"vodafone","sms":"+380991111111","ts":#{:os.system_time(:milli_seconds)}})
+        iex> messages = [%{key: id, value: message}]
+        iex> Connector.Monitor.produce(topic, messages)
+        :ok
+
+  """
+  @spec produce(String.t(), [%{key: String.t(), value: String.t()}]) :: :ok
   def produce(topic, messages) when is_binary(topic) and is_list(messages) do
     unless length(messages) <= 0 do
       if KaffeMonitor |> GenServer.call({:produce, topic, messages}) == :error do
         Logger.warning("Kaffe failed to produce messages to #{topic}. Waiting #{@restart_wait_seconds} seconds and trying again.")
         Process.sleep(@restart_wait_seconds * 1000)
         produce(topic, messages)
+      else
+        Logger.debug("Messages: #{inspect(messages)}")
       end
     end
   end
 
   @impl true
+  @spec init(list()) :: {atom(), tuple()}
   def init(child_specs) do
     Application.ensure_started(:connector)
     children = Map.new
@@ -76,6 +106,7 @@ defmodule Connector.Monitor do
   end
 
   @impl true
+  @spec handle_info(atom(), tuple()) :: {:noreply, tuple()}
   def handle_info(:start_worker, {children, refs, worker_ref, partition_counts}) do
     Application.start(:kaffe)
 
@@ -97,6 +128,7 @@ defmodule Connector.Monitor do
   end
 
   @impl true
+  @spec handle_info({atom(), list()}, tuple()) :: {:noreply, tuple()}
   def handle_info({:start_child, child_spec}, {children, refs, worker_ref, partition_counts}) do
     Application.start(:kaffe)
 
@@ -116,6 +148,8 @@ defmodule Connector.Monitor do
     {:noreply, {children, refs, worker_ref, partition_counts}}
   end
 
+  @impl true
+  @spec handle_info({atom(), reference(), atom(), any(), any()}, tuple()) :: {:noreply, tuple()}
   def handle_info({:DOWN, ref, :process, _pid, _reason}, {children, refs, worker_ref, partition_counts}) do
     if ref == worker_ref do
       Logger.warning("Kaffe worker went down. Restarting in #{@restart_wait_seconds} seconds...")
@@ -128,6 +162,21 @@ defmodule Connector.Monitor do
       Process.send_after(self(), {:start_child, child_spec}, @restart_wait_seconds * 1000)
       {:noreply, {children, refs, worker_ref, partition_counts}}
     end
+  end
+
+  @impl true
+  @spec handle_info({atom(), String.t(), list()}, tuple()) :: {:noreply, tuple()}
+  def handle_info({:produce, topic, messages}, state) do
+    Logger.info("Kaffe to topic #{topic} send data: #{inspect(messages)}")
+    {:noreply, state}
+  end
+
+  @impl true
+  @spec handle_info(any(), any()) :: {:noreply, any()}
+  def handle_info(msg, state) do
+    msg |> IO.inspect(label: "message")
+    state |> IO.inspect(label: "state")
+    {:noreply, state}
   end
 
   @impl true
@@ -162,45 +211,24 @@ defmodule Connector.Monitor do
             |> Enum.map(fn message ->
               case Map.has_key?(message, :key) && !is_nil(message.key) do
                 true ->
-                  case @kafka.produce_sync(@client_name, topic, partition, message.key, message.value) do
-                    :ok ->
-                      data =
-                        message.value
-                        |> Jason.decode!
-                        |> Map.put("id", message.key)
+                  data =
+                    message.value
+                    |> Jason.decode!
+                    |> Map.put("id", message.key)
 
-                      %{
-                        connector: data["connector"],
-                        id: message.key,
-                        sms: data["sms"],
-                        status: data["status"],
-                        text: data["text"],
-                        ts: data["ts"]
-                      }
-                    _ -> Map.new
-                  end
-                false ->
-                  case @kafka.produce_sync(@client_name, topic, partition, @none, message.value) do
-                    :ok ->
-                      data =
-                        message.value
-                        |> Jason.decode!
-                        |> Map.put("id", @none)
-
-                      %{
-                        connector: data["connector"],
-                        id: @none,
-                        sms: data["sms"],
-                        status: data["status"],
-                        text: data["text"],
-                        ts: data["ts"]
-                      }
-                    _ -> Map.new
-                  end
+                  %{
+                    connector: data["connector"],
+                    id: message.key,
+                    sms: data["sms"],
+                    status: data["status"],
+                    text: data["text"],
+                    ts: data["ts"]
+                  }
+                false -> Map.new
               end
           end)
 
-        [payload] = messages
+        payload = List.first(messages)
         Logger.debug("Kaffe producing payload #{inspect(payload)}")
         produce_with_retry(payload)
       end
@@ -208,11 +236,13 @@ defmodule Connector.Monitor do
     end
   end
 
+  @spec get_partition_count(String.t()) :: integer()
   defp get_partition_count(topic) when is_binary(topic) do
     {:ok, counts} = :brod.get_partitions_count(@client_name, topic)
     counts
   end
 
+  @spec produce_with_retry(map()) :: tuple() | nil
   defp produce_with_retry(payload) do
     key = payload.id
     value = ~s({"status":"#{payload.status}","text":"#{payload.text}","connector":"#{payload.connector}","sms":"#{payload.sms}","ts":#{payload.ts}})
@@ -220,10 +250,10 @@ defmodule Connector.Monitor do
       Wormhole.capture(
         fn ->
           Logger.debug("success")
-#          case Kaffe.Producer.produce_sync(key, value) do
-#            :ok -> Logger.debug("success")
-#            {:ok, _} -> Logger.debug("success")
-#          end
+          case Kaffe.Producer.produce_sync(key, value) do
+            :ok -> Logger.debug("success")
+            {:ok, _} -> Logger.debug("success")
+          end
         end,
         retry_count: 5,
         backoff_ms: 1_000

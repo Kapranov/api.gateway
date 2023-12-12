@@ -17,7 +17,7 @@ defmodule Connector.MixProject do
 
   def application do
     [
-      extra_applications: [:logger, :kaffe],
+      extra_applications: [:logger],
       mod: {Connector.Application, []}
     ]
   end
@@ -39,6 +39,7 @@ defmodule Connector.MixProject do
       {:murmur, "~> 1.0"},
       {:plug, "~> 1.15"},
       {:plug_cowboy, "~> 2.6"},
+      {:retry, "~> 0.15.0"},
       {:tesla, "~> 1.8"},
       {:uuid, "~> 1.1"},
       {:wormhole, "~> 2.3"}

@@ -203,11 +203,15 @@ iex> Logger.log(:info, "Run took #{run_end - run_start} ms, #{messages_count} me
 ```
 
 ```
-iex>
+iex> {:ok, server} = Connector.Monitor.start_link([])
+iex> :sys.get_state(server)
+iex> :sys.get_status(server)
+iex> Process.whereis(KaffeMonitor) == server
 iex> id = "Ac7y2LxiD9lsV2Oeiu"
+iex> topic = "MyTopic"
 iex> message = ~s({"status":"send","text":"Ваш код - 7777-999-9999-9999 - vodafone","connector":"vodafone","sms":"+380991111111","ts":#{:os.system_time(:milli_seconds)}})
 iex> messages = [%{key: id, value: message}]
-iex> Connector.Monitor.produce("MyTopic", messages)
+iex> Connector.Monitor.produce(topic, messages)
 ```
 
 ### 27 Oct 2023 by Oleg G.Kapranov

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.30.9">
+    <meta name="project" content="APIGateway v0.0.1-beta.1-0-g9c6c967-main+dev">
+
+    <title>Connector.Producer — APIGateway v0.0.1-beta.1-0-g9c6c967-main+dev</title>
+    <link rel="stylesheet" href="dist/html-elixir-XFYN5IVA.css" />
+
+
+    <script src="dist/handlebars.runtime-NWIB6V2M.js"></script>
+    <script src="dist/handlebars.templates-EPF2X7PV.js"></script>
+    <script src="dist/sidebar_items-12B8B3F4.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/html-J2ASZTQE.js"></script>
+
+
+  </head>
+  <body data-type="modules" class="page-module">
+    <script>
+
+      try {
+        var settings = JSON.parse(localStorage.getItem('ex_doc:settings') || '{}');
+
+        if (settings.theme === 'dark' ||
+           ((settings.theme === 'system' || settings.theme == null) &&
+             window.matchMedia('(prefers-color-scheme: dark)').matches)
+           ) {
+          document.body.classList.add('dark')
+        }
+      } catch (error) { }
+    </script>
+
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle" aria-label="toggle sidebar" aria-controls="sidebar">
+  <i class="ri-menu-line ri-lg" title="Collapse/expand sidebar"></i>
+</button>
+
+<nav id="sidebar" class="sidebar">
+  <form class="sidebar-search" action="search.html">
+    <label class="search-label">
+      <span class="sr-only">Search documentation of APIGateway</span>
+      <input name="q" type="text" class="search-input" placeholder="Search..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+    </label>
+    <button type="submit" class="search-button" aria-label="Submit Search">
+      <i class="ri-search-2-line" aria-hidden="true" title="Submit search"></i>
+    </button>
+    <button type="button" tabindex="-1" class="search-close-button" aria-hidden="true">
+      <i class="ri-close-line ri-lg" title="Cancel search"></i>
+    </button>
+  </form>
+
+  <div class="autocomplete">
+    <div class="autocomplete-results">
+    </div>
+  </div>
+
+  <div class="sidebar-header">
+
+    <div class="sidebar-projectDetails">
+      <a href="https://api.gateway.com.ua/" class="sidebar-projectName" translate="no">
+APIGateway
+      </a>
+      <div class="sidebar-projectVersion" translate="no">
+        v0.0.1-beta.1-0-g9c6c967-main+dev
+      </div>
+    </div>
+    <ul id="sidebar-listNav" class="sidebar-listNav" role="tablist">
+      <li>
+        <button id="extras-list-tab-button" role="tab" data-type="extras" aria-controls="extras-tab-panel" aria-selected="true" tabindex="0">
+Pages
+        </button>
+      </li>
+
+        <li>
+          <button id="modules-list-tab-button" role="tab" data-type="modules" aria-controls="modules-tab-panel" aria-selected="false" tabindex="-1">
+            Modules
+          </button>
+        </li>
+
+
+    </ul>
+  </div>
+
+  <div id="extras-tab-panel" class="sidebar-tabpanel" role="tabpanel" aria-labelledby="extras-list-tab-button">
+    <ul id="extras-full-list" class="full-list"></ul>
+  </div>
+
+    <div id="modules-tab-panel" class="sidebar-tabpanel" role="tabpanel" aria-labelledby="modules-list-tab-button" hidden>
+      <ul id="modules-full-list" class="full-list"></ul>
+    </div>
+
+
+</nav>
+
+<main class="content">
+  <output role="status" id="toast"></output>
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+<h1>
+<button class="icon-action display-settings">
+  <i class="ri-settings-3-line"></i>
+  <span class="sr-only">Settings</span>
+</button>
+
+
+    <a href="https://github.com/kapranov/api_gateway/blob/main/apps/connector/lib/connector/producer.ex#L1" title="View Source" class="icon-action" rel="help">
+      <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+      <span class="sr-only">View Source</span>
+    </a>
+
+  <span translate="no">Connector.Producer</span> 
+  <small class="app-vsn" translate="no">(APIGateway v0.0.1-beta.1-0-g9c6c967-main+dev)</small>
+
+</h1>
+
+
+  <section id="moduledoc">
+<p>Documentation for <code class="inline">Producer</code> by Kafka.</p>
+  </section>
+
+
+  <section id="summary" class="details-list">
+    <h1 class="section-heading">
+      <a class="hover-link" href="#summary">
+        <i class="ri-link-m" aria-hidden="true"></i>
+      </a>
+      <span class="text">Summary</span>
+    </h1>
+<div class="summary-functions summary">
+  <h2>
+    <a href="#functions">Functions</a>
+  </h2>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#runner/1" translate="no">runner(args)</a>
+
+      </div>
+
+        <div class="summary-synopsis"><p>Send attributes of Message by Kafka.</p></div>
+
+    </div>
+
+</div>
+
+  </section>
+
+
+  <section id="functions" class="details-list">
+    <h1 class="section-heading">
+      <a class="hover-link" href="#functions">
+        <i class="ri-link-m" aria-hidden="true"></i>
+      </a>
+      <span class="text">Functions</span>
+    </h1>
+    <div class="functions-list">
+<section class="detail" id="runner/1">
+
+  <div class="detail-header">
+    <a href="#runner/1" class="detail-link" title="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature" translate="no">runner(args)</h1>
+
+      <a href="https://github.com/kapranov/api_gateway/blob/main/apps/connector/lib/connector/producer.ex#L50" class="icon-action" rel="help" title="View Source">
+       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> runner(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">map</a>()) :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">map</a>()</pre>
+
+      </div>
+
+<p>Send attributes of Message by Kafka.</p><h2 id="runner/1-example" class="section-heading">
+  <a href="#runner/1-example" class="hover-link">
+    <i class="ri-link-m" aria-hidden="true"></i>
+  </a>
+  <span class="text">Example.</span>
+</h2>
+<pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="n">args</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="7477647863-1">%{</span><span class="ss">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;AcV6bF6mODc3JIsGf2&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">phone_number</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;+380997170609&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">message_body</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Ваш код - 7777-999-9999-9999&quot;</span><span class="p" data-group-id="7477647863-1">}</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Connector.Producer</span><span class="o">.</span><span class="n">send</span><span class="p" data-group-id="7477647863-2">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">args</span><span class="p" data-group-id="7477647863-2">)</span><span class="w">
+</span><span class="ss">:ok</span><span class="w">
+</span><span class="gp unselectable">iex&gt;</span><span class="p" data-group-id="7477647863-3">[</span><span class="n">data</span><span class="p" data-group-id="7477647863-3">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">:ets</span><span class="o">.</span><span class="n">lookup</span><span class="p" data-group-id="7477647863-4">(</span><span class="ss">:kafka</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;AcV6bF6mODc3JIsGf2&quot;</span><span class="p" data-group-id="7477647863-4">)</span><span class="w">
+</span><span class="p" data-group-id="7477647863-5">{</span><span class="s">&quot;AcV6bF6mODc3JIsGf2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;+380997170609, Ваш код - 7777-999-9999-9999&quot;</span><span class="p" data-group-id="7477647863-5">}</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">data</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">elem</span><span class="p" data-group-id="7477647863-6">(</span><span class="mi">0</span><span class="p" data-group-id="7477647863-6">)</span><span class="w">
+</span><span class="s">&quot;AcV6bF6mODc3JIsGf2&quot;</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">data</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">elem</span><span class="p" data-group-id="7477647863-7">(</span><span class="mi">1</span><span class="p" data-group-id="7477647863-7">)</span><span class="w">
+</span><span class="s">&quot;+380997170609, Ваш код - 7777-999-9999-9999&quot;</span><span class="w">
+
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">:ets</span><span class="o">.</span><span class="n">lookup_element</span><span class="p" data-group-id="7477647863-8">(</span><span class="ss">:kafka</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;AcV6bF6mODc3JIsGf2&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p" data-group-id="7477647863-8">)</span><span class="w">
+</span><span class="s">&quot;AcV6bF6mODc3JIsGf2&quot;</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">:ets</span><span class="o">.</span><span class="n">lookup_element</span><span class="p" data-group-id="7477647863-9">(</span><span class="ss">:kafka</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;AcV6bF6mODc3JIsGf2&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p" data-group-id="7477647863-9">)</span><span class="w">
+</span><span class="s">&quot;+380997170609, Ваш код - 7777-999-9999-9999&quot;</span><span class="w">
+
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">:ets</span><span class="o">.</span><span class="n">lookup_element</span><span class="p" data-group-id="7477647863-10">(</span><span class="ss">:kafka</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;AcV6bF6mODc3JIsGf2&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p" data-group-id="7477647863-10">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">String</span><span class="o">.</span><span class="n">split</span><span class="p" data-group-id="7477647863-11">(</span><span class="s">&quot;, &quot;</span><span class="p" data-group-id="7477647863-11">)</span><span class="w">
+</span><span class="p" data-group-id="7477647863-12">[</span><span class="s">&quot;+380997170609&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Ваш код - 7777-999-9999-9999&quot;</span><span class="p" data-group-id="7477647863-12">]</span><span class="w">
+
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">:ets</span><span class="o">.</span><span class="n">delete</span><span class="p" data-group-id="7477647863-13">(</span><span class="ss">:kafka</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;AcV6bF6mODc3JIsGf2&quot;</span><span class="p" data-group-id="7477647863-13">)</span><span class="w">
+</span><span class="no">true</span><span class="w">
+
+</span><span class="gp unselectable">iex&gt; </span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">~s({&quot;a&quot;:&quot;88f41aca-6a0c-49f4-a80a-effd7eec4f45&quot;,&quot;timestamp&quot;:1702217463618,&quot;c&quot;:&quot;aBcDeFgHiJk&quot;,&quot;d&quot;:&quot;This is a test&quot;,&quot;e&quot;:&quot;eec65e33-9088-4cbd-88f8-0ffe9fe0cbbd&quot;,&quot;f&quot;:&quot;testing&quot;})</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">~s({&quot;id&quot;:&quot;Ac7y2LxiD9lsV2Oeiu&quot;,&quot;status&quot;:&quot;send&quot;,&quot;text&quot;:&quot;Ваш код - 7777-999-9999-9999 - vodafone&quot;,&quot;connector&quot;:&quot;vodafone&quot;,&quot;sms&quot;:&quot;+380991111111&quot;,&quot;timestamp&quot;:1702217463618})</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">value</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nc">Jason</span><span class="o">.</span><span class="n">decode!</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Ac7y2LxiD9lsV2Oeiu&quot;</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">messages</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">~s({&quot;status&quot;:&quot;send&quot;,&quot;text&quot;:&quot;Ваш код - 7777-999-9999-9999 - vodafone&quot;,&quot;connector&quot;:&quot;vodafone&quot;,&quot;sms&quot;:&quot;+380991111111&quot;})</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Kaffe.Producer</span><span class="o">.</span><span class="n">produce_sync</span><span class="p" data-group-id="7477647863-14">(</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">messages</span><span class="p" data-group-id="7477647863-14">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">run_start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">:os</span><span class="o">.</span><span class="n">system_time</span><span class="p" data-group-id="7477647863-15">(</span><span class="ss">:milli_seconds</span><span class="p" data-group-id="7477647863-15">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">KaffeTestProducer</span><span class="o">.</span><span class="n">runner</span><span class="p" data-group-id="7477647863-16">(</span><span class="n">messages_count</span><span class="p" data-group-id="7477647863-16">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">run_end</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">:os</span><span class="o">.</span><span class="n">system_time</span><span class="p" data-group-id="7477647863-17">(</span><span class="ss">:milli_seconds</span><span class="p" data-group-id="7477647863-17">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="n">messages_sec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="7477647863-18">(</span><span class="n">messages_count</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p" data-group-id="7477647863-19">(</span><span class="n">run_end</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">run_start</span><span class="p" data-group-id="7477647863-19">)</span><span class="p" data-group-id="7477647863-18">)</span><span class="o">*</span><span class="mi">1000</span></code></pre>
+  </section>
+</section>
+
+    </div>
+  </section>
+
+      <footer class="footer">
+        <p>
+
+          <span class="line">
+            <button class="a-main footer-button display-quick-switch" title="Search HexDocs packages">
+              Search HexDocs
+            </button>
+
+              <a href="APIGateway.epub" title="ePub version">
+                Download ePub version
+              </a>
+
+          </span>
+        </p>
+
+        <p class="built-using">
+          Built using
+          <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener" translate="no">ExDoc</a> (v0.30.9) for the
+
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank" translate="no">Elixir programming language</a>
+
+        </p>
+      </footer>
+    </div>
+  </div>
+</main>
+</div>
+
+
+  </body>
+</html>
