@@ -31,4 +31,25 @@ config :providers, :dia,
   token: "WZTB25QSB25dHxBxCaH86Xe6Jd3dP4LhInrWZKS2ew5Yt4w2SCxMyvPAG8X3ffI8",
   url: "https://api2t.diia.gov.ua/api/v2/auth/partner"
 
+config :kaffe,
+  kafka_mod: :brod,
+  test_partition_count: 32,
+  consumer: [
+    async_message_ack: false,
+    client_down_retry_expire: 15_000,
+    consumer_group: "kaffe-test-group",
+    endpoints: [localhost: 9092],
+    max_bytes: 10_000,
+    message_handler: SilentMessage,
+    rebalance_delay_ms: 100,
+    ssl: false,
+    start_with_earliest_message: true,
+    topics: ["kaffe-test"]
+  ],
+  producer: [
+    endpoints: [localhost: 9092],
+    ssl: false,
+    topics: ["kaffe-test"]
+  ]
+
 config :logger, level: :warning

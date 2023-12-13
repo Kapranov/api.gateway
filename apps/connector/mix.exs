@@ -10,6 +10,7 @@ defmodule Connector.MixProject do
       deps_path: "../../deps",
       lockfile: "../../mix.lock",
       elixir: "~> 1.15",
+      elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,
       deps: deps()
     ]
@@ -17,10 +18,16 @@ defmodule Connector.MixProject do
 
   def application do
     [
-      extra_applications: [:logger],
+      extra_applications: applications(Mix.env),
       mod: {Connector.Application, []}
     ]
   end
+
+  defp applications(:dev), do: applications(:all) ++ [:logger]
+  defp applications(:test), do: applications(:all) ++ [:logger, :brod]
+  defp applications(_all), do: [:logger]
+  defp elixirc_paths(:test), do: ["lib", "test/support"]
+  defp elixirc_paths(_), do: ["lib"]
 
   defp deps do
     [

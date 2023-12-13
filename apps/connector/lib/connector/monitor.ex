@@ -63,6 +63,10 @@ defmodule Connector.Monitor do
     end
   end
 
+  def set_produce_response(response) do
+    KaffeMonitor |> GenServer.call({:set_produce_response, response})
+  end
+
   @impl true
   @spec init(list()) :: {atom(), tuple()}
   def init(child_specs) do
@@ -234,6 +238,10 @@ defmodule Connector.Monitor do
       end
       {:reply, :ok, {children, refs, worker_ref, partition_counts}}
     end
+  end
+
+  def handle_call({:set_produce_response, response}, _from, state) do
+    {:reply, response, %{state | produce_response: response}}
   end
 
   @spec get_partition_count(String.t()) :: integer()
