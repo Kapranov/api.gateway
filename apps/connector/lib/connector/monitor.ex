@@ -241,7 +241,7 @@ defmodule Connector.Monitor do
   end
 
   def handle_call({:set_produce_response, response}, _from, state) do
-    {:reply, response, %{state | produce_response: response}}
+    {:reply, %{produce_response: response}, state}
   end
 
   @spec get_partition_count(String.t()) :: integer()
