@@ -35,6 +35,7 @@ defmodule Connector.MixProject do
       {:cowboy, "~> 2.10"},
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
       {:ex_doc, "~> 0.30", only: :dev, runtime: false},
+      {:ex_machina, "~> 2.7"},
       {:excoveralls, "~> 0.17", only: :test},
       {:gen_state_machine, "~> 3.0"},
       {:hackney, "~> 1.20"},

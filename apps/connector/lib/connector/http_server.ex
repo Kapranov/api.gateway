@@ -21,27 +21,22 @@ defmodule Connector.HTTPServer do
 
   ## Example.
 
-      iex> args = %{connector: "vodafone", id: FlakeId.get, phone_number: "+380991111111", message_body: "Aloha!"}
+      iex> struct = Core.Repo.all(Core.Spring.Message) |> List.last
+      iex> args = %{connector: "vodafone", id: message.id, phone_number: "+380991111111", message_body: "Aloha!"}
       iex> {:ok, pid} = Connector.HTTPServer.start_link(args)
       {:ok, pid}
-      Received arguments: %{id: "Ac4B2O2hMTwoBGc7vc", connector: "vodafone", phone_number: "+380991111111", message_body: "Aloha!"}
-      Received arguments: %{id: "Ac4B2O2hMTwoBGc7vc", status: "send", text: "Aloha!", connector: "vodafone", sms: "+380991111111"}
-      Received arguments: %{id: "Ac4B2O2hMTwoBGc7vc", status: "delivered", text: "Aloha!", connector: "vodafone", sms: "+380991111111"}
-      iex> :sys.get_state(pid)
-      %{id: "Ac49dpJdkaGO4kKHb6", status: "delivered", text: "Aloha!", connector: "vodafone", sms: "+380997170609"}
-      iex> Connector.HTTPServer.get_status
-      %{id: "Ac49dpJdkaGO4kKHb6", status: "delivered", text: "Aloha!", connector: "vodafone", sms: "+380991111111"}
-      iex> Connector.HTTPServer.stop(pid)
-      :ok
-
-      iex> args = %{connector: "vodafone", id: FlakeId.get, phone_number: "+380991111111", message_body: "Aloha!"}
-      iex> {:ok, pid} = Connector.HTTPServer.start_link(args)
-      {:ok, pid}
-      Received arguments: %{id: "Ac4BAqSjeT8A2A8ZBg", connector: "vodafone", phone_number: "+380991111111", message_body: "Aloha!"}
-      Received arguments: %{id: "Ac4BAqSjeT8A2A8ZBg", status: "send", text: "Aloha!", connector: "vodafone", sms: "+380991111111"}
-      iex> Connector.HTTPServer.get_status
       :timeout
-      Received arguments: %{id: "Ac4BAqSjeT8A2A8ZBg", status: "delivered", text: "Aloha!", connector: "vodafone", sms: "+380991111111"}
+      Received arguments: %{id: "AcV6bF6mODc3JIsGf2", connector: "vodafone", message_body: "Ваш код - 7777-999-9999-9999", phone_number: "+380997170609"}
+      Received arguments: %{id: "AcV6bF6mODc3JIsGf2", status: "send", text: "Ваш код - 7777-999-9999-9999", connector: "vodafone", sms: "+380997170609"}
+      Received arguments: %{id: "AcV6bF6mODc3JIsGf2", status: "delivered", text: "Ваш код - 7777-999-9999-9999", connector: "vodafone", sms: "+380997170609"}
+      iex> :sys.get_state(pid)
+      %{id: "AcV6bF6mODc3JIsGf2", status: "delivered", text: "Ваш код - 7777-999-9999-9999", connector: "vodafone", sms: "+380997170609"}
+      iex> Core.Repo.all(Core.Monitoring.Status) |> Enum.map(&(&1.id))
+      ["AcT2JS7IRSIO0gH0We", "AcT2JSBCCxPmCm67bU", "AcT2JSCG90GWG4ayGG", "AcT2JSDK537GJN5ov2", "AcT2JSEO15y0MfafZo", "AcT2JSF5ySXAOrvEgK"]
+      iex> Core.Repo.all(Core.Monitoring.Status) |> Enum.map(&(&1.status_name))
+      ["new", "queue", "send", "delivered", "expired", "error"]
+      iex> Connector.HTTPServer.get_status(struct.id, 9, "AcT2JSBCCxPmCm67bU", "AcT2JSEO15y0MfafZo", "AcT2JSF5ySXAOrvEgK")
+      %{id: "AcV6bF6mODc3JIsGf2", status: "delivered", text: "Ваш код - 7777-999-9999-9999", connector: "vodafone", sms: "+380997170609"}
       iex> Connector.HTTPServer.stop(pid)
       :ok
 
