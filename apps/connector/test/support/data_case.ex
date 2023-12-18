@@ -20,10 +20,34 @@ defmodule Connector.DataCase do
   using do
     quote do
       alias Core.Repo
+      alias Core.Logs.SmsLog
       import Ecto
       import Connector.DataCase
-      import Connector.Factory
+      import Core.Factory
     end
+  end
+
+  def providers do
+    names = [
+      "dia",
+      "intertelecom",
+      "kyivstar",
+      "lifecell",
+      "telegram",
+      "viber",
+      "vodafone"
+    ]
+
+    numbers = 1..1
+    number = Enum.random(numbers)
+
+    [result] =
+      for i <- 1..number, i > 0 do
+        Enum.random(names)
+      end
+      |> Enum.uniq()
+
+    result
   end
 
   setup tags do

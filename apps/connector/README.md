@@ -197,6 +197,7 @@ bash> sudo -u kafka /opt/kafka/bin/kafka-topics.sh --list --bootstrap-server loc
 
 bash> sudo -u kafka /opt/kafka/bin/kafka-console-producer.sh --broker-list localhost:9092 --topic MyTopic
 bash> sudo -u kafka /opt/kafka/bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic MyTopic --from-beginning
+bash> sudo -u kafka /opt/kafka/bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic kaffe-test --from-beginning
 ```
 
 ```

@@ -39,6 +39,9 @@ config :ex_json_schema,
 
 config :core, ecto_repos: [Core.Repo]
 
+config :connector,
+  external_api: "http://httpbin.org"
+
 config :absinthe_error_payload,
   ecto_repos: [Core.Repo],
   field_constructor: AbsintheErrorPayload.FieldConstructor

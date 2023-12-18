@@ -1,6 +1,6 @@
-defmodule Connector.HTTPServer do
+defmodule Connector.TestHTTPServerDelay3 do
   @moduledoc """
-  Http web server for api calls.
+  Test HTTP web server for api calls.
   """
 
   use GenServer
@@ -17,28 +17,6 @@ defmodule Connector.HTTPServer do
 
   @doc """
   Server HTTP Request & Response Service.
-
-  ## Example.
-
-      iex> struct = Core.Repo.all(Core.Spring.Message) |> List.last
-      iex> args = %{connector: "vodafone", id: message.id, phone_number: "+380991111111", message_body: "Aloha!"}
-      iex> {:ok, pid} = Connector.HTTPServer.start_link(args)
-      {:ok, pid}
-      :timeout
-      Received arguments: %{id: "AcV6bF6mODc3JIsGf2", connector: "vodafone", message_body: "Ваш код - 7777-999-9999-9999", phone_number: "+380997170609"}
-      Received arguments: %{id: "AcV6bF6mODc3JIsGf2", status: "send", text: "Ваш код - 7777-999-9999-9999", connector: "vodafone", sms: "+380997170609"}
-      Received arguments: %{id: "AcV6bF6mODc3JIsGf2", status: "delivered", text: "Ваш код - 7777-999-9999-9999", connector: "vodafone", sms: "+380997170609"}
-      iex> :sys.get_state(pid)
-      %{id: "AcV6bF6mODc3JIsGf2", status: "delivered", text: "Ваш код - 7777-999-9999-9999", connector: "vodafone", sms: "+380997170609"}
-      iex> Core.Repo.all(Core.Monitoring.Status) |> Enum.map(&(&1.id))
-      ["AcT2JS7IRSIO0gH0We", "AcT2JSBCCxPmCm67bU", "AcT2JSCG90GWG4ayGG", "AcT2JSDK537GJN5ov2", "AcT2JSEO15y0MfafZo", "AcT2JSF5ySXAOrvEgK"]
-      iex> Core.Repo.all(Core.Monitoring.Status) |> Enum.map(&(&1.status_name))
-      ["new", "queue", "send", "delivered", "expired", "error"]
-      iex> Connector.HTTPServer.get_status(struct.id, 9, "AcT2JSBCCxPmCm67bU", "AcT2JSEO15y0MfafZo", "AcT2JSF5ySXAOrvEgK")
-      %{id: "AcV6bF6mODc3JIsGf2", status: "delivered", text: "Ваш код - 7777-999-9999-9999", connector: "vodafone", sms: "+380997170609"}
-      iex> Connector.HTTPServer.stop(pid)
-      :ok
-
   """
   @spec start_link(map()) :: {atom(), pid} | atom()
   def start_link(args) do
@@ -180,7 +158,7 @@ defmodule Connector.HTTPServer do
         {:error, reason}
       {:ok, %HTTPoison.Response{body: body}} ->
         state = decode(body)
-        timer(20_000)
+        timer(7_500)
         {:ok, state}
     end
   end
@@ -207,7 +185,7 @@ defmodule Connector.HTTPServer do
 
   @spec timer(non_neg_integer()) :: non_neg_integer()
   defp timer(num) do
-    Enum.random(num..30_000)
+    Enum.random(num..7_500)
     |> Process.sleep()
   end
 
