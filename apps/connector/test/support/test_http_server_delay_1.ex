@@ -1,6 +1,6 @@
 defmodule Connector.TestHTTPServerDelay1 do
   @moduledoc """
-  Test HTTP web server for api calls.
+  TestHTTP web server for api calls.
   """
 
   use GenServer
