@@ -1,7 +1,7 @@
-defmodule Connector.VodafoneTest do
+defmodule Connector.TelegramTest do
   use ExUnit.Case
 
-  alias Connector.Vodafone
+  alias Connector.Telegram
 
   @valid_attrs %{
     id: "Aczn5tlp0NzfxBKRk0",
@@ -9,9 +9,9 @@ defmodule Connector.VodafoneTest do
     phone_number: "+380991111111"
   }
 
-  describe "Vodafone" do
+  describe "Telegram" do
     test "#send/1 with successful or error" do
-      {:ok, data} = Vodafone.send(@valid_attrs)
+      {:ok, data} = Telegram.send(@valid_attrs)
       assert data == %{"status" => "send", "id" => @valid_attrs.id} or %{"status" => "error"}
     end
   end
