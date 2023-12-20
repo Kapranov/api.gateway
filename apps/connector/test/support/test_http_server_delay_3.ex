@@ -158,7 +158,7 @@ defmodule Connector.TestHTTPServerDelay3 do
         {:error, reason}
       {:ok, %HTTPoison.Response{body: body}} ->
         state = decode(body)
-        timer(7_500)
+        timer(7_600)
         {:ok, state}
     end
   end
@@ -185,7 +185,7 @@ defmodule Connector.TestHTTPServerDelay3 do
 
   @spec timer(non_neg_integer()) :: non_neg_integer()
   defp timer(num) do
-    Enum.random(num..7_500)
+    Enum.random(num..7_900)
     |> Process.sleep()
   end
 

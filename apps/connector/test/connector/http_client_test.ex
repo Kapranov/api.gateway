@@ -258,14 +258,18 @@ defmodule Connector.HTTPClientTest do
       config_vodafone_attrs = Map.from_struct(config_vodafone)
       vodafone_attrs = Map.merge(config_vodafone_attrs, %{parameters: parameters_attrs})
       _operator_vodafone = insert(:operator, operator_type: operator_type, name_operator: "vodafone", config: vodafone_attrs)
-
       message = insert(:message, phone_number: "+380997333333")
       args = Map.merge(Map.from_struct(message), @valid_attrs)
-
       {:ok, pid} = Delay0.start_link(args)
+      assert Process.alive?(pid) == true
       Process.sleep(1_000)
-
-      assert Process.alive?(pid) == :ok or :error
+      Delay0.stop(pid)
+      on_exit(fn() ->
+        ref = Process.monitor(pid)
+        receive  do
+          {:DOWN, ^ref, _, _, _} -> :ok
+        end
+      end)
     end
   end
 end

@@ -11,7 +11,7 @@ defmodule Connector.LifecellHandler do
   }
 
   @action "post"
-  @connector :intertelecom
+  @connector :lifecell
   @headers %{"content-type" => "application/json"}
   @name __MODULE__
   @options []

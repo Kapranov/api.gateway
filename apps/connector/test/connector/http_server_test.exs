@@ -90,13 +90,15 @@ defmodule Connector.HTTPServerTest do
         phone_number: message.phone_number
       })
       {:ok, pid} = Delay0.start_link(args)
-
       assert Process.alive?(pid) == true
-
       Process.sleep(1_000)
       Delay0.stop(pid)
-
-      assert Process.alive?(pid) == :ok or :error
+      on_exit(fn() ->
+        ref = Process.monitor(pid)
+        receive  do
+          {:DOWN, ^ref, _, _, _} -> :ok
+        end
+      end)
     end
   end
 
@@ -194,13 +196,15 @@ defmodule Connector.HTTPServerTest do
         phone_number: message.phone_number
       })
       {:ok, pid} = Delay1.start_link(args)
-
       assert Process.alive?(pid) == true
-
       Process.sleep(1_000)
       Delay1.stop(pid)
-
-      assert Process.alive?(pid) == :ok or :error
+      on_exit(fn() ->
+        ref = Process.monitor(pid)
+        receive  do
+          {:DOWN, ^ref, _, _, _} -> :ok
+        end
+      end)
     end
   end
 
@@ -307,13 +311,15 @@ defmodule Connector.HTTPServerTest do
         phone_number: message.phone_number
       })
       {:ok, pid} = Delay2.start_link(args)
-
       assert Process.alive?(pid) == true
-
       Process.sleep(1_000)
       Delay2.stop(pid)
-
-      assert Process.alive?(pid) == :ok or :error
+      on_exit(fn() ->
+        ref = Process.monitor(pid)
+        receive  do
+          {:DOWN, ^ref, _, _, _} -> :ok
+        end
+      end)
     end
   end
 
@@ -420,13 +426,15 @@ defmodule Connector.HTTPServerTest do
         phone_number: message.phone_number
       })
       {:ok, pid} = Delay3.start_link(args)
-
       assert Process.alive?(pid) == true
-
       Process.sleep(1_000)
       Delay3.stop(pid)
-
-      assert Process.alive?(pid) == :ok or :error
+      on_exit(fn() ->
+        ref = Process.monitor(pid)
+        receive  do
+          {:DOWN, ^ref, _, _, _} -> :ok
+        end
+      end)
     end
   end
 
@@ -539,13 +547,15 @@ defmodule Connector.HTTPServerTest do
         phone_number: message.phone_number
       })
       {:ok, pid} = Delay4.start_link(args)
-
       assert Process.alive?(pid) == true
-
       Process.sleep(1_000)
       Delay4.stop(pid)
-
-      assert Process.alive?(pid) == :ok or :error
+      on_exit(fn() ->
+        ref = Process.monitor(pid)
+        receive  do
+          {:DOWN, ^ref, _, _, _} -> :ok
+        end
+      end)
     end
   end
 end

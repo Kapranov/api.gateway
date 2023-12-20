@@ -1,25 +1,25 @@
-defmodule Connector.VodafoneHandlerTest do
+defmodule Connector.TelegramHandlerTest do
   use Connector.DataCase
 
-  alias Connector.VodafoneHandler
+  alias Connector.TelegramHandler
 
-  describe "VodafoneHandler" do
+  describe "TelegramHandler" do
     test "#start_link/1" do
       message = insert(:message, phone_number: "+380997111111")
-      {:ok, pid} = VodafoneHandler.start_link([{"#{message.id}"}])
+      {:ok, pid} = TelegramHandler.start_link([{"#{message.id}"}])
       assert Process.alive?(pid) == true
     end
 
     test "#get_status/1" do
       message = insert(:message, phone_number: "+380997111111")
-      {:ok, pid} = VodafoneHandler.start_link([{"#{message.id}"}])
-      data = VodafoneHandler.get_status(pid)
+      {:ok, pid} = TelegramHandler.start_link([{"#{message.id}"}])
+      data = TelegramHandler.get_status(pid)
       if data == :timeout do
         assert is_atom(data) == true
         assert data          == :timeout
       else
         assert is_atom(data)  != true
-        assert data.connector == "vodafone"
+        assert data.connector == "telegram"
         assert data.id        == message.id
         assert data.sms       == message.phone_number
         assert data.status    == "delivered"
@@ -29,10 +29,10 @@ defmodule Connector.VodafoneHandlerTest do
 
     test "#stop/1" do
       message = insert(:message, phone_number: "+380997111111")
-      {:ok, pid} = VodafoneHandler.start_link([{"#{message.id}"}])
+      {:ok, pid} = TelegramHandler.start_link([{"#{message.id}"}])
       assert Process.alive?(pid) == true
       Process.sleep(1_000)
-      VodafoneHandler.stop(pid)
+      TelegramHandler.stop(pid)
       on_exit(fn() ->
         ref = Process.monitor(pid)
         receive  do
