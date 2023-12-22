@@ -558,4 +558,96 @@ defmodule Connector.HTTPServerTest do
       end)
     end
   end
+
+  describe "HTTPServer uncorrect are attributes" do
+    test "#start_link/1" do
+      message = insert(:message, phone_number: "+380997111111")
+      args = Map.merge(@valid_attrs, %{
+        id: "Ad3wdDmdoZisviUwvQ",
+        message_body: message.message_body,
+        phone_number: message.phone_number
+      })
+      {:ok, pid} = Delay0.start_link(args)
+
+      assert Process.alive?(pid) == true
+    end
+
+    test "#get_status/5 when none correct of messageId" do
+      operator_type = insert(:operator_type)
+      config = build(:config, name: @valid_attrs.connector)
+      parameters = build(:parameters)
+      parameters_attrs = Map.from_struct(parameters)
+      config_attrs = Map.from_struct(config)
+      attrs = Map.merge(config_attrs, %{parameters: parameters_attrs})
+      operator = insert(:operator, operator_type: operator_type, config: attrs)
+      status_delivered = insert(:status, status_name: "delivered", status_code: 104, description: "provider status when the message is read by the user")
+      status_error = insert(:status, status_name: "error", status_code: 106, description: "sending error")
+      status_expired = insert(:status, status_name: "expired", status_code: 105, description: "timeToLive message expired")
+      _status_new = insert(:status, status_name: "new", status_code: 101, description: "new message to send from another system")
+      status_queue = insert(:status, status_name: "queue", status_code: 102, description: "message in queue to be sent")
+      status_send = insert(:status, status_name: "send", status_code: 103, description: "A message was sent to the provider and a positive response was received")
+      message = insert(:message, phone_number: "+380997222222", status: status_send)
+      args = Map.merge(@valid_attrs, %{
+        id: "Ad3wdDmdoZisviUwvQ",
+        message_body: message.message_body,
+        phone_number: message.phone_number
+      })
+      priority = Enum.random(1..9)
+      {:ok, _pid} = Delay0.start_link(args)
+      result = Delay0.get_status(args.id, priority, status_queue.id, status_expired.id, status_error.id)
+      assert operator.config.name           == @valid_attrs.connector
+      assert is_atom(result)                != true
+      assert result                         != :timeout or :error
+      assert result.id                      == args.id
+      assert result.status                  != message.status
+      assert result.status                  == "delivered"
+      assert result.status                  == status_delivered.status_name
+      assert result.text                    == message.message_body
+      assert result.connector               == @valid_attrs.connector
+      assert result.sms                     == message.phone_number
+      assert message.status.status_name     == "send"
+      assert message.status.description     == "A message was sent to the provider and a positive response was received"
+      assert message.status.status_code     == 103
+      assert Enum.count(Repo.all(SmsLog))   == 1
+
+      [log1] = logs = Repo.all(SmsLog) |> Repo.preload([
+        :operators, statuses: [:messages, :sms_logs],
+        messages: [sms_logs: [:messages],
+                   status: [:messages, :sms_logs]]])
+
+      assert Enum.count(logs) == 1
+
+      assert log1.messages  |> Enum.count == 1
+      assert log1.operators |> Enum.count == 0
+      assert log1.statuses  |> Enum.count == 0
+
+      assert log1.messages |> List.last |> Map.get(:id)           == message.id
+      assert log1.messages |> List.last |> Map.get(:message_body) == message.message_body
+      assert log1.messages |> List.last |> Map.get(:phone_number) == message.phone_number
+      assert log1.messages |> List.last |> Map.get(:status_id)    == status_send.id
+
+      assert log1.messages |> List.last |> Map.get(:status) |> Map.get(:description) == status_send.description
+      assert log1.messages |> List.last |> Map.get(:status) |> Map.get(:status_name) == status_send.status_name
+      assert log1.messages |> List.last |> Map.get(:status) |> Map.get(:status_code) == status_send.status_code
+    end
+
+    test "#stop/1" do
+      message = insert(:message, phone_number: "+380997333333")
+      args = Map.merge(@valid_attrs, %{
+        id: "Ad3wdDmdoZisviUwvQ",
+        message_body: message.message_body,
+        phone_number: message.phone_number
+      })
+      {:ok, pid} = Delay0.start_link(args)
+      assert Process.alive?(pid) == true
+      Process.sleep(1_000)
+      Delay0.stop(pid)
+      on_exit(fn() ->
+        ref = Process.monitor(pid)
+        receive  do
+          {:DOWN, ^ref, _, _, _} -> :ok
+        end
+      end)
+    end
+  end
 end
