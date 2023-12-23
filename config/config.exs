@@ -52,7 +52,7 @@ config :kaffe,
   consumer: [
     consumer_group: "example-consumer-group",
     endpoints: [localhost: 9092],
-    message_handler: Connector,
+    message_handler: Gateway.Application,
     topics: ["MyTopic"]
   ],
   producer: [

@@ -6,17 +6,33 @@ defmodule Gateway.Producer do
   @kafka Application.compile_env(:kaffe, :kafka_mod, :brod)
   @report_threshold 40
 
+  @spec start_producer_client() :: :ok
   def start_producer_client do
     @kafka.start_client(config().endpoints, client_name(), config().producer_config)
   end
 
+  @spec produce_sync(any(), any()) :: :ok | tuple()
   def produce_sync(key, value) do
     topic = config().topics |> List.first()
     produce_value(topic, key, value)
   end
 
+  @doc """
+  Send attributes of Message by Kafka.
+
+  ## Example.
+
+      iex> Gateway.Producer.start_producer_client
+      :ok
+      iex> args = %{id: "AcV6bF6mODc3JIsGf2", phone_number: "+380997170609", message_body: "Ваш код - 7777-999-9999-9999"}
+      iex> Gateway.Producer.runner(args)
+      :ok
+
+  """
+  @spec runner(map()) :: map()
   def runner(args), do: send_message(1, args)
 
+  @spec send_message(integer(), map()) :: :ok
   defp send_message(n, args) do
     key = "#{args.id}"
     t_start = :os.system_time(:milli_seconds)
@@ -41,10 +57,12 @@ defmodule Gateway.Producer do
     end
   end
 
+  @spec client_name() :: atom()
   defp client_name do
     config().client_name
   end
 
+  @spec produce_value(String.t(), any(), any()) :: :ok | tuple()
   defp produce_value(topic, key, value) do
     case @kafka.get_partitions_count(client_name(), topic) do
       {:ok, partitions_count} ->
@@ -57,22 +75,27 @@ defmodule Gateway.Producer do
     end
   end
 
+  @spec choose_partition(any(), integer(), any(), any(), atom()) :: integer()
   defp choose_partition(_topic, partitions_count, _key, _value, :random) do
     Kaffe.PartitionSelector.random(partitions_count)
   end
 
+  @spec choose_partition(any(), integer(), any(), any(), atom()) :: integer()
   defp choose_partition(_topic, partitions_count, key, _value, :md5) do
     Kaffe.PartitionSelector.md5(key, partitions_count)
   end
 
+  @spec choose_partition(String.t(), integer(), any(), any(), fun()) :: integer()
   defp choose_partition(topic, partitions_count, key, value, fun) when is_function(fun) do
     fun.(topic, partitions_count, key, value)
   end
 
+  @spec global_partition_strategy() :: atom()
   defp global_partition_strategy do
     config().partition_strategy
   end
 
+  @spec config() :: map()
   defp config do
     %{
       endpoints: [{~c"localhost", 9092}],

@@ -17,8 +17,6 @@ defmodule Gateway do
   those modules here.
   """
 
-  @connector :kafka
-
   def static_paths, do: ~w(assets fonts images favicon.ico robots.txt)
 
   def router do
@@ -54,25 +52,6 @@ defmodule Gateway do
         router: Gateway.Router,
         statics: Gateway.static_paths()
     end
-  end
-
-  def handle_messages(messages) do
-    for %{key: key, value: value} = message <- messages do
-      case is_list(:ets.info(@connector)) do
-        true ->
-          try do
-            :ets.insert(@connector, {key, value})
-          rescue
-            ArgumentError ->
-              IO.inspect message
-          end
-        false ->
-          :ets.new(@connector, [:set, :public, :named_table])
-          :ets.insert(@connector, {key, value})
-      end
-      IO.puts("Received arguments via Gateway: #{inspect(message)}")
-    end
-    :ok
   end
 
   @doc """

@@ -5,6 +5,7 @@ defmodule Connector do
 
   @connector :kafka
 
+  @spec handle_messages(%{key: any(), value: any()}) :: :ok
   def handle_messages(messages) do
     for %{key: key, value: value} = message <- messages do
       case is_list(:ets.info(@connector)) do

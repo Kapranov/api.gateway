@@ -1,8 +1,20 @@
 defmodule Gateway.Consumer do
-  @moduledoc false
+  @moduledoc """
+  Consume messages from Kafka and pass to a given local module.
+  """
 
   @kafka Application.compile_env(:kaffe, :kafka_mod, :brod)
 
+  @doc """
+  Start a Kafka consumer
+
+  # Example
+
+    iex> Gateway.Consumer.start_link
+    {:ok, pid}
+
+  """
+  @spec start_link() :: {:ok, pid}
   def start_link do
     config = config()
 
@@ -17,15 +29,18 @@ defmodule Gateway.Consumer do
     )
   end
 
+  @spec init(any(), [map()]) :: {:ok, %Kaffe.Consumer.State{}}
   def init(_consumer_group, [config]) do
     start_consumer_client(config)
     {:ok, %Kaffe.Consumer.State{message_handler: config.message_handler, async: config.async_message_ack}}
   end
 
-  def start_consumer_client(config) do
+  @spec start_consumer_client(map()) :: :ok
+  defp start_consumer_client(config) do
     @kafka.start_client(config.endpoints, config.subscriber_name, config.consumer_config)
   end
 
+  @spec config() :: map()
   defp config do
     %{
       consumer_group: "example-consumer-group",
