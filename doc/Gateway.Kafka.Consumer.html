@@ -7,7 +7,7 @@
     <meta name="generator" content="ExDoc v0.30.9">
     <meta name="project" content="APIGateway v0.0.1-beta.1-0-gb30c5b9-main+dev">
 
-    <title>Gateway — APIGateway v0.0.1-beta.1-0-gb30c5b9-main+dev</title>
+    <title>Gateway.Kafka.Consumer — APIGateway v0.0.1-beta.1-0-gb30c5b9-main+dev</title>
     <link rel="stylesheet" href="dist/html-elixir-XFYN5IVA.css" />
 
 
@@ -111,25 +111,19 @@ Pages
 </button>
 
 
-    <a href="https://github.com/kapranov/api_gateway/blob/main/apps/gateway/lib/gateway.ex#L1" title="View Source" class="icon-action" rel="help">
+    <a href="https://github.com/kapranov/api_gateway/blob/main/apps/gateway/lib/gateway/kafka/consumer.ex#L1" title="View Source" class="icon-action" rel="help">
       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
       <span class="sr-only">View Source</span>
     </a>
 
-  <span translate="no">Gateway</span> 
+  <span translate="no">Gateway.Kafka.Consumer</span> 
   <small class="app-vsn" translate="no">(APIGateway v0.0.1-beta.1-0-gb30c5b9-main+dev)</small>
 
 </h1>
 
 
   <section id="moduledoc">
-<p>The entrypoint for defining your web interface, such
-as controllers, components, channels, and so on.</p><p>This can be used in your application as:</p><pre><code class="makeup elixir" translate="no"><span class="kn">use</span><span class="w"> </span><span class="nc">Gateway</span><span class="p">,</span><span class="w"> </span><span class="ss">:controller</span><span class="w">
-</span><span class="kn">use</span><span class="w"> </span><span class="nc">Gateway</span><span class="p">,</span><span class="w"> </span><span class="ss">:html</span></code></pre><p>The definitions below will be executed for every controller,
-component, etc, so keep them short and clean, focused
-on imports, uses and aliases.</p><p>Do NOT define functions inside the quoted expressions
-below. Instead, define additional modules and import
-those modules here.</p>
+<p>Consume messages from Kafka and pass to a given local module.</p>
   </section>
 
 
@@ -147,25 +141,17 @@ those modules here.</p>
 
     <div class="summary-row">
       <div class="summary-signature">
-        <a href="#__using__/1" translate="no">__using__(which)</a>
+        <a href="#handle_messages/1" translate="no">handle_messages(messages)</a>
 
       </div>
 
-        <div class="summary-synopsis"><p>When used, dispatch to the appropriate controller/view/etc.</p></div>
+        <div class="summary-synopsis"><p>Call the message handler with the restructured Kafka message.</p></div>
 
     </div>
 
     <div class="summary-row">
       <div class="summary-signature">
-        <a href="#channel/0" translate="no">channel()</a>
-
-      </div>
-
-    </div>
-
-    <div class="summary-row">
-      <div class="summary-signature">
-        <a href="#controller/0" translate="no">controller()</a>
+        <a href="#init/2" translate="no">init(consumer_group, list)</a>
 
       </div>
 
@@ -173,25 +159,11 @@ those modules here.</p>
 
     <div class="summary-row">
       <div class="summary-signature">
-        <a href="#router/0" translate="no">router()</a>
+        <a href="#start_link/0" translate="no">start_link()</a>
 
       </div>
 
-    </div>
-
-    <div class="summary-row">
-      <div class="summary-signature">
-        <a href="#static_paths/0" translate="no">static_paths()</a>
-
-      </div>
-
-    </div>
-
-    <div class="summary-row">
-      <div class="summary-signature">
-        <a href="#verified_routes/0" translate="no">verified_routes()</a>
-
-      </div>
+        <div class="summary-synopsis"><p>Start a Kafka consumer</p></div>
 
     </div>
 
@@ -208,40 +180,16 @@ those modules here.</p>
       <span class="text">Functions</span>
     </h1>
     <div class="functions-list">
-<section class="detail" id="__using__/1">
+<section class="detail" id="handle_messages/1">
 
   <div class="detail-header">
-    <a href="#__using__/1" class="detail-link" title="Link to this macro">
-      <i class="ri-link-m" aria-hidden="true"></i>
-      <span class="sr-only">Link to this macro</span>
-    </a>
-    <h1 class="signature" translate="no">__using__(which)</h1>
-
-      <a href="https://github.com/kapranov/api_gateway/blob/main/apps/gateway/lib/gateway.ex#L60" class="icon-action" rel="help" title="View Source">
-       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
-       <span class="sr-only">View Source</span>
-     </a>
-
-
-      <span class="note">(macro)</span>
-
-  </div>
-
-  <section class="docstring">
-
-<p>When used, dispatch to the appropriate controller/view/etc.</p>
-  </section>
-</section>
-<section class="detail" id="channel/0">
-
-  <div class="detail-header">
-    <a href="#channel/0" class="detail-link" title="Link to this function">
+    <a href="#handle_messages/1" class="detail-link" title="Link to this function">
       <i class="ri-link-m" aria-hidden="true"></i>
       <span class="sr-only">Link to this function</span>
     </a>
-    <h1 class="signature" translate="no">channel()</h1>
+    <h1 class="signature" translate="no">handle_messages(messages)</h1>
 
-      <a href="https://github.com/kapranov/api_gateway/blob/main/apps/gateway/lib/gateway.ex#L31" class="icon-action" rel="help" title="View Source">
+      <a href="https://github.com/kapranov/api_gateway/blob/main/apps/gateway/lib/gateway/kafka/consumer.ex#L42" class="icon-action" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -251,19 +199,25 @@ those modules here.</p>
 
   <section class="docstring">
 
+      <div class="specs">
 
+          <pre translate="no"><span class="attribute">@spec</span> handle_messages([%{key: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">any</a>(), value: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">any</a>()}]) :: :ok</pre>
+
+      </div>
+
+<p>Call the message handler with the restructured Kafka message.</p>
   </section>
 </section>
-<section class="detail" id="controller/0">
+<section class="detail" id="init/2">
 
   <div class="detail-header">
-    <a href="#controller/0" class="detail-link" title="Link to this function">
+    <a href="#init/2" class="detail-link" title="Link to this function">
       <i class="ri-link-m" aria-hidden="true"></i>
       <span class="sr-only">Link to this function</span>
     </a>
-    <h1 class="signature" translate="no">controller()</h1>
+    <h1 class="signature" translate="no">init(consumer_group, list)</h1>
 
-      <a href="https://github.com/kapranov/api_gateway/blob/main/apps/gateway/lib/gateway.ex#L37" class="icon-action" rel="help" title="View Source">
+      <a href="https://github.com/kapranov/api_gateway/blob/main/apps/gateway/lib/gateway/kafka/consumer.ex#L33" class="icon-action" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -272,20 +226,27 @@ those modules here.</p>
   </div>
 
   <section class="docstring">
+
+      <div class="specs">
+
+          <pre translate="no"><span class="attribute">@spec</span> init(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">any</a>(), [<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">map</a>()]) ::
+  {:ok, %Kaffe.Consumer.State{async: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>(), message_handler: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()}}</pre>
+
+      </div>
 
 
   </section>
 </section>
-<section class="detail" id="router/0">
+<section class="detail" id="start_link/0">
 
   <div class="detail-header">
-    <a href="#router/0" class="detail-link" title="Link to this function">
+    <a href="#start_link/0" class="detail-link" title="Link to this function">
       <i class="ri-link-m" aria-hidden="true"></i>
       <span class="sr-only">Link to this function</span>
     </a>
-    <h1 class="signature" translate="no">router()</h1>
+    <h1 class="signature" translate="no">start_link()</h1>
 
-      <a href="https://github.com/kapranov/api_gateway/blob/main/apps/gateway/lib/gateway.ex#L22" class="icon-action" rel="help" title="View Source">
+      <a href="https://github.com/kapranov/api_gateway/blob/main/apps/gateway/lib/gateway/kafka/consumer.ex#L18" class="icon-action" rel="help" title="View Source">
        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
        <span class="sr-only">View Source</span>
      </a>
@@ -295,51 +256,19 @@ those modules here.</p>
 
   <section class="docstring">
 
+      <div class="specs">
 
-  </section>
-</section>
-<section class="detail" id="static_paths/0">
+          <pre translate="no"><span class="attribute">@spec</span> start_link() :: {:ok, <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">pid</a>()}</pre>
 
-  <div class="detail-header">
-    <a href="#static_paths/0" class="detail-link" title="Link to this function">
-      <i class="ri-link-m" aria-hidden="true"></i>
-      <span class="sr-only">Link to this function</span>
-    </a>
-    <h1 class="signature" translate="no">static_paths()</h1>
+      </div>
 
-      <a href="https://github.com/kapranov/api_gateway/blob/main/apps/gateway/lib/gateway.ex#L20" class="icon-action" rel="help" title="View Source">
-       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
-       <span class="sr-only">View Source</span>
-     </a>
-
-
-  </div>
-
-  <section class="docstring">
-
-
-  </section>
-</section>
-<section class="detail" id="verified_routes/0">
-
-  <div class="detail-header">
-    <a href="#verified_routes/0" class="detail-link" title="Link to this function">
-      <i class="ri-link-m" aria-hidden="true"></i>
-      <span class="sr-only">Link to this function</span>
-    </a>
-    <h1 class="signature" translate="no">verified_routes()</h1>
-
-      <a href="https://github.com/kapranov/api_gateway/blob/main/apps/gateway/lib/gateway.ex#L48" class="icon-action" rel="help" title="View Source">
-       <i class="ri-code-s-slash-line" aria-hidden="true"></i>
-       <span class="sr-only">View Source</span>
-     </a>
-
-
-  </div>
-
-  <section class="docstring">
-
-
+<p>Start a Kafka consumer</p><h2 id="start_link/0-example" class="section-heading">
+  <a href="#start_link/0-example" class="hover-link">
+    <i class="ri-link-m" aria-hidden="true"></i>
+  </a>
+  <span class="text">Example</span>
+</h2>
+<p>  iex&gt; {:ok, _pid} = Gateway.Kafka.Consumer.start_link</p>
   </section>
 </section>
 

@@ -1,4 +1,4 @@
-defmodule Gateway.Producer do
+defmodule Gateway.Kafka.Producer do
   @moduledoc false
 
   require Logger
@@ -6,11 +6,36 @@ defmodule Gateway.Producer do
   @kafka Application.compile_env(:kaffe, :kafka_mod, :brod)
   @report_threshold 40
 
+  @doc """
+  Public API
+
+  ## Example.
+
+      iex> Gateway.Kafka.Producer.start_producer_client
+      :ok
+
+  """
   @spec start_producer_client() :: :ok
   def start_producer_client do
     @kafka.start_client(config().endpoints, client_name(), config().producer_config)
   end
 
+  @doc """
+  Synchronously produce the given `key`/`value` to the first Kafka topic.
+
+  Returns:
+
+      * `:ok` on successfully producing the message
+      * `{:error, reason}` for any error
+
+  ## Example.
+
+      iex> key = "AcV6bF6mODc3JIsGf2"
+      iex> value = "{\"status\":\"send\",\"text\":\"Ваш код - 7777-999-9999-9999\",\"connector\":\"vodafone\",\"sms\":\"+380997170609\",\"ts\":1703419360268}"
+      iex> Gateway.Kafka.Producer.produce_sync(key, value)
+      :ok
+
+  """
   @spec produce_sync(any(), any()) :: :ok | tuple()
   def produce_sync(key, value) do
     topic = config().topics |> List.first()
@@ -22,10 +47,10 @@ defmodule Gateway.Producer do
 
   ## Example.
 
-      iex> Gateway.Producer.start_producer_client
+      iex> Gateway.Kafka.Producer.start_producer_client
       :ok
-      iex> args = %{id: "AcV6bF6mODc3JIsGf2", phone_number: "+380997170609", message_body: "Ваш код - 7777-999-9999-9999"}
-      iex> Gateway.Producer.runner(args)
+      iex> args = %{id: "AcV6bF6mODc3JIsGf2", connector: "vodafone", phone_number: "+380997170609", message_body: "Ваш код - 7777-999-9999-9999"}
+      iex> Gateway.Kafka.Producer.runner(args)
       :ok
 
   """
@@ -36,7 +61,7 @@ defmodule Gateway.Producer do
   defp send_message(n, args) do
     key = "#{args.id}"
     t_start = :os.system_time(:milli_seconds)
-    value = ~s({"status":"send","text":"#{args.message_body}","connector":"vodafone","sms":"#{args.phone_number}","ts":#{:os.system_time(:milli_seconds)}})
+    value = ~s({"status":"send","text":"#{args.message_body}","connector":"#{args.connector}","sms":"#{args.phone_number}","ts":#{:os.system_time(:milli_seconds)}})
 
     if n > 0 do
       try do

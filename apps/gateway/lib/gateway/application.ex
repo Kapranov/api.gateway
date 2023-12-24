@@ -5,8 +5,6 @@ defmodule Gateway.Application do
 
   require Logger
 
-  @connector :kafka
-
   @doc """
   Starts the endpoint supervision tree.
   """
@@ -44,25 +42,5 @@ defmodule Gateway.Application do
     version = %{vsn: vsn, hash: hash, date: date}
     Logger.info("Loading app version: #{inspect(version)}")
     Application.put_env(:gateway, :version, version)
-  end
-
-  @spec handle_messages(%{key: any(), value: any()}) :: :ok
-  def handle_messages(messages) do
-    for %{key: key, value: value} = message <- messages do
-      case is_list(:ets.info(@connector)) do
-        true ->
-          try do
-            :ets.insert(@connector, {key, value})
-          rescue
-            ArgumentError ->
-              IO.inspect message
-          end
-        false ->
-          :ets.new(@connector, [:set, :public, :named_table])
-          :ets.insert(@connector, {key, value})
-      end
-      IO.inspect message
-    end
-    :ok
   end
 end

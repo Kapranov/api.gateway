@@ -19,7 +19,7 @@ defmodule Connector.Telegram do
   @doc """
   Virtual Telegram REST API
 
-  ## Example
+  ## Example.
 
       iex> Connector.Telegram.send(%{phone_number: "+380991111111", message_body: "Hello World!"})
       {:ok, %{"status" => "send"}}

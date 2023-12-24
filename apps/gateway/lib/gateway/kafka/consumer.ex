@@ -1,17 +1,17 @@
-defmodule Gateway.Consumer do
+defmodule Gateway.Kafka.Consumer do
   @moduledoc """
   Consume messages from Kafka and pass to a given local module.
   """
 
+  @connector :kafka
   @kafka Application.compile_env(:kaffe, :kafka_mod, :brod)
 
   @doc """
   Start a Kafka consumer
 
-  # Example
+  ## Example
 
-    iex> Gateway.Consumer.start_link
-    {:ok, pid}
+    iex> {:ok, _pid} = Gateway.Kafka.Consumer.start_link
 
   """
   @spec start_link() :: {:ok, pid}
@@ -35,6 +35,29 @@ defmodule Gateway.Consumer do
     {:ok, %Kaffe.Consumer.State{message_handler: config.message_handler, async: config.async_message_ack}}
   end
 
+  @doc """
+  Call the message handler with the restructured Kafka message.
+  """
+  @spec handle_messages([%{key: any(), value: any()}]) :: :ok
+  def handle_messages(messages) do
+    for %{key: key, value: value} = message <- messages do
+      case is_list(:ets.info(@connector)) do
+        true ->
+          try do
+            :ets.insert(@connector, {key, value})
+          rescue
+            ArgumentError ->
+              IO.inspect message
+          end
+        false ->
+          :ets.new(@connector, [:set, :public, :named_table])
+          :ets.insert(@connector, {key, value})
+      end
+      IO.inspect message
+    end
+    :ok
+  end
+
   @spec start_consumer_client(map()) :: :ok
   defp start_consumer_client(config) do
     @kafka.start_client(config.endpoints, config.subscriber_name, config.consumer_config)
@@ -45,7 +68,7 @@ defmodule Gateway.Consumer do
     %{
       consumer_group: "example-consumer-group",
       endpoints: [{~c"localhost", 9092}],
-      message_handler: Gateway,
+      message_handler: Gateway.Kafka.Consumer,
       topics: ["MyTopic"],
       max_bytes: 1000000,
       max_wait_time: 10000,

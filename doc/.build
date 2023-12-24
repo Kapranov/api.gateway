@@ -75,6 +75,7 @@ Gateway.GraphQL.Schemas.Spring.MessageTypes.html
 Gateway.GraphQL.Schemas.UuidTypes.html
 Gateway.HomeController.html
 Gateway.HomeJSON.html
+Gateway.Kafka.Consumer.html
 Gateway.Router.html
 Gateway.Telemetry.html
 Gateway.html
@@ -117,7 +118,7 @@ dist/merriweather-latin-ext-300-normal-K6L27CZ5.woff2
 dist/merriweather-vietnamese-300-italic-EHHNZPUO.woff2
 dist/merriweather-vietnamese-300-normal-U376L4Z4.woff2
 dist/remixicon-NKANDIL5.woff2
-dist/search_data-867271E5.js
-dist/sidebar_items-89EBB509.js
+dist/search_data-924EE20B.js
+dist/sidebar_items-130C78C6.js
 index.html
 search.html
