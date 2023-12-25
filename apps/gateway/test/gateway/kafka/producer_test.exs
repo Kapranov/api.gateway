@@ -11,7 +11,7 @@ defmodule Gateway.Kafka.ProducerTest do
 
     test "#runner/1" do
       message = insert(:message, phone_number: "+380997111111", message_body: "Ваш код - 7777-999-9999-9999")
-      args = %{id: message.id, connector: "vodafone", phone_number: message.phone_number, message_body: message.message_body}
+      args = %{id: message.id, phone_number: message.phone_number, message_body: message.message_body}
       send(self(), Gateway.Kafka.Producer.start_producer_client)
       assert_receive :ok
       send(self(), Producer.runner(args))

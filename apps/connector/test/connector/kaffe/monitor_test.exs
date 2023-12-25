@@ -23,7 +23,7 @@ defmodule Connector.Kaffe.MonitorTest do
     test "#produce/2" do
       id = "Ac7y2LxiD9lsV2Oeiu"
       topic = "MyTopic"
-      message = ~s({"status":"send","text":"Ваш код - 7777-999-9999-9999 - vodafone","connector":"vodafone","sms":"+380991111111","ts":#{:os.system_time(:milli_seconds)}})
+      message = ~s({"status":"send","text":"Ваш код - 7777-999-9999-9999","connector":"kafka","sms":"+380991111111","ts":#{:os.system_time(:milli_seconds)}})
       messages = [%{key: id, value: message}]
       :ok = Monitor.produce(topic, messages)
       %{produce_response: result} = Monitor.set_produce_response(message)
@@ -32,7 +32,7 @@ defmodule Connector.Kaffe.MonitorTest do
 
     test "#set_produce_response/1" do
       pid = Process.whereis(KaffeMonitor)
-      message = ~s({"status":"send","text":"Ваш код - 7777-999-9999-9999 - vodafone","connector":"vodafone","sms":"+380991111111","ts":#{:os.system_time(:milli_seconds)}})
+      message = ~s({"status":"send","text":"Ваш код - 7777-999-9999-9999","connector":"kafka","sms":"+380991111111","ts":#{:os.system_time(:milli_seconds)}})
       :erlang.trace(pid, true, [:receive])
       GenServer.call(pid, {:set_produce_response, message})
       assert_receive {:trace, ^pid, :receive, {:"$gen_call", _, {:set_produce_response, ^message}}}

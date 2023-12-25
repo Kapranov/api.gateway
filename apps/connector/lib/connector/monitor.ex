@@ -44,7 +44,7 @@ defmodule Connector.Monitor do
 
         iex> id = "Ac7y2LxiD9lsV2Oeiu"
         iex> topic = "MyTopic"
-        iex> message = ~s({"status":"send","text":"Ваш код - 7777-999-9999-9999 - vodafone","connector":"vodafone","sms":"+380991111111","ts":#{:os.system_time(:milli_seconds)}})
+        iex> message = ~s({"status":"send","text":"Ваш код - 7777-999-9999-9999","connector":"kafka","sms":"+380991111111","ts":#{:os.system_time(:milli_seconds)}})
         iex> messages = [%{key: id, value: message}]
         iex> Connector.Monitor.produce(topic, messages)
         :ok

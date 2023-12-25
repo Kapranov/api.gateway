@@ -5,6 +5,7 @@ defmodule Connector.Producer do
 
   require Logger
 
+  @connector "kafka"
   @report_threshold 40
 
   @doc """
@@ -16,19 +17,19 @@ defmodule Connector.Producer do
       iex> Connector.Producer.runner(args)
       :ok
       iex>[data] = :ets.lookup(:kafka, "AcV6bF6mODc3JIsGf2")
-      [{"AcV6bF6mODc3JIsGf2", "{\"status\":\"send\",\"text\":\"Ваш код - 7777-999-9999-9999\",\"connector\":\"vodafone\",\"sms\":\"+380997170609\",\"ts\":1702542761151}"}]
+      [{"AcV6bF6mODc3JIsGf2", "{\"status\":\"send\",\"text\":\"Ваш код - 7777-999-9999-9999\",\"connector\":\"kafka\",\"sms\":\"+380997170609\",\"ts\":1702542761151}"}]
       iex> data |> elem(0)
       "AcV6bF6mODc3JIsGf2"
       iex> data |> elem(1)
-      "{\"status\":\"send\",\"text\":\"Ваш код - 7777-999-9999-9999\",\"connector\":\"vodafone\",\"sms\":\"+380997170609\",\"ts\":1702542761151}"
+      "{\"status\":\"send\",\"text\":\"Ваш код - 7777-999-9999-9999\",\"connector\":\"kafka\",\"sms\":\"+380997170609\",\"ts\":1702542761151}"
 
       iex> :ets.lookup_element(:kafka, "AcV6bF6mODc3JIsGf2", 1)
       "AcV6bF6mODc3JIsGf2"
       iex> :ets.lookup_element(:kafka, "AcV6bF6mODc3JIsGf2", 2)
-      "{\"status\":\"send\",\"text\":\"Ваш код - 7777-999-9999-9999\",\"connector\":\"vodafone\",\"sms\":\"+380997170609\",\"ts\":1702542761151}"
+      "{\"status\":\"send\",\"text\":\"Ваш код - 7777-999-9999-9999\",\"connector\":\"kafka\",\"sms\":\"+380997170609\",\"ts\":1702542761151}"
 
       iex> :ets.lookup_element(:kafka, "AcV6bF6mODc3JIsGf2", 2) |> String.split(", ")
-      ["{\"status\":\"send\",\"text\":\"Ваш код - 7777-999-9999-9999\",\"connector\":\"vodafone\",\"sms\":\"+380997170609\",\"ts\":1702542761151}"]
+      ["{\"status\":\"send\",\"text\":\"Ваш код - 7777-999-9999-9999\",\"connector\":\"kafka\",\"sms\":\"+380997170609\",\"ts\":1702542761151}"]
 
       iex> :ets.delete(:kafka, "AcV6bF6mODc3JIsGf2")
       true
@@ -41,7 +42,7 @@ defmodule Connector.Producer do
   defp send_message(n, args) do
     key = "#{args.id}"
     t_start = :os.system_time(:milli_seconds)
-    value = ~s({"status":"send","text":"#{args.message_body}","connector":"vodafone","sms":"#{args.phone_number}","ts":#{:os.system_time(:milli_seconds)}})
+    value = ~s({"status":"send","text":"#{args.message_body}","connector":"#{@connector}","sms":"#{args.phone_number}","ts":#{:os.system_time(:milli_seconds)}})
 
     if n > 0 do
       try do

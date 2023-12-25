@@ -5,6 +5,7 @@ defmodule Gateway.Kafka.Producer do
 
   @kafka Application.compile_env(:kaffe, :kafka_mod, :brod)
   @report_threshold 40
+  @connector "kafka"
 
   @doc """
   Public API
@@ -31,7 +32,7 @@ defmodule Gateway.Kafka.Producer do
   ## Example.
 
       iex> key = "AcV6bF6mODc3JIsGf2"
-      iex> value = "{\"status\":\"send\",\"text\":\"Ваш код - 7777-999-9999-9999\",\"connector\":\"vodafone\",\"sms\":\"+380997170609\",\"ts\":1703419360268}"
+      iex> value = "{\"status\":\"send\",\"text\":\"Ваш код - 7777-999-9999-9999\",\"connector\":\"kafka\",\"sms\":\"+380997170609\",\"ts\":1703419360268}"
       iex> Gateway.Kafka.Producer.produce_sync(key, value)
       :ok
 
@@ -49,7 +50,7 @@ defmodule Gateway.Kafka.Producer do
 
       iex> Gateway.Kafka.Producer.start_producer_client
       :ok
-      iex> args = %{id: "AcV6bF6mODc3JIsGf2", connector: "vodafone", phone_number: "+380997170609", message_body: "Ваш код - 7777-999-9999-9999"}
+      iex> args = %{id: "AcV6bF6mODc3JIsGf2", phone_number: "+380997170609", message_body: "Ваш код - 7777-999-9999-9999"}
       iex> Gateway.Kafka.Producer.runner(args)
       :ok
 
@@ -61,7 +62,7 @@ defmodule Gateway.Kafka.Producer do
   defp send_message(n, args) do
     key = "#{args.id}"
     t_start = :os.system_time(:milli_seconds)
-    value = ~s({"status":"send","text":"#{args.message_body}","connector":"#{args.connector}","sms":"#{args.phone_number}","ts":#{:os.system_time(:milli_seconds)}})
+    value = ~s({"status":"send","text":"#{args.message_body}","connector":"#{@connector}","sms":"#{args.phone_number}","ts":#{:os.system_time(:milli_seconds)}})
 
     if n > 0 do
       try do
