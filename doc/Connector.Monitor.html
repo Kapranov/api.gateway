@@ -5,15 +5,15 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="ExDoc v0.30.9">
-    <meta name="project" content="APIGateway v0.0.1-beta.1-0-g4fa62eb-main+dev">
+    <meta name="project" content="APIGateway v0.0.1-beta.1-0-ge23e8b0-main+dev">
 
-    <title>Connector.Monitor — APIGateway v0.0.1-beta.1-0-g4fa62eb-main+dev</title>
+    <title>Connector.Monitor — APIGateway v0.0.1-beta.1-0-ge23e8b0-main+dev</title>
     <link rel="stylesheet" href="dist/html-elixir-XFYN5IVA.css" />
 
 
     <script src="dist/handlebars.runtime-NWIB6V2M.js"></script>
     <script src="dist/handlebars.templates-EPF2X7PV.js"></script>
-    <script src="dist/sidebar_items-130C78C6.js"></script>
+    <script src="dist/sidebar_items-ABBECB81.js"></script>
 
       <script src="docs_config.js"></script>
 
@@ -68,7 +68,7 @@
 APIGateway
       </a>
       <div class="sidebar-projectVersion" translate="no">
-        v0.0.1-beta.1-0-g4fa62eb-main+dev
+        v0.0.1-beta.1-0-ge23e8b0-main+dev
       </div>
     </div>
     <ul id="sidebar-listNav" class="sidebar-listNav" role="tablist">
@@ -117,7 +117,7 @@ Pages
     </a>
 
   <span translate="no">Connector.Monitor</span> 
-  <small class="app-vsn" translate="no">(APIGateway v0.0.1-beta.1-0-g4fa62eb-main+dev)</small>
+  <small class="app-vsn" translate="no">(APIGateway v0.0.1-beta.1-0-ge23e8b0-main+dev)</small>
 
 </h1>
 
@@ -250,8 +250,8 @@ of a Kafka outage it will attempt to reconnect once a minute.</p>
 <p>Send messages to Kafka.</p><p>  ## Example.</p><pre><code class="makeup elixir" translate="no"><span class="w">  </span><span class="gp unselectable">iex&gt; </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Ac7y2LxiD9lsV2Oeiu&quot;</span><span class="w">
   </span><span class="gp unselectable">iex&gt; </span><span class="n">topic</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;MyTopic&quot;</span><span class="w">
   </span><span class="gp unselectable">iex&gt; </span><span class="n">message</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">~s({&quot;status&quot;:&quot;send&quot;,&quot;text&quot;:&quot;Ваш код - 7777-999-9999-9999&quot;,&quot;connector&quot;:&quot;kafka&quot;,&quot;sms&quot;:&quot;+380991111111&quot;,&quot;ts&quot;:1703510976895})</span><span class="w">
-  </span><span class="gp unselectable">iex&gt; </span><span class="n">messages</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="5392697902-1">[</span><span class="p" data-group-id="5392697902-2">%{</span><span class="ss">key</span><span class="p">:</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="ss">value</span><span class="p">:</span><span class="w"> </span><span class="n">message</span><span class="p" data-group-id="5392697902-2">}</span><span class="p" data-group-id="5392697902-1">]</span><span class="w">
-  </span><span class="gp unselectable">iex&gt; </span><span class="nc">Connector.Monitor</span><span class="o">.</span><span class="n">produce</span><span class="p" data-group-id="5392697902-3">(</span><span class="n">topic</span><span class="p">,</span><span class="w"> </span><span class="n">messages</span><span class="p" data-group-id="5392697902-3">)</span><span class="w">
+  </span><span class="gp unselectable">iex&gt; </span><span class="n">messages</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="2400041359-1">[</span><span class="p" data-group-id="2400041359-2">%{</span><span class="ss">key</span><span class="p">:</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="ss">value</span><span class="p">:</span><span class="w"> </span><span class="n">message</span><span class="p" data-group-id="2400041359-2">}</span><span class="p" data-group-id="2400041359-1">]</span><span class="w">
+  </span><span class="gp unselectable">iex&gt; </span><span class="nc">Connector.Monitor</span><span class="o">.</span><span class="n">produce</span><span class="p" data-group-id="2400041359-3">(</span><span class="n">topic</span><span class="p">,</span><span class="w"> </span><span class="n">messages</span><span class="p" data-group-id="2400041359-3">)</span><span class="w">
   </span><span class="ss">:ok</span></code></pre>
   </section>
 </section>
@@ -310,11 +310,11 @@ of a Kafka outage it will attempt to reconnect once a minute.</p>
   </a>
   <span class="text">Example.</span>
 </h2>
-<pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="5822995282-1">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="n">monitor</span><span class="p" data-group-id="5822995282-1">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Connector.Monitor</span><span class="o">.</span><span class="n">start_link</span><span class="p" data-group-id="5822995282-2">(</span><span class="p" data-group-id="5822995282-3">[</span><span class="p" data-group-id="5822995282-3">]</span><span class="p" data-group-id="5822995282-2">)</span><span class="w">
-</span><span class="gp unselectable">iex&gt; </span><span class="nc">:sys</span><span class="o">.</span><span class="n">get_state</span><span class="p" data-group-id="5822995282-4">(</span><span class="n">monitor</span><span class="p" data-group-id="5822995282-4">)</span><span class="w">
-</span><span class="p" data-group-id="5822995282-5">{</span><span class="p" data-group-id="5822995282-6">%{</span><span class="p" data-group-id="5822995282-6">}</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="5822995282-7">%{</span><span class="p" data-group-id="5822995282-7">}</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="5822995282-8">#</span><span class="nc" data-group-id="5822995282-8">Reference</span><span class="p" data-group-id="5822995282-8">&lt;</span><span class="mf">0.4294242267</span><span class="o">.</span><span class="mf">2699034626.84614</span><span class="p" data-group-id="5822995282-8">&gt;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="5822995282-9">%{</span><span class="p" data-group-id="5822995282-9">}</span><span class="p" data-group-id="5822995282-5">}</span><span class="w">
-</span><span class="gp unselectable">iex&gt; </span><span class="nc">:sys</span><span class="o">.</span><span class="n">get_status</span><span class="p" data-group-id="5822995282-10">(</span><span class="n">monitor</span><span class="p" data-group-id="5822995282-10">)</span><span class="w">
-</span><span class="gp unselectable">iex&gt; </span><span class="nc">Process</span><span class="o">.</span><span class="n">whereis</span><span class="p" data-group-id="5822995282-11">(</span><span class="nc">KaffeMonitor</span><span class="p" data-group-id="5822995282-11">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">monitor</span><span class="w">
+<pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex&gt; </span><span class="p" data-group-id="2938246691-1">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="n">monitor</span><span class="p" data-group-id="2938246691-1">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Connector.Monitor</span><span class="o">.</span><span class="n">start_link</span><span class="p" data-group-id="2938246691-2">(</span><span class="p" data-group-id="2938246691-3">[</span><span class="p" data-group-id="2938246691-3">]</span><span class="p" data-group-id="2938246691-2">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">:sys</span><span class="o">.</span><span class="n">get_state</span><span class="p" data-group-id="2938246691-4">(</span><span class="n">monitor</span><span class="p" data-group-id="2938246691-4">)</span><span class="w">
+</span><span class="p" data-group-id="2938246691-5">{</span><span class="p" data-group-id="2938246691-6">%{</span><span class="p" data-group-id="2938246691-6">}</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="2938246691-7">%{</span><span class="p" data-group-id="2938246691-7">}</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="2938246691-8">#</span><span class="nc" data-group-id="2938246691-8">Reference</span><span class="p" data-group-id="2938246691-8">&lt;</span><span class="mf">0.4294242267</span><span class="o">.</span><span class="mf">2699034626.84614</span><span class="p" data-group-id="2938246691-8">&gt;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="2938246691-9">%{</span><span class="p" data-group-id="2938246691-9">}</span><span class="p" data-group-id="2938246691-5">}</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">:sys</span><span class="o">.</span><span class="n">get_status</span><span class="p" data-group-id="2938246691-10">(</span><span class="n">monitor</span><span class="p" data-group-id="2938246691-10">)</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">Process</span><span class="o">.</span><span class="n">whereis</span><span class="p" data-group-id="2938246691-11">(</span><span class="nc">KaffeMonitor</span><span class="p" data-group-id="2938246691-11">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">monitor</span><span class="w">
 </span><span class="no">true</span></code></pre>
   </section>
 </section>

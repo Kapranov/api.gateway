@@ -3,7 +3,14 @@ defmodule Gateway.Kafka.Consumer do
   Consume messages from Kafka and pass to a given local module.
   """
 
-  @connector :kafka
+  alias Core.{
+    Monitoring.Status,
+    Operators.Operator,
+    Queries,
+    Repo,
+    Spring.Message
+  }
+
   @kafka Application.compile_env(:kaffe, :kafka_mod, :brod)
 
   @doc """
@@ -41,17 +48,22 @@ defmodule Gateway.Kafka.Consumer do
   @spec handle_messages([%{key: any(), value: any()}]) :: :ok
   def handle_messages(messages) do
     for %{key: key, value: value} = message <- messages do
-      case is_list(:ets.info(@connector)) do
-        true ->
-          try do
-            :ets.insert(@connector, {key, value})
-          rescue
-            ArgumentError ->
-              IO.inspect message
+      data = Jason.decode!(value)
+      case Repo.get_by(Message, %{id: key}) do
+        nil -> :ok
+        struct ->
+          operators = Queries.sorted_by_operators(data["sms"])
+          case by_connector(operators, struct) do
+            [] -> :ok
+            connector ->
+              status = Repo.get_by(Status, %{status_name: connector.status})
+              changeset = Message.changeset(struct, %{
+                status_id: status.id,
+                message_body: "#{data.text} - #{connector.connector}"
+              })
+              {:ok, _updated} = Repo.update(changeset)
+              :ok
           end
-        false ->
-          :ets.new(@connector, [:set, :public, :named_table])
-          :ets.insert(@connector, {key, value})
       end
       IO.inspect message
     end
@@ -91,5 +103,133 @@ defmodule Gateway.Kafka.Consumer do
       subscriber_retry_delay_ms: 5000,
       worker_allocation_strategy: :worker_per_partition
     }
+  end
+
+  @spec by_connector([Operator.t()], Message.t()) :: map() | []
+  defp by_connector(operators, struct) do
+    Enum.reduce_while(operators, [], fn(x, acc) ->
+      case x.config.name do
+        "dia" ->
+          data = Map.merge(struct, %{connector: "dia"})
+          case Connector.HTTPClient.start_link(data) do
+            {:ok, pid} ->
+              case Connector.HTTPClient.get_state(pid) do
+                :error ->
+                  Connector.HTTPClient.stop(pid)
+                  {:cont, acc}
+                :timeout ->
+                  Connector.HTTPClient.stop(pid)
+                  {:cont, acc}
+                data ->
+                  Connector.HTTPClient.stop(pid)
+                  {:halt, data}
+              end
+            _ -> {:cont, acc}
+          end
+        "intertelecom" ->
+          data = Map.merge(struct, %{connector: "intertelecom"})
+          case Connector.HTTPClient.start_link(data) do
+            {:ok, pid} ->
+              case Connector.HTTPClient.get_state(pid) do
+                :error ->
+                  Connector.HTTPClient.stop(pid)
+                  {:cont, acc}
+                :timeout ->
+                  Connector.HTTPClient.stop(pid)
+                  {:cont, acc}
+                data ->
+                  Connector.HTTPClient.stop(pid)
+                  {:halt, data}
+              end
+            _ -> {:cont, acc}
+          end
+        "kyivstar" ->
+          data = Map.merge(struct, %{connector: "kyivstar"})
+          case Connector.HTTPClient.start_link(data) do
+            {:ok, pid} ->
+              case Connector.HTTPClient.get_state(pid) do
+                :error ->
+                  Connector.HTTPClient.stop(pid)
+                  {:cont, acc}
+                :timeout ->
+                  Connector.HTTPClient.stop(pid)
+                  {:cont, acc}
+                data ->
+                  Connector.HTTPClient.stop(pid)
+                  {:halt, data}
+              end
+            _ -> {:cont, acc}
+          end
+        "lifecell" ->
+          data = Map.merge(struct, %{connector: "lifecell"})
+          case Connector.HTTPClient.start_link(data) do
+            {:ok, pid} ->
+              case Connector.HTTPClient.get_state(pid) do
+                :error ->
+                  Connector.HTTPClient.stop(pid)
+                  {:cont, acc}
+                :timeout ->
+                  Connector.HTTPClient.stop(pid)
+                  {:cont, acc}
+                data ->
+                  Connector.HTTPClient.stop(pid)
+                  {:halt, data}
+              end
+            _ -> {:cont, acc}
+          end
+        "telegram" ->
+          data = Map.merge(struct, %{connector: "telegram"})
+          case Connector.HTTPClient.start_link(data) do
+            {:ok, pid} ->
+              case Connector.HTTPClient.get_state(pid) do
+                :error ->
+                  Connector.HTTPClient.stop(pid)
+                  {:cont, acc}
+                :timeout ->
+                  Connector.HTTPClient.stop(pid)
+                  {:cont, acc}
+                data ->
+                  Connector.HTTPClient.stop(pid)
+                  {:halt, data}
+              end
+            _ -> {:cont, acc}
+          end
+        "viber" ->
+          data = Map.merge(struct, %{connector: "viber"})
+          case Connector.HTTPClient.start_link(data) do
+            {:ok, pid} ->
+              case Connector.HTTPClient.get_state(pid) do
+                :error ->
+                  Connector.HTTPClient.stop(pid)
+                  {:cont, acc}
+                :timeout ->
+                  Connector.HTTPClient.stop(pid)
+                  {:cont, acc}
+                data ->
+                  Connector.HTTPClient.stop(pid)
+                  {:halt, data}
+              end
+            _ -> {:cont, acc}
+          end
+        "vodafone" ->
+          data = Map.merge(struct, %{connector: "vodafone"})
+          case Connector.HTTPClient.start_link(data) do
+            {:ok, pid} ->
+              case Connector.HTTPClient.get_state(pid) do
+                :error ->
+                  Connector.HTTPClient.stop(pid)
+                  {:cont, acc}
+                :timeout ->
+                  Connector.HTTPClient.stop(pid)
+                  {:cont, acc}
+                data ->
+                  Connector.HTTPClient.stop(pid)
+                  {:halt, data}
+              end
+            _ -> {:cont, acc}
+          end
+        _ -> {:cont, acc}
+      end
+    end)
   end
 end

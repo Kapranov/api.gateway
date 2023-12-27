@@ -14,6 +14,7 @@ defmodule Gateway.GraphQL.Resolvers.Spring.MessageResolver do
   }
 
   alias Ecto.Multi
+  alias Gateway.Kafka.Producer
 
   @type t :: map
   @type success_tuple :: {:ok, t}
@@ -49,6 +50,39 @@ defmodule Gateway.GraphQL.Resolvers.Spring.MessageResolver do
   @spec create(any, %{atom => any}, Absinthe.Resolution.t()) :: error_tuple()
   def create(_parent, _args, _info), do: {:ok, []}
 
+  @spec create_via_monitor(any, %{atom => any}, %{context: %{token: String.t()}}) :: result()
+  def create_via_monitor(_parent, args, %{context: %{token: _token}}) do
+    args
+    |> Spring.create_message()
+    |> case do
+      {:error, %Ecto.Changeset{}} ->
+        {:ok, []}
+      {:ok, struct} ->
+        {:ok, struct}
+    end
+  end
+
+  @spec create_via_monitor(any, %{atom => any}, Absinthe.Resolution.t()) :: error_tuple()
+  def create_via_monitor(_parent, _args, _info), do: {:ok, []}
+
+  @spec create_via_kafka(any, %{atom => any}, %{context: %{token: String.t()}}) :: result()
+  def create_via_kafka(_parent, args, %{context: %{token: _token}}) do
+    args
+    |> Spring.create_message()
+    |> case do
+      {:error, %Ecto.Changeset{}} ->
+        {:ok, []}
+      {:ok, struct} ->
+        :ok = Producer.start_producer_client
+        data = %{id: struct.id, phone_number: struct.phone_number, message_body: struct.message_body}
+        Task.async(fn -> Producer.runner(data) end)
+        {:ok, struct}
+    end
+  end
+
+  @spec create_via_kafka(any, %{atom => any}, Absinthe.Resolution.t()) :: error_tuple()
+  def create_via_kafka(_parent, _args, _info), do: {:ok, []}
+
   @spec create_via_connector(any, %{atom => any}, %{context: %{token: String.t()}}) :: result()
   def create_via_connector(_parent, args, %{context: %{token: _token}}) do
     args
@@ -57,7 +91,6 @@ defmodule Gateway.GraphQL.Resolvers.Spring.MessageResolver do
       {:error, %Ecto.Changeset{}} -> {:ok, []}
       {:ok, struct} ->
         operators = Queries.sorted_by_operators(struct.phone_number)
-        # selected_connector(operators, struct.id)
         case by_connector(operators, struct) do
           [] -> {:ok, struct}
           connector ->
@@ -74,6 +107,46 @@ defmodule Gateway.GraphQL.Resolvers.Spring.MessageResolver do
 
   @spec create_via_connector(any, %{atom => any}, Absinthe.Resolution.t()) :: error_tuple()
   def create_via_connector(_parent, _args, _info), do: {:ok, []}
+
+  @spec create_via_multi(any, %{atom => any}, %{context: %{token: String.t()}}) :: result()
+  def create_via_multi(_parent, args, %{context: %{token: _token}}) do
+    args
+    |> create_multi()
+    |> case do
+      {:error, %Ecto.Changeset{}} ->
+        {:ok, []}
+      {:ok, struct} ->
+        {:ok, struct}
+    end
+  end
+
+  @spec create_via_multi(any, %{atom => any}, Absinthe.Resolution.t()) :: error_tuple()
+  def create_via_multi(_parent, _args, _info), do: {:ok, []}
+
+  @spec create_via_selected(any, %{atom => any}, %{context: %{token: String.t()}}) :: result()
+  def create_via_selected(_parent, args, %{context: %{token: _token}}) do
+    args
+    |> Spring.create_message()
+    |> case do
+      {:error, %Ecto.Changeset{}} -> {:ok, []}
+      {:ok, struct} ->
+        operators = Queries.sorted_by_operators(struct.phone_number)
+        case selected_connector(operators, struct.id) do
+          [] -> {:ok, struct}
+          connector ->
+            status = Repo.get_by(Status, %{status_name: connector.status})
+            changeset = Message.changeset(struct, %{
+              status_id: status.id,
+              message_body: "#{struct.message_body} - #{connector.connector}"
+            })
+            {:ok, _updated} = Repo.update(changeset)
+            {:ok, struct}
+        end
+    end
+  end
+
+  @spec create_via_selected(any, %{atom => any}, Absinthe.Resolution.t()) :: error_tuple()
+  def create_via_selected(_parent, _args, _info), do: {:ok, []}
 
   @spec update(any, %{id: bitstring, message: map()}, %{context: %{token: String.t()}}) :: result()
   def update(_parent, %{id: id, message: params}, %{context: %{token: _token}}) do
@@ -104,7 +177,8 @@ defmodule Gateway.GraphQL.Resolvers.Spring.MessageResolver do
   @spec sorted_operators(any, %{atom => any}, Absinthe.Resolution.t()) :: error_tuple()
   def sorted_operators(_parent, _args, _info), do: {:ok, []}
 
-  def create_message_via_connector(attrs \\ %{}) do
+  @spec create_multi(map()) :: {:ok, map()} | {:error, %Ecto.Changeset{}}
+  defp create_multi(attrs) do
     message_changeset = Message.changeset(%Message{}, attrs)
     Multi.new
     |> Multi.insert(:created, message_changeset)
@@ -144,16 +218,16 @@ defmodule Gateway.GraphQL.Resolvers.Spring.MessageResolver do
       {:ok, %{sorted: sorted}} ->
         {:ok, sorted}
       {:ok, %{connector: connector}} ->
-          {:ok, connector}
+        {:ok, connector}
       {:ok, %{updated: message}} ->
-          {:ok, message}
+        {:ok, message}
       {:error, _model, changeset, _completed} ->
         {:ok, changeset}
     end
   end
 
   @spec selected_connector([Operator.t()], String.t()) :: map() | []
-  def selected_connector(operators, message_id) do
+  defp selected_connector(operators, message_id) do
     Enum.reduce_while(operators, [], fn(x, acc) ->
       case x.config.name do
         "dia" ->
@@ -274,7 +348,7 @@ defmodule Gateway.GraphQL.Resolvers.Spring.MessageResolver do
   end
 
   @spec by_connector([Operator.t()], Message.t()) :: map() | []
-  def by_connector(operators, struct) do
+  defp by_connector(operators, struct) do
     Enum.reduce_while(operators, [], fn(x, acc) ->
       case x.config.name do
         "dia" ->

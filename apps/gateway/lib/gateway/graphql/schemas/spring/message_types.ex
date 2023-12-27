@@ -71,6 +71,32 @@ defmodule Gateway.GraphQL.Schemas.Spring.MessageTypes do
       resolve &MessageResolver.create/3
     end
 
+    @desc "Created the model's Messages via monitor's kafka"
+    field :create_message_via_monitor, list_of(:message), description: "Created a new record for model's Messages and send via motinor's kafka" do
+      arg :id_external, :string
+      arg :id_tax, :integer
+      arg :id_telegram, :string
+      arg :message_body, non_null(:string)
+      arg :message_expired_at, :datetime
+      arg :phone_number, non_null(:string)
+      arg :status_changed_at, :datetime
+      arg :status_id, non_null(:string)
+      resolve &MessageResolver.create_via_monitor/3
+    end
+
+    @desc "Created the model's Messages via kafka"
+    field :create_message_via_kafka, list_of(:message), description: "Created a new record for model's Messages and send via kafka" do
+      arg :id_external, :string
+      arg :id_tax, :integer
+      arg :id_telegram, :string
+      arg :message_body, non_null(:string)
+      arg :message_expired_at, :datetime
+      arg :phone_number, non_null(:string)
+      arg :status_changed_at, :datetime
+      arg :status_id, non_null(:string)
+      resolve &MessageResolver.create_via_kafka/3
+    end
+
     @desc "Created the model's Messages via sorted operator's connector"
     field :create_message_via_connector, list_of(:message), description: "Created a new record for model's Messages and send via sorted connectors" do
       arg :id_external, :string
@@ -82,6 +108,32 @@ defmodule Gateway.GraphQL.Schemas.Spring.MessageTypes do
       arg :status_changed_at, :datetime
       arg :status_id, non_null(:string)
       resolve &MessageResolver.create_via_connector/3
+    end
+
+    @desc "Created the model's Messages via multi"
+    field :create_message_via_multi, list_of(:message), description: "Created a new record for model's Messages via multi" do
+      arg :id_external, :string
+      arg :id_tax, :integer
+      arg :id_telegram, :string
+      arg :message_body, non_null(:string)
+      arg :message_expired_at, :datetime
+      arg :phone_number, non_null(:string)
+      arg :status_changed_at, :datetime
+      arg :status_id, non_null(:string)
+      resolve &MessageResolver.create_via_multi/3
+    end
+
+    @desc "Created the model's Messages via selected operator's connector"
+    field :create_message_via_selected, list_of(:message), description: "Created a new record for model's Messages and send via selected connectors" do
+      arg :id_external, :string
+      arg :id_tax, :integer
+      arg :id_telegram, :string
+      arg :message_body, non_null(:string)
+      arg :message_expired_at, :datetime
+      arg :phone_number, non_null(:string)
+      arg :status_changed_at, :datetime
+      arg :status_id, non_null(:string)
+      resolve &MessageResolver.create_via_selected/3
     end
 
     @desc "Updated a specific recored for model's Messages"
