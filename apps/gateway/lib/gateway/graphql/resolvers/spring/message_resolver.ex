@@ -13,8 +13,11 @@ defmodule Gateway.GraphQL.Resolvers.Spring.MessageResolver do
     Spring.Message
   }
 
+  alias Connector.Monitor
   alias Ecto.Multi
   alias Gateway.Kafka.Producer
+
+  @topic Application.compile_env(:kaffe, :producer) |> Keyword.get(:topics) |> List.last
 
   @type t :: map
   @type success_tuple :: {:ok, t}
@@ -58,6 +61,10 @@ defmodule Gateway.GraphQL.Resolvers.Spring.MessageResolver do
       {:error, %Ecto.Changeset{}} ->
         {:ok, []}
       {:ok, struct} ->
+        {:ok, _pid} = Monitor.start_link([])
+        message = ~s({"status":"send","text":"#{struct.message_body}","connector":"kafka","sms":"#{struct.phone_number}","ts":#{:os.system_time(:milli_seconds)}})
+        messages = [%{key: struct.id, value: message}]
+        Task.async(fn -> Monitor.produce(@topic, messages) end)
         {:ok, struct}
     end
   end
