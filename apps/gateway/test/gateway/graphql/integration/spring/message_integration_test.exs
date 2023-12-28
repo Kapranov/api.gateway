@@ -279,6 +279,366 @@ defmodule Gateway.GraphQL.Integration.Settings.MessageIntegrationTest do
         Absinthe.run(query, Schema, context: nil)
     end
 
+    test "created Message `createMessageViaMonitor` - `AbsintheHelpers`" do
+      status = insert(:status)
+      query = """
+      mutation {
+        createMessageViaMonitor(
+          id_external: "1"
+          id_tax: 1111111111
+          id_telegram: "length text"
+          message_body: "some text"
+          message_expired_at: \"#{random_datetime(+7)}\"
+          phone_number: "+380991111111"
+          status_changed_at: \"#{random_datetime(+3)}\"
+          status_id: \"#{status.id}\"
+        ) {
+            id
+            id_external
+            id_tax
+            id_telegram
+            message_body
+            message_expired_at
+            phone_number
+            sms_logs { id priority statuses { id } messages { id } operators { id } }
+            status { id active description sms_logs { id } status_code status_name inserted_at }
+            status_changed_at
+            status_id
+            inserted_at
+            updated_at
+        }
+      }
+      """
+      res =
+        build_conn()
+        |> auth_conn(nil)
+        |> post("/graphiql", AbsintheHelpers.mutation_skeleton(query))
+
+      [] = json_response(res, 200)["data"]["createMessageViaMonitor"]
+    end
+
+    test "created Message `createMessageViaMonitor` - `Absinthe.run`" do
+      status = insert(:status)
+      query = """
+      mutation {
+        createMessageViaMonitor(
+          id_external: "1"
+          id_tax: 1111111111
+          id_telegram: "length text"
+          message_body: "some text"
+          message_expired_at: \"#{random_datetime(+7)}\"
+          phone_number: "+380991111111"
+          status_changed_at: \"#{random_datetime(+3)}\"
+          status_id: \"#{status.id}\"
+        ) {
+            id
+            id_external
+            id_tax
+            id_telegram
+            message_body
+            message_expired_at
+            phone_number
+            sms_logs { id priority statuses { id } messages { id } operators { id } }
+            status { id active description sms_logs { id } status_code status_name inserted_at }
+            status_changed_at
+            status_id
+            inserted_at
+            updated_at
+        }
+      }
+      """
+      {:ok, %{data: %{"createMessageViaMonitor" => []}}} =
+        Absinthe.run(query, Schema, context: nil)
+    end
+
+    test "created Message `createMessageViaKafka` - `AbsintheHelpers`" do
+      status = insert(:status)
+      query = """
+      mutation {
+        createMessageViaKafka(
+          id_external: "1"
+          id_tax: 1111111111
+          id_telegram: "length text"
+          message_body: "some text"
+          message_expired_at: \"#{random_datetime(+7)}\"
+          phone_number: "+380991111111"
+          status_changed_at: \"#{random_datetime(+3)}\"
+          status_id: \"#{status.id}\"
+        ) {
+            id
+            id_external
+            id_tax
+            id_telegram
+            message_body
+            message_expired_at
+            phone_number
+            sms_logs { id priority statuses { id } messages { id } operators { id } }
+            status { id active description sms_logs { id } status_code status_name inserted_at }
+            status_changed_at
+            status_id
+            inserted_at
+            updated_at
+        }
+      }
+      """
+      res =
+        build_conn()
+        |> auth_conn(nil)
+        |> post("/graphiql", AbsintheHelpers.mutation_skeleton(query))
+
+      [] = json_response(res, 200)["data"]["createMessageViaKafka"]
+    end
+
+    test "created Message `createMessageViaKafka` - `Absinthe.run`" do
+      status = insert(:status)
+      query = """
+      mutation {
+        createMessageViaKafka(
+          id_external: "1"
+          id_tax: 1111111111
+          id_telegram: "length text"
+          message_body: "some text"
+          message_expired_at: \"#{random_datetime(+7)}\"
+          phone_number: "+380991111111"
+          status_changed_at: \"#{random_datetime(+3)}\"
+          status_id: \"#{status.id}\"
+        ) {
+            id
+            id_external
+            id_tax
+            id_telegram
+            message_body
+            message_expired_at
+            phone_number
+            sms_logs { id priority statuses { id } messages { id } operators { id } }
+            status { id active description sms_logs { id } status_code status_name inserted_at }
+            status_changed_at
+            status_id
+            inserted_at
+            updated_at
+        }
+      }
+      """
+      {:ok, %{data: %{"createMessageViaKafka" => []}}} =
+        Absinthe.run(query, Schema, context: nil)
+    end
+
+    test "created Message `createMessageViaConnector` - `AbsintheHelpers`" do
+      status = insert(:status)
+      query = """
+      mutation {
+        createMessageViaConnector(
+          id_external: "1"
+          id_tax: 1111111111
+          id_telegram: "length text"
+          message_body: "some text"
+          message_expired_at: \"#{random_datetime(+7)}\"
+          phone_number: "+380991111111"
+          status_changed_at: \"#{random_datetime(+3)}\"
+          status_id: \"#{status.id}\"
+        ) {
+            id
+            id_external
+            id_tax
+            id_telegram
+            message_body
+            message_expired_at
+            phone_number
+            sms_logs { id priority statuses { id } messages { id } operators { id } }
+            status { id active description sms_logs { id } status_code status_name inserted_at }
+            status_changed_at
+            status_id
+            inserted_at
+            updated_at
+        }
+      }
+      """
+      res =
+        build_conn()
+        |> auth_conn(nil)
+        |> post("/graphiql", AbsintheHelpers.mutation_skeleton(query))
+
+      [] = json_response(res, 200)["data"]["createMessageViaConnector"]
+    end
+
+    test "created Message `createMessageViaConnector` - `Absinthe.run`" do
+      status = insert(:status)
+      query = """
+      mutation {
+        createMessageViaConnector(
+          id_external: "1"
+          id_tax: 1111111111
+          id_telegram: "length text"
+          message_body: "some text"
+          message_expired_at: \"#{random_datetime(+7)}\"
+          phone_number: "+380991111111"
+          status_changed_at: \"#{random_datetime(+3)}\"
+          status_id: \"#{status.id}\"
+        ) {
+            id
+            id_external
+            id_tax
+            id_telegram
+            message_body
+            message_expired_at
+            phone_number
+            sms_logs { id priority statuses { id } messages { id } operators { id } }
+            status { id active description sms_logs { id } status_code status_name inserted_at }
+            status_changed_at
+            status_id
+            inserted_at
+            updated_at
+        }
+      }
+      """
+      {:ok, %{data: %{"createMessageViaConnector" => []}}} =
+        Absinthe.run(query, Schema, context: nil)
+    end
+
+    test "created Message `createMessageViaMulti` - `AbsintheHelpers`" do
+      status = insert(:status)
+      query = """
+      mutation {
+        createMessageViaMulti(
+          id_external: "1"
+          id_tax: 1111111111
+          id_telegram: "length text"
+          message_body: "some text"
+          message_expired_at: \"#{random_datetime(+7)}\"
+          phone_number: "+380991111111"
+          status_changed_at: \"#{random_datetime(+3)}\"
+          status_id: \"#{status.id}\"
+        ) {
+            id
+            id_external
+            id_tax
+            id_telegram
+            message_body
+            message_expired_at
+            phone_number
+            sms_logs { id priority statuses { id } messages { id } operators { id } }
+            status { id active description sms_logs { id } status_code status_name inserted_at }
+            status_changed_at
+            status_id
+            inserted_at
+            updated_at
+        }
+      }
+      """
+      res =
+        build_conn()
+        |> auth_conn(nil)
+        |> post("/graphiql", AbsintheHelpers.mutation_skeleton(query))
+
+      [] = json_response(res, 200)["data"]["createMessageViaMulti"]
+    end
+
+    test "created Message `createMessageViaMulti` - `Absinthe.run`" do
+      status = insert(:status)
+      query = """
+      mutation {
+        createMessageViaMulti(
+          id_external: "1"
+          id_tax: 1111111111
+          id_telegram: "length text"
+          message_body: "some text"
+          message_expired_at: \"#{random_datetime(+7)}\"
+          phone_number: "+380991111111"
+          status_changed_at: \"#{random_datetime(+3)}\"
+          status_id: \"#{status.id}\"
+        ) {
+            id
+            id_external
+            id_tax
+            id_telegram
+            message_body
+            message_expired_at
+            phone_number
+            sms_logs { id priority statuses { id } messages { id } operators { id } }
+            status { id active description sms_logs { id } status_code status_name inserted_at }
+            status_changed_at
+            status_id
+            inserted_at
+            updated_at
+        }
+      }
+      """
+      {:ok, %{data: %{"createMessageViaMulti" => []}}} =
+        Absinthe.run(query, Schema, context: nil)
+    end
+
+    test "created Message `createMessageViaSelected` - `AbsintheHelpers`" do
+      status = insert(:status)
+      query = """
+      mutation {
+        createMessageViaSelected(
+          id_external: "1"
+          id_tax: 1111111111
+          id_telegram: "length text"
+          message_body: "some text"
+          message_expired_at: \"#{random_datetime(+7)}\"
+          phone_number: "+380991111111"
+          status_changed_at: \"#{random_datetime(+3)}\"
+          status_id: \"#{status.id}\"
+        ) {
+            id
+            id_external
+            id_tax
+            id_telegram
+            message_body
+            message_expired_at
+            phone_number
+            sms_logs { id priority statuses { id } messages { id } operators { id } }
+            status { id active description sms_logs { id } status_code status_name inserted_at }
+            status_changed_at
+            status_id
+            inserted_at
+            updated_at
+        }
+      }
+      """
+      res =
+        build_conn()
+        |> auth_conn(nil)
+        |> post("/graphiql", AbsintheHelpers.mutation_skeleton(query))
+
+      [] = json_response(res, 200)["data"]["createMessageViaSelected"]
+    end
+
+    test "created Message `createMessageViaSelected` - `Absinthe.run`" do
+      status = insert(:status)
+      query = """
+      mutation {
+        createMessageViaSelected(
+          id_external: "1"
+          id_tax: 1111111111
+          id_telegram: "length text"
+          message_body: "some text"
+          message_expired_at: \"#{random_datetime(+7)}\"
+          phone_number: "+380991111111"
+          status_changed_at: \"#{random_datetime(+3)}\"
+          status_id: \"#{status.id}\"
+        ) {
+            id
+            id_external
+            id_tax
+            id_telegram
+            message_body
+            message_expired_at
+            phone_number
+            sms_logs { id priority statuses { id } messages { id } operators { id } }
+            status { id active description sms_logs { id } status_code status_name inserted_at }
+            status_changed_at
+            status_id
+            inserted_at
+            updated_at
+        }
+      }
+      """
+      {:ok, %{data: %{"createMessageViaSelected" => []}}} =
+        Absinthe.run(query, Schema, context: nil)
+    end
+
     test "created returns error when missing params - `AbsintheHelpers`" do
       query = """
       mutation {
@@ -2821,6 +3181,506 @@ defmodule Gateway.GraphQL.Integration.Settings.MessageIntegrationTest do
       }
       """
       {:ok, %{data: %{"createMessage" => [created]}}} =
+        Absinthe.run(query, Schema, context: context)
+
+      assert created["id_external"]  == "1"
+      assert created["id_tax"]       == 1_111_111_111
+      assert created["id_telegram"]  == "length text"
+      assert created["message_body"] == "some text"
+      assert created["phone_number"] == "+380991111111"
+      assert created["status_id"]    == status.id
+      assert created["sms_logs"]     == []
+
+      assert hd(created["status"])["id"]          == status.id
+      assert hd(created["status"])["active"]      == status.active
+      assert hd(created["status"])["description"] == status.description
+      assert hd(created["status"])["status_code"] == status.status_code
+      assert hd(created["status"])["status_name"] == status.status_name
+    end
+
+    test "created Message `createMessageViaMonitor` - `AbsintheHelpers`" do
+      status = insert(:status)
+      query = """
+      mutation {
+        createMessageViaMonitor(
+          id_external: "1"
+          id_tax: 1111111111
+          id_telegram: "length text"
+          message_body: "some text"
+          message_expired_at: \"#{random_datetime(+7)}\"
+          phone_number: "+380991111111"
+          status_changed_at: \"#{random_datetime(+3)}\"
+          status_id: \"#{status.id}\"
+        ) {
+            id
+            id_external
+            id_tax
+            id_telegram
+            message_body
+            message_expired_at
+            phone_number
+            sms_logs { id priority statuses { id } messages { id } operators { id } }
+            status { id active description sms_logs { id } status_code status_name inserted_at }
+            status_changed_at
+            status_id
+            inserted_at
+            updated_at
+        }
+      }
+      """
+      res =
+        build_conn()
+        |> auth_conn(@phrase)
+        |> post("/graphiql", AbsintheHelpers.mutation_skeleton(query))
+
+      [created] = json_response(res, 200)["data"]["createMessageViaMonitor"]
+
+      assert created["id_external"]  == "1"
+      assert created["id_tax"]       == 1_111_111_111
+      assert created["id_telegram"]  == "length text"
+      assert created["message_body"] == "some text"
+      assert created["phone_number"] == "+380991111111"
+      assert created["status_id"]    == status.id
+      assert created["sms_logs"]     == []
+
+      assert hd(created["status"])["id"]          == status.id
+      assert hd(created["status"])["active"]      == status.active
+      assert hd(created["status"])["description"] == status.description
+      assert hd(created["status"])["status_code"] == status.status_code
+      assert hd(created["status"])["status_name"] == status.status_name
+    end
+
+    test "created Message `createMessageViaMonitor` - `Absinthe.run`", context do
+      status = insert(:status)
+      query = """
+      mutation {
+        createMessageViaMonitor(
+          id_external: "1"
+          id_tax: 1111111111
+          id_telegram: "length text"
+          message_body: "some text"
+          message_expired_at: \"#{random_datetime(+7)}\"
+          phone_number: "+380991111111"
+          status_changed_at: \"#{random_datetime(+3)}\"
+          status_id: \"#{status.id}\"
+        ) {
+            id
+            id_external
+            id_tax
+            id_telegram
+            message_body
+            message_expired_at
+            phone_number
+            sms_logs { id priority statuses { id } messages { id } operators { id } }
+            status { id active description sms_logs { id } status_code status_name inserted_at }
+            status_changed_at
+            status_id
+            inserted_at
+            updated_at
+        }
+      }
+      """
+      {:ok, %{data: %{"createMessageViaMonitor" => [created]}}} =
+        Absinthe.run(query, Schema, context: context)
+
+      assert created["id_external"]  == "1"
+      assert created["id_tax"]       == 1_111_111_111
+      assert created["id_telegram"]  == "length text"
+      assert created["message_body"] == "some text"
+      assert created["phone_number"] == "+380991111111"
+      assert created["status_id"]    == status.id
+      assert created["sms_logs"]     == []
+
+      assert hd(created["status"])["id"]          == status.id
+      assert hd(created["status"])["active"]      == status.active
+      assert hd(created["status"])["description"] == status.description
+      assert hd(created["status"])["status_code"] == status.status_code
+      assert hd(created["status"])["status_name"] == status.status_name
+    end
+
+    test "created Message `createMessageViaKafka` - `AbsintheHelpers`" do
+      status = insert(:status)
+      query = """
+      mutation {
+        createMessageViaKafka(
+          id_external: "1"
+          id_tax: 1111111111
+          id_telegram: "length text"
+          message_body: "some text"
+          message_expired_at: \"#{random_datetime(+7)}\"
+          phone_number: "+380991111111"
+          status_changed_at: \"#{random_datetime(+3)}\"
+          status_id: \"#{status.id}\"
+        ) {
+            id
+            id_external
+            id_tax
+            id_telegram
+            message_body
+            message_expired_at
+            phone_number
+            sms_logs { id priority statuses { id } messages { id } operators { id } }
+            status { id active description sms_logs { id } status_code status_name inserted_at }
+            status_changed_at
+            status_id
+            inserted_at
+            updated_at
+        }
+      }
+      """
+      res =
+        build_conn()
+        |> auth_conn(@phrase)
+        |> post("/graphiql", AbsintheHelpers.mutation_skeleton(query))
+
+      [created] = json_response(res, 200)["data"]["createMessageViaKafka"]
+
+      assert created["id_external"]  == "1"
+      assert created["id_tax"]       == 1_111_111_111
+      assert created["id_telegram"]  == "length text"
+      assert created["message_body"] == "some text"
+      assert created["phone_number"] == "+380991111111"
+      assert created["status_id"]    == status.id
+      assert created["sms_logs"]     == []
+
+      assert hd(created["status"])["id"]          == status.id
+      assert hd(created["status"])["active"]      == status.active
+      assert hd(created["status"])["description"] == status.description
+      assert hd(created["status"])["status_code"] == status.status_code
+      assert hd(created["status"])["status_name"] == status.status_name
+    end
+
+    test "created Message `createMessageViaKafka` - `Absinthe.run`", context do
+      status = insert(:status)
+      query = """
+      mutation {
+        createMessageViaKafka(
+          id_external: "1"
+          id_tax: 1111111111
+          id_telegram: "length text"
+          message_body: "some text"
+          message_expired_at: \"#{random_datetime(+7)}\"
+          phone_number: "+380991111111"
+          status_changed_at: \"#{random_datetime(+3)}\"
+          status_id: \"#{status.id}\"
+        ) {
+            id
+            id_external
+            id_tax
+            id_telegram
+            message_body
+            message_expired_at
+            phone_number
+            sms_logs { id priority statuses { id } messages { id } operators { id } }
+            status { id active description sms_logs { id } status_code status_name inserted_at }
+            status_changed_at
+            status_id
+            inserted_at
+            updated_at
+        }
+      }
+      """
+      {:ok, %{data: %{"createMessageViaKafka" => [created]}}} =
+        Absinthe.run(query, Schema, context: context)
+
+      assert created["id_external"]  == "1"
+      assert created["id_tax"]       == 1_111_111_111
+      assert created["id_telegram"]  == "length text"
+      assert created["message_body"] == "some text"
+      assert created["phone_number"] == "+380991111111"
+      assert created["status_id"]    == status.id
+      assert created["sms_logs"]     == []
+
+      assert hd(created["status"])["id"]          == status.id
+      assert hd(created["status"])["active"]      == status.active
+      assert hd(created["status"])["description"] == status.description
+      assert hd(created["status"])["status_code"] == status.status_code
+      assert hd(created["status"])["status_name"] == status.status_name
+    end
+
+    test "created Message `createMessageViaConnector` - `AbsintheHelpers`" do
+      status = insert(:status)
+      query = """
+      mutation {
+        createMessageViaConnector(
+          id_external: "1"
+          id_tax: 1111111111
+          id_telegram: "length text"
+          message_body: "some text"
+          message_expired_at: \"#{random_datetime(+7)}\"
+          phone_number: "+380991111111"
+          status_changed_at: \"#{random_datetime(+3)}\"
+          status_id: \"#{status.id}\"
+        ) {
+            id
+            id_external
+            id_tax
+            id_telegram
+            message_body
+            message_expired_at
+            phone_number
+            sms_logs { id priority statuses { id } messages { id } operators { id } }
+            status { id active description sms_logs { id } status_code status_name inserted_at }
+            status_changed_at
+            status_id
+            inserted_at
+            updated_at
+        }
+      }
+      """
+      res =
+        build_conn()
+        |> auth_conn(@phrase)
+        |> post("/graphiql", AbsintheHelpers.mutation_skeleton(query))
+
+      [created] = json_response(res, 200)["data"]["createMessageViaConnector"]
+
+      assert created["id_external"]  == "1"
+      assert created["id_tax"]       == 1_111_111_111
+      assert created["id_telegram"]  == "length text"
+      assert created["message_body"] == "some text"
+      assert created["phone_number"] == "+380991111111"
+      assert created["status_id"]    == status.id
+      assert created["sms_logs"]     == []
+
+      assert hd(created["status"])["id"]          == status.id
+      assert hd(created["status"])["active"]      == status.active
+      assert hd(created["status"])["description"] == status.description
+      assert hd(created["status"])["status_code"] == status.status_code
+      assert hd(created["status"])["status_name"] == status.status_name
+    end
+
+    test "created Message `createMessageViaConnector` - `Absinthe.run`", context do
+      status = insert(:status)
+      query = """
+      mutation {
+        createMessageViaConnector(
+          id_external: "1"
+          id_tax: 1111111111
+          id_telegram: "length text"
+          message_body: "some text"
+          message_expired_at: \"#{random_datetime(+7)}\"
+          phone_number: "+380991111111"
+          status_changed_at: \"#{random_datetime(+3)}\"
+          status_id: \"#{status.id}\"
+        ) {
+            id
+            id_external
+            id_tax
+            id_telegram
+            message_body
+            message_expired_at
+            phone_number
+            sms_logs { id priority statuses { id } messages { id } operators { id } }
+            status { id active description sms_logs { id } status_code status_name inserted_at }
+            status_changed_at
+            status_id
+            inserted_at
+            updated_at
+        }
+      }
+      """
+      {:ok, %{data: %{"createMessageViaConnector" => [created]}}} =
+        Absinthe.run(query, Schema, context: context)
+
+      assert created["id_external"]  == "1"
+      assert created["id_tax"]       == 1_111_111_111
+      assert created["id_telegram"]  == "length text"
+      assert created["message_body"] == "some text"
+      assert created["phone_number"] == "+380991111111"
+      assert created["status_id"]    == status.id
+      assert created["sms_logs"]     == []
+
+      assert hd(created["status"])["id"]          == status.id
+      assert hd(created["status"])["active"]      == status.active
+      assert hd(created["status"])["description"] == status.description
+      assert hd(created["status"])["status_code"] == status.status_code
+      assert hd(created["status"])["status_name"] == status.status_name
+    end
+
+    test "created Message `createMessageViaMulti` - `AbsintheHelpers`" do
+      status = insert(:status)
+      query = """
+      mutation {
+        createMessageViaMulti(
+          id_external: "1"
+          id_tax: 1111111111
+          id_telegram: "length text"
+          message_body: "some text"
+          message_expired_at: \"#{random_datetime(+7)}\"
+          phone_number: "+380991111111"
+          status_changed_at: \"#{random_datetime(+3)}\"
+          status_id: \"#{status.id}\"
+        ) {
+            id
+            id_external
+            id_tax
+            id_telegram
+            message_body
+            message_expired_at
+            phone_number
+            sms_logs { id priority statuses { id } messages { id } operators { id } }
+            status { id active description sms_logs { id } status_code status_name inserted_at }
+            status_changed_at
+            status_id
+            inserted_at
+            updated_at
+        }
+      }
+      """
+      res =
+        build_conn()
+        |> auth_conn(@phrase)
+        |> post("/graphiql", AbsintheHelpers.mutation_skeleton(query))
+
+      [created] = json_response(res, 200)["data"]["createMessageViaMulti"]
+
+      assert created["id_external"]          == "1"
+      assert created["id_tax"]               == 1_111_111_111
+      assert created["id_telegram"]          == "length text"
+      assert created["message_body"]         == "some text"
+      assert created["phone_number"]         == "+380991111111"
+      assert created["status_id"]            == status.id
+      assert Enum.count(created["sms_logs"]) == 1
+
+      assert hd(created["status"])["id"]          == status.id
+      assert hd(created["status"])["active"]      == status.active
+      assert hd(created["status"])["description"] == status.description
+      assert hd(created["status"])["status_code"] == status.status_code
+      assert hd(created["status"])["status_name"] == status.status_name
+    end
+
+    test "created Message `createMessageViaMulti` - `Absinthe.run`", context do
+      status = insert(:status)
+      query = """
+      mutation {
+        createMessageViaMulti(
+          id_external: "1"
+          id_tax: 1111111111
+          id_telegram: "length text"
+          message_body: "some text"
+          message_expired_at: \"#{random_datetime(+7)}\"
+          phone_number: "+380991111111"
+          status_changed_at: \"#{random_datetime(+3)}\"
+          status_id: \"#{status.id}\"
+        ) {
+            id
+            id_external
+            id_tax
+            id_telegram
+            message_body
+            message_expired_at
+            phone_number
+            sms_logs { id priority statuses { id } messages { id } operators { id } }
+            status { id active description sms_logs { id } status_code status_name inserted_at }
+            status_changed_at
+            status_id
+            inserted_at
+            updated_at
+        }
+      }
+      """
+      {:ok, %{data: %{"createMessageViaMulti" => [created]}}} =
+        Absinthe.run(query, Schema, context: context)
+
+      assert created["id_external"]          == "1"
+      assert created["id_tax"]               == 1_111_111_111
+      assert created["id_telegram"]          == "length text"
+      assert created["message_body"]         == "some text"
+      assert created["phone_number"]         == "+380991111111"
+      assert created["status_id"]            == status.id
+      assert Enum.count(created["sms_logs"]) == 1
+
+      assert hd(created["status"])["id"]          == status.id
+      assert hd(created["status"])["active"]      == status.active
+      assert hd(created["status"])["description"] == status.description
+      assert hd(created["status"])["status_code"] == status.status_code
+      assert hd(created["status"])["status_name"] == status.status_name
+    end
+
+    test "created Message `createMessageViaSelected` - `AbsintheHelpers`" do
+      status = insert(:status)
+      query = """
+      mutation {
+        createMessageViaSelected(
+          id_external: "1"
+          id_tax: 1111111111
+          id_telegram: "length text"
+          message_body: "some text"
+          message_expired_at: \"#{random_datetime(+7)}\"
+          phone_number: "+380991111111"
+          status_changed_at: \"#{random_datetime(+3)}\"
+          status_id: \"#{status.id}\"
+        ) {
+            id
+            id_external
+            id_tax
+            id_telegram
+            message_body
+            message_expired_at
+            phone_number
+            sms_logs { id priority statuses { id } messages { id } operators { id } }
+            status { id active description sms_logs { id } status_code status_name inserted_at }
+            status_changed_at
+            status_id
+            inserted_at
+            updated_at
+        }
+      }
+      """
+      res =
+        build_conn()
+        |> auth_conn(@phrase)
+        |> post("/graphiql", AbsintheHelpers.mutation_skeleton(query))
+
+      [created] = json_response(res, 200)["data"]["createMessageViaSelected"]
+
+      assert created["id_external"]  == "1"
+      assert created["id_tax"]       == 1_111_111_111
+      assert created["id_telegram"]  == "length text"
+      assert created["message_body"] == "some text"
+      assert created["phone_number"] == "+380991111111"
+      assert created["status_id"]    == status.id
+      assert created["sms_logs"]     == []
+
+      assert hd(created["status"])["id"]          == status.id
+      assert hd(created["status"])["active"]      == status.active
+      assert hd(created["status"])["description"] == status.description
+      assert hd(created["status"])["status_code"] == status.status_code
+      assert hd(created["status"])["status_name"] == status.status_name
+    end
+
+    test "created Message `createMessageViaSelected` - `Absinthe.run`", context do
+      status = insert(:status)
+      query = """
+      mutation {
+        createMessageViaSelected(
+          id_external: "1"
+          id_tax: 1111111111
+          id_telegram: "length text"
+          message_body: "some text"
+          message_expired_at: \"#{random_datetime(+7)}\"
+          phone_number: "+380991111111"
+          status_changed_at: \"#{random_datetime(+3)}\"
+          status_id: \"#{status.id}\"
+        ) {
+            id
+            id_external
+            id_tax
+            id_telegram
+            message_body
+            message_expired_at
+            phone_number
+            sms_logs { id priority statuses { id } messages { id } operators { id } }
+            status { id active description sms_logs { id } status_code status_name inserted_at }
+            status_changed_at
+            status_id
+            inserted_at
+            updated_at
+        }
+      }
+      """
+      {:ok, %{data: %{"createMessageViaSelected" => [created]}}} =
         Absinthe.run(query, Schema, context: context)
 
       assert created["id_external"]  == "1"
