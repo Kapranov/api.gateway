@@ -6,6 +6,7 @@ defmodule Gateway.GraphQL.Resolvers.Spring.MessageResolverTest do
     Spring.MessageResolver
   }
 
+  alias Core.Repo
   alias Faker.Lorem
 
   setup_all do
@@ -44,6 +45,81 @@ defmodule Gateway.GraphQL.Resolvers.Spring.MessageResolverTest do
         status_id: status.id
       }
       {:ok, []} = MessageResolver.create(nil, args, nil)
+    end
+
+    test "created Message - `createViaMonitor`" do
+      status = insert(:status)
+      args = %{
+        id_external: "1",
+        id_tax: 1_111_111_111,
+        id_telegram: "length text",
+        message_body: "some text",
+        message_expired_at: random_datetime(+7),
+        phone_number: "+380991111111",
+        status_changed_at: random_datetime(+3),
+        status_id: status.id
+      }
+      {:ok, []} = MessageResolver.create_via_monitor(nil, args, nil)
+    end
+
+    test "created Message - `createViaKafka`" do
+      status = insert(:status)
+      args = %{
+        id_external: "1",
+        id_tax: 1_111_111_111,
+        id_telegram: "length text",
+        message_body: "some text",
+        message_expired_at: random_datetime(+7),
+        phone_number: "+380991111111",
+        status_changed_at: random_datetime(+3),
+        status_id: status.id
+      }
+      {:ok, []} = MessageResolver.create_via_kafka(nil, args, nil)
+    end
+
+    test "created Message - `createViaConnector`" do
+      status = insert(:status)
+      args = %{
+        id_external: "1",
+        id_tax: 1_111_111_111,
+        id_telegram: "length text",
+        message_body: "some text",
+        message_expired_at: random_datetime(+7),
+        phone_number: "+380991111111",
+        status_changed_at: random_datetime(+3),
+        status_id: status.id
+      }
+      {:ok, []} = MessageResolver.create_via_connector(nil, args, nil)
+    end
+
+    test "created Message - `createViaMulti`" do
+      status = insert(:status)
+      args = %{
+        id_external: "1",
+        id_tax: 1_111_111_111,
+        id_telegram: "length text",
+        message_body: "some text",
+        message_expired_at: random_datetime(+7),
+        phone_number: "+380991111111",
+        status_changed_at: random_datetime(+3),
+        status_id: status.id
+      }
+      {:ok, []} = MessageResolver.create_via_multi(nil, args, nil)
+    end
+
+    test "created Message - `createViaSelected`" do
+      status = insert(:status)
+      args = %{
+        id_external: "1",
+        id_tax: 1_111_111_111,
+        id_telegram: "length text",
+        message_body: "some text",
+        message_expired_at: random_datetime(+7),
+        phone_number: "+380991111111",
+        status_changed_at: random_datetime(+3),
+        status_id: status.id
+      }
+      {:ok, []} = MessageResolver.create_via_selected(nil, args, nil)
     end
 
     test "created returns empty list when missing params" do
@@ -556,7 +632,7 @@ defmodule Gateway.GraphQL.Resolvers.Spring.MessageResolverTest do
 
       assert found.status.sms_logs |> Enum.count == 1
 
-      preload = found |> Core.Repo.preload(:sms_logs)
+      preload = found |> Repo.preload(:sms_logs)
 
       assert preload.sms_logs |> Enum.count == 2
     end
@@ -584,6 +660,217 @@ defmodule Gateway.GraphQL.Resolvers.Spring.MessageResolverTest do
       assert created.phone_number       == args.phone_number
       assert created.status_changed_at  == args.status_changed_at
       assert created.status_id          == status.id
+
+      operator = insert(:operator)
+      sms_logs = insert(:sms_log, %{
+        operators: [operator],
+        messages: [created],
+        statuses: [created.status]
+      })
+
+      preload = Repo.preload(created, :sms_logs)
+
+      assert Enum.count(preload.sms_logs) == 0
+      assert Enum.count([sms_logs])       == 1
+
+      assert sms_logs.operators == [operator]
+      assert sms_logs.messages  == [created]
+      assert sms_logs.statuses  == [created.status]
+    end
+
+    test "created Message - `createViaMonitor`", context do
+      status = insert(:status)
+      args = %{
+        id_external: "1",
+        id_tax: 1_111_111_111,
+        id_telegram: "length text",
+        message_body: "some text",
+        message_expired_at: random_datetime(+7),
+        phone_number: "+380991111111",
+        status_changed_at: random_datetime(+3),
+        status_id: status.id
+      }
+      {:ok, created} = MessageResolver.create_via_monitor(nil, args, context)
+      assert created.id_external        == args.id_external
+      assert created.id_tax             == args.id_tax
+      assert created.id_telegram        == args.id_telegram
+      assert created.message_body       == args.message_body
+      assert created.message_expired_at == args.message_expired_at
+      assert created.phone_number       == args.phone_number
+      assert created.status_changed_at  == args.status_changed_at
+      assert created.status_id          == status.id
+
+      operator = insert(:operator)
+      sms_logs = insert(:sms_log, %{
+        operators: [operator],
+        messages: [created],
+        statuses: [created.status]
+      })
+
+      preload = Repo.preload(created, :sms_logs)
+
+      assert Enum.count(preload.sms_logs) == 0
+      assert Enum.count([sms_logs])       == 1
+
+      assert sms_logs.operators == [operator]
+      assert sms_logs.messages  == [created]
+      assert sms_logs.statuses  == [created.status]
+    end
+
+    test "created Message - `createViaKafka`", context do
+      status = insert(:status)
+      args = %{
+        id_external: "1",
+        id_tax: 1_111_111_111,
+        id_telegram: "length text",
+        message_body: "some text",
+        message_expired_at: random_datetime(+7),
+        phone_number: "+380991111111",
+        status_changed_at: random_datetime(+3),
+        status_id: status.id
+      }
+      {:ok, created} = MessageResolver.create_via_kafka(nil, args, context)
+      assert created.id_external        == args.id_external
+      assert created.id_tax             == args.id_tax
+      assert created.id_telegram        == args.id_telegram
+      assert created.message_body       == args.message_body
+      assert created.message_expired_at == args.message_expired_at
+      assert created.phone_number       == args.phone_number
+      assert created.status_changed_at  == args.status_changed_at
+      assert created.status_id          == status.id
+
+      operator = insert(:operator)
+      sms_logs = insert(:sms_log, %{
+        operators: [operator],
+        messages: [created],
+        statuses: [created.status]
+      })
+
+      preload = Repo.preload(created, :sms_logs)
+
+      assert Enum.count(preload.sms_logs) == 0
+      assert Enum.count([sms_logs])       == 1
+
+      assert sms_logs.operators == [operator]
+      assert sms_logs.messages  == [created]
+      assert sms_logs.statuses  == [created.status]
+    end
+
+    test "created Message - `createViaConnector`", context do
+      status = insert(:status)
+      args = %{
+        id_external: "1",
+        id_tax: 1_111_111_111,
+        id_telegram: "length text",
+        message_body: "some text",
+        message_expired_at: random_datetime(+7),
+        phone_number: "+380991111111",
+        status_changed_at: random_datetime(+3),
+        status_id: status.id
+      }
+      {:ok, created} = MessageResolver.create_via_connector(nil, args, context)
+      assert created.id_external        == args.id_external
+      assert created.id_tax             == args.id_tax
+      assert created.id_telegram        == args.id_telegram
+      assert created.message_body       == args.message_body
+      assert created.message_expired_at == args.message_expired_at
+      assert created.phone_number       == args.phone_number
+      assert created.status_changed_at  == args.status_changed_at
+      assert created.status_id          == status.id
+
+      operator = insert(:operator)
+      sms_logs = insert(:sms_log, %{
+        operators: [operator],
+        messages: [created],
+        statuses: [created.status]
+      })
+
+      preload = Repo.preload(created, :sms_logs)
+
+      assert Enum.count(preload.sms_logs) == 0
+      assert Enum.count([sms_logs])       == 1
+
+      assert sms_logs.operators == [operator]
+      assert sms_logs.messages  == [created]
+      assert sms_logs.statuses  == [created.status]
+    end
+
+    test "created Message - `createViaMulti`", context do
+      status = insert(:status)
+      args = %{
+        id_external: "1",
+        id_tax: 1_111_111_111,
+        id_telegram: "length text",
+        message_body: "some text",
+        message_expired_at: random_datetime(+7),
+        phone_number: "+380991111111",
+        status_changed_at: random_datetime(+3),
+        status_id: status.id
+      }
+      {:ok, created} = MessageResolver.create_via_multi(nil, args, context)
+      assert created.id_external        == args.id_external
+      assert created.id_tax             == args.id_tax
+      assert created.id_telegram        == args.id_telegram
+      assert created.message_body       == args.message_body
+      assert created.message_expired_at == args.message_expired_at
+      assert created.phone_number       == args.phone_number
+      assert created.status_changed_at  == args.status_changed_at
+      assert created.status_id          == status.id
+
+      operator = insert(:operator)
+      sms_logs = insert(:sms_log, %{
+        operators: [operator],
+        messages: [created],
+        statuses: [status]
+      })
+
+      preload = Repo.preload(created, :sms_logs)
+
+      assert Enum.count(preload.sms_logs) == 2
+      assert Enum.count([sms_logs])       == 1
+
+      assert sms_logs.operators == [operator]
+      assert sms_logs.messages  == [created]
+      assert sms_logs.statuses  == [status]
+    end
+
+    test "created Message - `createViaSelected`", context do
+      status = insert(:status)
+      args = %{
+        id_external: "1",
+        id_tax: 1_111_111_111,
+        id_telegram: "length text",
+        message_body: "some text",
+        message_expired_at: random_datetime(+7),
+        phone_number: "+380991111111",
+        status_changed_at: random_datetime(+3),
+        status_id: status.id
+      }
+      {:ok, created} = MessageResolver.create_via_selected(nil, args, context)
+      assert created.id_external        == args.id_external
+      assert created.id_tax             == args.id_tax
+      assert created.id_telegram        == args.id_telegram
+      assert created.message_body       == args.message_body
+      assert created.message_expired_at == args.message_expired_at
+      assert created.phone_number       == args.phone_number
+      assert created.status_changed_at  == args.status_changed_at
+      assert created.status_id          == status.id
+
+      operator = insert(:operator)
+      sms_logs = insert(:sms_log, %{
+        operators: [operator],
+        messages: [created],
+        statuses: [created.status]
+      })
+
+      preload = Repo.preload(created, :sms_logs)
+
+      assert Enum.count(preload.sms_logs) == 0
+      assert Enum.count([sms_logs])       == 1
+
+      assert sms_logs.operators == [operator]
+      assert sms_logs.messages  == [created]
+      assert sms_logs.statuses  == [created.status]
     end
 
     test "created returns empty list when missing params", context do
