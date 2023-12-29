@@ -52,4 +52,6 @@ config :kaffe,
     topics: ["kaffe-test"]
   ]
 
+config :kafka_impl, :impl, KafkaImpl.KafkaMock
+
 config :logger, level: :warning

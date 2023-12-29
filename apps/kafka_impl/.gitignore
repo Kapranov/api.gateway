@@ -1,0 +1,10 @@
+/_build/
+/cover/
+/deps/
+/doc/
+/tmp/
+
+*.ez
+/.fetch
+erl_crash.dump
+kafka_impl-*.tar

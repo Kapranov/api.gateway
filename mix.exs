@@ -46,7 +46,7 @@ defmodule GatewayApi.MixProject do
       {:ex_unit_notifier, "~> 1.3", [env: :prod, hex: "ex_unit_notifier", repo: "hexpm"]},
       {:excoveralls, "~> 0.17.1", only: [:test]},
       {:junit_formatter, "~> 3.3"},
-      {:mix_test_watch, "~> 1.1", only: [:dev], runtime: false}
+      {:mix_test_watch, "~> 1.1", only: [:test], runtime: false}
     ]
   end
 

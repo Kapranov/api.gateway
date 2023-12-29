@@ -40,6 +40,8 @@ config :providers, :dia,
   url_push: "https://api2t.diia.gov.ua/api/v1/notification/distribution/push",
   url_template: "https://api2t.diia.gov.ua/api/v1/notification/template"
 
+config :kafka_impl, :impl, KafkaImpl.Kaffe
+
 config :logger, :console,
   colors: [enabled: true],
   format: "[$date $time] $message\n",

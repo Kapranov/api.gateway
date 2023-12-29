@@ -4,9 +4,5 @@ _build/
 /tmp/
 /.fetch
 
-apps/kaffe_codealong
-apps/message_consumer
-apps/message_producer
-
 erl_crash.dump
 *.ez
