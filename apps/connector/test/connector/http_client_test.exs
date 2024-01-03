@@ -1,4 +1,6 @@
 defmodule Connector.HTTPClientTest do
+  @moduledoc false
+
   use Connector.DataCase
 
   alias Connector.TestHTTPClientDelay0, as: Delay0
@@ -50,7 +52,7 @@ defmodule Connector.HTTPClientTest do
       config_dia = build(:config, name: "dia")
       config_dia_attrs = Map.from_struct(config_dia)
       dia_attrs = Map.merge(config_dia_attrs, %{parameters: parameters_attrs})
-      _operator_dia = insert(:operator, operator_type: operator_type, name_operator: "dia",config: dia_attrs)
+      _operator_dia = insert(:operator, operator_type: operator_type, name_operator: "dia", config: dia_attrs)
 
       config_intertelecom = build(:config, name: "intertelecom")
       config_intertelecom_attrs = Map.from_struct(config_intertelecom)
@@ -313,7 +315,7 @@ defmodule Connector.HTTPClientTest do
       config_dia = build(:config, name: "dia")
       config_dia_attrs = Map.from_struct(config_dia)
       dia_attrs = Map.merge(config_dia_attrs, %{parameters: parameters_attrs})
-      _operator_dia = insert(:operator, operator_type: operator_type, name_operator: "dia",config: dia_attrs)
+      _operator_dia = insert(:operator, operator_type: operator_type, name_operator: "dia", config: dia_attrs)
 
       config_intertelecom = build(:config, name: "intertelecom")
       config_intertelecom_attrs = Map.from_struct(config_intertelecom)

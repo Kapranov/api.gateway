@@ -184,7 +184,7 @@ defmodule Gateway.GraphQL.Resolvers.Spring.MessageResolver do
   @spec sorted_operators(any, %{atom => any}, Absinthe.Resolution.t()) :: error_tuple()
   def sorted_operators(_parent, _args, _info), do: {:ok, []}
 
-  @spec create_multi(map()) :: {:ok, map()} | {:error, %Ecto.Changeset{}}
+  @spec create_multi(map()) :: {:ok, map()} | {:error, map()}
   defp create_multi(attrs) do
     message_changeset = Message.changeset(%Message{}, attrs)
     Multi.new

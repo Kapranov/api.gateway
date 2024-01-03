@@ -136,7 +136,7 @@ defmodule Gateway.Kafka.Producer do
         ack_timeout: 1000,
         partition_buffer_limit: 512,
         partition_onwire_limit: 1,
-        max_batch_size: 1048576,
+        max_batch_size: 1_048_576,
         max_retries: 3,
         retry_backoff_ms: 500,
         compression: :no_compression,

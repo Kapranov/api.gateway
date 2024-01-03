@@ -15,13 +15,15 @@ defmodule SilentMessage do
             :ets.insert(@connector, {key, value})
           rescue
             ArgumentError ->
+              # credo:disable-for-next-line
               IO.inspect message
           end
         false ->
           :ets.new(@connector, [:set, :public, :named_table])
           :ets.insert(@connector, {key, value})
       end
-      IO.inspect message
+      # credo:disable-for-next-line
+      if unquote(Mix.env == :test), do: IO.inspect message
     end
     :ok
   end

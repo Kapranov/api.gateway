@@ -1,4 +1,6 @@
 defmodule TestBrod do
+  @moduledoc false
+
   use GenServer
 
   @name __MODULE__

@@ -57,27 +57,27 @@ defmodule Gateway.Kafka.ConsumerTest do
       info = Kaffe.Config.Consumer.configuration()
       assert info == %{
         async_message_ack: false,
-        client_down_retry_expire: 15000,
+        client_down_retry_expire: 15_000,
         consumer_config: [
           auto_start_producers: false,
           allow_topic_auto_creation: false,
           begin_offset: :earliest
         ],
         consumer_group: "kaffe-test-group",
-        endpoints: [{~c"localhost", 9092}],
+        endpoints: [{~c"localhost", 9_092}],
         group_config: [
           offset_commit_policy: :commit_to_kafka_v2,
           offset_commit_interval_seconds: 5
         ],
-        max_bytes: 10000,
-        max_wait_time: 10000,
+        max_bytes: 10_000,
+        max_wait_time: 10_000,
         message_handler: SilentMessage,
         min_bytes: 0,
         offset_reset_policy: :reset_by_subscriber,
         rebalance_delay_ms: 100,
         subscriber_name: :"kaffe-test-group",
         subscriber_retries: 5,
-        subscriber_retry_delay_ms: 5000,
+        subscriber_retry_delay_ms: 5_000,
         topics: ["kaffe-test"],
         worker_allocation_strategy: :worker_per_partition
       }

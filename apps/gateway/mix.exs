@@ -46,6 +46,7 @@ defmodule Gateway.MixProject do
       {:faker, "~> 0.17", only: [:dev, :test]},
       {:gen_state_machine, "~> 3.0"},
       {:jason, "~> 1.2"},
+      {:kafka_impl, in_umbrella: true},
       {:observer_cli, "~> 1.7"},
       {:phoenix, "~> 1.7.7"},
       {:phoenix_swagger, "~> 0.8.3"},

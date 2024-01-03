@@ -1,4 +1,6 @@
 defmodule KafkaImpl.KafkaMock.Store do
+  @moduledoc false
+
   @agent_name __MODULE__
 
   def start_link do

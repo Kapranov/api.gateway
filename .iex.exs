@@ -30,7 +30,16 @@ history_size = 1_000_000_000
 
 eval_result = [:green, :bright]
 eval_error = [:red, :bright]
-eval_info = [:blue, :bright]
+eval_info = [:yellow, :bright]
+eval_warning = [:yellow, :bright, "🧪\n"]
+
+
+timestamp = fn ->
+  {_date, {hour, minute, _second}} = :calendar.local_time
+  [hour, minute]
+  |> Enum.map(&(String.pad_leading(Integer.to_string(&1), 2, "0")))
+  |> Enum.join(":")
+end
 
 IEx.configure(
   inspect: [
@@ -59,14 +68,39 @@ IEx.configure(
     doc_title: [:cyan, :bright, :underline]
   ],
   alive_prompt: alive_prompt,
-  default_prompt:
-    [
-      :light_magenta,
-      "⚡ iex",
-      ">",
-      :white,
-      :reset
-    ]
-    |> IO.ANSI.format()
-    |> IO.chardata_to_string()
+  default_prompt: [ :light_magenta, "⚡", ">", :white, :reset ] |> IO.ANSI.format() |> IO.chardata_to_string()
+  #default_prompt: "#{IO.ANSI.green}%prefix#{IO.ANSI.reset} " <> "[#{IO.ANSI.magenta}#{timestamp.()}#{IO.ANSI.reset} " <> ":: #{IO.ANSI.cyan}%counter#{IO.ANSI.reset}]"
 )
+
+# `Process.sleep` doesn't sleep long enough
+# There's an event in the future, and in the original livebook,
+# I use `Process.sleep` to wait until the event starts to start
+# sending graphql requests.
+#
+# Since the sleep is short, the first graphql request lands slightly
+# before the event starts and it messes up the flow.
+#
+# I tried to isolate the problem, and here's a simpler cell that
+# exhibits the same behavior.
+#
+# - check now
+# - sleep for 10s
+# - check now, again
+# - it shouldn't be before `now + 10s`
+#
+
+now = DateTime.utc_now()
+t10 = DateTime.add(now, 20, :second)
+expected_diff = DateTime.diff(t10, now, :millisecond)
+[now: now, t10: t10, expected_diff: expected_diff] |> IO.inspect()
+
+Process.sleep(expected_diff)
+
+woke_at = DateTime.utc_now()
+actual_diff = DateTime.diff(woke_at, now, :millisecond)
+
+[woke_at: woke_at, actual_diff: actual_diff] |> IO.inspect()
+
+:ok
+
+clear()

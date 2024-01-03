@@ -670,7 +670,7 @@ defmodule Gateway.GraphQL.Resolvers.Spring.MessageResolverTest do
 
       preload = Repo.preload(created, :sms_logs)
 
-      assert Enum.count(preload.sms_logs) == 0
+      assert Enum.empty?(preload.sms_logs) == true
       assert Enum.count([sms_logs])       == 1
 
       assert sms_logs.operators == [operator]
@@ -709,8 +709,8 @@ defmodule Gateway.GraphQL.Resolvers.Spring.MessageResolverTest do
 
       preload = Repo.preload(created, :sms_logs)
 
-      assert Enum.count(preload.sms_logs) == 0
-      assert Enum.count([sms_logs])       == 1
+      assert Enum.empty?(preload.sms_logs) == true
+      assert Enum.count([sms_logs])        == 1
 
       assert sms_logs.operators == [operator]
       assert sms_logs.messages  == [created]
@@ -748,8 +748,8 @@ defmodule Gateway.GraphQL.Resolvers.Spring.MessageResolverTest do
 
       preload = Repo.preload(created, :sms_logs)
 
-      assert Enum.count(preload.sms_logs) == 0
-      assert Enum.count([sms_logs])       == 1
+      assert Enum.empty?(preload.sms_logs) == true
+      assert Enum.count([sms_logs])        == 1
 
       assert sms_logs.operators == [operator]
       assert sms_logs.messages  == [created]
@@ -787,8 +787,8 @@ defmodule Gateway.GraphQL.Resolvers.Spring.MessageResolverTest do
 
       preload = Repo.preload(created, :sms_logs)
 
-      assert Enum.count(preload.sms_logs) == 0
-      assert Enum.count([sms_logs])       == 1
+      assert Enum.empty?(preload.sms_logs) == true
+      assert Enum.count([sms_logs])        == 1
 
       assert sms_logs.operators == [operator]
       assert sms_logs.messages  == [created]
@@ -865,8 +865,8 @@ defmodule Gateway.GraphQL.Resolvers.Spring.MessageResolverTest do
 
       preload = Repo.preload(created, :sms_logs)
 
-      assert Enum.count(preload.sms_logs) == 0
-      assert Enum.count([sms_logs])       == 1
+      assert Enum.empty?(preload.sms_logs) == true
+      assert Enum.count([sms_logs])        == 1
 
       assert sms_logs.operators == [operator]
       assert sms_logs.messages  == [created]

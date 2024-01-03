@@ -178,8 +178,12 @@ defmodule Connector.Monitor do
   @impl true
   @spec handle_info(any(), any()) :: {:noreply, any()}
   def handle_info(msg, state) do
-    msg |> IO.inspect(label: "message")
-    state |> IO.inspect(label: "state")
+    if unquote(Mix.env == :dev) do
+      # credo:disable-for-next-line
+      msg |> IO.inspect(label: "message")
+      # credo:disable-for-next-line
+      state |> IO.inspect(label: "state")
+    end
     {:noreply, state}
   end
 

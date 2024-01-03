@@ -36,7 +36,7 @@ defmodule Gateway.Kafka.Consumer do
     )
   end
 
-  @spec init(any(), [map()]) :: {:ok, %Kaffe.Consumer.State{}}
+  @spec init(any(), [map()]) :: {:ok, map()}
   def init(_consumer_group, [config]) do
     start_consumer_client(config)
     {:ok, %Kaffe.Consumer.State{message_handler: config.message_handler, async: config.async_message_ack}}
@@ -65,7 +65,8 @@ defmodule Gateway.Kafka.Consumer do
               :ok
           end
       end
-      IO.inspect message
+      # credo:disable-for-next-line
+      if unquote(Mix.env == :dev), do: IO.inspect message
     end
     :ok
   end
@@ -82,12 +83,12 @@ defmodule Gateway.Kafka.Consumer do
       endpoints: [{~c"localhost", 9092}],
       message_handler: Gateway.Kafka.Consumer,
       topics: ["MyTopic"],
-      max_bytes: 1000000,
-      max_wait_time: 10000,
+      max_bytes: 1_000_000,
+      max_wait_time: 10_000,
       min_bytes: 0,
       subscriber_name: :"example-consumer-group",
       async_message_ack: false,
-      client_down_retry_expire: 30000,
+      client_down_retry_expire: 30_000,
       consumer_config: [
         auto_start_producers: false,
         allow_topic_auto_creation: false,
@@ -98,7 +99,7 @@ defmodule Gateway.Kafka.Consumer do
         offset_commit_interval_seconds: 5
       ],
       offset_reset_policy: :reset_by_subscriber,
-      rebalance_delay_ms: 10000,
+      rebalance_delay_ms: 10_000,
       subscriber_retries: 5,
       subscriber_retry_delay_ms: 5000,
       worker_allocation_strategy: :worker_per_partition

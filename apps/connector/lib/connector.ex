@@ -14,13 +14,19 @@ defmodule Connector do
             :ets.insert(@connector, {key, value})
           rescue
             ArgumentError ->
-              IO.inspect message
+              if unquote(Mix.env == :dev) do
+                # credo:disable-for-next-line
+                IO.inspect message
+              else
+                message
+              end
           end
         false ->
           :ets.new(@connector, [:set, :public, :named_table])
           :ets.insert(@connector, {key, value})
       end
-      IO.inspect message
+      # credo:disable-for-next-line
+      if unquote(Mix.env == :dev), do: IO.inspect message
     end
     :ok
   end

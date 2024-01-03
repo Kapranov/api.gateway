@@ -13,10 +13,7 @@ defmodule GatewayApi.MixProject do
       elixirc_options: [warnings_as_errors: warnings_as_errors(Mix.env())],
       homepage_url: "https://api.gateway.com.ua/",
       name: "APIGateway",
-      preferred_cli_env: cli_env_for(:test, [
-        "coveralls", "coveralls.detail", "coveralls.post",
-        "coveralls.html", "coveralls.json", "test.reset"
-      ]),
+      preferred_cli_env: cli_env_for(:test, ["coveralls", "coveralls.detail", "coveralls.post", "coveralls.html", "coveralls.json", "test.reset", "test.watch"]),
       source_url: "https://github.com/kapranov/api_gateway",
       start_permanent: Mix.env() == :prod,
       test_coverage: [tool: ExCoveralls],
@@ -46,7 +43,7 @@ defmodule GatewayApi.MixProject do
       {:ex_unit_notifier, "~> 1.3", [env: :prod, hex: "ex_unit_notifier", repo: "hexpm"]},
       {:excoveralls, "~> 0.17.1", only: [:test]},
       {:junit_formatter, "~> 3.3"},
-      {:mix_test_watch, "~> 1.1", only: [:test], runtime: false}
+      {:mix_test_watch, "~> 1.1", only: [:dev, :test], runtime: false}
     ]
   end
 

@@ -42,6 +42,8 @@ config :providers, :dia,
 
 config :kafka_impl, :impl, KafkaImpl.Kaffe
 
+config :mix_test_watch, tasks: ["test", "credo"], clear: true
+
 config :logger, :console,
   colors: [enabled: true],
   format: "[$date $time] $message\n",
