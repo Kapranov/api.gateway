@@ -216,6 +216,47 @@ iex> messages = [%{key: id, value: message}]
 iex> Connector.Monitor.produce(topic, messages)
 ```
 
+```
+defmodule World.Location do
+  def start_link(args) do
+    GenServer.start_link(__MODULE__, args, name: via_tuple(args.id))
+  end
+
+  defp via_tuple(id) do
+    {:via, Registry, {LocationRegistry, id}}
+  end
+end
+```
+
+## MetaPid
+
+```
+defmodule SomeStruct do
+  defstruct [:my_key, xs: MapSet.new()]
+end
+
+defmodule MyMetaPidRegistry do
+  use Connector.MetaPid, into: SomeStruct, name: :meta_pid
+end
+
+{:ok, pid} = MyMetaPidRegistry.start_link
+
+MyMetaPidRegistry.register_pid(pid)
+MyMetaPidRegistry.get_registry
+%{pid => %SomeStruct{my_key: nil, xs: MapSet.new([])}}
+MyMetaPidRegistry.register_pid(pid, %SomeStruct{my_key: :my_new_value})
+MyMetaPidRegistry.get_registry
+%{pid => %SomeStruct{my_key: :my_new_value, xs: MapSet.new([])}}
+pid2 = self()
+MyMetaPidRegistry.register_pid(pid2, %SomeStruct{my_key: :my_new_value})
+MyMetaPidRegistry.get_registry
+%{
+   pid => %SomeStruct{my_key: :my_new_value, xs: MapSet.new([])},
+  pid2 => %SomeStruct{my_key: :my_new_value, xs: MapSet.new([])}
+}
+
+```
+
 ### 27 Oct 2023 by Oleg G.Kapranov
 
  [1]: http://httpbin.org
