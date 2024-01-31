@@ -40,7 +40,12 @@ config :ex_json_schema,
 config :core, ecto_repos: [Core.Repo]
 
 config :connector,
-  external_api: "http://httpbin.org"
+  attempt: 1,
+  external_api: "http://httpbin.org",
+  include_404s: false,
+  max_attempts: 5,
+  retry_unknown_errors: false,
+  wait: 1
 
 config :absinthe_error_payload,
   ecto_repos: [Core.Repo],

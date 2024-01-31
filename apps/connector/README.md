@@ -230,7 +230,7 @@ end
 
 ## MetaPid
 
-```
+```elixir
 defmodule SomeStruct do
   defstruct [:my_key, xs: MapSet.new()]
 end
@@ -254,7 +254,60 @@ MyMetaPidRegistry.get_registry
    pid => %SomeStruct{my_key: :my_new_value, xs: MapSet.new([])},
   pid2 => %SomeStruct{my_key: :my_new_value, xs: MapSet.new([])}
 }
+```
 
+```elixir
+
+# Register a pid
+pid = self()
+MyMetaPidRegistry.register_pid(pid)
+
+# Register a pid with some data
+pid = self()
+MyMetaPidRegistry.register_pid(pid, %SomeStruct{my_key: :my_value})
+
+# Update a pid's meta data
+MyMetaPidRegistry.update_pid(pid, %SomeStruct{my_key: :my_new_value})
+
+# Remove a pid from the registry
+MyMetaPidRegistry.unregister_pid(pid)
+
+# If registering under OTP, start under a supervisor, i.e.
+children = [{MyMetaPidRegistry, []}]
+Supervisor.start_link(children, strategy: :one_for_one)
+```
+
+```eixir
+defmodule Example do
+  def sample(ast, env) do
+    if Macro.quoted_literal?(ast) do
+      Macro.postwalk(ast, fn
+        {:__aliases__, _, _} = alias -> Macro.expand(alias, env)
+        {:%{}, [], opts} -> Map.new(opts)
+        {:%, [], [module, opts]} -> struct(module, opts)
+        other -> other
+      end)
+    else
+      ast
+    end
+  end
+end
+
+iex> map_ast = quote do: %{day: 1, month: 1, year: 2024}
+{:%{}, [], [day: 1, month: 1, year: 2024]}
+
+iex> Example.sample(map_ast, __ENV__)
+%{day: 1, month: 1, year: 2024}
+
+iex> struct_ast = quote do: %Date{day: 1, month: 1, year: 2024}
+{:%, [],
+  [
+    {:__aliases__, [alias: false], [:Date]},
+    {:%{}, [], [day: 1, month: 1, year: 2024]}
+]}
+
+iex> Example.sample(struct_ast, __ENV__)
+~D[2024-01-01]
 ```
 
 ### 27 Oct 2023 by Oleg G.Kapranov
@@ -291,3 +344,10 @@ MyMetaPidRegistry.get_registry
 [30]: https://hexdocs.pm/elixir/main/dynamic-supervisor.html
 [31]: https://thoughtbot.com/blog/how-to-start-processes-with-dynamic-names-in-elixir
 [32]: https://www.thegreatcodeadventure.com/how-we-used-elixirs-genservers-dynamic-supervisors-to-build-concurrent-fault-tolerant-workflows/
+[33]: https://elixirschool.com/ru/lessons/basics/modules
+[34]: https://elixirschool.com/ru/lessons/advanced/metaprogramming
+[35]: https://elixirforum.com/t/testing-stop-some-error-in-genserver-init-1-with-exunit/12718
+[36]: https://elixirforum.com/t/using-macro-with-option/50443/6
+[37]: https://github.com/CargoSense/vex
+[38]: https://elixirforum.com/t/testing-stop-some-error-in-genserver-init-1-with-exunit/12718/2
+[39]: https://elixirforum.com/t/intermittent-dbconnection-connectionerror-in-tests/46037
