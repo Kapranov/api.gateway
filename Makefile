@@ -94,7 +94,7 @@ test:
 													$(V)echo -en "\n\t$(INFO_COLOR)Run server tests:$(NO_COLOR)\n\n"
 													$(V)$(MIX) test --color
 
-run: kill clean packs
+run: kill
 													$(V)echo -en "\n\t$(STAT_COLOR) Run server https://localhost:$(NO_COLOR)$(INFO_COLOR)4001$(NO_COLOR)\n"
 													$(V)iex -S mix phx.server
 
@@ -104,6 +104,7 @@ halt: kill
 
 start: kill clean packs
 													$(V)echo -en "\n\t$(STAT_COLOR) Run server https://localhost:$(NO_COLOR)$(INFO_COLOR)4001$(NO_COLOR)\n"
+													$(V)iex -S mix phx.server
 
 up: kill
 													$(V)mix run --no-halt
