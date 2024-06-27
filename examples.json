@@ -1,0 +1,278 @@
+{
+  "key": "graphiql",
+  "lastId": 8,
+  "tabIds": [
+    "tab1",
+    "tab2",
+    "tab3",
+    "tab4",
+    "tab6",
+    "tab8"
+  ],
+  "closedTabs": [
+    {
+      "id": "tab7",
+      "name": "Query 6",
+      "url": "http://159.224.174.183/graphiql",
+      "websocketUrl": "",
+      "proxy": false,
+      "headers": [],
+      "collapsed": false,
+      "maxHistory": 20,
+      "history": [
+        {
+          "query": "query {\n  homePage {\n    status\n  }\n}",
+          "variables": null
+        }
+      ],
+      "graphiql:query": "query {\n  homePage {\n    status\n  }\n}",
+      "graphiql:variables": "",
+      "graphiql:queries": "{\"queries\":[{\"query\":\"query {\\n  homePage {\\n    status\\n  }\\n}\",\"variables\":\"\"}]}",
+      "graphiql:editorFlex": 1,
+      "graphiql:variableEditorHeight": 200,
+      "graphiql:docExplorerWidth": 350
+    },
+    {
+      "id": "tab5",
+      "name": "Query 5",
+      "url": "http://localhost:4000/graphiql",
+      "websocketUrl": "",
+      "proxy": false,
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer xxx"
+        }
+      ],
+      "collapsed": true,
+      "maxHistory": 20,
+      "history": [
+        {
+          "query": "query {\n  homePage {\n    status\n  }\n}",
+          "variables": null
+        }
+      ],
+      "graphiql:query": "query {\n  homePage {\n    status\n  }\n}",
+      "graphiql:variables": "",
+      "graphiql:queries": "{\"queries\":[{\"query\":\"query {\\n  homePage {\\n    status\\n  }\\n}\",\"variables\":\"\"}]}",
+      "graphiql:editorFlex": 1,
+      "graphiql:variableEditorHeight": 200,
+      "graphiql:docExplorerWidth": 350
+    }
+  ],
+  "defaultUrl": "http://localhost:4000/graphiql",
+  "defaultWebsocketUrl": "",
+  "defaultQuery": "",
+  "defaultVariables": "",
+  "defaultProxy": false,
+  "defaultHeaders": [],
+  "usedUrls": [
+    "http://159.224.174.183/graphiql",
+    "http://localhost:4000/graphiql"
+  ],
+  "recentHeaders": [
+    {
+      "name": "Authorization",
+      "value": "Bearer SFMyNTY.g2gDbQAAAEBvdUk2YTJBV3Y2QnFMWVd6NTdXM3luVnpxVnVjMG5pTHBpbXJFU0dVNlM3bFVjcGMySHFaWUk2bHhaZWtiZ3Y4bgYAgFTGWJABYgABUYA.3NTpKx8GybgufakVGUMcBGHxg9NgngQcwWyPgQdDATA"
+    },
+    {
+      "name": "Authorization",
+      "value": "Bearer SFMyNTY.g2gDbQAAAAVIZWxsb24GAMVIFYOKAWIAAVGA.xN_EyvY9bU9zboZqSjq3yTcIwDQ-Zo2d6xtal05NONc"
+    },
+    {
+      "name": "Authorization",
+      "value": "Bearer SFMyNTY.g2gDbQAAAEBvdUk2YTJBV3Y2QnFMWVd6NTdXM3luVnpxVnVjMG5pTHBpbXJFU0dVNlM3bFVjcGMySHFaWUk2bHhaZWtiZ3Y4bgYAKfYUg4oBYgABUYA.wZh1jMOMlyHbGOt8mR-bmGEt26XsMGcoUOFFahg8W0w"
+    },
+    {
+      "name": "Authorization",
+      "value": "Bearer SFMyNTY.g2gDbQAAAAVIZWxsb24GABCUE4OKAWIAAVGA.GXblZmaAVs6aEfZDvsa6NWeKIJGYaylz1MQ6JzwJikE"
+    },
+    {
+      "name": "Authorization",
+      "value": "Bearer SFMyNTY.g2gDbQAAAEBvdUk2YTJBV3Y2QnFMWVd6NTdXM3luVnpxVnVjMG5pTHBpbXJFU0dVNlM3bFVjcGMySHFaWUk2bHhaZWtiZ3Y4bgYAHg0Qg4oBYgABUYA.EdzokgakxiJxF2mkI5zysAuAmfnclO7VLmHKLSAnIaA"
+    },
+    {
+      "name": "Authorization",
+      "value": "Bearer SFMyNTY.g2gDbQAAAAVIZWxsb24GAMoiCIOKAWIAAVGA.sw32i7p631iDD29OeTqBnVrlaEKBrBDXWbQoD_HyEpg"
+    },
+    {
+      "name": "Authorization",
+      "value": "Bearer SFMyNTY.g2gDbQAAAEBvdUk2YTJBV3Y2QnFMWVd6NTdXM3luVnpxVnVjMG5pTHBpbXJFU0dVNlM3bFVjcGMySHFaWUk2bHhaZWtiZ3Y4bgYArG4Gg4oBYgABUYA.J17TnutyfHxjyGGM5hgrkTbsx2PGeBhk9yir5QbmE6A"
+    },
+    {
+      "name": "Authorization",
+      "value": "Bearer SFMyNTY.g2gDbQAAAEBvdUk2YTJBV3Y2QnFMWVd6NTdXM3luVnpxVnVjMG5pTHBpbXJFU0dVNlM3bFVjcGMySHFaWUk2bHhaZWtiZ3Y4bgYAXIL0gooBYgABUYA.wssb_KK9jW-v17JLFpCyBKtVInBZD_P8BALOyF6_61E"
+    },
+    {
+      "name": "Authorization",
+      "value": "Bearer xxx"
+    },
+    {
+      "name": "Authorization",
+      "value": "Bearer SFMyNTY.g2gDdwNuaWxuBgDOPjd-igFiAAFRgA.KhhMXVhxEdkLOFZtHTizqkvrECxgM2MviXPU7FtXCWc"
+    }
+  ],
+  "maxTabHistory": 20,
+  "maxUrlHistory": 20,
+  "maxHistory": 20,
+  "savedQueries": [],
+  "activeId": "tab8",
+  "tabs": [
+    {
+      "id": "tab1",
+      "name": "Query 1",
+      "url": "http://159.224.174.183/graphiql",
+      "websocketUrl": "",
+      "proxy": false,
+      "headers": [],
+      "collapsed": true,
+      "maxHistory": 20,
+      "history": [
+        {
+          "query": "query {\n  indexPage {\n    status\n  }\n}",
+          "variables": null
+        }
+      ],
+      "graphiql:queries": "{\"queries\":[{\"query\":\"query {\\n  indexPage {\\n    status\\n  }\\n}\",\"variables\":\"\"}]}",
+      "graphiql:editorFlex": 1,
+      "graphiql:variableEditorHeight": 200,
+      "graphiql:docExplorerWidth": 350
+    },
+    {
+      "id": "tab2",
+      "name": "Query 2",
+      "url": "http://159.224.174.183/graphiql",
+      "websocketUrl": "",
+      "proxy": false,
+      "headers": [],
+      "collapsed": true,
+      "maxHistory": 20,
+      "history": [
+        {
+          "query": "query {\n  indexPage {status}\n}",
+          "variables": null
+        },
+        {
+          "query": "query {\n  homePage {status}\n}",
+          "variables": null
+        },
+        {
+          "query": "query {\n  homePage {status}\n}\n  }\n}",
+          "variables": null
+        },
+        {
+          "query": "query {\n  homePage\n}\n  }\n}",
+          "variables": null
+        },
+        {
+          "query": "query {\n  getToken {\n    accessToken\n  }\n}",
+          "variables": null
+        }
+      ],
+      "graphiql:query": "query {\n  indexPage {status}\n}",
+      "graphiql:docExplorerWidth": 350,
+      "graphiql:queries": "{\"queries\":[{\"query\":\"query {\\n  getToken {\\n    accessToken\\n  }\\n}\",\"variables\":\"\"},{\"query\":\"query {\\n  homePage {status}\\n}\"},{\"query\":\"query {\\n  indexPage {status}\\n}\"}]}",
+      "graphiql:variableEditorHeight": 200,
+      "graphiql:editorFlex": 0.2718808193668529
+    },
+    {
+      "id": "tab3",
+      "name": "Query 3",
+      "url": "http://159.224.174.183/graphiql",
+      "websocketUrl": "",
+      "proxy": false,
+      "headers": [],
+      "collapsed": true,
+      "maxHistory": 20,
+      "history": [
+        {
+          "query": "query {\n  getToken {\n    accessToken\n  }\n}",
+          "variables": null
+        },
+        {
+          "query": "query {\n  homePage {\n    status\n  }\n}",
+          "variables": null
+        }
+      ],
+      "graphiql:query": "query {\n  getToken {\n    accessToken\n  }\n}",
+      "graphiql:docExplorerWidth": 350,
+      "graphiql:queries": "{\"queries\":[{\"query\":\"query {\\n  homePage {\\n    status\\n  }\\n}\",\"variables\":\"\"},{\"query\":\"query {\\n  getToken {\\n    accessToken\\n  }\\n}\",\"variables\":\"\"}]}",
+      "graphiql:variableEditorHeight": 200,
+      "graphiql:editorFlex": 0.26014760147601473
+    },
+    {
+      "id": "tab4",
+      "name": "Query 4",
+      "url": "http://159.224.174.183/graphiql",
+      "websocketUrl": "",
+      "proxy": false,
+      "headers": [],
+      "collapsed": true,
+      "maxHistory": 20,
+      "history": [
+        {
+          "query": "query {\n  homePage {\n    status\n  }\n}",
+          "variables": null
+        }
+      ],
+      "graphiql:query": "query {\n  homePage {\n    status\n  }\n}",
+      "graphiql:queries": "{\"queries\":[{\"query\":\"query {\\n  homePage {\\n    status\\n  }\\n}\",\"variables\":\"\"}]}",
+      "graphiql:variableEditorHeight": 200,
+      "graphiql:editorFlex": 0.24181818181818182,
+      "graphiql:docExplorerWidth": 350
+    },
+    {
+      "id": "tab6",
+      "name": "Query 5",
+      "url": "http://159.224.174.183/graphiql",
+      "websocketUrl": "",
+      "proxy": false,
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer SFMyNTY.g2gDbQAAAEBvdUk2YTJBV3Y2QnFMWVd6NTdXM3luVnpxVnVjMG5pTHBpbXJFU0dVNlM3bFVjcGMySHFaWUk2bHhaZWtiZ3Y4bgYAgFTGWJABYgABUYA.3NTpKx8GybgufakVGUMcBGHxg9NgngQcwWyPgQdDATA"
+        }
+      ],
+      "collapsed": false,
+      "maxHistory": 20,
+      "history": [
+        {
+          "query": "query {\n  homePage {\n    status\n  }\n}",
+          "variables": null
+        }
+      ],
+      "graphiql:query": "query {\n  homePage {\n    status\n  }\n}",
+      "graphiql:variableEditorHeight": 200,
+      "graphiql:editorFlex": 0.2695167286245353,
+      "graphiql:queries": "{\"queries\":[{\"query\":\"query {\\n  homePage {\\n    status\\n  }\\n}\",\"variables\":\"\"}]}",
+      "graphiql:docExplorerWidth": 350
+    },
+    {
+      "id": "tab8",
+      "name": "Query 6",
+      "url": "http://159.224.174.183/graphiql",
+      "websocketUrl": "",
+      "proxy": false,
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer SFMyNTY.g2gDbQAAAEBvdUk2YTJBV3Y2QnFMWVd6NTdXM3luVnpxVnVjMG5pTHBpbXJFU0dVNlM3bFVjcGMySHFaWUk2bHhaZWtiZ3Y4bgYAgFTGWJABYgABUYA.3NTpKx8GybgufakVGUMcBGHxg9NgngQcwWyPgQdDATA"
+        }
+      ],
+      "collapsed": false,
+      "maxHistory": 20,
+      "history": [
+        {
+          "query": "query {\n  showSmsLog (id: \"\") {\n    messages { id }\n    operators { id }\n    statuses { id }\n    priority\n    operators {\n      id\n      active\n      config {id\n        contentType\n        name\n        size\n        url\n        parameters {\n          id\n          key\n          value\n          insertedAt\n          updatedAt\n        }\n        insertedAt\n        updatedAt\n      }\n    }\n    insertedAt\n  }\n}",
+          "variables": null
+        }
+      ],
+      "graphiql:query": "query {\n  showSmsLog (id: \"xxx\") {\n    messages { id }\n    operators { id }\n    statuses { id }\n    priority\n    operators {\n      id\n      active\n      config {id\n        contentType\n        name\n        size\n        url\n        parameters {\n          id\n          key\n          value\n          insertedAt\n          updatedAt\n        }\n        insertedAt\n        updatedAt\n      }\n    }\n    insertedAt\n  }\n}",
+      "graphiql:variables": "",
+      "graphiql:queries": "{\"queries\":[{\"query\":\"query {\\n  showSmsLog (id: \\\"\\\") {\\n    messages { id }\\n    operators { id }\\n    statuses { id }\\n    priority\\n    operators {\\n      id\\n      active\\n      config {id\\n        contentType\\n        name\\n        size\\n        url\\n        parameters {\\n          id\\n          key\\n          value\\n          insertedAt\\n          updatedAt\\n        }\\n        insertedAt\\n        updatedAt\\n      }\\n    }\\n    insertedAt\\n  }\\n}\",\"variables\":\"\"}]}",
+      "graphiql:editorFlex": 1,
+      "graphiql:variableEditorHeight": 200,
+      "graphiql:docExplorerWidth": 350
+    }
+  ]
+}

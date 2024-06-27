@@ -3,7 +3,7 @@
 **TODO: Add description**
 
  1. clean up Kafka log dirs every time when it starts app - `rm -fr /opt/kafka/logs/*`
- 2. chmage dir to app - `cd api.gateway`
+ 2. change dir to app - `cd api.gateway`
  3. start up - `./zookeeper.sh`
  4. start up - `./kafka.sh`
  5. create topic `MyTopic` - `sudo -u kafka /opt/kafka/bin/kafka-topics.sh --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic MyTopic`
