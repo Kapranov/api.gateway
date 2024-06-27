@@ -13,6 +13,7 @@
  9. start up an application - `.run.sh`
 10. in any browsers - `http://159.224.174.183/graphiql`
     you can change addresss in file - `config/config.exs:20,22`
+11. Please see for a detailed are queries into directory - `scripts`
 
 #### Documentations
 
