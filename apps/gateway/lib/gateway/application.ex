@@ -14,7 +14,7 @@ defmodule Gateway.Application do
     load_version()
     children = [
       Gateway.Telemetry,
-      Gateway.Endpoint,
+      Gateway.Endpoint.Config,
       {Phoenix.PubSub, [name: Gateway.PubSub, adapter: Phoenix.PubSub.PG2]},
       {Absinthe.Subscription, Gateway.Endpoint}
     ]
