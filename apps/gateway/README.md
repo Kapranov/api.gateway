@@ -4,6 +4,12 @@
 bash> mix phx.new.web gateway --module Gateway --no-assets --no-dashboard --no-ecto --no-esbuild --no-gettext --no-html --no-live --no-mailer --no-tailwind
 ```
 
+### In Phoenix `1.7.11`, the `Endpoint.init/2` callback was deprecated.
+
+```
+%{id: Gateway.Endpoint, start: {Gateway.Endpoint, :custom_start_link, []}}
+```
+
 ### 5 Sep 2023 by Oleg G.Kapranov
 
 [1]: https://gist.github.com/stereobooster/f6ec4a15e93609c8dc19754d9568616f
